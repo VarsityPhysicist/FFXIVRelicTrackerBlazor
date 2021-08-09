@@ -1,0 +1,125 @@
+﻿@namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
+@page "/Stage6Nexus"
+@inherits Stage6NexusBase
+
+
+<h3>Stage6Nexus</h3>
+@if (showAll)
+{
+    <div class="stack-vertical">
+        <div class="stack-vertical">
+            <h2>A Realm Reborn: Nexus</h2>
+            <div>@character.Name</div>
+            <div class="stack-horizontal">
+                <span>Selected Job: </span>
+                <select @bind="@ActiveJob">
+                    @foreach (var job in JobNames)
+                    {
+                        <option value="@job">@job</option>
+                    }
+                </select>
+                <button @onclick="()=>CompleteStage()" disabled="@JobNotSelected">Complete</button>
+            </div>
+           <div class="stack-vertical">
+                <span><a href="https://ffxiv.gamerescape.com/wiki/Mmmmmm,_Soulglazed_Relics" target="_blank" rel="noopener noreferrer">Quest: Mmmmmm, Soulglazed Relics</a> | Started by: Jalzahn</span>
+                <span>With your <span class="weapon-purple">@PreviousWeaponName</span> equipped, complete the referenced quest and then speak with Jalzahn to 'Soulglaze' your <span class="weapon-purple">@PreviousWeaponName</span></span>
+                <span>Completing certain ARR content with your soluglazed weapon equipped will earn 'Light', and collecting 2000 light points will allow Jalzahn to transform your weapon to a <span class="weapon-purple">@WeaponName</span></span>
+               <br /> 
+               <span>Completing eligible content will give a notice that a grade of light is emitted in the chat log. Light grades and points are as follows:</span>
+                <table style="text-align:center">
+                    <tr>
+                        <td><button @onclick="()=>IncrementLight(8)">Feeble</button></td>
+                        <td class="pad-td">8 points</td>
+                    </tr>
+                    <tr>
+                        <td><button @onclick="()=>IncrementLight(16)">Gentle</button></td>
+                        <td class="pad-td">16 points</td>
+                    </tr>
+                    <tr>
+                        <td><button @onclick="()=>IncrementLight(32)">Bright</button></td>
+                        <td class="pad-td">32 points</td>
+                    </tr>
+                    <tr>
+                        <td><button @onclick="()=>IncrementLight(48)">Brilliant</button></td>
+                        <td class="pad-td">48 points</td>
+                    </tr>
+                    <tr>
+                        <td><button @onclick="()=>IncrementLight(96)">Blinding</button></td>
+                        <td class="pad-td">96 points</td>
+                    </tr>
+                    <tr>
+                        <td><button @onclick="()=>IncrementLight(128)">Newborn Star</button></td>
+                        <td class="pad-td">128 points</td>
+                    </tr>
+                </table>
+               <div class="stack-horizontal">
+                   <span>Current Light:</span>
+                   <input type="number" min="0" max="2000" @bind="CurrentLight" />
+               </div>
+               <span>Note: Content may be completed unsynced, the only requirement is to have your <span class="weapon-purple">@PreviousWeaponName</span> equipped</span>
+               <span>At 2000 Light Points, speak to Jalzahn and select the option 'Relic Weapon Novus Enhancement'</span>
+               <span>A table detailing light for several types of content can be found <a href="https://ffxiv.consolegameswiki.com/wiki/Nexus_Zodiac_Weapons/Quest#Light_Events" target="_blank" rel="noopener noreferrer">here</a>, but my reccomendation is to run Sastasha / The Tam-Tara Deepcroft 42 times unsynced</span>
+               <br />
+               <span>To check your light progress in-game, with your <span class="weapon-purple">@PreviousWeaponName</span> equipped, use the <a class="item-link">Zodiac Glass</a> recieved upon completing 'Mmmmmm, Soulglazed Relics'</span>
+               <span>The 'Light Activity' reported follows the table below:</span>
+               <table style="text-align:center">
+                   <tr>
+                       <td>@LightString(0) Activity</td>
+                       <td class="pad-td">0-199</td>
+                   </tr>
+                   <tr>
+                       <td>@LightString(200) Activity</td>
+                       <td class="pad-td">200-399</td>
+                   </tr>
+                   <tr>
+                       <td>@LightString(400) Activity</td>
+                       <td class="pad-td">400-599</td>
+                   </tr>
+                   <tr>
+                       <td>@LightString(600) Activity</td>
+                       <td class="pad-td">600-799</td>
+                   </tr>
+                   <tr>
+                       <td>@LightString(800) Activity</td>
+                       <td class="pad-td">800-999</td>
+                   </tr>
+                   <tr>
+                       <td>@LightString(1000) Activity</td>
+                       <td class="pad-td">1000-1199</td>
+                   </tr>
+                   <tr>
+                       <td>@LightString(1200) Activity</td>
+                       <td class="pad-td">1200-1399</td>
+                   </tr>
+                   <tr>
+                       <td>@LightString(1400) Activity</td>
+                       <td class="pad-td">1400-1599</td>
+                   </tr>
+                   <tr>
+                       <td>@LightString(1600) Activity</td>
+                       <td class="pad-td">1600-1799</td>
+                   </tr>
+                   <tr>
+                       <td>@LightString(1800) Activity</td>
+                       <td class="pad-td">1800-1999</td>
+                   </tr>
+                   <tr>
+                       <td>@LightString(2000) Activity</td>
+                       <td class="pad-td">2000+</td>
+                   </tr>
+               </table>
+               <br />
+               <span>Current Activity: @LightString(CurrentLight) Activity</span>
+           </div>
+
+        </div>
+    </div>
+}
+<style>
+    .pad-td{
+        padding-left:20px
+    }
+</style>
+@code {
+
+}

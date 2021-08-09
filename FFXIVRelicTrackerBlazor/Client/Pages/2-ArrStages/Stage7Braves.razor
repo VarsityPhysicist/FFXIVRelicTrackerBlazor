@@ -1,0 +1,363 @@
+﻿@namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
+@page "/Stage7Braves"
+@inherits Stage7BravesBase
+
+
+<h3>Stage7Braves</h3>
+@if (showAll)
+{
+    <div class="stack-vertical">
+        <div class="stack-vertical">
+            <h2>A Realm Reborn: Zodiac Braves</h2>
+            <div>@character.Name</div>
+            <div class="stack-horizontal">
+                <span>Selected Job: </span>
+                <select @bind="@ActiveJob">
+                    @foreach (var job in JobNames)
+                    {
+                        <option value="@job">@job</option>
+                    }
+                </select>
+                <button @onclick="()=>CompleteStage()" disabled="@JobNotSelected">Complete</button>
+            </div>
+            <div class="stack-vertical">
+                <span><a  href="https://ffxiv.gamerescape.com/wiki/Category:Requires_Wherefore_Art_Thou,_Zodiac_Quest" target="_blank" rel="noopener noreferrer">Quest: Wherefore Arth Thou, Zodiac</a> | Started by: Jalzahn (North Shroud)</span>
+                <span>To upgrade your <span class="weapon-purple">@PreviousWeaponName</span> to a <span class="weapon-purple">@WeaponName</span>, four items must be acquired from repeatable quests</span>
+                <span>The four quests are as follows:</span>
+                <span><a href="https://ffxiv.gamerescape.com/wiki/A_Ponze_of_Flesh" target="_blank" rel="noopener noreferrer">A Ponze of Flesh</a> | Started by: Papana (Mor Dhona)</span>
+                <span><a href="https://ffxiv.gamerescape.com/wiki/A_Treasured_Mother" target="_blank" rel="noopener noreferrer">A Treasured Mother</a> | Started by: Brangwine (Mor Dhona)</span>
+                <span><a href="https://ffxiv.gamerescape.com/wiki/Labor_of_Love" target="_blank" rel="noopener noreferrer">Method in His Malice</a> | Started by: (Mor Dhona)</span>
+                <span><a href="https://ffxiv.gamerescape.com/wiki/Method_in_His_Malice" target="_blank" rel="noopener noreferrer">Labour of Love</a> | Started by: (Central Thanalan)</span>
+                <br />
+                <span>Each individual quest will involve completing 4 dungeons to acquire items, purchasing a vendor item worth 100,000 Gil, two HQ crafted items, a <a href="https://ffxiv.gamerescape.com/wiki/Sacred_Spring_Water" target="_blank" rel="noopener noreferrer" class="item-link">Sacred Spring Water</a>, and a <a href="https://ffxiv.gamerescape.com/wiki/Bombard_Core" target="_blank" rel="noopener noreferrer" class="item-link">Bombard Core</a></span>
+                <span>Additionally, each quest is completed over several stages as noted below</span>
+                <div class="stack-vertical">
+                    <div class="stack-horizontal">
+                        <h3>A Ponze of Flesh</h3>
+                        <input type="checkbox" @bind="BookComplete" />
+                    </div>
+                    <table style="visibility:@Collapse(BookComplete)">
+                        <tr>
+                            <td>
+                                <div class="stack-vertical">
+                                    <a href="https://ffxiv.gamerescape.com/wiki/Bombard_Core" target="_blank" rel="noopener noreferrer" class="item-link">Bombard Core</a>
+                                    <a href="https://ffxiv.gamerescape.com/wiki/Sacred_Spring_Water" target="_blank" rel="noopener noreferrer" class="item-link">Sacred Spring Water</a>
+                                    <a href="https://ffxiv.gamerescape.com/wiki/Bronze_Lake_Crystal" target="_blank" rel="noopener noreferrer" class="item-link">Bronze Lake Crystal</a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="stack-vertical">
+                                    <span>Purchase for 20,000 Grand Company Seals</span>
+                                    <span>Purchase for 200 Poetics</span>
+                                    <span>Purchase for 100,000 Gil from Junkmonger (Upper La Noscea)</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="stack-vertical">
+                                    <a href="https://ffxiv.gamerescape.com/wiki/Horn_of_the_Beast" target="_blank" rel="noopener noreferrer" class="item-link">Horn of the Beast</a>
+                                    <a href="https://ffxiv.gamerescape.com/wiki/Gobmachine_Bangplate" target="_blank" rel="noopener noreferrer" class="item-link">Gobmachine Bangplate</a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="stack-vertical">
+                                    <span>Obtained upon completion of Dzemal Darkhold</span>
+                                    <span>Obtained upon completion of Brayflox's Longstop (Hard)</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="stack-vertical">
+                                    <a href="https://ffxiv.gamerescape.com/wiki/Narasimha_Hide" target="_blank" rel="noopener noreferrer" class="item-link">Narashima Hide</a>
+                                    <a href="https://ffxiv.gamerescape.com/wiki/Sickle_Fang" target="_blank" rel="noopener noreferrer" class="item-link">Sickle Fang</a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="stack-vertical">
+                                    <span>Obtained upon completion of Halatali (Hard)</span>
+                                    <span>Obtained upon completion of Snowcloak</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="stack-vertical">
+                                    <a href="https://ffxiv.gamerescape.com/wiki/Furnace_Ring" target="_blank" rel="noopener noreferrer" class="item-link">Furnace Ring (HQ)</a>
+                                    <a href="https://ffxiv.gamerescape.com/wiki/Perfect_Firewood" target="_blank" rel="noopener noreferrer" class="item-link">Perfect Firewood (HQ)</a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="stack-vertical">
+                                    <span>Goldsmith crafted item. May be purchased from Market Board</span>
+                                    <span>Carpenter crafted item. May be purchased from Market Board</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="stack-vertical">
+                    <div class="stack-horizontal">
+                        <h3>A Treasured Mother</h3>
+                        <input type="checkbox" @bind="AlexandriteComplete" />
+                    </div>
+                    <table style="visibility:@Collapse(AlexandriteComplete)">
+                        <tr>
+                            <td>
+                                <div class="stack-vertical">
+                                    <a href="https://ffxiv.gamerescape.com/wiki/Bombard_Core" target="_blank" rel="noopener noreferrer" class="item-link">Bombard Core</a>
+                                    <a href="https://ffxiv.gamerescape.com/wiki/Sacred_Spring_Water" target="_blank" rel="noopener noreferrer" class="item-link">Sacred Spring Water</a>
+                                    <a href="https://ffxiv.gamerescape.com/wiki/Brass_Kettle" target="_blank" rel="noopener noreferrer" class="item-link">Brass Kettle</a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="stack-vertical">
+                                    <span>Purchase for 20,000 Grand Company Seals</span>
+                                    <span>Purchase for 200 Poetics</span>
+                                    <span>Purchase for 100,000 Gil from Tool Supplier & Mender (North Shroud)</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="stack-vertical">
+                                    <span>Lost Treasure (Amdapor Keep)</span>
+                                    <span>Lost Treasure (Pharos Sirius)</span>
+                                    <span>Lost Treasure (Tam-Tara Deepcroft (Hard))</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="stack-vertical">
+                                    <span>Obtained upon completion of Amdapor Keep</span>
+                                    <span>Obtained upon completion of Pharos Sirius</span>
+                                    <span>Obtained upon completion of Tam-Tara Deepcroft (Hard)</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="stack-vertical">
+                                    <span>Lost Treasure (Stone Vigil)</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="stack-vertical">
+                                    <span>Obtained upon completion of Stone Vigil</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="stack-vertical">
+                                    <a href="https://ffxiv.gamerescape.com/wiki/Tailor-made_Eel_Pie" target="_blank" rel="noopener noreferrer" class="item-link">Tailor-made Eel Pie (HQ)</a>
+                                    <a href="https://ffxiv.gamerescape.com/wiki/Perfect_Cloth" target="_blank" rel="noopener noreferrer" class="item-link">Perfect Cloth (HQ)</a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="stack-vertical">
+                                    <span>Culinarian crafted item. May be purchased from Market Board</span>
+                                    <span>Weaver crafted item. May be purchased from Market Board</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="stack-vertical">
+                    <div class="stack-horizontal">
+                        <h3>Labor of Love</h3>
+                        <input type="checkbox" @bind="ZodiumComplete" />
+                    </div>
+                    <table style="visibility:@Collapse(ZodiumComplete)">
+                        <tr>
+                            <td>
+                                <div class="stack-vertical">
+                                    <a href="https://ffxiv.gamerescape.com/wiki/Allagan_Resin" target="_blank" rel="noopener noreferrer" class="item-link">Allagan Resin</a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="stack-vertical">
+                                    <span>Purchase for 100,000 Gil from Merchant & Mender (Southern Thanalan)</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="stack-vertical">
+                                    <a href="https://ffxiv.gamerescape.com/wiki/Vale_Bubo" target="_blank" rel="noopener noreferrer" class="item-link">Vale Bubo</a>
+                                    <a href="https://ffxiv.gamerescape.com/wiki/Voidweave" target="_blank" rel="noopener noreferrer" class="item-link">Voidweave</a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="stack-vertical">
+                                    <span>Obtained upon completion of Aurum Vale</span>
+                                    <span>Obtained upon completion of Haukke Manor (Hard)</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="stack-vertical">
+                                    <a href="https://ffxiv.gamerescape.com/wiki/Amdapor_Vellum" target="_blank" rel="noopener noreferrer" class="item-link">Amdapor Vellum</a>
+                                    <a href="https://ffxiv.gamerescape.com/wiki/Indigo_Pearl" target="_blank" rel="noopener noreferrer" class="item-link">Indigo Pearl</a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="stack-vertical">
+                                    <span>Obtained upon completion of Lost City of Amdapor</span>
+                                    <span>Obtained upon completion of Sastasha (Hard)</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="stack-vertical">
+                                    <a href="https://ffxiv.gamerescape.com/wiki/Perfect_Mortar" target="_blank" rel="noopener noreferrer" class="item-link">Perfect Mortar (HQ)</a>
+                                    <a href="https://ffxiv.gamerescape.com/wiki/Perfect_Pestle" target="_blank" rel="noopener noreferrer" class="item-link">Perfect Pestle (HQ)</a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="stack-vertical">
+                                    <span>Armorer crafted item. May be purchased from Market Board</span>
+                                    <span>Blacksmith crafted item. May be purchased from Market Board</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="stack-vertical">
+                                    <a href="https://ffxiv.gamerescape.com/wiki/Bombard_Core" target="_blank" rel="noopener noreferrer" class="item-link">Bombard Core</a>
+                                    <a href="https://ffxiv.gamerescape.com/wiki/Sacred_Spring_Water" target="_blank" rel="noopener noreferrer" class="item-link">Sacred Spring Water</a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="stack-vertical">
+                                    <span>Purchase for 20,000 Grand Company Seals</span>
+                                    <span>Purchase for 200 Poetics</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="stack-vertical">
+                    <div class="stack-horizontal">
+                        <h3>Method in His Malice</h3>
+                        <input type="checkbox" @bind="ScrollComplete" />
+                    </div>
+                    <table style="visibility:@Collapse(ScrollComplete)">
+                        <tr>
+                            <td>
+                                <div class="stack-vertical">
+                                    <a href="https://ffxiv.gamerescape.com/wiki/Tonberry_King_Blood" target="_blank" rel="noopener noreferrer" class="item-link">Tonberry King Blood</a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="stack-vertical">
+                                    <span>Obtained upon completion of Wanderer's Palace'</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="stack-vertical">
+                                    <a href="https://ffxiv.gamerescape.com/wiki/Royal_Gigant_Blood" target="_blank" rel="noopener noreferrer" class="item-link">Royal Gigant Blood</a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="stack-vertical">
+                                    <span>Obtained upon completion of Copperbell Mines (Hard)</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="stack-vertical">
+                                    <a href="https://ffxiv.gamerescape.com/wiki/Kraken_Blood" target="_blank" rel="noopener noreferrer" class="item-link">Kraken Blood</a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="stack-vertical">
+                                    <span>Obtained upon completion of Hullbreaker Isle</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="stack-vertical">
+                                    <a href="https://ffxiv.gamerescape.com/wiki/Vicegerent_Blood" target="_blank" rel="noopener noreferrer" class="item-link">Vicegerent Blood</a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="stack-vertical">
+                                    <span>Obtained upon completion of Sunken Temple of Qarn (Hard)</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="stack-vertical">
+                                    <a href="https://ffxiv.gamerescape.com/wiki/Perfect_Vellum" target="_blank" rel="noopener noreferrer" class="item-link">Perfect Vellum (HQ)</a>
+                                    <a href="https://ffxiv.gamerescape.com/wiki/Perfect_Pounce" target="_blank" rel="noopener noreferrer" class="item-link">Perfect Pounce (HQ)</a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="stack-vertical">
+                                    <span>Leatherworker crafted item. May be purchased from Market Board</span>
+                                    <span>Alchemist crafted item. May be purchased from Market Board</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="stack-vertical">
+                                    <a href="https://ffxiv.gamerescape.com/wiki/Bombard_Core" target="_blank" rel="noopener noreferrer" class="item-link">Bombard Core</a>
+                                    <a href="https://ffxiv.gamerescape.com/wiki/Sacred_Spring_Water" target="_blank" rel="noopener noreferrer" class="item-link">Sacred Spring Water</a>
+                                    <a href="https://ffxiv.gamerescape.com/wiki/Furite_Sand" target="_blank" rel="noopener noreferrer" class="item-link">Furite Sand</a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="stack-vertical">
+                                    <span>Purchase for 20,000 Grand Company Seals</span>
+                                    <span>Purchase for 200 Poetics</span>
+                                    <span>Purchase for 100,000 Gil from Merchant & Mender (Coerthas Central Highlands)</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <br />
+                <span>Once the previous quests have been completed, speak with Gerolt to initiate <a href="https://ffxiv.gamerescape.com/wiki/His_Dark_Materia" target="_blank" rel="noopener noreferrer">His Dark Materia</a></span>
+                <span>Speak with Mutamix Bubblypots then return to Gerolt. Speak with Jalzahn and select the option 'Zodiac Weapon Recreation' to recieve a <span class="weapon-purple">@WeaponName</span></span>
+                <span>Further Zodiac Braves weapons will require completion of the previous four quests again, they have been unlocked as repeatable quests</span>
+            </div>
+
+        </div>
+    </div>
+}
+<style>
+    table{
+        border-collapse:separate;
+        border-spacing:0px;
+    }
+    tr td:first-child {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-left: solid;
+        border-top: solid;
+        border-bottom: solid; 
+        border-width:1px;
+        padding-inline:10px;
+    }
+    tr td:last-child {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-right: solid;
+        border-top: solid;
+        border-bottom: solid;
+        border-width: 1px;
+        padding-inline: 10px;
+    }
+</style>
+@code {
+
+}

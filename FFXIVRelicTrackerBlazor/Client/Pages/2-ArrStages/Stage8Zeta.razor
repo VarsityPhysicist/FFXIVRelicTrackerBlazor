@@ -1,0 +1,60 @@
+﻿@namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
+@using FFXIVRelicTrackerBlazor.Shared._2_Arr
+@page "/Stage8Zeta"
+@inherits Stage8ZetaBase
+
+
+<h3>Stage8Zeta</h3>
+@if (showAll)
+{
+    <div class="stack-vertical">
+        <div class="stack-vertical">
+            <h2>A Realm Reborn: Zodiac Zeta</h2>
+            <div>@character.Name</div>
+            <div class="stack-horizontal">
+                <span>Selected Job: </span>
+                <select @bind="@ActiveJob">
+                    @foreach (var job in JobNames)
+                    {
+                        <option value="@job">@job</option>
+                    }
+                </select>
+                <button @onclick="()=>CompleteStage()" disabled="@JobNotSelected">Complete</button>
+            </div>
+            <div class="stack-vertical">
+                @if (!AnyCompleted)
+                {
+                    <span><a href="https://ffxiv.gamerescape.com/wiki/Rise_and_Shine" target="_blank" rel="noopener noreferrer">Quest: Rise and Shine</a> | Started by: Jalzahn (North Shroud)</span>
+                    <span>Deliver the <a href="https://ffxiv.gamerescape.com/wiki/Sunshine" target="_blank" rel="noopener noreferrer" class="item-link">Sunshine</a> to Gerolt</span>
+                    <span>Speak with Rowena in Mor Dhona, return to Gerolt in North Shroud, then deliver the to <a href="https://ffxiv.gamerescape.com/wiki/Sunshine" target="_blank" rel="noopener noreferrer" class="item-link">Sunshine</a> Remon in Western La Noscea</span>
+                }
+                <span>With your <span class="weapon-purple">@PreviousWeaponName</span> equipped, complete ARR content to gather light to complete the 12 Mahatma</span>
+                <span>Each Mahatma costs 50 Poetics to unlock and are completed in order. Tables summarizing Light Points, content awards, and messages can be found <a href="https://ffxiv.consolegameswiki.com/wiki/Zodiac_Zeta_Weapons/Quest#Mahatma_Points" target="_blank" rel="noopener noreferrer">here</a>, but the grind for Light has been signficantly shortened</span>
+                <span>The key takeaways are that two runs of Sastasha or The Tam-Tara Deepcroft will complete a Mahatma, or completeing Syrcus Tower or World of Darkness will complete a Mahatma</span>
+                <br />
+                <span>The following controls may be used for tracking progress:</span>
+                <button @onclick="()=>SetStageProgress(ArrZodiacStage.Stage0)" style="@returnDec(RamComplete)">Mahatma of the Ram</button>
+                <button @onclick="()=>SetStageProgress(ArrZodiacStage.Stage1)" style="@returnDec(BullComplete)">Mahatma of the Bull</button>
+                <button @onclick="()=>SetStageProgress(ArrZodiacStage.Stage2)" style="@returnDec(TwinsComplete)">Mahatma of the Twins</button>
+                <button @onclick="()=>SetStageProgress(ArrZodiacStage.Stage3)" style="@returnDec(CrabComplete)">Mahatma of the Crab</button>
+                <button @onclick="()=>SetStageProgress(ArrZodiacStage.Stage4)" style="@returnDec(LionComplete)">Mahatma of the Lion</button>
+                <button @onclick="()=>SetStageProgress(ArrZodiacStage.Stage5)" style="@returnDec(MaidenComplete)">Mahatma of the Maiden</button>
+                <button @onclick="()=>SetStageProgress(ArrZodiacStage.Stage6)" style="@returnDec(ScalesComplete)">Mahatma of the Scales</button>
+                <button @onclick="()=>SetStageProgress(ArrZodiacStage.Stage7)" style="@returnDec(ScorpionComplete)">Mahatma of the Scorpion</button>
+                <button @onclick="()=>SetStageProgress(ArrZodiacStage.Stage8)" style="@returnDec(ArcherComplete)">Mahatma of the Archer</button>
+                <button @onclick="()=>SetStageProgress(ArrZodiacStage.Stage9)" style="@returnDec(GoatComplete)">Mahatma of the Goat</button>
+                <button @onclick="()=>SetStageProgress(ArrZodiacStage.Stage10)" style="@returnDec(WaterBearerComplete)">Mahatma of the Water-bearer</button>
+                <button @onclick="()=>SetStageProgress(ArrZodiacStage.Stage11)" style="@returnDec(FishComplete)">Mahatma of the Fish</button>
+                <br />
+                <span>After completing all 12 Mahatma, return to Jalzahn and select the option 'Zodia Weapon Awakening'. Congratulations on completing your Zodiac Zeta Weapon</span>
+            </div>
+
+        </div>
+    </div>
+}
+<style>
+
+</style>
+@code {
+
+}

@@ -1,0 +1,209 @@
+﻿@namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
+@page "/Stage1Relic"
+@inherits Stage1RelicBase
+
+<h3>Stage1Relic</h3>
+
+@if (showAll)
+{
+    <div class="stack-horizontal">
+        <div class="stack-vertical">
+            <div class="stack-vertical">
+                <h2>A Realm Reborn: Relic</h2>
+                <div>@character.Name</div>
+                <div class="stack-horizontal">
+                    <span>Selected Job: </span>
+                    <select @bind="@ActiveJob">
+                        @foreach (var job in JobNames)
+                        {
+                            <option value="@job">@job</option>
+                        }
+                    </select>
+                    <button @onclick="()=>CompleteStage()" disabled="@JobNotSelected">Complete</button>
+                </div>
+            </div>
+            <div class="stack-horizontal">
+                <h3 style="@returnDec(!AnyCompleted)">Requirements</h3>
+                <input type="checkbox" @bind="AnyCompleted" />
+            </div>
+            @if (!AnyCompleted)
+            {
+                <div class="stack-vertical">
+                    <span>To unlock the ARR Relic quest chain, satisfy the following conditions:</span>
+                    <ul>
+                        <li><span>Complete MSQ: The Ultimate Weapon</span></li>
+                        <li><span>Complete all Class and Job quests in ARR for the desired job</span></li>
+                        <li><span>Have access to Amdapor Keep, The Bowl of Embers(Hard), The Howling Eye(Hard, and The Navel(Hard)</span></li>
+                        <li><a href="https://ffxiv.gamerescape.com/wiki/The_Weaponsmith_of_Legend" target="_blank" rel="noopener noreferrer">Quest: The Weaponsmith of Legend</a><span> | Started by: Nedrick Ironheart (Vesper Bay)</span></li>
+                        <li><span>This quest is completed once to unlock the quest chains for the ARR Relics. Further quests are repeated for each job to obtain Relic Weapons</span></li>
+                    </ul>
+                </div>
+            }
+            @if (JobSelected)
+            {
+                <div>
+                    <a href="@QuestLink" target="_blank" rel="noopener noreferrer">@QuestName</a>
+                </div>
+                <div>
+                    <div class="stack-horizontal">
+                        <h3>Part 1: Timeworn Weapon</h3>
+                        <input type="checkbox" @bind="BrokenWeapon" id="testID" />
+                    </div>
+                    <div style="@returnDec(!BrokenWeapon)">Travel to the location indicated on the map and retrieve the Timeworn <a>@WeaponName</a>. Return to Gerolt.</div>
+                </div>
+                <div>
+                    <div class="stack-horizontal">
+                        <h3>Part 2: Class Weapon</h3>
+                        <input type="checkbox" @bind="MeldedWeapon" />
+                    </div>
+                    <div style="@returnDec(!MeldedWeapon)">Meld two @RelicMateria to a @RelicMat and turn weapon in to Gerolt.</div>
+                </div>
+                <div>
+                    <div class="stack-horizontal">
+                        <h3>Part 3: Alumina Salts</h3>
+                        <input type="checkbox" @bind="SaltsAcquired" />
+                    </div>
+                    <div style="@returnDec(!SaltsAcquired)">
+                        Complete
+                        <a href="https://ffxiv.gamerescape.com/wiki/A_Relic_Reborn:_The_Chimera" target="_blank" rel="noopener noreferrer">
+                            'A Relic Reborn: The Chimera'
+                        </a>
+                        as an @ActiveJob and return to Gerolt.
+                    </div>
+                </div>
+                <div>
+                    <div class="stack-horizontal">
+                        <h3>Part 4: Interview with the Padjal</h3>
+                        <input type="checkbox" @bind="AmdaporCompleted" />
+                    </div>
+                    <div style="@returnDec(!AmdaporCompleted)">Speak to Rowena in Mor Dona</div>
+                    <div style="@returnDec(!AmdaporCompleted)">Retrive an Amdapor Glyph by completing Amdapor Keep (Can run unsynced) as a @ActiveJob</div>
+                    <div style="@returnDec(!AmdaporCompleted)">Deliver Glyph to Rowena in Mor Dona and return to Gerolt with the book</div>
+                </div>
+                <div>
+                    <div class="stack-horizontal">
+                        <h3>Part 5: Beastmen Hunt</h3>
+                        <input type="checkbox" @bind="CompletedBeasts" />
+                    </div>
+                    <div style="@returnDec(!CompletedBeasts)">With your In-Progress <a>@WeaponName</a> equipped, slay 8 of each of the following beastmen in the area indicated on the map</div>
+                    <ul>
+                        <li>
+                            <input type="checkbox" @bind="CompletedBeast1" />
+                            <font style="@returnDec(!CompletedBeast1)">@Beastman1</font>
+                        </li>
+                        <li>
+                            <input type="checkbox" @bind="CompletedBeast2" />
+                            <font style="@returnDec(!CompletedBeast2)">@Beastman2</font>
+                        </li>
+                        <li>
+                            <input type="checkbox" @bind="CompletedBeast3" />
+                            <font style="@returnDec(!CompletedBeast3)">@Beastman3</font>
+                        </li>
+                    </ul>
+                    <div style="@returnDec(!CompletedBeasts)">Once completed, return to Gerolt</div>
+                </div>
+                <div>
+                    <div class="stack-horizontal">
+                        <h3>Part 6: Hydra</h3>
+                        <input type="checkbox" @bind="HydraComplete" />
+                    </div>
+                    <div style="@returnDec(!HydraComplete)">With your In-Progress <a>@WeaponName</a> equipped, complete the trial 'A Relic Reborn: The Hydra' and speak to Gerolt</div>
+                </div>
+                <div>
+                    <div class="stack-horizontal">
+                        <h3>Part 7: Ifrit</h3>
+                        <input type="checkbox" @bind="IfritComplete" />
+                    </div>
+                    <div style="@returnDec(!IfritComplete)">As a <a>@ActiveJob</a>, complete the trial 'The Bowl of Embers (Hard)' and speak to Gerolt</div>
+                </div>
+                <div>
+                    <div class="stack-horizontal">
+                        <h3>Part 8: Garuda</h3>
+                        <input type="checkbox" @bind="GarudaComplete" />
+                    </div>
+                    <div style="@returnDec(!GarudaComplete)">As a <a>@ActiveJob</a>, complete the trial 'The Howling Eye (Hard)' and speak to Gerolt</div>
+                </div>
+                <div>
+                    <div class="stack-horizontal">
+                        <h3>Part 9: Titan</h3>
+                        <input type="checkbox" @bind="TitanComplete" />
+                    </div>
+                    <div style="@returnDec(!TitanComplete)">As a <a>@ActiveJob</a>, complete the trial 'The Navel (Hard)' and speak to Gerolt</div>
+                </div>
+                <div>
+                    <div class="stack-horizontal">
+                        <h3>Part 10: Radz-at-Han Quenching Oil</h3>
+                        <input type="checkbox" @bind="QuenchingComplete" />
+                    </div>
+                    <div style="@returnDec(!QuenchingComplete)">
+                        Purchase a
+                        <a href="https://ffxiv.gamerescape.com/wiki/Radz-at-Han_Quenching_Oil" target="_blank" rel="noopener noreferrer">Radz-at-Han Quenching Oil</a>
+                        for 15 poetics from a Tomestone vendor under the Special Arms Materials Category
+                    </div>
+                </div>
+            }
+            <div />
+        </div>
+        @if (JobSelected)
+        {
+            <div class="img-overlay-wrap">
+
+                <img src="@MapSource">
+                <svg viewBox="0 0 200 200">
+                    <circle cx="@BrokenX" cy="@BrokenY" r="10" fill="indigo" opacity="@BrokenOpacity">
+                    </circle>
+                </svg>
+
+            </div>
+        }
+
+    </div>
+
+}
+
+<style>
+    .inline {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .stack-vertical {
+        display: flex;
+        flex-direction: column;
+        /* background-color: #34ace0;*/
+        color: white;
+        align-items: flex-start;
+    }
+
+    .stack-horizontal {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        /*background-color: #227093;*/
+        color: white;
+        justify-content: left;
+        align-items: center;
+    }
+
+    .img-overlay-wrap {
+        position: relative;
+        display: inline-block; /* shrinks container to image size */
+        transition: transform 150ms ease-in-out;
+    }
+
+    .img-overlay-wrap img { /* optional, for responsiveness */
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .img-overlay-wrap svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+</style>
+
+@code {
+
+}

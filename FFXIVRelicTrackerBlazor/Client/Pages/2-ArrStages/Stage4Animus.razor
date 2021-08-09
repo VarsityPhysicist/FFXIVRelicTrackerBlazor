@@ -1,0 +1,353 @@
+﻿@namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
+@using FFXIVRelicTrackerBlazor.Shared.Helpers.Misc;
+@page "/Stage4Animus"
+@inherits Stage4AnimusBase
+
+<h3>Stage4Animus</h3>
+
+@if (showAll)
+{
+    <div class="stack-horizontal" style="vertical-align:top; align-content:flex-start; align-items:flex-start; justify-content:flex-start; justify-items:flex-start">
+        <div class="stack-vertical">
+            <div class="stack-vertical">
+                <h2>A Realm Reborn: Animus</h2>
+                <div>@character.Name</div>
+                <div class="stack-horizontal">
+                    <span>Selected Job: </span>
+                    <select @bind="@ActiveJob">
+                        @foreach (var job in JobNames)
+                        {
+                            <option value="@job">@job</option>
+                        }
+                    </select>
+                    <button @onclick="()=>CompleteStage()" disabled="@JobNotSelected">Complete</button>
+                </div>
+            </div>
+            <div><a>Quest: Trials of the Braves</a> | Started by: Jalzahn (North Shroud)</div>
+            <div>After accepting the quest, speak with Rowena in Mor Dhona and then G'jusana to complete the quest</div>
+            <div>Speak with G'jusana to purchase the books listed below and complete the tasks detailed for each</div>
+            <div>Note: Each book costs 100 Tomestones of Poetics and only one book may be active at once</div>
+
+            <div class="stack-horizontal">
+                <div class="stack-vertical">
+                    <div class="stack-horizontal">
+                        <input type="checkbox" @bind="SkyFire1Complete" />
+                        <span style="@returnDec(!SkyFire1Complete)">@GetEnumDisplayName(AnimnusBookNames.SkyFire1Book)</span>
+                    </div>
+                    <div class="stack-horizontal">
+                        <input type="checkbox" @bind="SkyFire2Complete" />
+                        <span style="@returnDec(!SkyFire2Complete)">@GetEnumDisplayName(AnimnusBookNames.SkyFire2Book)</span>
+                    </div>
+                    <div class="stack-horizontal">
+                        <input type="checkbox" @bind="NetherFire1Complete" />
+                        <span style="@returnDec(!NetherFire1Complete)">@GetEnumDisplayName(AnimnusBookNames.NetherFire1Book)</span>
+                    </div>
+                </div>
+                <div class="stack-vertical">
+                    <div class="stack-horizontal">
+                        <input type="checkbox" @bind="SkyFall1Complete" />
+                        <span style="@returnDec(!SkyFall1Complete)">@GetEnumDisplayName(AnimnusBookNames.SkyFall1Book)</span>
+                    </div>
+                    <div class="stack-horizontal">
+                        <input type="checkbox" @bind="SkyFall2Complete" />
+                        <span style="@returnDec(!SkyFall2Complete)">@GetEnumDisplayName(AnimnusBookNames.SkyFall2Book)</span>
+                    </div>
+                    <div class="stack-horizontal">
+                        <input type="checkbox" @bind="NetherFall1Complete" />
+                        <span style="@returnDec(!NetherFall1Complete)">@GetEnumDisplayName(AnimnusBookNames.NetherFall1Book)</span>
+                    </div>
+                </div>
+                <div class="stack-vertical">
+                    <div class="stack-horizontal">
+                        <input type="checkbox" @bind="SkyWind1Complete" />
+                        <span style="@returnDec(!SkyWind1Complete)">@GetEnumDisplayName(AnimnusBookNames.SkyWind1Book)</span>
+                    </div>
+                    <div class="stack-horizontal">
+                        <input type="checkbox" @bind="SkyWind2Complete" />
+                        <span style="@returnDec(!SkyWind2Complete)">@GetEnumDisplayName(AnimnusBookNames.SkyWind2Book)</span>
+                    </div>
+                    <div class="stack-horizontal">
+                        <input type="checkbox" @bind="SkyEarth1Complete" />
+                        <span style="@returnDec(!SkyEarth1Complete)">@GetEnumDisplayName(AnimnusBookNames.SkyEarth1Book)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="stack-horizontal">
+                <span>Selected book:</span>
+                <select @bind="@ActiveBook">
+                    @foreach (var book in AvailableBooks)
+                    {
+                        <option value="@book">@book</option>
+                    }
+                </select>
+            </div>
+            
+
+            @if (BookSelected)
+            {
+                <div class="stack-horizontal">
+                    <div class="stack-vertical" style="border-radius: 25px; border: 2px solid OrangeRed; padding:10px;">
+                        <h6>Creatures</h6>
+                        <div class="stack-horizontal">
+                            <input type="checkbox" @bind="@CreatureBool1" />
+                            <div class="noWrap" style="@returnDec(0,MapType.Creature)">@Creatures[0].DisplayName</div>
+                        </div>
+                        <div class="noWrap, note" style="@returnDec(0,MapType.Creature))">@GetEnumDisplayName(Creatures[0].ArrMapName)</div>
+
+                        <div class="stack-horizontal">
+                            <input type="checkbox" @bind="@CreatureBool2" />
+                            <div class="noWrap" style="@returnDec(1,MapType.Creature))">@Creatures[1].DisplayName</div>
+                        </div>
+                        <div class="noWrap, note" style="@returnDec(1,MapType.Creature)">@GetEnumDisplayName(Creatures[1].ArrMapName)</div>
+
+                        <div class="stack-horizontal">
+                            <input type="checkbox" @bind="@CreatureBool3" />
+                            <div class="noWrap" style="@returnDec(2,MapType.Creature)">@Creatures[2].DisplayName</div>
+                        </div>
+                        <div class="noWrap, note" style="@returnDec(2,MapType.Creature)">@GetEnumDisplayName(Creatures[2].ArrMapName)</div>
+
+                        <div class="stack-horizontal">
+                            <input type="checkbox" @bind="@CreatureBool4" />
+                            <div class="noWrap" style="@returnDec(3,MapType.Creature)">@Creatures[3].DisplayName</div>
+                        </div>
+                        <div class="noWrap, note" style="@returnDec(3,MapType.Creature)">@GetEnumDisplayName(Creatures[3].ArrMapName)</div>
+
+                        <div class="stack-horizontal">
+                            <input type="checkbox" @bind="@CreatureBool5" />
+                            <div class="noWrap" style="@returnDec(4,MapType.Creature)">@Creatures[4].DisplayName</div>
+                        </div>
+                        <div class="noWrap, note" style="@returnDec(4,MapType.Creature)">@GetEnumDisplayName(Creatures[4].ArrMapName)</div>
+
+                        <div class="stack-horizontal">
+                            <input type="checkbox" @bind="@CreatureBool6" />
+                            <div class="noWrap" style="@returnDec(5,MapType.Creature)">@Creatures[5].DisplayName</div>
+                        </div>
+                        <div class="noWrap, note" style="@returnDec(5,MapType.Creature)">@GetEnumDisplayName(Creatures[5].ArrMapName)</div>
+
+                        <div class="stack-horizontal">
+                            <input type="checkbox" @bind="@CreatureBool7" />
+                            <div class="noWrap" style="@returnDec(6,MapType.Creature)">@Creatures[6].DisplayName</div>
+                        </div>
+                        <div class="noWrap, note" style="@returnDec(6,MapType.Creature)">@GetEnumDisplayName(Creatures[6].ArrMapName)</div>
+
+                        <div class="stack-horizontal">
+                            <input type="checkbox" @bind="@CreatureBool8" />
+                            <div class="noWrap" style="@returnDec(7,MapType.Creature)">@Creatures[7].DisplayName</div>
+                        </div>
+                        <div class="noWrap, note" style="@returnDec(7,MapType.Creature)">@GetEnumDisplayName(Creatures[7].ArrMapName)</div>
+
+                        <div class="stack-horizontal">
+                            <input type="checkbox" @bind="@CreatureBool9" />
+                            <div class="noWrap" style="@returnDec(8,MapType.Creature)">@Creatures[8].DisplayName</div>
+                        </div>
+                        <div class="noWrap, note" style="@returnDec(8,MapType.Creature)">@GetEnumDisplayName(Creatures[8].ArrMapName)</div>
+
+                        <div class="stack-horizontal">
+                            <input type="checkbox" @bind="@CreatureBool10" />
+                            <div class="noWrap" style="@returnDec(9,MapType.Creature)">@Creatures[9].DisplayName</div>
+                        </div>
+                        <div class="noWrap, note" style="@returnDec(9,MapType.Creature)">@GetEnumDisplayName(Creatures[9].ArrMapName)</div>
+
+                    </div>
+                    <div class="stack-vertical">
+                        <div class="stack-vertical" style="border-radius: 25px; border: 2px solid Purple; padding: 10px; width: -webkit-fit-content;">
+                            <h6>FATEs</h6>
+                            <div class="stack-horizontal">
+                                <input type="checkbox" @bind="@FateBool1" />
+                                <div class="noWrap" style="@returnDec(0,MapType.FATE)">@FATEs[0].DisplayName</div>
+                            </div>
+                            <div class="noWrap, note" style="@returnDec(0,MapType.FATE)">@GetEnumDisplayName(FATEs[0].ArrMapName)</div>
+
+                            <div class="stack-horizontal">
+                                <input type="checkbox" @bind="@FateBool2" />
+                                <div class="noWrap" style="@returnDec(1,MapType.FATE)">@FATEs[1].DisplayName</div>
+                            </div>
+                            <div class="noWrap, note" style="@returnDec(1,MapType.FATE)">@GetEnumDisplayName(FATEs[1].ArrMapName)</div>
+
+                            <div class="stack-horizontal">
+                                <input type="checkbox" @bind="@FateBool3" />
+                                <div class="noWrap" style="@returnDec(2,MapType.FATE)">@FATEs[2].DisplayName</div>
+                            </div>
+                            <div class="noWrap, note" style="@returnDec(2,MapType.FATE)">@GetEnumDisplayName(FATEs[2].ArrMapName)</div>
+
+                        </div>
+                        <div class="stack-vertical" style="border-radius: 25px; border: 2px solid Blue; padding:10px; width:-webkit-fit-content;">
+                            <h6>Leves</h6>
+                            <div class="stack-horizontal">
+                                <input type="checkbox" @bind="@LeveBool1" />
+                                <div class="noWrap" style="@returnDec(0,MapType.Leve)">@Leves[0].DisplayName</div>
+                            </div>
+                            <div class="noWrap, note" style="@returnDec(0,MapType.Leve)">@GetEnumDisplayName(Leves[0].ArrMapName)</div>
+                            <div class="noWrap, note" style="@returnDec(0,MapType.Leve)">@Leves[0].LevePerson</div>
+                            <div class="noWrap, note" style="@returnDec(0,MapType.Leve)">@Leves[0].LeveType</div>
+
+                            <div class="stack-horizontal">
+                                <input type="checkbox" @bind="@LeveBool2" />
+                                <div class="noWrap" style="@returnDec(1,MapType.Leve)">@Leves[1].DisplayName</div>
+                            </div>
+                            <div class="noWrap, note" style="@returnDec(1,MapType.Leve)">@GetEnumDisplayName(Leves[1].ArrMapName)</div>
+                            <div class="noWrap, note" style="@returnDec(1,MapType.Leve)">@Leves[1].LevePerson</div>
+                            <div class="noWrap, note" style="@returnDec(1,MapType.Leve)">@Leves[1].LeveType</div>
+
+                            <div class="stack-horizontal">
+                                <input type="checkbox" @bind="@LeveBool3" />
+                                <div style="@returnDec(2,MapType.Leve)">@Leves[2].DisplayName</div>
+                            </div>
+                            <div class="noWrap, note" style="@returnDec(2,MapType.Leve)">@GetEnumDisplayName(Leves[2].ArrMapName)</div>
+                            <div class="noWrap, note" style="@returnDec(2,MapType.Leve)">@Leves[2].LevePerson</div>
+                            <div class="noWrap, note" style="@returnDec(2,MapType.Leve)">@Leves[2].LeveType</div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="stack-vertical" style="border-radius: 25px; border: 2px solid Gold; padding:10px;">
+                        <h6>Dungeons</h6>
+                        <div class="stack-horizontal">
+                            <input type="checkbox" @bind="@DungeonBool1" />
+                            <div class="noWrap" style="@returnDec(!DungeonBool1)">@Dungeons[0]</div>
+                        </div>
+                        <div class="stack-horizontal">
+                            <input type="checkbox" @bind="@DungeonBool2" />
+                            <div class="noWrap" style="@returnDec(!DungeonBool2)">@Dungeons[1]</div>
+                        </div>
+                        <div class="stack-horizontal">
+                            <input type="checkbox" @bind="@DungeonBool3" />
+                            <div class="noWrap" style="@returnDec(!DungeonBool3)">@Dungeons[2]</div>
+                        </div>
+                    </div>
+
+                </div>
+            }
+
+        </div>
+       
+        <div class="stack-vertical" style="vertical-align:top; justify-content:start">
+            <div class="stack-horizontal">
+                @if (BookSelected)
+                {
+                    <div>Selected Map:</div>
+                    <select @bind="ActiveMap">
+                        @if (AvailableMaps.Count > 0)
+                        {
+                            @foreach (var map in AvailableMaps)
+                            {
+                                <option value="@map">@GetEnumDisplayName(@map)</option>
+                            }
+                        }
+
+                    </select>
+                }
+
+
+            </div>
+            <div class="img-overlay-wrap">
+
+                @if (MapSelected)
+                {
+                    <img src="@MapSource" />
+                    <svg viewBox="0 0 200 200">
+
+                        @if (!CreatureItem1.Hide)
+                        {
+                            <circle @onmouseover="()=>MouseOverItem(CreatureItem1)" @onmouseout="()=>MouseOutItem(CreatureItem1)" @onclick="()=>CompleteItem(CreatureItem1)" cx="@CreatureItem1.PointX" cy="@CreatureItem1.PointY" r="5" fill="OrangeRed" opacity="0.5">
+                                <title>@CreatureItem1.DisplayName</title>
+                            </circle>
+                        }
+                        @if (!CreatureItem2.Hide)
+                        {
+                            <circle @onmouseover="()=>MouseOverItem(CreatureItem2)" @onmouseout="()=>MouseOutItem(CreatureItem2)" @onclick="()=>CompleteItem(CreatureItem2)" cx="@CreatureItem2.PointX" cy="@CreatureItem2.PointY" r="5" fill="OrangeRed" opacity="0.5">
+                                <title>@CreatureItem2.DisplayName</title>
+                            </circle>
+                        }
+                        @if (!CreatureItem3.Hide)
+                        {
+                            <circle @onmouseover="()=>MouseOverItem(CreatureItem3)" @onmouseout="()=>MouseOutItem(CreatureItem3)" @onclick="()=>CompleteItem(CreatureItem3)" cx="@CreatureItem3.PointX" cy="@CreatureItem3.PointY" r="5" fill="OrangeRed" opacity="0.5">
+                                <title>@CreatureItem3.DisplayName</title>
+                            </circle>
+                        }
+                        @if (!FateItem1.Hide)
+                        {
+                            <circle @onmouseover="()=>MouseOverItem(FateItem1)" @onmouseout="()=>MouseOutItem(FateItem1)" @onclick="()=>CompleteItem(FateItem1)" cx="@FateItem1.PointX" cy="@FateItem1.PointY" r="5" fill="Purple" opacity="0.5">
+                                <title>@FateItem1.DisplayName</title>
+                            </circle>
+                        }
+                        @if (!FateItem2.Hide)
+                        {
+                            <circle @onmouseover="()=>MouseOverItem(FateItem2)" @onmouseout="()=>MouseOutItem(FateItem2)" @onclick="()=>CompleteItem(FateItem2)" cx="@FateItem2.PointX" cy="@FateItem2.PointY" r="5" fill="Purple" opacity="0.5">
+                                <title>@FateItem2.DisplayName</title>
+                            </circle>
+                        }
+                        @if (!LeveItem1.Hide)
+                        {
+                            <circle @onmouseover="()=>MouseOverItem(LeveItem1)" @onmouseout="()=>MouseOutItem(LeveItem1)" @onclick="()=>CompleteItem(LeveItem1)" cx="@LeveItem1.PointX" cy="@LeveItem1.PointY" r="5" fill="Blue" opacity="0.5">
+                                <title>@LeveItem1.DisplayName</title>
+                            </circle>
+                        }
+                    </svg>
+
+                }
+            </div>
+        </div>
+    
+    </div>
+
+}
+
+
+
+
+
+
+<style>
+    .note{
+        font-size:80%;
+    }
+    .noWrap{
+        white-space:nowrap;
+    }
+
+    .inline {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .stack-vertical {
+        display: flex;
+        flex-direction: column;
+        /* background-color: #34ace0;*/
+        /*color: white;*/
+        align-items: flex-start;
+    }
+
+    .stack-horizontal {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        /*background-color: #227093;*/
+        /*color: white;*/
+        justify-content: left;
+        align-items: center;
+    }
+
+    .img-overlay-wrap {
+        position: relative;
+        display: inline-block; /* shrinks container to image size */
+        transition: transform 150ms ease-in-out;
+    }
+
+        .img-overlay-wrap img { /* optional, for responsiveness */
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .img-overlay-wrap svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+</style>
+@code {
+
+}

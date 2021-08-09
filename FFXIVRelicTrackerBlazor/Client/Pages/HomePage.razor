@@ -1,0 +1,69 @@
+﻿@page "/"
+@inherits HomePageBase
+
+<h3>Home Page</h3>
+<div class="stack-vertical">
+    <span>Welcome to VarsityPhysicist's FFXIV Relic Tracker</span>
+    <span>This is a tool for tracking relic progression in FFXIV across expansions</span>
+    <span>All progress is saved locally to your device, no information about users is collected or saved</span>
+    <span>To use this tool, create a character with the option below or select your previously created character from the dropdown</span>
+    <span>As you mark stages completed or items collected, progress is automatically saved</span>
+</div>
+<br />
+<div class="stack-horizontal">
+    <span>Active character: @character.Name</span>
+</div>
+<br />
+<h3 @onclick="()=>ShowSelect=!ShowSelect">Character Select</h3>
+@if (ShowSelect)
+{
+    <select class="custom-select" title="Character Select" @bind="@CharacterName">
+        @if (CharacterStringList != null)
+        {
+            @foreach (var character in CharacterStringList)
+            {
+                <option value="@character">@character</option>
+            }
+        }
+    </select>
+}
+<br />
+<a><h3 @onclick="()=>ShowRename=!ShowRename">Rename Character</h3></a>
+@if (ShowRename)
+{
+    <span>Existing character name: @CharacterName</span>
+    <div class="stack-horizontal">
+        <span>New name:</span>
+        <input type="text" @bind="NewName" />
+        <button type="submit" @onclick="()=>ChangeCharacterName(NewName)">Confirm</button>
+    </div>
+}
+<br />
+<h3 @onclick="()=>ShowAdd=!ShowAdd">Add Character</h3>
+@if (ShowAdd)
+{
+    <div>New character name:</div>
+    <div class="stack-horizontal">
+        <input id="name" @bind-value="AddName" />
+        <button type="submit" @onclick="()=>CreateCharacter(AddName)">Add Character</button>
+    </div>
+}
+<br />
+<h3 @onclick="()=>ShowRemove=!ShowRemove">Remove Character</h3>
+@if (ShowRemove)
+{
+    <div>Select character to remove:</div>
+    <select class="custom-select" title="Character Select" @bind="@RemoveName">
+        <option value="@string.Empty"></option>
+        @foreach (var character in CharacterStringList)
+        {
+            <option value="@character">@character.</option>
+        }
+    </select>
+    <button type="submit" @onclick="()=>RemoveCharacter(RemoveName)">Remove Character</button>
+}
+
+
+@code {
+
+}

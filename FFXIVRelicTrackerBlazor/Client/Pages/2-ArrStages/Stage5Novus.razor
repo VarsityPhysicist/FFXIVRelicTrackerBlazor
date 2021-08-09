@@ -1,0 +1,165 @@
+﻿@namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
+@using FFXIVRelicTrackerBlazor.Shared._2_Arr
+@page "/Stage5Novus"
+@inherits Stage5NovusBase
+
+
+<h3>Stage5Novus</h3>
+@if (showAll)
+{
+    <div class="stack-vertical">
+        <div class="stack-vertical">
+            <h2>A Realm Reborn: Novus</h2>
+            <div>@character.Name</div>
+            <div class="stack-horizontal">
+                <span>Selected Job: </span>
+                <select @bind="@ActiveJob">
+                    @foreach (var job in JobNames)
+                    {
+                        <option value="@job">@job</option>
+                    }
+                </select>
+                <button @onclick="()=>CompleteStage()" disabled="@JobNotSelected">Complete</button>
+            </div>
+            @if (AnyCompleted)
+            {
+                <div>
+                    <h2>Requirements</h2>
+                    <span style="text-decoration:inherit">Have the Decipher and Dig skills unlocked from <a href="https://ffxiv.gamerescape.com/wiki/Treasures_and_Tribulations" target="_blank" rel="noopener noreferrer">Treasures and Tribulations</a></span>
+                </div>
+            }
+
+            <div class="stack-vertical">
+                <div class="stack-horizontal">
+                    <h2>Acquire Scroll</h2>
+                    <input type="checkbox" @bind="AcquiredScroll" />
+                </div>
+                <div class="@Collapse(AcquiredScroll)">
+                    @if (AnyCompleted)
+                    {
+                        <span><a href="https://ffxiv.gamerescape.com/wiki/Celestial_Radiance" target="_blank" rel="noopener noreferrer">Quest: Celestial Radiance</a> | Started by: Jalzahn (North Shroud)</span>
+                        <span>With your <span class="weapon-purple">@PreviousWeaponName</span> equipped, speak with Jalzahn and then Mutamix Bubblypots (Central Thanalan) and then nearby Hubairtin</span>
+                        <span>Travel to Mor Dhona and purchase three <a class="item-link" href="https://ffxiv.gamerescape.com/wiki/Superior_Enchanted_Ink" target="_blank" rel="noopener noreferrer">Superior Enchanted Ink</a> for 25 Poetics each</span>
+                        <span>Return to Hubairtin and exchange the Superior Enchanted Ink for a Sphere Scroll</span>
+                    }
+                    @if (!AnyCompleted)
+                    {
+                        <span>Purchase three <a class="item-link" href="https://ffxiv.gamerescape.com/wiki/Superior_Enchanted_Ink" target="_blank" rel="noopener noreferrer">Superior Enchanted Ink</a> in Mor Dhona (25 Poetics each) and exchange them for a Sphere Scroll</span>
+                    }
+                </div>
+            </div>
+            <div class="stack-vertical">
+                <h2>Meld Materia</h2>
+                <span><a href="https://ffxiv.gamerescape.com/wiki/Star_Light,_Star_Bright" target="_blank" rel="noopener noreferrer">Quest: Star Light, Star Bright</a> | Started by: Jalzahn (North Shroud)</span>
+                <span>Speak with Jalzahn and he will explain the process of melding materia with <a href="https://ffxiv.gamerescape.com/wiki/Alexandrite" target="_blank" rel="noopener noreferrer">Alexandrite</a> and this will complete 'Star Light, Star Bright'</span>
+                <span>When you have melded 75 materia to your <span class="weapon-purple">@PreviousWeaponName</span>, Jalzahn will upgrade it to a <span class="weapon-purple">@WeaponName</span></span>
+                <span>Melding materia will start with Grade 1 materia and as further materia within a substat are melded, failure chance increases and higher grades of materia are available for melding</span>
+                <span>Each successful melding consumes 1 <a href="https://ffxiv.gamerescape.com/wiki/Alexandrite" target="_blank" rel="noopener noreferrer">Alexandrite</a></span>
+                <span>Different classes have limits on how many of certain types of materia may be melded</span>
+                <span>Up to 5 different substats may be selected for melding</span>
+            </div>
+            <div />
+            <span><span class="weapon-purple">@PreviousWeaponName</span> Melded Materia</span>
+            <table style="text-align: right; white-space: nowrap;">
+                <tr>
+                    <td>
+                        <span>@GetEnumDisplayName(ValidMateria.Battledance):</span>
+
+                    </td>
+                    <td><input type="number" class="pad-materia" @bind="PrimaryBattleDanceCount" min="0" max="44" /></td>
+                    <td>
+                        <span>@GetEnumDisplayName(ValidMateria.HeavensEye):</span>
+
+                    </td>
+                    <td><input type="number" class="pad-materia" @bind="PrimaryHeavensEyeCount" min="0" max="44" /></td>
+                    <td>
+                        <span class="justify-item">@GetEnumDisplayName(ValidMateria.Piety):</span>
+
+                    </td>
+                    <td><input type="number" class="pad-materia" @bind="PrimaryPietyCount" min="0" max="44" /></td>
+                    <td>
+                        <span>@GetEnumDisplayName(ValidMateria.Quickarm):</span>
+
+                    </td>
+                    <td><input type="number" class="pad-materia" @bind="PrimaryQuickarmCount" min="0" max="44" /></td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>@GetEnumDisplayName(ValidMateria.Quicktongue):</span>
+
+                    </td>
+                    <td><input type="number" class="pad-materia" @bind="PrimaryQuicktongueCount" min="0" max="44" /></td>
+                    <td>
+                        <span>@GetEnumDisplayName(ValidMateria.SavageAim):</span>
+
+                    </td>
+                    <td><input type="number" class="pad-materia" @bind="PrimarySavageAimCount" min="0" max="44" /></td>
+                    <td>
+                        <span>@GetEnumDisplayName(ValidMateria.SavageMight):</span>
+
+                    </td>
+                    <td><input type="number" class="pad-materia" @bind="PrimarySavageMightCount" min="0" max="44" /></td>
+                </tr>
+            </table>
+            <br />
+
+            @if (DisplaySecondary)
+            {
+                <span><span class="weapon-purple">Holy Shield Animus</span> Melded Materia</span>
+                <table style="text-align: right; white-space: nowrap;">
+                    <tr>
+                        <td>
+                            <span>@GetEnumDisplayName(ValidMateria.Battledance):</span>
+
+                        </td>
+                        <td><input type="number" class="pad-materia" @bind="SecondaryBattleDanceCount" min="0" max="44" /></td>
+                        <td>
+                            <span>@GetEnumDisplayName(ValidMateria.HeavensEye):</span>
+
+                        </td>
+                        <td><input type="number" class="pad-materia" @bind="SecondaryHeavensEyeCount" min="0" max="44" /></td>
+                        <td>
+                            <span class="justify-item">@GetEnumDisplayName(ValidMateria.Piety):</span>
+
+                        </td>
+                        <td><input type="number" class="pad-materia" @bind="SecondaryPietyCount" min="0" max="44" /></td>
+                        <td>
+                            <span>@GetEnumDisplayName(ValidMateria.Quickarm):</span>
+
+                        </td>
+                        <td><input type="number" class="pad-materia" @bind="SecondaryQuickarmCount" min="0" max="44" /></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>@GetEnumDisplayName(ValidMateria.Quicktongue):</span>
+
+                        </td>
+                        <td><input type="number" class="pad-materia" @bind="SecondaryQuicktongueCount" min="0" max="44" /></td>
+                        <td>
+                            <span>@GetEnumDisplayName(ValidMateria.SavageAim):</span>
+
+                        </td>
+                        <td><input type="number" class="pad-materia" @bind="SecondarySavageAimCount" min="0" max="44" /></td>
+                        <td>
+                            <span>@GetEnumDisplayName(ValidMateria.SavageMight):</span>
+
+                        </td>
+                        <td><input type="number" class="pad-materia" @bind="SecondarySavageMightCount" min="0" max="44" /></td>
+                    </tr>
+                </table>
+            }
+            <div />
+            <span>Note: Alexandrite may be purchased for 50 Allied Seals each</span>
+            <span>5 x Alexandrite are awarded upon completion of a <a class="item-link" href="https://ffxiv.gamerescape.com/wiki/Mysterious_Map" target="_blank" rel="noopener noreferrer">Mysterious Map</a></span>
+            <span>Mysterious Maps are purchasable for 75 Poetics or obtained as a quest reward for the daily <a href="https://ffxiv.gamerescape.com/wiki/Morbid_Motivation" target="_blank" rel="noopener noreferrer">Morbid Motivation</a></span>
+        </div>
+    </div>
+}
+<style>
+    .pad-materia {
+        margin-right: 5px;
+    }
+</style>
+@code {
+
+}

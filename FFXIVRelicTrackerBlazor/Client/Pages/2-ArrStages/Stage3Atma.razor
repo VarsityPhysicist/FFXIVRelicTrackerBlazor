@@ -1,0 +1,183 @@
+﻿@namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
+@page "/Stage3Atma"
+@inherits Stage3AtmaBase
+
+<h3>Stage3Atma</h3>
+
+@if (showAll)
+{
+    <div class="stack-vertical">
+        <div class="stack-vertical">
+            <h2>A Realm Reborn: Zenith</h2>
+            <div>@character.Name</div>
+            <div class="stack-horizontal">
+                <span>Selected Job: </span>
+                <select @bind="@ActiveJob">
+                    @foreach (var job in JobNames)
+                    {
+                        <option value="@job">@job</option>
+                    }
+                </select>
+                <button @onclick="()=>CompleteStage()" disabled="@JobNotSelected">Complete</button>
+            </div>
+            <div> </div>
+            <div>
+                <a href="https://ffxiv.gamerescape.com/wiki/Up_in_Arms" target="_blank" rel="noopener noreferrer">Quest: Up in Arms</a>
+                | Started by: Gerolt (North Shroud)
+            </div>
+            <div>With your <span class="weapon-purple">@PreviousWeaponName</span> equipped, speak with Gerolt and then nearby Jalzahn to complete Up in Arms</div>
+            <div>Completing FATEs in specific zones with a Zenith weapon equipped has a chance of dropping an Atma Crystal</div>
+            <div>1 Atma crystal of each type is required to upgrade your <span class="weapon-purple">@PreviousWeaponName</span> to <span class="weapon-purple">@WeaponName</span></div>
+            <div> </div>
+            <div>Atmas and corresponding zones are as follows:</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Atma:</th>
+                        <th>Zone:</th>
+                        <th>Acquired:</th>
+                        <th>Remaining:</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>Atma of the Lion</td>
+                    <td>Outer La Noscea</td>
+                    <td><input type="number" min="0" max="10" @bind="@LionCount" /></td>
+                    <td>@LionRemaining</td>
+                </tr>
+                <tr>
+                    <td>Atma of the Water-bearer</td>
+                    <td>Upper La Noscea</td>
+                    <td><input type="number" min="0" max="10" @bind="@WaterBearerCount" /></td>
+                    <td>@WaterBearerRemaining</td>
+                </tr>
+                <tr>
+                    <td>Atma of the Ram</td>
+                    <td>Middle La Noscea</td>
+                    <td><input type="number" min="0" max="10" @bind="@RamCount" /></td>
+                    <td>@RamRemaining</td>
+                </tr>
+                <tr>
+                    <td>Atma of the Crab</td>
+                    <td>Western La Noscea</td>
+                    <td><input type="number" min="0" max="10" @bind="@CrabCount" /></td>
+                    <td>@CrabRemaining</td>
+                </tr>
+                <tr>
+                    <td>Atma of the Fish</td>
+                    <td>Lower La Noscea</td>
+                    <td><input type="number" min="0" max="10" @bind="@FishCount" /></td>
+                    <td>@FishRemaining</td>
+                </tr>
+                <tr>
+                    <td>Atma of the Bull</td>
+                    <td>Eastern Thanalan</td>
+                    <td><input type="number" min="0" max="10" @bind="@BullCount" /></td>
+                    <td>@BullRemaining</td>
+                </tr>
+                <tr>
+                    <td>Atma of the Scales</td>
+                    <td>Central Thanalan</td>
+                    <td><input type="number" min="0" max="10" @bind="@ScalesCount" /></td>
+                    <td>@ScalesRemaining</td>
+                </tr>
+                <tr>
+                    <td>Atma of the Twins</td>
+                    <td>Western Thanalan</td>
+                    <td><input type="number" min="0" max="10" @bind="@TwinsCount" /></td>
+                    <td>@TwinsRemaining</td>
+                </tr>
+                <tr>
+                    <td>Atma of the Scorpion</td>
+                    <td>Southern Thanalan</td>
+                    <td><input type="number" min="0" max="10" @bind="@ScorpionCount" /></td>
+                    <td>@ScorpionRemaining</td>
+                </tr>
+                <tr>
+                    <td>Atma of the Archer</td>
+                    <td>North Shroud</td>
+                    <td><input type="number" min="0" max="10" @bind="@ArcherCount" /></td>
+                    <td>@ArcherRemaining</td>
+                </tr>
+                <tr>
+                    <td>Atma of the Goat</td>
+                    <td>East Shroud</td>
+                    <td><input type="number" min="0" max="10" @bind="@GoatCount" /></td>
+                    <td>@GoatRemaining</td>
+                </tr>
+                <tr>
+                    <td>Atma of the Maiden</td>
+                    <td>Central Shroud</td>
+                    <td><input type="number" min="0" max="10" @bind="@MaidenCount" /></td>
+                    <td>@MaidenRemaining</td>
+                </tr>
+            </table>
+            <div>Note: FATEs may be completed as any job as long as a Zenith weapon is equipped</div>
+        </div>
+    </div>
+
+
+
+}
+<style>
+    input {
+        text-align: center;
+    }
+
+    th {
+        padding-left: 5px;
+        padding-right: 5px;
+        text-align: center;
+    }
+
+    td {
+        padding-left: 5px;
+        padding-right: 5px;
+        text-align: center;
+    }
+
+    .inline {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .stack-vertical {
+        display: flex;
+        flex-direction: column;
+        /* background-color: #34ace0;*/
+        color: white;
+        align-items: flex-start;
+        justify-content: center;
+    }
+
+    .stack-horizontal {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        /*background-color: #227093;*/
+        color: white;
+        justify-content: left;
+        align-items: center;
+    }
+
+    .img-overlay-wrap {
+        position: relative;
+        display: inline-block; /* shrinks container to image size */
+        transition: transform 150ms ease-in-out;
+    }
+
+        .img-overlay-wrap img { /* optional, for responsiveness */
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .img-overlay-wrap svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+</style>
+@code {
+
+}
