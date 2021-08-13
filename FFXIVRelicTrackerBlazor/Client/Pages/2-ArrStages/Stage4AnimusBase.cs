@@ -2,6 +2,7 @@
 using FFXIVRelicTrackerBlazor.Shared._2_Arr;
 using FFXIVRelicTrackerBlazor.Shared.Helpers;
 using FFXIVRelicTrackerBlazor.Shared.Helpers.Misc;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,21 +18,27 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 
         public override StageInfo TargetStage => character.ArrExpansion.Stage4ARR;
 
-        public override bool AnyCompleted { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public override bool GetAnyCompleted()
+        {
+            throw new NotImplementedException();
+        }
 
         public override ArrStages StageName => ArrStages.Animus;
 
         public Stage4ARR ThisStage { get => character.ArrExpansion.Stage4ARR; }
 
         #region Book Related
-        public AnimnusBookNames ActiveBook
+        public AnimnusBookNames GetActiveBook()
         {
-            get => ThisStage.ActiveBook;
-            set
+            return ThisStage.ActiveBook;
+        }
+        public async Task SetActiveBook(ChangeEventArgs e)
+        {
+            if(Enum.TryParse<AnimnusBookNames>(e.Value.ToString(),out AnimnusBookNames value))
             {
                 ThisStage.ActiveBook = value;
-                _ = OnCharacterUpdate();
-                GetBookInfo(ActiveBook);
+                await OnCharacterUpdate();
+                await GetBookInfo(GetActiveBook());
             }
         }
         public static List<AnimnusBookNames> AvailableBooks
@@ -47,20 +54,31 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
             }
         }
 
-        public bool BookSelected => ActiveBook != AnimnusBookNames.NA;
+        public bool BookSelected => GetActiveBook() != AnimnusBookNames.NA;
+
         #endregion
         #region Map Related
-        public ArrMapNames ActiveMap
+        public ArrMapNames GetActiveMap()
         {
-            get => ThisStage.ActiveMap;
-            set
+            return ThisStage.ActiveMap;
+        }
+        public async Task SetActiveMap(ArrMapNames value)
+        {
+            ThisStage.ActiveMap = value;
+            await RecheckMapItems();
+            await OnCharacterUpdate();
+        }
+        public async Task SetActiveMap(ChangeEventArgs e)
+        {
+            if(Enum.TryParse<ArrMapNames>(e.Value.ToString(),out ArrMapNames value))
             {
                 ThisStage.ActiveMap = value;
-                RecheckMapItems();
+                await RecheckMapItems();
+                await OnCharacterUpdate();
             }
         }
-        public string MapSource => "Images//" + ActiveMap.ToString() + ".png";
-        public bool MapSelected => ActiveMap != ArrMapNames.NA;
+        public string MapSource => "Images//" + GetActiveMap().ToString() + ".png";
+        public bool MapSelected => GetActiveMap() != ArrMapNames.NA;
         public List<ArrMapNames> AvailableMaps { get; set; }
         #endregion
         #region Display Lists
@@ -69,284 +87,421 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         public List<MapItem> Leves;
         public List<String> Dungeons;
         public List<ArrMapNames> Maps;
+
         #endregion
         #region BookBools
-        public bool SkyFire1Complete
+        public bool GetSkyFire1Complete()
         {
-            get => ThisStage.BookBools[(int)AnimnusBookNames.SkyFire1Book];
-            set
+            return ThisStage.BookBools[(int)AnimnusBookNames.SkyFire1Book];
+        }
+        public async Task SetSkyFire1Complete(ChangeEventArgs e)
+        {
+            if (bool.TryParse(e.Value.ToString(), out bool value))
             {
                 ThisStage.BookBools[(int)AnimnusBookNames.SkyFire1Book] = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public bool SkyFire2Complete
+
+        public bool GetSkyFire2Complete()
         {
-            get => ThisStage.BookBools[(int)AnimnusBookNames.SkyFire2Book];
-            set
+            return ThisStage.BookBools[(int)AnimnusBookNames.SkyFire2Book];
+        }
+
+        public async Task SetSkyFire2Complete(ChangeEventArgs e)
+        {
+            if (bool.TryParse(e.Value.ToString(), out bool value))
             {
                 ThisStage.BookBools[(int)AnimnusBookNames.SkyFire2Book] = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public bool NetherFire1Complete
+
+        public bool GetNetherFire1Complete()
         {
-            get => ThisStage.BookBools[(int)AnimnusBookNames.NetherFire1Book];
-            set
+            return ThisStage.BookBools[(int)AnimnusBookNames.NetherFire1Book];
+        }
+
+        public async Task SetNetherFire1Complete(ChangeEventArgs e)
+        {
+            if (bool.TryParse(e.Value.ToString(), out bool value))
             {
                 ThisStage.BookBools[(int)AnimnusBookNames.NetherFire1Book] = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public bool SkyFall1Complete
+
+        public bool GetSkyFall1Complete()
         {
-            get => ThisStage.BookBools[(int)AnimnusBookNames.SkyFall1Book];
-            set
+            return ThisStage.BookBools[(int)AnimnusBookNames.SkyFall1Book];
+        }
+
+        public async Task SetSkyFall1Complete(ChangeEventArgs e)
+        {
+            if (bool.TryParse(e.Value.ToString(), out bool value))
             {
                 ThisStage.BookBools[(int)AnimnusBookNames.SkyFall1Book] = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public bool SkyFall2Complete
+
+        public bool GetSkyFall2Complete()
         {
-            get => ThisStage.BookBools[(int)AnimnusBookNames.SkyFall2Book];
-            set
+            return ThisStage.BookBools[(int)AnimnusBookNames.SkyFall2Book];
+        }
+
+        public async Task SetSkyFall2Complete(ChangeEventArgs e)
+        {
+            if (bool.TryParse(e.Value.ToString(), out bool value))
             {
                 ThisStage.BookBools[(int)AnimnusBookNames.SkyFall2Book] = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public bool NetherFall1Complete
+
+        public bool GetNetherFall1Complete()
         {
-            get => ThisStage.BookBools[(int)AnimnusBookNames.NetherFall1Book];
-            set
+            return ThisStage.BookBools[(int)AnimnusBookNames.NetherFall1Book];
+        }
+
+        public async Task SetNetherFall1Complete(ChangeEventArgs e)
+        {
+            if (bool.TryParse(e.Value.ToString(), out bool value))
             {
                 ThisStage.BookBools[(int)AnimnusBookNames.NetherFall1Book] = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public bool SkyWind1Complete
+
+        public bool GetSkyWind1Complete()
         {
-            get => ThisStage.BookBools[(int)AnimnusBookNames.SkyWind1Book];
-            set
+            return ThisStage.BookBools[(int)AnimnusBookNames.SkyWind1Book];
+        }
+
+        public async Task SetSkyWind1Complete(ChangeEventArgs e)
+        {
+            if (bool.TryParse(e.Value.ToString(), out bool value))
             {
                 ThisStage.BookBools[(int)AnimnusBookNames.SkyWind1Book] = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public bool SkyWind2Complete
+
+        public bool GetSkyWind2Complete()
         {
-            get => ThisStage.BookBools[(int)AnimnusBookNames.SkyWind2Book];
-            set
+            return ThisStage.BookBools[(int)AnimnusBookNames.SkyWind2Book];
+        }
+
+        public async Task SetSkyWind2Complete(ChangeEventArgs e)
+        {
+            if (bool.TryParse(e.Value.ToString(), out bool value))
             {
                 ThisStage.BookBools[(int)AnimnusBookNames.SkyWind2Book] = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public bool SkyEarth1Complete
+
+        public bool GetSkyEarth1Complete()
         {
-            get => ThisStage.BookBools[(int)AnimnusBookNames.SkyEarth1Book];
-            set
+            return ThisStage.BookBools[(int)AnimnusBookNames.SkyEarth1Book];
+        }
+
+        public async Task SetSkyEarth1Complete(ChangeEventArgs e)
+        {
+            if(bool.TryParse(e.Value.ToString(),out bool value))
             {
                 ThisStage.BookBools[(int)AnimnusBookNames.SkyEarth1Book] = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
+
         #endregion
         #region CreatureBools
-        public bool CreatureBool1
+        public bool GetCreatureBool1()
         {
-            get => ThisStage.BeastMen[0];
-            set
+            return ThisStage.BeastMen[0];
+        }
+        public async Task SetCreatureBool1(ChangeEventArgs e)
+        {
+            if (bool.TryParse(e.Value.ToString(), out bool value))
             {
                 ThisStage.BeastMen[0] = value;
-                RecheckMapItems();
-                _ = OnCharacterUpdate();
+                await RecheckMapItems();
+                await OnCharacterUpdate();
             }
         }
-        public bool CreatureBool2
+
+        public bool GetCreatureBool2()
         {
-            get => ThisStage.BeastMen[1];
-            set
+            return ThisStage.BeastMen[1];
+        }
+
+        public async Task SetCreatureBool2(ChangeEventArgs e)
+        {
+            if (bool.TryParse(e.Value.ToString(), out bool value))
             {
                 ThisStage.BeastMen[1] = value;
-                RecheckMapItems();
-                _ = OnCharacterUpdate();
+                await RecheckMapItems();
+                await OnCharacterUpdate();
             }
         }
-        public bool CreatureBool3
+
+        public bool GetCreatureBool3()
         {
-            get => ThisStage.BeastMen[2];
-            set
+            return ThisStage.BeastMen[2];
+        }
+
+        public async Task SetCreatureBool3(ChangeEventArgs e)
+        {
+            if (bool.TryParse(e.Value.ToString(), out bool value))
             {
                 ThisStage.BeastMen[2] = value;
-                RecheckMapItems();
-                _ = OnCharacterUpdate();
+                await RecheckMapItems();
+                await OnCharacterUpdate();
             }
         }
-        public bool CreatureBool4
+
+        public bool GetCreatureBool4()
         {
-            get => ThisStage.BeastMen[3];
-            set
+            return ThisStage.BeastMen[3];
+        }
+
+        public async Task SetCreatureBool4(ChangeEventArgs e)
+        {
+            if (bool.TryParse(e.Value.ToString(), out bool value))
             {
                 ThisStage.BeastMen[3] = value;
-                RecheckMapItems();
-                _ = OnCharacterUpdate();
+                await RecheckMapItems();
+                await OnCharacterUpdate();
             }
         }
-        public bool CreatureBool5
+
+        public bool GetCreatureBool5()
         {
-            get => ThisStage.BeastMen[4];
-            set
+            return ThisStage.BeastMen[4];
+        }
+
+        public async Task SetCreatureBool5(ChangeEventArgs e)
+        {
+            if (bool.TryParse(e.Value.ToString(), out bool value))
             {
                 ThisStage.BeastMen[4] = value;
-                RecheckMapItems();
-                _ = OnCharacterUpdate();
+                await RecheckMapItems();
+                await OnCharacterUpdate();
             }
         }
-        public bool CreatureBool6
+
+        public bool GetCreatureBool6()
         {
-            get => ThisStage.BeastMen[5];
-            set
+            return ThisStage.BeastMen[5];
+        }
+
+        public async Task SetCreatureBool6(ChangeEventArgs e)
+        {
+            if (bool.TryParse(e.Value.ToString(), out bool value))
             {
                 ThisStage.BeastMen[5] = value;
-                RecheckMapItems();
-                _ = OnCharacterUpdate();
+                await RecheckMapItems();
+                await OnCharacterUpdate();
             }
         }
-        public bool CreatureBool7
+
+        public bool GetCreatureBool7()
         {
-            get => ThisStage.BeastMen[6];
-            set
+            return ThisStage.BeastMen[6];
+        }
+
+        public async Task SetCreatureBool7(ChangeEventArgs e)
+        {
+            if (bool.TryParse(e.Value.ToString(), out bool value))
             {
                 ThisStage.BeastMen[6] = value;
-                RecheckMapItems();
-                _ = OnCharacterUpdate();
+                await RecheckMapItems();
+                await OnCharacterUpdate();
             }
         }
-        public bool CreatureBool8
+
+        public bool GetCreatureBool8()
         {
-            get => ThisStage.BeastMen[7];
-            set
+            return ThisStage.BeastMen[7];
+        }
+
+        public async Task SetCreatureBool8(ChangeEventArgs e)
+        {
+            if (bool.TryParse(e.Value.ToString(), out bool value))
             {
                 ThisStage.BeastMen[7] = value;
-                RecheckMapItems();
-                _ = OnCharacterUpdate();
+                await RecheckMapItems();
+                await OnCharacterUpdate();
             }
         }
-        public bool CreatureBool9
+
+        public bool GetCreatureBool9()
         {
-            get => ThisStage.BeastMen[8];
-            set
+            return ThisStage.BeastMen[8];
+        }
+
+        public async Task SetCreatureBool9(ChangeEventArgs e)
+        {
+            if (bool.TryParse(e.Value.ToString(), out bool value))
             {
                 ThisStage.BeastMen[8] = value;
-                RecheckMapItems();
-                _ = OnCharacterUpdate();
+                await RecheckMapItems();
+                await OnCharacterUpdate();
             }
         }
-        public bool CreatureBool10
+
+        public bool GetCreatureBool10()
         {
-            get => ThisStage.BeastMen[9];
-            set
+            return ThisStage.BeastMen[9];
+        }
+
+        public async Task SetCreatureBool10(ChangeEventArgs e)
+        {
+            if(bool.TryParse(e.Value.ToString(),out bool value))
             {
                 ThisStage.BeastMen[9] = value;
-                RecheckMapItems();
-                _ = OnCharacterUpdate();
+                await RecheckMapItems();
+                await OnCharacterUpdate();
             }
         }
+
         #endregion
         #region FATEBools
-        public bool FateBool1
+        public bool GetFateBool1()
         {
-            get => ThisStage.Fates[0];
-            set
+            return ThisStage.Fates[0];
+        }
+        public async Task SetFateBool1(ChangeEventArgs e)
+        {
+            if(bool.TryParse(e.Value.ToString(),out bool value))
             {
                 ThisStage.Fates[0] = value;
-                RecheckMapItems();
-                _ = OnCharacterUpdate();
+                await RecheckMapItems();
+                await OnCharacterUpdate();
             }
+
         }
-        public bool FateBool2
+
+        public bool GetFateBool2()
         {
-            get => ThisStage.Fates[1];
-            set
+            return ThisStage.Fates[1];
+        }
+
+        public async Task SetFateBool2(ChangeEventArgs e)
+        {
+            if (bool.TryParse(e.Value.ToString(), out bool value))
             {
                 ThisStage.Fates[1] = value;
-                RecheckMapItems();
-                _ = OnCharacterUpdate();
+                await RecheckMapItems();
+                await OnCharacterUpdate();
             }
         }
-        public bool FateBool3
+
+        public bool GetFateBool3()
         {
-            get => ThisStage.Fates[2];
-            set
+            return ThisStage.Fates[2];
+        }
+
+        public async Task SetFateBool3(ChangeEventArgs e)
+        {
+            if (bool.TryParse(e.Value.ToString(), out bool value))
             {
                 ThisStage.Fates[2] = value;
-                RecheckMapItems();
-                _ = OnCharacterUpdate();
+                await RecheckMapItems();
+                await OnCharacterUpdate();
             }
         }
+
         #endregion
         #region LeveBools
-        public bool LeveBool1
+        public bool GetLeveBool1()
         {
-            get => ThisStage.Leves[0];
-            set
+            return ThisStage.Leves[0];
+        }
+        public async Task SetLeveBool1(ChangeEventArgs e)
+        {
+            if(bool.TryParse(e.Value.ToString(),out bool value))
             {
                 ThisStage.Leves[0] = value;
-                RecheckMapItems();
-                _ = OnCharacterUpdate();
+                await RecheckMapItems();
+                await OnCharacterUpdate();
             }
         }
-        public bool LeveBool2
+
+        public bool GetLeveBool2()
         {
-            get => ThisStage.Leves[1];
-            set
+            return ThisStage.Leves[1];
+        }
+
+        public async Task SetLeveBool2(ChangeEventArgs e)
+        {
+            if (bool.TryParse(e.Value.ToString(), out bool value))
             {
                 ThisStage.Leves[1] = value;
-                RecheckMapItems();
-                _ = OnCharacterUpdate();
+                await RecheckMapItems();
+                await OnCharacterUpdate();
             }
         }
-        public bool LeveBool3
+
+        public bool GetLeveBool3()
         {
-            get => ThisStage.Leves[2];
-            set
+            return ThisStage.Leves[2];
+        }
+
+        public async Task SetLeveBool3(ChangeEventArgs e)
+        {
+            if (bool.TryParse(e.Value.ToString(), out bool value))
             {
                 ThisStage.Leves[2] = value;
-                RecheckMapItems();
-                _ = OnCharacterUpdate();
+                await RecheckMapItems();
+                await OnCharacterUpdate();
             }
         }
+
         #endregion
         #region DungeonBools
-        public bool DungeonBool1
+        public bool GetDungeonBool1()
         {
-            get => ThisStage.Dungeons[0];
-            set
+            return ThisStage.Dungeons[0];
+        }
+        public async Task SetDungeonBool1(ChangeEventArgs e)
+        {
+            if (bool.TryParse(e.Value.ToString(), out bool value))
             {
                 ThisStage.Dungeons[0] = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public bool DungeonBool2
+
+        public bool GetDungeonBool2()
         {
-            get => ThisStage.Dungeons[1];
-            set
+            return ThisStage.Dungeons[1];
+        }
+
+        public async Task SetDungeonBool2(ChangeEventArgs e)
+        {
+            if (bool.TryParse(e.Value.ToString(), out bool value))
             {
                 ThisStage.Dungeons[1] = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public bool DungeonBool3
+
+        public bool GetDungeonBool3()
         {
-            get => ThisStage.Dungeons[2];
-            set
+            return ThisStage.Dungeons[2];
+        }
+
+        public async Task SetDungeonBool3(ChangeEventArgs e)
+        {
+            if(bool.TryParse(e.Value.ToString(),out bool value))
             {
                 ThisStage.Dungeons[2] = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
+
         #endregion
         #region MapItems
         public MapItem CreatureItem1;
@@ -358,7 +513,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 
         public MapItem LeveItem1;
         #endregion
-        
+
         #region Configure Map Items
         private void SetMapInfo(ArrMapNames activeMap)
         {
@@ -421,7 +576,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         }
         #endregion
         #region GetBookFromMisc
-        private void GetBookInfo(AnimnusBookNames animnusBookName)
+        private async Task GetBookInfo(AnimnusBookNames animnusBookName)
         {
             if (BookSelected)
             {
@@ -446,9 +601,9 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
                 if (initialMaps > AvailableMaps.Count)
                 {
                     if (AvailableMaps.Count > 0)
-                        ActiveMap = AvailableMaps[0];
+                        await SetActiveMap(AvailableMaps[0]);
                     else
-                        ActiveMap = ArrMapNames.NA;
+                        await SetActiveMap(ArrMapNames.NA);
                 }
             }
         }
@@ -562,7 +717,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 
         #endregion
         #region UI Interactions
-        public void CompleteItem(MapItem mapItem)
+        public async Task CompleteItem(MapItem mapItem)
         {
             int tempint;
             switch (mapItem.MapType)
@@ -572,25 +727,25 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
                     if (tempint < 0) break;
                     ThisStage.BeastMen[tempint] = true;
                     HighlightCreatures[tempint] = false;
-                    _ = OnCharacterUpdate();
+                    await OnCharacterUpdate();
                     break;
                 case MapType.FATE:
                     tempint = FATEs.Select(x => x.DisplayName).ToList().IndexOf(mapItem.DisplayName);
                     if (tempint < 0) break;
                     ThisStage.Fates[tempint] = true;
                     HighlightFATES[tempint] = false;
-                    _ = OnCharacterUpdate();
+                    await OnCharacterUpdate();
                     break;
                 case MapType.Leve:
                     tempint = Leves.Select(x => x.DisplayName).ToList().IndexOf(mapItem.DisplayName);
                     if (tempint < 0) break;
                     ThisStage.Leves[tempint] = true;
                     HighlightLeves[tempint] = false;
-                    _ = OnCharacterUpdate();
+                    await OnCharacterUpdate();
                     break;
             }
             mapItem.Hide = true;
-            GetBookInfo(ActiveBook);
+            await GetBookInfo(GetActiveBook());
         }
         public void MouseOverItem(MapItem mapItem)
         {
@@ -643,12 +798,12 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
             }
         }
         #endregion
-        private void RecheckMapItems()
+        private async Task RecheckMapItems()
         {
-            GetBookInfo(ActiveBook);
+            await GetBookInfo(GetActiveBook());
             ResetMapped();
             ResetMapItems();
-            if (MapSelected) SetMapInfo(ActiveMap);
+            if (MapSelected) SetMapInfo(GetActiveMap());
             HideMapItems();
         }
         public string returnDec(int index, MapType mapType)
@@ -697,14 +852,18 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
             }
             return returnDec;
         }
-        
+
         public override async Task AdditionalInitializeAsync()
         {
             await CheckCharacter();
             await CheckJobs();
-            GetBookInfo(ActiveBook);
-            RecheckMapItems();
+            await GetBookInfo(GetActiveBook());
+            await RecheckMapItems();
         }
-       
+
+        public override Task SetAnyCompleted(ChangeEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

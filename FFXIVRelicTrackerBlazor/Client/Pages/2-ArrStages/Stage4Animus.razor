@@ -14,7 +14,7 @@
                 <div>@character.Name</div>
                 <div class="stack-horizontal">
                     <span>Selected Job: </span>
-                    <select @bind="@ActiveJob">
+                    <select value="@GetActiveJob()" @onchange="SetActiveJob">
                         @foreach (var job in JobNames)
                         {
                             <option value="@job">@job</option>
@@ -31,50 +31,50 @@
             <div class="stack-horizontal">
                 <div class="stack-vertical">
                     <div class="stack-horizontal">
-                        <input type="checkbox" @bind="SkyFire1Complete" />
-                        <span style="@returnDec(!SkyFire1Complete)">@GetEnumDisplayName(AnimnusBookNames.SkyFire1Book)</span>
+                        <input type="checkbox" checked="@GetSkyFire1Complete()" @onchange="SetSkyFire1Complete"/>
+                        <span style="@returnDec(!GetSkyFire1Complete())">@GetEnumDisplayName(AnimnusBookNames.SkyFire1Book)</span>
                     </div>
                     <div class="stack-horizontal">
-                        <input type="checkbox" @bind="SkyFire2Complete" />
-                        <span style="@returnDec(!SkyFire2Complete)">@GetEnumDisplayName(AnimnusBookNames.SkyFire2Book)</span>
+                        <input type="checkbox" checked="@GetSkyFire2Complete()" @onchange="SetSkyFire2Complete"/>
+                        <span style="@returnDec(!GetSkyFire2Complete())">@GetEnumDisplayName(AnimnusBookNames.SkyFire2Book)</span>
                     </div>
                     <div class="stack-horizontal">
-                        <input type="checkbox" @bind="NetherFire1Complete" />
-                        <span style="@returnDec(!NetherFire1Complete)">@GetEnumDisplayName(AnimnusBookNames.NetherFire1Book)</span>
-                    </div>
-                </div>
-                <div class="stack-vertical">
-                    <div class="stack-horizontal">
-                        <input type="checkbox" @bind="SkyFall1Complete" />
-                        <span style="@returnDec(!SkyFall1Complete)">@GetEnumDisplayName(AnimnusBookNames.SkyFall1Book)</span>
-                    </div>
-                    <div class="stack-horizontal">
-                        <input type="checkbox" @bind="SkyFall2Complete" />
-                        <span style="@returnDec(!SkyFall2Complete)">@GetEnumDisplayName(AnimnusBookNames.SkyFall2Book)</span>
-                    </div>
-                    <div class="stack-horizontal">
-                        <input type="checkbox" @bind="NetherFall1Complete" />
-                        <span style="@returnDec(!NetherFall1Complete)">@GetEnumDisplayName(AnimnusBookNames.NetherFall1Book)</span>
+                        <input type="checkbox" checked="@GetNetherFire1Complete()" @onchange="SetNetherFire1Complete"/>
+                        <span style="@returnDec(!GetNetherFire1Complete())">@GetEnumDisplayName(AnimnusBookNames.NetherFire1Book)</span>
                     </div>
                 </div>
                 <div class="stack-vertical">
                     <div class="stack-horizontal">
-                        <input type="checkbox" @bind="SkyWind1Complete" />
-                        <span style="@returnDec(!SkyWind1Complete)">@GetEnumDisplayName(AnimnusBookNames.SkyWind1Book)</span>
+                        <input type="checkbox" checked="@GetSkyFall1Complete()" @onchange="SetSkyFall1Complete"/>
+                        <span style="@returnDec(!GetSkyFall1Complete())">@GetEnumDisplayName(AnimnusBookNames.SkyFall1Book)</span>
                     </div>
                     <div class="stack-horizontal">
-                        <input type="checkbox" @bind="SkyWind2Complete" />
-                        <span style="@returnDec(!SkyWind2Complete)">@GetEnumDisplayName(AnimnusBookNames.SkyWind2Book)</span>
+                        <input type="checkbox" checked="@GetSkyFall2Complete()" @onchange="SetSkyFall2Complete"/>
+                        <span style="@returnDec(!GetSkyFall2Complete())">@GetEnumDisplayName(AnimnusBookNames.SkyFall2Book)</span>
                     </div>
                     <div class="stack-horizontal">
-                        <input type="checkbox" @bind="SkyEarth1Complete" />
-                        <span style="@returnDec(!SkyEarth1Complete)">@GetEnumDisplayName(AnimnusBookNames.SkyEarth1Book)</span>
+                        <input type="checkbox" checked="@GetNetherFall1Complete()" @onchange="SetNetherFall1Complete"/>
+                        <span style="@returnDec(!GetNetherFall1Complete())">@GetEnumDisplayName(AnimnusBookNames.NetherFall1Book)</span>
+                    </div>
+                </div>
+                <div class="stack-vertical">
+                    <div class="stack-horizontal">
+                        <input type="checkbox" checked="@GetSkyWind1Complete()" @onchange="SetSkyWind1Complete"/>
+                        <span style="@returnDec(!GetSkyWind1Complete())">@GetEnumDisplayName(AnimnusBookNames.SkyWind1Book)</span>
+                    </div>
+                    <div class="stack-horizontal">
+                        <input type="checkbox" checked="@GetSkyWind2Complete()" @onchange="SetSkyWind2Complete"/>
+                        <span style="@returnDec(!GetSkyWind2Complete())">@GetEnumDisplayName(AnimnusBookNames.SkyWind2Book)</span>
+                    </div>
+                    <div class="stack-horizontal">
+                        <input type="checkbox" checked="@GetSkyEarth1Complete()" @onchange="SetSkyEarth1Complete"/>
+                        <span style="@returnDec(!GetSkyEarth1Complete())">@GetEnumDisplayName(AnimnusBookNames.SkyEarth1Book)</span>
                     </div>
                 </div>
             </div>
             <div class="stack-horizontal">
                 <span>Selected book:</span>
-                <select @bind="@ActiveBook">
+                <select value="@GetActiveBook()" @onchange="SetActiveBook">
                     @foreach (var book in AvailableBooks)
                     {
                         <option value="@book">@book</option>
@@ -89,61 +89,61 @@
                     <div class="stack-vertical" style="border-radius: 25px; border: 2px solid OrangeRed; padding:10px;">
                         <h6>Creatures</h6>
                         <div class="stack-horizontal">
-                            <input type="checkbox" @bind="@CreatureBool1" />
+                            <input type="checkbox" checked="@GetCreatureBool1()" @onchange="SetCreatureBool1"/>
                             <div class="noWrap" style="@returnDec(0,MapType.Creature)">@Creatures[0].DisplayName</div>
                         </div>
-                        <div class="noWrap, note" style="@returnDec(0,MapType.Creature))">@GetEnumDisplayName(Creatures[0].ArrMapName)</div>
+                        <div class="noWrap, note" style="@returnDec(0,MapType.Creature)">@GetEnumDisplayName(Creatures[0].ArrMapName)</div>
 
                         <div class="stack-horizontal">
-                            <input type="checkbox" @bind="@CreatureBool2" />
-                            <div class="noWrap" style="@returnDec(1,MapType.Creature))">@Creatures[1].DisplayName</div>
+                            <input type="checkbox" checked="@GetCreatureBool2()" @onchange="SetCreatureBool2"/>
+                            <div class="noWrap" style="@returnDec(1,MapType.Creature)">@Creatures[1].DisplayName</div>
                         </div>
                         <div class="noWrap, note" style="@returnDec(1,MapType.Creature)">@GetEnumDisplayName(Creatures[1].ArrMapName)</div>
 
                         <div class="stack-horizontal">
-                            <input type="checkbox" @bind="@CreatureBool3" />
+                            <input type="checkbox" checked="@GetCreatureBool3()" @onchange="SetCreatureBool3"/>
                             <div class="noWrap" style="@returnDec(2,MapType.Creature)">@Creatures[2].DisplayName</div>
                         </div>
                         <div class="noWrap, note" style="@returnDec(2,MapType.Creature)">@GetEnumDisplayName(Creatures[2].ArrMapName)</div>
 
                         <div class="stack-horizontal">
-                            <input type="checkbox" @bind="@CreatureBool4" />
+                            <input type="checkbox" checked="@GetCreatureBool4()" @onchange="SetCreatureBool4"/>
                             <div class="noWrap" style="@returnDec(3,MapType.Creature)">@Creatures[3].DisplayName</div>
                         </div>
                         <div class="noWrap, note" style="@returnDec(3,MapType.Creature)">@GetEnumDisplayName(Creatures[3].ArrMapName)</div>
 
                         <div class="stack-horizontal">
-                            <input type="checkbox" @bind="@CreatureBool5" />
+                            <input type="checkbox" checked="@GetCreatureBool5()" @onchange="SetCreatureBool5"/>
                             <div class="noWrap" style="@returnDec(4,MapType.Creature)">@Creatures[4].DisplayName</div>
                         </div>
                         <div class="noWrap, note" style="@returnDec(4,MapType.Creature)">@GetEnumDisplayName(Creatures[4].ArrMapName)</div>
 
                         <div class="stack-horizontal">
-                            <input type="checkbox" @bind="@CreatureBool6" />
+                            <input type="checkbox" checked="@GetCreatureBool6()" @onchange="SetCreatureBool6"/>
                             <div class="noWrap" style="@returnDec(5,MapType.Creature)">@Creatures[5].DisplayName</div>
                         </div>
                         <div class="noWrap, note" style="@returnDec(5,MapType.Creature)">@GetEnumDisplayName(Creatures[5].ArrMapName)</div>
 
                         <div class="stack-horizontal">
-                            <input type="checkbox" @bind="@CreatureBool7" />
+                            <input type="checkbox" checked="@GetCreatureBool7()" @onchange="SetCreatureBool7"/>
                             <div class="noWrap" style="@returnDec(6,MapType.Creature)">@Creatures[6].DisplayName</div>
                         </div>
                         <div class="noWrap, note" style="@returnDec(6,MapType.Creature)">@GetEnumDisplayName(Creatures[6].ArrMapName)</div>
 
                         <div class="stack-horizontal">
-                            <input type="checkbox" @bind="@CreatureBool8" />
+                            <input type="checkbox" checked="@GetCreatureBool8()" @onchange="SetCreatureBool8"/>
                             <div class="noWrap" style="@returnDec(7,MapType.Creature)">@Creatures[7].DisplayName</div>
                         </div>
                         <div class="noWrap, note" style="@returnDec(7,MapType.Creature)">@GetEnumDisplayName(Creatures[7].ArrMapName)</div>
 
                         <div class="stack-horizontal">
-                            <input type="checkbox" @bind="@CreatureBool9" />
+                            <input type="checkbox" checked="@GetCreatureBool9()" @onchange="SetCreatureBool9"/>
                             <div class="noWrap" style="@returnDec(8,MapType.Creature)">@Creatures[8].DisplayName</div>
                         </div>
                         <div class="noWrap, note" style="@returnDec(8,MapType.Creature)">@GetEnumDisplayName(Creatures[8].ArrMapName)</div>
 
                         <div class="stack-horizontal">
-                            <input type="checkbox" @bind="@CreatureBool10" />
+                            <input type="checkbox" checked="@GetCreatureBool10()" @onchange="SetCreatureBool10"/>
                             <div class="noWrap" style="@returnDec(9,MapType.Creature)">@Creatures[9].DisplayName</div>
                         </div>
                         <div class="noWrap, note" style="@returnDec(9,MapType.Creature)">@GetEnumDisplayName(Creatures[9].ArrMapName)</div>
@@ -153,19 +153,19 @@
                         <div class="stack-vertical" style="border-radius: 25px; border: 2px solid Purple; padding: 10px; width: -webkit-fit-content;">
                             <h6>FATEs</h6>
                             <div class="stack-horizontal">
-                                <input type="checkbox" @bind="@FateBool1" />
+                                <input type="checkbox" checked="@GetFateBool1()" @onchange="SetFateBool1"/>
                                 <div class="noWrap" style="@returnDec(0,MapType.FATE)">@FATEs[0].DisplayName</div>
                             </div>
                             <div class="noWrap, note" style="@returnDec(0,MapType.FATE)">@GetEnumDisplayName(FATEs[0].ArrMapName)</div>
 
                             <div class="stack-horizontal">
-                                <input type="checkbox" @bind="@FateBool2" />
+                                <input type="checkbox" checked="@GetFateBool2()" @onchange="SetFateBool2"/>
                                 <div class="noWrap" style="@returnDec(1,MapType.FATE)">@FATEs[1].DisplayName</div>
                             </div>
                             <div class="noWrap, note" style="@returnDec(1,MapType.FATE)">@GetEnumDisplayName(FATEs[1].ArrMapName)</div>
 
                             <div class="stack-horizontal">
-                                <input type="checkbox" @bind="@FateBool3" />
+                                <input type="checkbox" checked="@GetFateBool3()" @onchange="SetFateBool3"/>
                                 <div class="noWrap" style="@returnDec(2,MapType.FATE)">@FATEs[2].DisplayName</div>
                             </div>
                             <div class="noWrap, note" style="@returnDec(2,MapType.FATE)">@GetEnumDisplayName(FATEs[2].ArrMapName)</div>
@@ -174,7 +174,7 @@
                         <div class="stack-vertical" style="border-radius: 25px; border: 2px solid Blue; padding:10px; width:-webkit-fit-content;">
                             <h6>Leves</h6>
                             <div class="stack-horizontal">
-                                <input type="checkbox" @bind="@LeveBool1" />
+                                <input type="checkbox" checked="@GetLeveBool1()" @onchange="SetLeveBool1"/>
                                 <div class="noWrap" style="@returnDec(0,MapType.Leve)">@Leves[0].DisplayName</div>
                             </div>
                             <div class="noWrap, note" style="@returnDec(0,MapType.Leve)">@GetEnumDisplayName(Leves[0].ArrMapName)</div>
@@ -182,7 +182,7 @@
                             <div class="noWrap, note" style="@returnDec(0,MapType.Leve)">@Leves[0].LeveType</div>
 
                             <div class="stack-horizontal">
-                                <input type="checkbox" @bind="@LeveBool2" />
+                                <input type="checkbox" checked="@GetLeveBool2()" @onchange="SetLeveBool2"/>
                                 <div class="noWrap" style="@returnDec(1,MapType.Leve)">@Leves[1].DisplayName</div>
                             </div>
                             <div class="noWrap, note" style="@returnDec(1,MapType.Leve)">@GetEnumDisplayName(Leves[1].ArrMapName)</div>
@@ -190,7 +190,7 @@
                             <div class="noWrap, note" style="@returnDec(1,MapType.Leve)">@Leves[1].LeveType</div>
 
                             <div class="stack-horizontal">
-                                <input type="checkbox" @bind="@LeveBool3" />
+                                <input type="checkbox" checked="@GetLeveBool3()" @onchange="SetLeveBool3"/>
                                 <div style="@returnDec(2,MapType.Leve)">@Leves[2].DisplayName</div>
                             </div>
                             <div class="noWrap, note" style="@returnDec(2,MapType.Leve)">@GetEnumDisplayName(Leves[2].ArrMapName)</div>
@@ -204,16 +204,16 @@
                     <div class="stack-vertical" style="border-radius: 25px; border: 2px solid Gold; padding:10px;">
                         <h6>Dungeons</h6>
                         <div class="stack-horizontal">
-                            <input type="checkbox" @bind="@DungeonBool1" />
-                            <div class="noWrap" style="@returnDec(!DungeonBool1)">@Dungeons[0]</div>
+                            <input type="checkbox" checked="@GetDungeonBool1()" @onchange="SetDungeonBool1"/>
+                            <div class="noWrap" style="@returnDec(!@GetDungeonBool1())">@Dungeons[0]</div>
                         </div>
                         <div class="stack-horizontal">
-                            <input type="checkbox" @bind="@DungeonBool2" />
-                            <div class="noWrap" style="@returnDec(!DungeonBool2)">@Dungeons[1]</div>
+                            <input type="checkbox" checked="@GetDungeonBool2()" @onchange="SetDungeonBool2"/>
+                            <div class="noWrap" style="@returnDec(!@GetDungeonBool2())">@Dungeons[1]</div>
                         </div>
                         <div class="stack-horizontal">
-                            <input type="checkbox" @bind="@DungeonBool3" />
-                            <div class="noWrap" style="@returnDec(!DungeonBool3)">@Dungeons[2]</div>
+                            <input type="checkbox" checked="@GetDungeonBool3()" @onchange="SetDungeonBool3"/>
+                            <div class="noWrap" style="@returnDec(!@GetDungeonBool3())">@Dungeons[2]</div>
                         </div>
                     </div>
 
@@ -227,7 +227,7 @@
                 @if (BookSelected)
                 {
                     <div>Selected Map:</div>
-                    <select @bind="ActiveMap">
+                    <select value="GetActiveMap()" @onchange="SetActiveMap">
                         @if (AvailableMaps.Count > 0)
                         {
                             @foreach (var map in AvailableMaps)

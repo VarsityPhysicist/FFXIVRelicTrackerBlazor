@@ -2,6 +2,7 @@
 using FFXIVRelicTrackerBlazor.Shared._2_Arr;
 using FFXIVRelicTrackerBlazor.Shared.Helpers;
 using FFXIVRelicTrackerBlazor.Shared.Helpers.Misc;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,38 +18,55 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 
         public override StageInfo TargetStage => character.ArrExpansion.Stage5ARR;
 
-        public override bool AnyCompleted { get => FilteredJobs.Count == RemainingJobs; set => throw new NotImplementedException(); }
+        public override bool GetAnyCompleted()
+        {
+            return FilteredJobs.Count == RemainingJobs;
+        }
+
+        public override Task SetAnyCompleted(ChangeEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
 
         public override ArrStages StageName => ArrStages.Novus;
 
         public Stage5ARR ThisStage { get => character.ArrExpansion.Stage5ARR; }
 
-        public bool AcquiredScroll
+        public bool GetAcquiredScroll()
         {
-            get => ThisStage.AcquiredScroll;
-            set
+            return ThisStage.AcquiredScroll;
+        }
+
+        public async Task SetAcquiredScroll(ChangeEventArgs e)
+        {
+            if(bool.TryParse(e.Value.ToString(),out bool value))
             {
                 ThisStage.AcquiredScroll = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public int AlexandriteCount
+
+        public int GetAlexandriteCount()
         {
-            get => ThisStage.AlexandriteCount;
-            set
+            return ThisStage.AlexandriteCount;
+        }
+
+        public async Task SetAlexandriteCount(ChangeEventArgs e)
+        {
+            if (int.TryParse(e.Value.ToString(), out int value))
             {
                 ThisStage.AlexandriteCount = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public bool DisplaySecondary => ActiveJob == JobName.PLD;
-        public int RemainingAlexandrite => RemainingJobs * 75 - AlexandriteCount;
+        public bool DisplaySecondary => GetActiveJob() == JobName.PLD;
+        public int RemainingAlexandrite => RemainingJobs * 75 - GetAlexandriteCount();
         public override string PreviousWeaponName
         {
             get
             {
-                if (ActiveJob != JobName.NA)
-                    return MiscArr.GetArrRelicName(ActiveJob) + " Animus";
+                if (GetActiveJob() != JobName.NA)
+                    return MiscArr.GetArrRelicName(GetActiveJob()) + " Animus";
 
                 return "Relic Weapon Animus";
             }
@@ -57,8 +75,8 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             get
             {
-                if (ActiveJob != JobName.NA)
-                    return MiscArr.GetArrRelicName(ActiveJob) + " Novus";
+                if (GetActiveJob() != JobName.NA)
+                    return MiscArr.GetArrRelicName(GetActiveJob()) + " Novus";
 
                 return "Relic Weapon Novus";
             }
@@ -67,134 +85,204 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 
         #region Materia Counts
         #region Primary Materia
-        public int PrimaryBattleDanceCount
+        public int GetPrimaryBattleDanceCount()
         {
-            get => ThisStage.PrimaryCounts[(int)ValidMateria.Battledance];
-            set
+            return ThisStage.PrimaryCounts[(int)ValidMateria.Battledance];
+        }
+
+        public async Task SetPrimaryBattleDanceCount(ChangeEventArgs e)
+        {
+            if(int.TryParse(e.Value.ToString(),out int value))
             {
                 ThisStage.PrimaryCounts[(int)ValidMateria.Battledance] = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public int PrimaryHeavensEyeCount
+
+        public int GetPrimaryHeavensEyeCount()
         {
-            get => ThisStage.PrimaryCounts[(int)ValidMateria.HeavensEye];
-            set
+            return ThisStage.PrimaryCounts[(int)ValidMateria.HeavensEye];
+        }
+
+        public async Task SetPrimaryHeavensEyeCount(ChangeEventArgs e)
+        {
+            if (int.TryParse(e.Value.ToString(), out int value))
             {
                 ThisStage.PrimaryCounts[(int)ValidMateria.HeavensEye] = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public int PrimaryPietyCount
+
+        public int GetPrimaryPietyCount()
         {
-            get => ThisStage.PrimaryCounts[(int)ValidMateria.Piety];
-            set
+            return ThisStage.PrimaryCounts[(int)ValidMateria.Piety];
+        }
+
+        public async Task SetPrimaryPietyCount(ChangeEventArgs e)
+        {
+            if (int.TryParse(e.Value.ToString(), out int value))
             {
                 ThisStage.PrimaryCounts[(int)ValidMateria.Piety] = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public int PrimaryQuickarmCount
+
+        public int GetPrimaryQuickarmCount()
         {
-            get => ThisStage.PrimaryCounts[(int)ValidMateria.Quickarm];
-            set
+            return ThisStage.PrimaryCounts[(int)ValidMateria.Quickarm];
+        }
+
+        public async Task SetPrimaryQuickarmCount(ChangeEventArgs e)
+        {
+            if (int.TryParse(e.Value.ToString(), out int value))
             {
                 ThisStage.PrimaryCounts[(int)ValidMateria.Quickarm] = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public int PrimaryQuicktongueCount
+
+        public int GetPrimaryQuicktongueCount()
         {
-            get => ThisStage.PrimaryCounts[(int)ValidMateria.Quicktongue];
-            set
+            return ThisStage.PrimaryCounts[(int)ValidMateria.Quicktongue];
+        }
+
+        public async Task SetPrimaryQuicktongueCount(ChangeEventArgs e)
+        {
+            if (int.TryParse(e.Value.ToString(), out int value))
             {
                 ThisStage.PrimaryCounts[(int)ValidMateria.Quicktongue] = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public int PrimarySavageAimCount
+
+        public int GetPrimarySavageAimCount()
         {
-            get => ThisStage.PrimaryCounts[(int)ValidMateria.SavageAim];
-            set
+            return ThisStage.PrimaryCounts[(int)ValidMateria.SavageAim];
+        }
+
+        public async Task SetPrimarySavageAimCount(ChangeEventArgs e)
+        {
+            if (int.TryParse(e.Value.ToString(), out int value))
             {
                 ThisStage.PrimaryCounts[(int)ValidMateria.SavageAim] = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public int PrimarySavageMightCount
+
+        public int GetPrimarySavageMightCount()
         {
-            get => ThisStage.PrimaryCounts[(int)ValidMateria.SavageMight];
-            set
+            return ThisStage.PrimaryCounts[(int)ValidMateria.SavageMight];
+        }
+
+        public async Task SetPrimarySavageMightCount(ChangeEventArgs e)
+        {
+            if (int.TryParse(e.Value.ToString(), out int value))
             {
                 ThisStage.PrimaryCounts[(int)ValidMateria.SavageMight] = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
+
         #endregion
         #region Secondary Materia
-        public int SecondaryBattleDanceCount
+        public int GetSecondaryBattleDanceCount()
         {
-            get => ThisStage.SecondaryCounts[(int)ValidMateria.Battledance];
-            set
+            return ThisStage.SecondaryCounts[(int)ValidMateria.Battledance];
+        }
+
+        public async Task SetSecondaryBattleDanceCount(ChangeEventArgs e)
+        {
+            if (int.TryParse(e.Value.ToString(), out int value))
             {
                 ThisStage.SecondaryCounts[(int)ValidMateria.Battledance] = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public int SecondaryHeavensEyeCount
+
+        public int GetSecondaryHeavensEyeCount()
         {
-            get => ThisStage.SecondaryCounts[(int)ValidMateria.HeavensEye];
-            set
+            return ThisStage.SecondaryCounts[(int)ValidMateria.HeavensEye];
+        }
+
+        public async Task SetSecondaryHeavensEyeCount(ChangeEventArgs e)
+        {
+            if (int.TryParse(e.Value.ToString(), out int value))
             {
                 ThisStage.SecondaryCounts[(int)ValidMateria.HeavensEye] = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public int SecondaryPietyCount
+
+        public int GetSecondaryPietyCount()
         {
-            get => ThisStage.SecondaryCounts[(int)ValidMateria.Piety];
-            set
+            return ThisStage.SecondaryCounts[(int)ValidMateria.Piety];
+        }
+
+        public async Task SetSecondaryPietyCount(ChangeEventArgs e)
+        {
+            if (int.TryParse(e.Value.ToString(), out int value))
             {
                 ThisStage.SecondaryCounts[(int)ValidMateria.Piety] = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public int SecondaryQuickarmCount
+
+        public int GetSecondaryQuickarmCount()
         {
-            get => ThisStage.SecondaryCounts[(int)ValidMateria.Quickarm];
-            set
+            return ThisStage.SecondaryCounts[(int)ValidMateria.Quickarm];
+        }
+
+        public async Task SetSecondaryQuickarmCount(ChangeEventArgs e)
+        {
+            if (int.TryParse(e.Value.ToString(), out int value))
             {
                 ThisStage.SecondaryCounts[(int)ValidMateria.Quickarm] = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public int SecondaryQuicktongueCount
+
+        public int GetSecondaryQuicktongueCount()
         {
-            get => ThisStage.SecondaryCounts[(int)ValidMateria.Quicktongue];
-            set
+            return ThisStage.SecondaryCounts[(int)ValidMateria.Quicktongue];
+        }
+
+        public async Task SetSecondaryQuicktongueCount(ChangeEventArgs e)
+        {
+            if (int.TryParse(e.Value.ToString(), out int value))
             {
                 ThisStage.SecondaryCounts[(int)ValidMateria.Quicktongue] = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public int SecondarySavageAimCount
+
+        public int GetSecondarySavageAimCount()
         {
-            get => ThisStage.SecondaryCounts[(int)ValidMateria.SavageAim];
-            set
+            return ThisStage.SecondaryCounts[(int)ValidMateria.SavageAim];
+        }
+
+        public async Task SetSecondarySavageAimCount(ChangeEventArgs e)
+        {
+            if (int.TryParse(e.Value.ToString(), out int value))
             {
                 ThisStage.SecondaryCounts[(int)ValidMateria.SavageAim] = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public int SecondarySavageMightCount
+
+        public int GetSecondarySavageMightCount()
         {
-            get => ThisStage.SecondaryCounts[(int)ValidMateria.SavageMight];
-            set
+            return ThisStage.SecondaryCounts[(int)ValidMateria.SavageMight];
+        }
+
+        public async Task SetSecondarySavageMightCount(ChangeEventArgs e)
+        {
+            if (int.TryParse(e.Value.ToString(), out int value))
             {
                 ThisStage.SecondaryCounts[(int)ValidMateria.SavageMight] = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
+
         #endregion
         #endregion
 

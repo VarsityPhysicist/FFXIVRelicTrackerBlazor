@@ -13,7 +13,7 @@
         <div>@character.Name</div>
         <div class="stack-horizontal">
             <span>Selected Job: </span>
-            <select @bind="@ActiveJob">
+            <select value="@GetActiveJob()" @onchange="SetActiveJob">
                 @foreach (var job in JobNames)
                 {
                     <option value="@job">@job</option>
@@ -50,7 +50,7 @@
             </div>
         }
         <div/>
-        <div>Current Thavnairian Mist Count: <input type="number" min="0" max="30" @bind="@MistCount"/></div>
+        <div>Current Thavnairian Mist Count: <input type="number" min="0" max="30" value="@GetMistCount()" @onchange="SetMistCount"/></div>
         <div>Remaining Thavnairian Mist: @RemainingMist</div>
     </div>
 </div>

@@ -2,6 +2,7 @@
 using FFXIVRelicTrackerBlazor.Shared._2_Arr;
 using FFXIVRelicTrackerBlazor.Shared.Helpers;
 using FFXIVRelicTrackerBlazor.Shared.Helpers.Misc;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,18 +18,21 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 
         public override StageInfo TargetStage => character.ArrExpansion.Stage6ARR;
 
-        public override bool AnyCompleted { get => ValidJobs.Count != CompletedJobs; set => throw new NotImplementedException(); }
+        public override bool GetAnyCompleted()
+        {
+            return ValidJobs.Count != CompletedJobs;
+        }
 
         public override ArrStages StageName => ArrStages.Nexus;
         public override string PreviousWeaponName
         {
             get
             {
-                if (ActiveJob != JobName.NA)
+                if (GetActiveJob() != JobName.NA)
                 {
-                    if(ActiveJob==JobName.PLD) return MiscArr.GetArrRelicName(ActiveJob) + " Novus & Holy Shield Novus";
+                    if(GetActiveJob() == JobName.PLD) return MiscArr.GetArrRelicName(GetActiveJob()) + " Novus & Holy Shield Novus";
                     else
-                        return MiscArr.GetArrRelicName(ActiveJob) + " Novus";
+                        return MiscArr.GetArrRelicName(GetActiveJob()) + " Novus";
                 }
 
                 return "Relic Weapon Novus";
@@ -38,12 +42,12 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             get
             {
-                if (ActiveJob != JobName.NA)
+                if (GetActiveJob() != JobName.NA)
                 {
-                    if (ActiveJob == JobName.PLD) 
-                        return MiscArr.GetArrRelicName(ActiveJob) + " Nexus & Holy Shield Nexus";
+                    if (GetActiveJob() == JobName.PLD) 
+                        return MiscArr.GetArrRelicName(GetActiveJob()) + " Nexus & Holy Shield Nexus";
                     else
-                        return MiscArr.GetArrRelicName(ActiveJob) + " Nexus";
+                        return MiscArr.GetArrRelicName(GetActiveJob()) + " Nexus";
                 }
 
                 return "Relic Weapon Nexus";
@@ -52,17 +56,27 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 
         public Stage6ARR ThisStage { get => character.ArrExpansion.Stage6ARR; }
 
-        public int CurrentLight
+        public int GetCurrentLight()
         {
-            get => ThisStage.CurrentLight;
-            set
-            {
-                ThisStage.CurrentLight = value;
-                _ = OnCharacterUpdate();
-            }
+            return ThisStage.CurrentLight;
         }
 
-        public string LightString(int inputLight)
+        public async Task SetCurrentLight(int value)
+        {
+            ThisStage.CurrentLight = value;
+            await OnCharacterUpdate();
+        }
+        public async Task SetCurrentLight(ChangeEventArgs e)
+        {
+            if(int.TryParse(e.Value.ToString(),out int value))
+            {
+                ThisStage.CurrentLight = value;
+                await OnCharacterUpdate();
+            }
+            
+        }
+
+        public static string LightString(int inputLight)
         {
             switch (inputLight)
             {
@@ -90,11 +104,14 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
             }
         }
         
-        public void IncrementLight(int addLight)
+        public async Task IncrementLight(int addLight)
         {
-            CurrentLight += addLight;
+            await SetCurrentLight(GetCurrentLight() + addLight);
         }
 
-        
+        public override Task SetAnyCompleted(ChangeEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

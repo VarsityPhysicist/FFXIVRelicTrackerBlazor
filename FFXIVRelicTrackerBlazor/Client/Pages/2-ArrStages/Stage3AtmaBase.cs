@@ -2,6 +2,7 @@
 using FFXIVRelicTrackerBlazor.Shared._2_Arr;
 using FFXIVRelicTrackerBlazor.Shared.Helpers;
 using FFXIVRelicTrackerBlazor.Shared.Helpers.Misc;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,15 +18,23 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 
         public override StageInfo TargetStage => character.ArrExpansion.Stage3ARR;
 
-        public override bool AnyCompleted { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public override bool GetAnyCompleted()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override Task SetAnyCompleted(ChangeEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
 
         public override ArrStages StageName => ArrStages.Atma;
         public override string PreviousWeaponName
         {
             get
             {
-                if (ActiveJob != JobName.NA)
-                    return MiscArr.GetArrRelicName(ActiveJob) + " Zenith";
+                if (GetActiveJob() != JobName.NA)
+                    return MiscArr.GetArrRelicName(GetActiveJob()) + " Zenith";
 
                 return "Relic Weapon Zenith";
             }
@@ -34,8 +43,8 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             get
             {
-                if (ActiveJob != JobName.NA)
-                    return MiscArr.GetArrRelicName(ActiveJob) + " Atma";
+                if (GetActiveJob() != JobName.NA)
+                    return MiscArr.GetArrRelicName(GetActiveJob()) + " Atma";
 
                 return "Relic Weapon Atma";
             }
@@ -43,128 +52,187 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         private Stage3ARR ThisStage => character.ArrExpansion.Stage3ARR;
 
         #region Model Properties
-        public int LionCount 
-        { 
-            get=> ThisStage.LionCount;
-            set
+        public int GetLionCount()
+        {
+            return ThisStage.LionCount;
+        }
+
+        public async Task SetLionCount(ChangeEventArgs e)
+        {
+            if (int.TryParse(e.Value.ToString(), out int value))
             {
                 ThisStage.LionCount = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public int WaterBearerCount
+
+        public int GetWaterBearerCount()
         {
-            get => ThisStage.WaterBearerCount;
-            set
+            return ThisStage.WaterBearerCount;
+        }
+
+        public async Task SetWaterBearerCount(ChangeEventArgs e)
+        {
+            if (int.TryParse(e.Value.ToString(), out int value))
             {
                 ThisStage.WaterBearerCount = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public int RamCount
+
+        public int GetRamCount()
         {
-            get => ThisStage.RamCount;
-            set
+            return ThisStage.RamCount;
+        }
+
+        public async Task SetRamCount(ChangeEventArgs e)
+        {
+            if (int.TryParse(e.Value.ToString(), out int value))
             {
                 ThisStage.RamCount = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public int CrabCount
+
+        public int GetCrabCount()
         {
-            get => ThisStage.CrabCount;
-            set
+            return ThisStage.CrabCount;
+        }
+
+        public async Task SetCrabCount(ChangeEventArgs e)
+        {
+            if (int.TryParse(e.Value.ToString(), out int value))
             {
                 ThisStage.CrabCount = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public int FishCount
+
+        public int GetFishCount()
         {
-            get => ThisStage.FishCount;
-            set
+            return ThisStage.FishCount;
+        }
+
+        public async Task SetFishCount(ChangeEventArgs e)
+        {
+            if (int.TryParse(e.Value.ToString(), out int value))
             {
                 ThisStage.FishCount = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public int BullCount
+
+        public int GetBullCount()
         {
-            get => ThisStage.BullCount;
-            set
+            return ThisStage.BullCount;
+        }
+
+        public async Task SetBullCount(ChangeEventArgs e)
+        {
+            if (int.TryParse(e.Value.ToString(), out int value))
             {
                 ThisStage.BullCount = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public int ScalesCount
+
+        public int GetScalesCount()
         {
-            get => ThisStage.ScalesCount;
-            set
+            return ThisStage.ScalesCount;
+        }
+
+        public async Task SetScalesCount(ChangeEventArgs e)
+        {
+            if (int.TryParse(e.Value.ToString(), out int value))
             {
                 ThisStage.ScalesCount = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public int TwinsCount
+
+        public int GetTwinsCount()
         {
-            get => ThisStage.TwinsCount;
-            set
+            return ThisStage.TwinsCount;
+        }
+
+        public async Task SetTwinsCount(ChangeEventArgs e)
+        {
+            if (int.TryParse(e.Value.ToString(), out int value))
             {
                 ThisStage.TwinsCount = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public int ScorpionCount
+
+        public int GetScorpionCount()
         {
-            get => ThisStage.ScorpionCount;
-            set
+            return ThisStage.ScorpionCount;
+        }
+
+        public async Task SetScorpionCount(ChangeEventArgs e)
+        {
+            if (int.TryParse(e.Value.ToString(), out int value))
             {
                 ThisStage.ScorpionCount = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public int ArcherCount
+
+        public int GetArcherCount()
         {
-            get => ThisStage.ArcherCount;
-            set
+            return ThisStage.ArcherCount;
+        }
+
+        public async Task SetArcherCount(ChangeEventArgs e)
+        {
+            if (int.TryParse(e.Value.ToString(), out int value))
             {
                 ThisStage.ArcherCount = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public int GoatCount
+
+        public int GetGoatCount()
         {
-            get => ThisStage.GoatCount;
-            set
+            return ThisStage.GoatCount;
+        }
+
+        public async Task SetGoatCount(ChangeEventArgs e)
+        {
+            if (int.TryParse(e.Value.ToString(), out int value))
             {
                 ThisStage.GoatCount = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public int MaidenCount
+
+        public int GetMaidenCount()
         {
-            get => ThisStage.MaidenCount;
-            set
+            return ThisStage.MaidenCount;
+        }
+
+        public async Task SetMaidenCount(ChangeEventArgs e)
+        {
+            if (int.TryParse(e.Value.ToString(), out int value))
             {
                 ThisStage.MaidenCount = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
         #endregion
         #region Remaining Properties
-        public int LionRemaining => RemainingJobs - LionCount;
-        public int WaterBearerRemaining => RemainingJobs - WaterBearerCount;
-        public int RamRemaining => RemainingJobs - RamCount;
-        public int CrabRemaining => RemainingJobs - CrabCount;
-        public int FishRemaining => RemainingJobs - FishCount;
-        public int BullRemaining => RemainingJobs - BullCount;
-        public int ScalesRemaining => RemainingJobs - ScalesCount;
-        public int TwinsRemaining => RemainingJobs - TwinsCount;
-        public int ScorpionRemaining => RemainingJobs - ScorpionCount;
-        public int ArcherRemaining => RemainingJobs - ArcherCount;
-        public int GoatRemaining => RemainingJobs - GoatCount;
-        public int MaidenRemaining => RemainingJobs - MaidenCount;
+        public int LionRemaining => RemainingJobs - GetLionCount();
+        public int WaterBearerRemaining => RemainingJobs - GetWaterBearerCount();
+        public int RamRemaining => RemainingJobs - GetRamCount();
+        public int CrabRemaining => RemainingJobs - GetCrabCount();
+        public int FishRemaining => RemainingJobs - GetFishCount();
+        public int BullRemaining => RemainingJobs - GetBullCount();
+        public int ScalesRemaining => RemainingJobs - GetScalesCount();
+        public int TwinsRemaining => RemainingJobs - GetTwinsCount();
+        public int ScorpionRemaining => RemainingJobs - GetScorpionCount();
+        public int ArcherRemaining => RemainingJobs - GetArcherCount();
+        public int GoatRemaining => RemainingJobs - GetGoatCount();
+        public int MaidenRemaining => RemainingJobs - GetMaidenCount();
         #endregion
     }
 }

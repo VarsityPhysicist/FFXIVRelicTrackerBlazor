@@ -13,7 +13,8 @@
                 <div>@character.Name</div>
                 <div class="stack-horizontal">
                     <span>Selected Job: </span>
-                    <select @bind="@ActiveJob">
+                    @*<select @bind-value="@ActiveJob"  @bind-value:event="SetActiveJob"  >*@
+                    <select value="@GetActiveJob()" @onchange="SetActiveJob">
                         @foreach (var job in JobNames)
                         {
                             <option value="@job">@job</option>
@@ -23,10 +24,10 @@
                 </div>
             </div>
             <div class="stack-horizontal">
-                <h3 style="@returnDec(!AnyCompleted)">Requirements</h3>
-                <input type="checkbox" @bind="AnyCompleted" />
+                <h3 style="@returnDec(!GetAnyCompleted())">Requirements</h3>
+                <input type="checkbox" checked="@GetAnyCompleted()" @onchange="SetAnyCompleted" />
             </div>
-            @if (!AnyCompleted)
+            @if (!GetAnyCompleted())
             {
                 <div class="stack-vertical">
                     <span>To unlock the ARR Relic quest chain, satisfy the following conditions:</span>
@@ -47,95 +48,95 @@
                 <div>
                     <div class="stack-horizontal">
                         <h3>Part 1: Timeworn Weapon</h3>
-                        <input type="checkbox" @bind="BrokenWeapon" id="testID" />
+                        <input type="checkbox" checked="@GetBrokenWeapon()" @onchange="SetBrokenWeapon" id="testID" />
                     </div>
-                    <div style="@returnDec(!BrokenWeapon)">Travel to the location indicated on the map and retrieve the Timeworn <a>@WeaponName</a>. Return to Gerolt.</div>
+                    <div style="@returnDec(!GetBrokenWeapon())">Travel to the location indicated on the map and retrieve the Timeworn <a>@WeaponName</a>. Return to Gerolt.</div>
                 </div>
                 <div>
                     <div class="stack-horizontal">
                         <h3>Part 2: Class Weapon</h3>
-                        <input type="checkbox" @bind="MeldedWeapon" />
+                        <input type="checkbox" checked="@GetMeldedWeapon()" @onchange="SetMeldedWeapon" />
                     </div>
-                    <div style="@returnDec(!MeldedWeapon)">Meld two @RelicMateria to a @RelicMat and turn weapon in to Gerolt.</div>
+                    <div style="@returnDec(!GetMeldedWeapon())">Meld two @RelicMateria to a @RelicMat and turn weapon in to Gerolt.</div>
                 </div>
                 <div>
                     <div class="stack-horizontal">
                         <h3>Part 3: Alumina Salts</h3>
-                        <input type="checkbox" @bind="SaltsAcquired" />
+                        <input type="checkbox" checked="@GetSaltsAcquired()" @onchange="SetSaltsAcquired" />
                     </div>
-                    <div style="@returnDec(!SaltsAcquired)">
+                    <div style="@returnDec(!@GetSaltsAcquired())">
                         Complete
                         <a href="https://ffxiv.gamerescape.com/wiki/A_Relic_Reborn:_The_Chimera" target="_blank" rel="noopener noreferrer">
                             'A Relic Reborn: The Chimera'
                         </a>
-                        as an @ActiveJob and return to Gerolt.
+                        as an @GetActiveJob() and return to Gerolt.
                     </div>
                 </div>
                 <div>
                     <div class="stack-horizontal">
                         <h3>Part 4: Interview with the Padjal</h3>
-                        <input type="checkbox" @bind="AmdaporCompleted" />
+                        <input type="checkbox" checked="@GetAmdaporCompleted()" @onchange="SetAmdaporCompleted" />
                     </div>
-                    <div style="@returnDec(!AmdaporCompleted)">Speak to Rowena in Mor Dona</div>
-                    <div style="@returnDec(!AmdaporCompleted)">Retrive an Amdapor Glyph by completing Amdapor Keep (Can run unsynced) as a @ActiveJob</div>
-                    <div style="@returnDec(!AmdaporCompleted)">Deliver Glyph to Rowena in Mor Dona and return to Gerolt with the book</div>
+                    <div style="@returnDec(!@GetAmdaporCompleted())">Speak to Rowena in Mor Dona</div>
+                    <div style="@returnDec(!@GetAmdaporCompleted())">Retrive an Amdapor Glyph by completing Amdapor Keep (Can run unsynced) as a @GetActiveJob()</div>
+                    <div style="@returnDec(!@GetAmdaporCompleted())">Deliver Glyph to Rowena in Mor Dona and return to Gerolt with the book</div>
                 </div>
                 <div>
                     <div class="stack-horizontal">
                         <h3>Part 5: Beastmen Hunt</h3>
-                        <input type="checkbox" @bind="CompletedBeasts" />
+                        <input type="checkbox" checked="@GetCompletedBeasts()" @onchange="SetCompletedBeasts" />
                     </div>
-                    <div style="@returnDec(!CompletedBeasts)">With your In-Progress <a>@WeaponName</a> equipped, slay 8 of each of the following beastmen in the area indicated on the map</div>
+                    <div style="@returnDec(!@GetCompletedBeasts())">With your In-Progress <a>@WeaponName</a> equipped, slay 8 of each of the following beastmen in the area indicated on the map</div>
                     <ul>
                         <li>
-                            <input type="checkbox" @bind="CompletedBeast1" />
-                            <font style="@returnDec(!CompletedBeast1)">@Beastman1</font>
+                            <input type="checkbox" checked="@GetCompletedBeast1()" @onchange="SetCompletedBeast1" />
+                            <font style="@returnDec(!@GetCompletedBeast1())">@Beastman1</font>
                         </li>
                         <li>
-                            <input type="checkbox" @bind="CompletedBeast2" />
-                            <font style="@returnDec(!CompletedBeast2)">@Beastman2</font>
+                            <input type="checkbox" checked="@GetCompletedBeast2()" @onchange="SetCompletedBeast2" />
+                            <font style="@returnDec(!@GetCompletedBeast2())">@Beastman2</font>
                         </li>
                         <li>
-                            <input type="checkbox" @bind="CompletedBeast3" />
-                            <font style="@returnDec(!CompletedBeast3)">@Beastman3</font>
+                            <input type="checkbox" checked="@GetCompletedBeast3()" @onchange="SetCompletedBeast3" />
+                            <font style="@returnDec(!@GetCompletedBeast3())">@Beastman3</font>
                         </li>
                     </ul>
-                    <div style="@returnDec(!CompletedBeasts)">Once completed, return to Gerolt</div>
+                    <div style="@returnDec(!GetCompletedBeasts())">Once completed, return to Gerolt</div>
                 </div>
                 <div>
                     <div class="stack-horizontal">
                         <h3>Part 6: Hydra</h3>
-                        <input type="checkbox" @bind="HydraComplete" />
+                        <input type="checkbox" checked="@GetHydraComplete()" @onchange="SetHydraComplete" />
                     </div>
-                    <div style="@returnDec(!HydraComplete)">With your In-Progress <a>@WeaponName</a> equipped, complete the trial 'A Relic Reborn: The Hydra' and speak to Gerolt</div>
+                    <div style="@returnDec(!GetHydraComplete())">With your In-Progress <a>@WeaponName</a> equipped, complete the trial 'A Relic Reborn: The Hydra' and speak to Gerolt</div>
                 </div>
                 <div>
                     <div class="stack-horizontal">
                         <h3>Part 7: Ifrit</h3>
-                        <input type="checkbox" @bind="IfritComplete" />
+                        <input type="checkbox" checked="@GetIfritComplete()" @onchange="SetIfritComplete" />
                     </div>
-                    <div style="@returnDec(!IfritComplete)">As a <a>@ActiveJob</a>, complete the trial 'The Bowl of Embers (Hard)' and speak to Gerolt</div>
+                    <div style="@returnDec(!@GetIfritComplete())">As a <a>@GetActiveJob()</a>, complete the trial 'The Bowl of Embers (Hard)' and speak to Gerolt</div>
                 </div>
                 <div>
                     <div class="stack-horizontal">
                         <h3>Part 8: Garuda</h3>
-                        <input type="checkbox" @bind="GarudaComplete" />
+                        <input type="checkbox" checked="@GetGarudaComplete()" @onchange="SetGarudaComplete" />
                     </div>
-                    <div style="@returnDec(!GarudaComplete)">As a <a>@ActiveJob</a>, complete the trial 'The Howling Eye (Hard)' and speak to Gerolt</div>
+                    <div style="@returnDec(!@GetGarudaComplete())">As a <a>@GetActiveJob()</a>, complete the trial 'The Howling Eye (Hard)' and speak to Gerolt</div>
                 </div>
                 <div>
                     <div class="stack-horizontal">
                         <h3>Part 9: Titan</h3>
-                        <input type="checkbox" @bind="TitanComplete" />
+                        <input type="checkbox" checked="@GetTitanComplete()" @onchange="SetTitanComplete" />
                     </div>
-                    <div style="@returnDec(!TitanComplete)">As a <a>@ActiveJob</a>, complete the trial 'The Navel (Hard)' and speak to Gerolt</div>
+                    <div style="@returnDec(!@GetTitanComplete())">As a <a>@GetActiveJob()</a>, complete the trial 'The Navel (Hard)' and speak to Gerolt</div>
                 </div>
                 <div>
                     <div class="stack-horizontal">
                         <h3>Part 10: Radz-at-Han Quenching Oil</h3>
-                        <input type="checkbox" @bind="QuenchingComplete" />
+                        <input type="checkbox" checked="@GetQuenchingComplete()" @onchange="SetQuenchingComplete" />
                     </div>
-                    <div style="@returnDec(!QuenchingComplete)">
+                    <div style="@returnDec(!@GetQuenchingComplete())">
                         Purchase a
                         <a href="https://ffxiv.gamerescape.com/wiki/Radz-at-Han_Quenching_Oil" target="_blank" rel="noopener noreferrer">Radz-at-Han Quenching Oil</a>
                         for 15 poetics from a Tomestone vendor under the Special Arms Materials Category
@@ -191,17 +192,17 @@
         transition: transform 150ms ease-in-out;
     }
 
-    .img-overlay-wrap img { /* optional, for responsiveness */
-        display: block;
-        max-width: 100%;
-        height: auto;
-    }
+        .img-overlay-wrap img { /* optional, for responsiveness */
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
 
-    .img-overlay-wrap svg {
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
+        .img-overlay-wrap svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
 </style>
 
 @code {

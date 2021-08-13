@@ -12,7 +12,7 @@
             <div>@character.Name</div>
             <div class="stack-horizontal">
                 <span>Selected Job: </span>
-                <select @bind="@ActiveJob">
+                <select value="@GetActiveJob()" @onchange="SetActiveJob">
                     @foreach (var job in JobNames)
                     {
                         <option value="@job">@job</option>
@@ -34,9 +34,9 @@
                 <div class="stack-vertical">
                     <div class="stack-horizontal">
                         <h3>A Ponze of Flesh</h3>
-                        <input type="checkbox" @bind="BookComplete" />
+                        <input type="checkbox" checked="@GetBookComplete()" @onchange="SetBookComplete"/>
                     </div>
-                    <table style="visibility:@Collapse(BookComplete)">
+                    <table style="visibility:@Collapse(@GetBookComplete())">
                         <tr>
                             <td>
                                 <div class="stack-vertical">
@@ -100,9 +100,9 @@
                 <div class="stack-vertical">
                     <div class="stack-horizontal">
                         <h3>A Treasured Mother</h3>
-                        <input type="checkbox" @bind="AlexandriteComplete" />
+                        <input type="checkbox" checked="@GetAlexandriteComplete()" @onchange="SetAlexandriteComplete"/>
                     </div>
-                    <table style="visibility:@Collapse(AlexandriteComplete)">
+                    <table style="visibility:@Collapse(GetAlexandriteComplete())">
                         <tr>
                             <td>
                                 <div class="stack-vertical">
@@ -166,9 +166,9 @@
                 <div class="stack-vertical">
                     <div class="stack-horizontal">
                         <h3>Labor of Love</h3>
-                        <input type="checkbox" @bind="ZodiumComplete" />
+                        <input type="checkbox" checked="@GetZodiumComplete()" @onchange="SetZodiumComplete"/>
                     </div>
-                    <table style="visibility:@Collapse(ZodiumComplete)">
+                    <table style="visibility:@Collapse(GetZodiumComplete())">
                         <tr>
                             <td>
                                 <div class="stack-vertical">
@@ -242,9 +242,9 @@
                 <div class="stack-vertical">
                     <div class="stack-horizontal">
                         <h3>Method in His Malice</h3>
-                        <input type="checkbox" @bind="ScrollComplete" />
+                        <input type="checkbox" checked="@GetScrollComplete()" @onchange="SetScrollComplete"/>
                     </div>
-                    <table style="visibility:@Collapse(ScrollComplete)">
+                    <table style="visibility:@Collapse(GetScrollComplete())">
                         <tr>
                             <td>
                                 <div class="stack-vertical">

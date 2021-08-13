@@ -16,8 +16,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
         [Inject]
         public ILocalStorageService LocalStorage { get; set; }
 
-        public string newName { get; set; }
-
         public string CharacterName 
         {
             get => character.Name;

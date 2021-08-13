@@ -2,6 +2,7 @@
 using FFXIVRelicTrackerBlazor.Shared._2_Arr;
 using FFXIVRelicTrackerBlazor.Shared.Helpers;
 using FFXIVRelicTrackerBlazor.Shared.Helpers.Misc;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,25 +21,27 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 
         public Stage2ARR ThisStage { get => character.ArrExpansion.Stage2ARR; }
 
-        public int MistCount
+        public int GetMistCount()
         {
-            get => ThisStage.MistCount;
-            set
-            {
-                if (MistCount != value && value>=0 && value<=30)
+            return ThisStage.MistCount;
+        }
+
+        public async Task SetMistCount(ChangeEventArgs e)
+        {
+            if (int.TryParse(e.Value.ToString(), out int value))
+                if (GetMistCount() != value && value >= 0 && value <= 30)
                 {
                     ThisStage.MistCount = value;
-                    _ = OnCharacterUpdate();
+                    await OnCharacterUpdate();
                 }
 
-            }
         }
         public override string PreviousWeaponName
         {
             get
             {
-                if (ActiveJob != JobName.NA)
-                    return MiscArr.GetArrRelicName(ActiveJob);
+                if (GetActiveJob() != JobName.NA)
+                    return MiscArr.GetArrRelicName(GetActiveJob());
 
                 return "N/A";
             }
@@ -49,17 +52,25 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             get
             {
-                if (ActiveJob != JobName.NA)
+                if (GetActiveJob() != JobName.NA)
                     return PreviousWeaponName + " Zenith";
 
                 return "N/A";
             }
         }
 
-        public int RemainingMist => (RemainingJobs * 3)-MistCount;
+        public int RemainingMist => (RemainingJobs * 3) - GetMistCount();
 
         public override ArrStages StageName => ArrStages.Zenith;
 
-        public override bool AnyCompleted { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public override bool GetAnyCompleted()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override Task SetAnyCompleted(ChangeEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

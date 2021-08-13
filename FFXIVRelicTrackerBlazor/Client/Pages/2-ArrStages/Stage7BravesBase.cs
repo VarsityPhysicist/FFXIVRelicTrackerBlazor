@@ -2,6 +2,7 @@
 using FFXIVRelicTrackerBlazor.Shared._2_Arr;
 using FFXIVRelicTrackerBlazor.Shared.Helpers;
 using FFXIVRelicTrackerBlazor.Shared.Helpers.Misc;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,18 +18,26 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 
         public override StageInfo TargetStage => character.ArrExpansion.Stage7ARR;
 
-        public override bool AnyCompleted { get => ValidJobs.Count != CompletedJobs; set => throw new NotImplementedException(); }
+        public override bool GetAnyCompleted()
+        {
+            return ValidJobs.Count != CompletedJobs;
+        }
+
+        public override Task SetAnyCompleted(ChangeEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
 
         public override ArrStages StageName => ArrStages.Braves;
         public override string PreviousWeaponName
         {
             get
             {
-                if (ActiveJob != JobName.NA)
+                if (GetActiveJob() != JobName.NA)
                 {
-                    if (ActiveJob == JobName.PLD) return MiscArr.GetArrRelicName(ActiveJob) + " Nexus & Holy Shield Nexus";
+                    if (GetActiveJob() == JobName.PLD) return MiscArr.GetArrRelicName(GetActiveJob()) + " Nexus & Holy Shield Nexus";
                     else
-                        return MiscArr.GetArrRelicName(ActiveJob) + " Nexus";
+                        return MiscArr.GetArrRelicName(GetActiveJob()) + " Nexus";
                 }
 
                 return "Relic Weapon Nexus";
@@ -38,12 +47,12 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             get
             {
-                if (ActiveJob != JobName.NA)
+                if (GetActiveJob() != JobName.NA)
                 {
-                    if (ActiveJob == JobName.PLD)
-                        return MiscArr.GetArrZodiacName(ActiveJob) + " & Aegis Shield";
+                    if (GetActiveJob() == JobName.PLD)
+                        return MiscArr.GetArrZodiacName(GetActiveJob()) + " & Aegis Shield";
                     else
-                        return MiscArr.GetArrZodiacName(ActiveJob) + "";
+                        return MiscArr.GetArrZodiacName(GetActiveJob()) + "";
                 }
 
                 return "Zodiac Braves Weapon";
@@ -53,40 +62,60 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         public Stage7ARR ThisStage { get => character.ArrExpansion.Stage7ARR; }
 
         #region Model Properties
-        public bool BookComplete
+        public bool GetBookComplete()
         {
-            get => ThisStage.BookComplete;
-            set
+            return ThisStage.BookComplete;
+        }
+
+        public async Task SetBookComplete(ChangeEventArgs e)
+        {
+            if(bool.TryParse(e.Value.ToString(),out bool value))
             {
                 ThisStage.BookComplete = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
+            
         }
-        public bool ZodiumComplete
+
+        public bool GetZodiumComplete()
         {
-            get => ThisStage.ZodiumComplete;
-            set
+            return ThisStage.ZodiumComplete;
+        }
+
+        public async Task SetZodiumComplete(ChangeEventArgs e)
+        {
+            if(bool.TryParse(e.Value.ToString(),out bool value))
             {
                 ThisStage.ZodiumComplete = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public bool AlexandriteComplete
+
+        public bool GetAlexandriteComplete()
         {
-            get => ThisStage.AlexandriteComplete;
-            set
+            return ThisStage.AlexandriteComplete;
+        }
+
+        public async Task SetAlexandriteComplete(ChangeEventArgs e)
+        {
+            if(bool.TryParse(e.Value.ToString(),out bool value))
             {
                 ThisStage.AlexandriteComplete = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
-        public bool ScrollComplete
+
+        public bool GetScrollComplete()
         {
-            get => ThisStage.ScrollComplete;
-            set
+            return ThisStage.ScrollComplete;
+        }
+
+        public async Task SetScrollComplete(ChangeEventArgs e)
+        {
+            if(bool.TryParse(e.Value.ToString(),out bool value))
             {
                 ThisStage.ScrollComplete = value;
-                _ = OnCharacterUpdate();
+                await OnCharacterUpdate();
             }
         }
         #endregion

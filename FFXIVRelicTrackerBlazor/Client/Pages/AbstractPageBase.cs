@@ -11,8 +11,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
     public abstract class AbstractPageBase : ComponentBase, IDisposable
     {
         [Inject]
-        public NotifierService Notifier { get; set; }
-        [Inject]
         public IState State { get; set; }
         public Character character
         {
@@ -23,7 +21,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
             set
             {
                 State.Character = value;
-                Notifier.SetCharacter(value);
             }
         }
         public abstract Task AdditionalInitializeAsync();
@@ -37,11 +34,9 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
         public void Subscribe()
         {
             State.Notify += StateNotify;
-            Notifier.Notify += OnNotify;
         }
         public void UnSubscribe()
         {
-            Notifier.Notify -= OnNotify;
             State.Notify -= StateNotify;
         }
         public void Dispose()

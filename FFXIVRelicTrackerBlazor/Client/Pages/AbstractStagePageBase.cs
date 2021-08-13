@@ -1,6 +1,7 @@
 ﻿using FFXIVRelicTrackerBlazor.Client.Extensions;
 using FFXIVRelicTrackerBlazor.Shared;
 using FFXIVRelicTrackerBlazor.Shared.Helpers;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,20 +19,23 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
         public abstract string PreviousWeaponName { get; }
         public int StageIndex => TargetStage.StageIndex;
 
-        public string returnDec(bool inputBool)
+        public static string returnDec(bool inputBool)
         {
             if (!inputBool)
                 return "text-decoration:line-through";
             return "";
         }
         public bool showAll;
-        public abstract bool AnyCompleted { get; set; }
+
+        public abstract bool GetAnyCompleted();
+        public abstract Task SetAnyCompleted(ChangeEventArgs e);
+
         public List<JobName> JobNames;
         public abstract ArrStages StageName { get; }
         protected int RemainingJobs=> TargetExpansion.Jobs.Where(x=>x.JobName!=JobName.NA).Select(x => x.Stages.Where(y => y.StageIndex == StageIndex).First()).Where(x=>x.Progress!=Progress.Completed).Count();
         protected int CompletedJobs=> TargetExpansion.Jobs.Select(x => x.Stages.Where(y => y.StageIndex == StageIndex).First()).Where(x=>x.Progress==Progress.Completed).Count();
-        public string Collapse(bool inputBool) { if (inputBool) return "collapse"; return string.Empty; }
-        public string GetEnumDisplayName(Enum enumType)
+        public static string Collapse(bool inputBool) { if (inputBool) return "collapse"; return string.Empty; }
+        public static string GetEnumDisplayName(Enum enumType)
         {
             return EnumExtensions.GetEnumDisplayName(enumType);
         }
@@ -61,45 +65,55 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
             }
             return Task.CompletedTask;
         }
-        internal Task CheckActiveJob()
+        internal async Task CheckActiveJob()
         {
-            if (ActiveJob != JobName.NA)
+            if (GetActiveJob() != JobName.NA)
             {
-                if (TargetExpansion.Jobs.Where(x => x.JobName == ActiveJob).First().Stages.Where(x => x.StageIndex == StageIndex).First().Progress == Progress.Completed)
-                    ActiveJob = JobName.NA;
+                if (TargetExpansion.Jobs.Where(x => x.JobName == GetActiveJob()).First().Stages.Where(x => x.StageIndex == StageIndex).First().Progress == Progress.Completed)
+                    await SetActiveJob(JobName.NA);
             }
-            return Task.CompletedTask;
         }
-        public JobName ActiveJob
+
+        public JobName GetActiveJob()
         {
-            get => TargetStage.ActiveJob;
-            set
-            {
-                if (value != TargetStage.ActiveJob && TargetStage.ActiveJob!=JobName.NA)
-                    ResetStage();
-                TargetStage.ActiveJob = value;
-                _ = OnCharacterUpdate();
-                StateHasChanged();
-            }
+            return TargetStage.ActiveJob;
+        }
+
+        public async Task SetActiveJob(ChangeEventArgs e)
+        {
+            JobName jobName = (JobName)Enum.Parse(typeof(JobName), e.Value.ToString());
+            if (jobName != TargetStage.ActiveJob && TargetStage.ActiveJob != JobName.NA)
+                ResetStage();
+            TargetStage.ActiveJob = jobName;
+            await OnCharacterUpdate();
+            StateHasChanged();
+        }
+        public async Task SetActiveJob(JobName jobName)
+        {
+            if (jobName != TargetStage.ActiveJob && TargetStage.ActiveJob != JobName.NA)
+                ResetStage();
+            TargetStage.ActiveJob = jobName;
+            await OnCharacterUpdate();
+            StateHasChanged();
         }
         public bool JobSelected
         {
-            get => ActiveJob != JobName.NA;
+            get => GetActiveJob() != JobName.NA;
         }
         public bool JobNotSelected
         {
             get => !JobSelected;
         }
 
-        public void CompleteStage()
+        public async Task CompleteStage()
         {
             if (TargetStage.ActiveJob != JobName.NA)
             {
                 MasterStageHelper.CompleteStage(character, TargetStage.ActiveJob, StageIndex, TargetExpansion.Expansion);
-                JobNames.Remove(ActiveJob);
-                _ = this.OnInitializedAsync();
-                ActiveJob = default;
-                _ = OnCharacterUpdate();
+                JobNames.Remove(GetActiveJob());
+                await this.OnInitializedAsync();
+                await SetActiveJob(JobName.NA);
+                await OnCharacterUpdate();
             }
         }
         public void ResetStage()

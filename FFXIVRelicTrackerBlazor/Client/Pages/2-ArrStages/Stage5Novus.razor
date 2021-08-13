@@ -13,7 +13,7 @@
             <div>@character.Name</div>
             <div class="stack-horizontal">
                 <span>Selected Job: </span>
-                <select @bind="@ActiveJob">
+                <select value="@GetActiveJob()" @onchange="SetActiveJob">
                     @foreach (var job in JobNames)
                     {
                         <option value="@job">@job</option>
@@ -21,7 +21,7 @@
                 </select>
                 <button @onclick="()=>CompleteStage()" disabled="@JobNotSelected">Complete</button>
             </div>
-            @if (AnyCompleted)
+            @if (@GetAnyCompleted())
             {
                 <div>
                     <h2>Requirements</h2>
@@ -32,17 +32,17 @@
             <div class="stack-vertical">
                 <div class="stack-horizontal">
                     <h2>Acquire Scroll</h2>
-                    <input type="checkbox" @bind="AcquiredScroll" />
+                    <input type="checkbox" checked="@GetAcquiredScroll()" @onchange="SetAcquiredScroll" />
                 </div>
-                <div class="@Collapse(AcquiredScroll)">
-                    @if (AnyCompleted)
+                <div class="@Collapse(GetAcquiredScroll())">
+                    @if (@GetAnyCompleted())
                     {
                         <span><a href="https://ffxiv.gamerescape.com/wiki/Celestial_Radiance" target="_blank" rel="noopener noreferrer">Quest: Celestial Radiance</a> | Started by: Jalzahn (North Shroud)</span>
                         <span>With your <span class="weapon-purple">@PreviousWeaponName</span> equipped, speak with Jalzahn and then Mutamix Bubblypots (Central Thanalan) and then nearby Hubairtin</span>
                         <span>Travel to Mor Dhona and purchase three <a class="item-link" href="https://ffxiv.gamerescape.com/wiki/Superior_Enchanted_Ink" target="_blank" rel="noopener noreferrer">Superior Enchanted Ink</a> for 25 Poetics each</span>
                         <span>Return to Hubairtin and exchange the Superior Enchanted Ink for a Sphere Scroll</span>
                     }
-                    @if (!AnyCompleted)
+                    @if (!@GetAnyCompleted())
                     {
                         <span>Purchase three <a class="item-link" href="https://ffxiv.gamerescape.com/wiki/Superior_Enchanted_Ink" target="_blank" rel="noopener noreferrer">Superior Enchanted Ink</a> in Mor Dhona (25 Poetics each) and exchange them for a Sphere Scroll</span>
                     }
@@ -66,39 +66,39 @@
                         <span>@GetEnumDisplayName(ValidMateria.Battledance):</span>
 
                     </td>
-                    <td><input type="number" class="pad-materia" @bind="PrimaryBattleDanceCount" min="0" max="44" /></td>
+                    <td><input type="number" class="pad-materia" value="GetPrimaryBattleDanceCount()" @onchange="SetPrimaryBattleDanceCount" min="0" max="44" /></td>
                     <td>
                         <span>@GetEnumDisplayName(ValidMateria.HeavensEye):</span>
 
                     </td>
-                    <td><input type="number" class="pad-materia" @bind="PrimaryHeavensEyeCount" min="0" max="44" /></td>
+                    <td><input type="number" class="pad-materia" value="GetPrimaryHeavensEyeCount()" @onchange="SetPrimaryHeavensEyeCount" min="0" max="44" /></td>
                     <td>
                         <span class="justify-item">@GetEnumDisplayName(ValidMateria.Piety):</span>
 
                     </td>
-                    <td><input type="number" class="pad-materia" @bind="PrimaryPietyCount" min="0" max="44" /></td>
+                    <td><input type="number" class="pad-materia" value="GetPrimaryPietyCount()" @onchange="SetPrimaryPietyCount" min="0" max="44" /></td>
                     <td>
                         <span>@GetEnumDisplayName(ValidMateria.Quickarm):</span>
 
                     </td>
-                    <td><input type="number" class="pad-materia" @bind="PrimaryQuickarmCount" min="0" max="44" /></td>
+                    <td><input type="number" class="pad-materia" value="GetPrimaryQuickarmCount()" @onchange="SetPrimaryQuickarmCount" min="0" max="44" /></td>
                 </tr>
                 <tr>
                     <td>
                         <span>@GetEnumDisplayName(ValidMateria.Quicktongue):</span>
 
                     </td>
-                    <td><input type="number" class="pad-materia" @bind="PrimaryQuicktongueCount" min="0" max="44" /></td>
+                    <td><input type="number" class="pad-materia" value="GetPrimaryQuicktongueCount()" @onchange="SetPrimaryQuicktongueCount" min="0" max="44" /></td>
                     <td>
                         <span>@GetEnumDisplayName(ValidMateria.SavageAim):</span>
 
                     </td>
-                    <td><input type="number" class="pad-materia" @bind="PrimarySavageAimCount" min="0" max="44" /></td>
+                    <td><input type="number" class="pad-materia" value="@GetPrimarySavageAimCount()" @onchange="SetPrimarySavageAimCount" min="0" max="44" /></td>
                     <td>
                         <span>@GetEnumDisplayName(ValidMateria.SavageMight):</span>
 
                     </td>
-                    <td><input type="number" class="pad-materia" @bind="PrimarySavageMightCount" min="0" max="44" /></td>
+                    <td><input type="number" class="pad-materia" value="@GetPrimarySavageMightCount()" @onchange="SetPrimarySavageMightCount" min="0" max="44" /></td>
                 </tr>
             </table>
             <br />
@@ -112,39 +112,39 @@
                             <span>@GetEnumDisplayName(ValidMateria.Battledance):</span>
 
                         </td>
-                        <td><input type="number" class="pad-materia" @bind="SecondaryBattleDanceCount" min="0" max="44" /></td>
+                        <td><input type="number" class="pad-materia" value="GetSecondaryBattleDanceCount()" @onchange="SetSecondaryBattleDanceCount" min="0" max="44" /></td>
                         <td>
                             <span>@GetEnumDisplayName(ValidMateria.HeavensEye):</span>
 
                         </td>
-                        <td><input type="number" class="pad-materia" @bind="SecondaryHeavensEyeCount" min="0" max="44" /></td>
+                        <td><input type="number" class="pad-materia" value="GetSecondaryHeavensEyeCount()" @onchange="SetSecondaryHeavensEyeCount" min="0" max="44" /></td>
                         <td>
                             <span class="justify-item">@GetEnumDisplayName(ValidMateria.Piety):</span>
 
                         </td>
-                        <td><input type="number" class="pad-materia" @bind="SecondaryPietyCount" min="0" max="44" /></td>
+                        <td><input type="number" class="pad-materia" value="GetSecondaryPietyCount()" @onchange="SetSecondaryPietyCount" min="0" max="44" /></td>
                         <td>
                             <span>@GetEnumDisplayName(ValidMateria.Quickarm):</span>
 
                         </td>
-                        <td><input type="number" class="pad-materia" @bind="SecondaryQuickarmCount" min="0" max="44" /></td>
+                        <td><input type="number" class="pad-materia" value="GetSecondaryQuickarmCount()" @onchange="SetSecondaryQuickarmCount" min="0" max="44" /></td>
                     </tr>
                     <tr>
                         <td>
                             <span>@GetEnumDisplayName(ValidMateria.Quicktongue):</span>
 
                         </td>
-                        <td><input type="number" class="pad-materia" @bind="SecondaryQuicktongueCount" min="0" max="44" /></td>
+                        <td><input type="number" class="pad-materia" value="GetSecondaryQuicktongueCount()" @onchange="SetSecondaryQuicktongueCount" min="0" max="44" /></td>
                         <td>
                             <span>@GetEnumDisplayName(ValidMateria.SavageAim):</span>
 
                         </td>
-                        <td><input type="number" class="pad-materia" @bind="SecondarySavageAimCount" min="0" max="44" /></td>
+                        <td><input type="number" class="pad-materia" value="@GetSecondarySavageAimCount()" @onchange="SetSecondarySavageAimCount" min="0" max="44" /></td>
                         <td>
                             <span>@GetEnumDisplayName(ValidMateria.SavageMight):</span>
 
                         </td>
-                        <td><input type="number" class="pad-materia" @bind="SecondarySavageMightCount" min="0" max="44" /></td>
+                        <td><input type="number" class="pad-materia" value="@GetSecondarySavageMightCount()" @onchange="SetSecondarySavageMightCount" min="0" max="44" /></td>
                     </tr>
                 </table>
             }
@@ -152,6 +152,8 @@
             <span>Note: Alexandrite may be purchased for 50 Allied Seals each</span>
             <span>5 x Alexandrite are awarded upon completion of a <a class="item-link" href="https://ffxiv.gamerescape.com/wiki/Mysterious_Map" target="_blank" rel="noopener noreferrer">Mysterious Map</a></span>
             <span>Mysterious Maps are purchasable for 75 Poetics or obtained as a quest reward for the daily <a href="https://ffxiv.gamerescape.com/wiki/Morbid_Motivation" target="_blank" rel="noopener noreferrer">Morbid Motivation</a></span>
+            <span>Current Alexandrite: <input min="0" max="@RemainingAlexandrite" value="@GetAlexandriteCount()" @onchange="SetAlexandriteCount" /></span>
+            <span>Total remaining Alexandrite: @RemainingAlexandrite</span>
         </div>
     </div>
 }

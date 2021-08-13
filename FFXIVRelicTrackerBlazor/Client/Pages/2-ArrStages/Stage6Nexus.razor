@@ -12,7 +12,7 @@
             <div>@character.Name</div>
             <div class="stack-horizontal">
                 <span>Selected Job: </span>
-                <select @bind="@ActiveJob">
+                <select value="@GetActiveJob()" @onchange="SetActiveJob">
                     @foreach (var job in JobNames)
                     {
                         <option value="@job">@job</option>
@@ -54,7 +54,7 @@
                 </table>
                <div class="stack-horizontal">
                    <span>Current Light:</span>
-                   <input type="number" min="0" max="2000" @bind="CurrentLight" />
+                   <input type="number" min="0" max="2000" value="GetCurrentLight()" @onchange="SetCurrentLight"/>
                </div>
                <span>Note: Content may be completed unsynced, the only requirement is to have your <span class="weapon-purple">@PreviousWeaponName</span> equipped</span>
                <span>At 2000 Light Points, speak to Jalzahn and select the option 'Relic Weapon Novus Enhancement'</span>
@@ -109,7 +109,7 @@
                    </tr>
                </table>
                <br />
-               <span>Current Activity: @LightString(CurrentLight) Activity</span>
+               <span>Current Activity: @LightString(GetCurrentLight()) Activity</span>
            </div>
 
         </div>

@@ -12,7 +12,7 @@
             <div>@character.Name</div>
             <div class="stack-horizontal">
                 <span>Selected Job: </span>
-                <select @bind="@ActiveJob">
+                <select value="@GetActiveJob()" @onchange="SetActiveJob">
                     @foreach (var job in JobNames)
                     {
                         <option value="@job">@job</option>
@@ -42,73 +42,73 @@
                 <tr>
                     <td>Atma of the Lion</td>
                     <td>Outer La Noscea</td>
-                    <td><input type="number" min="0" max="10" @bind="@LionCount" /></td>
+                    <td><input type="number" min="0" max="10" value="@GetLionCount()" @onchange="SetLionCount" /></td>
                     <td>@LionRemaining</td>
                 </tr>
                 <tr>
                     <td>Atma of the Water-bearer</td>
                     <td>Upper La Noscea</td>
-                    <td><input type="number" min="0" max="10" @bind="@WaterBearerCount" /></td>
+                    <td><input type="number" min="0" max="10" value="@GetWaterBearerCount()" @onchange="SetWaterBearerCount"/></td>
                     <td>@WaterBearerRemaining</td>
                 </tr>
                 <tr>
                     <td>Atma of the Ram</td>
                     <td>Middle La Noscea</td>
-                    <td><input type="number" min="0" max="10" @bind="@RamCount" /></td>
+                    <td><input type="number" min="0" max="10" value="@GetRamCount()" @onchange="SetRamCount"/></td>
                     <td>@RamRemaining</td>
                 </tr>
                 <tr>
                     <td>Atma of the Crab</td>
                     <td>Western La Noscea</td>
-                    <td><input type="number" min="0" max="10" @bind="@CrabCount" /></td>
+                    <td><input type="number" min="0" max="10" value="@GetCrabCount()" @onchange="SetCrabCount"/></td>
                     <td>@CrabRemaining</td>
                 </tr>
                 <tr>
                     <td>Atma of the Fish</td>
                     <td>Lower La Noscea</td>
-                    <td><input type="number" min="0" max="10" @bind="@FishCount" /></td>
+                    <td><input type="number" min="0" max="10" value="@GetFishCount()" @onchange="SetFishCount"/></td>
                     <td>@FishRemaining</td>
                 </tr>
                 <tr>
                     <td>Atma of the Bull</td>
                     <td>Eastern Thanalan</td>
-                    <td><input type="number" min="0" max="10" @bind="@BullCount" /></td>
+                    <td><input type="number" min="0" max="10" value="@GetBullCount()" @onchange="SetBullCount"/></td>
                     <td>@BullRemaining</td>
                 </tr>
                 <tr>
                     <td>Atma of the Scales</td>
                     <td>Central Thanalan</td>
-                    <td><input type="number" min="0" max="10" @bind="@ScalesCount" /></td>
+                    <td><input type="number" min="0" max="10" value="@GetScalesCount()" @onchange="SetScalesCount"/></td>
                     <td>@ScalesRemaining</td>
                 </tr>
                 <tr>
                     <td>Atma of the Twins</td>
                     <td>Western Thanalan</td>
-                    <td><input type="number" min="0" max="10" @bind="@TwinsCount" /></td>
+                    <td><input type="number" min="0" max="10" value="@GetTwinsCount()" @onchange="SetTwinsCount"/></td>
                     <td>@TwinsRemaining</td>
                 </tr>
                 <tr>
                     <td>Atma of the Scorpion</td>
                     <td>Southern Thanalan</td>
-                    <td><input type="number" min="0" max="10" @bind="@ScorpionCount" /></td>
+                    <td><input type="number" min="0" max="10" value="@GetScorpionCount()" @onchange="SetScorpionCount"/></td>
                     <td>@ScorpionRemaining</td>
                 </tr>
                 <tr>
                     <td>Atma of the Archer</td>
                     <td>North Shroud</td>
-                    <td><input type="number" min="0" max="10" @bind="@ArcherCount" /></td>
+                    <td><input type="number" min="0" max="10" value="@GetArcherCount()" @onchange="SetArcherCount"/></td>
                     <td>@ArcherRemaining</td>
                 </tr>
                 <tr>
                     <td>Atma of the Goat</td>
                     <td>East Shroud</td>
-                    <td><input type="number" min="0" max="10" @bind="@GoatCount" /></td>
+                    <td><input type="number" min="0" max="10" value="@GetGoatCount()" @onchange="SetGoatCount"/></td>
                     <td>@GoatRemaining</td>
                 </tr>
                 <tr>
                     <td>Atma of the Maiden</td>
                     <td>Central Shroud</td>
-                    <td><input type="number" min="0" max="10" @bind="@MaidenCount" /></td>
+                    <td><input type="number" min="0" max="10" value="@GetMaidenCount()" @onchange="SetMaidenCount"/></td>
                     <td>@MaidenRemaining</td>
                 </tr>
             </table>

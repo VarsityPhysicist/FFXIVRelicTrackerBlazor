@@ -28,22 +28,22 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
             return Task.CompletedTask;
         }
 
-        public void ToggleComplete(int StageIndex, JobName job)
+        public async Task ToggleComplete(int StageIndex, JobName job)
         {
             if (TargetExpansion.Jobs.Where(x => x.JobName == job).First().Stages.Where(x => x.StageIndex == StageIndex).First().Progress == Progress.Completed)
-                InCompleteStage(StageIndex, job);
-            else CompleteStage(StageIndex, job);
+                await InCompleteStage(StageIndex, job);
+            else await CompleteStage(StageIndex, job);
 
         }
-        private void CompleteStage(int StageIndex, JobName job)
+        private async Task CompleteStage(int StageIndex, JobName job)
         {
             MasterStageHelper.CompleteStage(character, job, StageIndex, TargetExpansion.Expansion);
-            _ = OnCharacterUpdate();
+            await OnCharacterUpdate();
         }
-        private void InCompleteStage(int StageIndex, JobName job)
+        private async Task InCompleteStage(int StageIndex, JobName job)
         {
             MasterStageHelper.InCompleteStage(character, job, StageIndex, TargetExpansion.Expansion);
-            _ = OnCharacterUpdate();
+            await OnCharacterUpdate();
         }
 
     }

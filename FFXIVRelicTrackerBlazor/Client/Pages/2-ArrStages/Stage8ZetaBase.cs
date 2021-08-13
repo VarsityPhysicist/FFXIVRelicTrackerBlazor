@@ -2,6 +2,7 @@
 using FFXIVRelicTrackerBlazor.Shared._2_Arr;
 using FFXIVRelicTrackerBlazor.Shared.Helpers;
 using FFXIVRelicTrackerBlazor.Shared.Helpers.Misc;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,19 +18,22 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 
         public override StageInfo TargetStage => character.ArrExpansion.Stage8ARR;
 
-        public override bool AnyCompleted { get => FilteredJobs.Count != RemainingJobs; set => throw new NotImplementedException(); }
+        public override bool GetAnyCompleted()
+        {
+            return FilteredJobs.Count != RemainingJobs;
+        }
 
         public override ArrStages StageName => ArrStages.Zeta;
         public override string PreviousWeaponName
         {
             get
             {
-                if (ActiveJob != JobName.NA)
+                if (GetActiveJob() != JobName.NA)
                 {
-                    if (ActiveJob == JobName.PLD)
-                        return MiscArr.GetArrZodiacName(ActiveJob) + " & Aegis Shield";
+                    if (GetActiveJob() == JobName.PLD)
+                        return MiscArr.GetArrZodiacName(GetActiveJob()) + " & Aegis Shield";
                     else
-                        return MiscArr.GetArrZodiacName(ActiveJob) + "";
+                        return MiscArr.GetArrZodiacName(GetActiveJob()) + "";
                 }
 
                 return "Zodiac Braves Weapon";
@@ -39,12 +43,12 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             get
             {
-                if (ActiveJob != JobName.NA)
+                if (GetActiveJob() != JobName.NA)
                 {
-                    if (ActiveJob == JobName.PLD)
-                        return MiscArr.GetArrZodiacName(ActiveJob) + "Zeta  & Aegis Shield Zeta";
+                    if (GetActiveJob() == JobName.PLD)
+                        return MiscArr.GetArrZodiacName(GetActiveJob()) + "Zeta  & Aegis Shield Zeta";
                     else
-                        return MiscArr.GetArrZodiacName(ActiveJob) + "";
+                        return MiscArr.GetArrZodiacName(GetActiveJob()) + "";
                 }
 
                 return "Zodiac Weapon Zeta";
@@ -58,23 +62,129 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             return ThisStage.ArrZodiacStage < arrZodiacStage;
         }
-        public void SetStageProgress(ArrZodiacStage arrZodiacStage)
+        public async Task SetStageProgress(ArrZodiacStage arrZodiacStage)
         {
-            ThisStage.ArrZodiacStage = arrZodiacStage;
+            if (ThisStage.ArrZodiacStage>= arrZodiacStage)
+            {
+                ThisStage.ArrZodiacStage = (ArrZodiacStage)((int)arrZodiacStage - 1);
+            }
+            else ThisStage.ArrZodiacStage = arrZodiacStage;
+            await OnCharacterUpdate();
         }
 
-        public bool RamComplete { get => CheckStageProgress(ArrZodiacStage.Stage0); set { SetStageProgress(ArrZodiacStage.Stage0); _ = OnCharacterUpdate(); } }
-        public bool BullComplete { get => CheckStageProgress(ArrZodiacStage.Stage1); set { SetStageProgress(ArrZodiacStage.Stage1); _ = OnCharacterUpdate(); } }
-        public bool TwinsComplete { get => CheckStageProgress(ArrZodiacStage.Stage2); set { SetStageProgress(ArrZodiacStage.Stage2); _ = OnCharacterUpdate(); } }
-        public bool CrabComplete { get => CheckStageProgress(ArrZodiacStage.Stage3); set { SetStageProgress(ArrZodiacStage.Stage3); _ = OnCharacterUpdate(); } }
-        public bool LionComplete { get => CheckStageProgress(ArrZodiacStage.Stage4); set { SetStageProgress(ArrZodiacStage.Stage4); _ = OnCharacterUpdate(); } }
-        public bool MaidenComplete { get => CheckStageProgress(ArrZodiacStage.Stage5); set { SetStageProgress(ArrZodiacStage.Stage5); _ = OnCharacterUpdate(); } }
-        public bool ScalesComplete { get => CheckStageProgress(ArrZodiacStage.Stage6); set { SetStageProgress(ArrZodiacStage.Stage6); _ = OnCharacterUpdate(); } }
-        public bool ScorpionComplete { get => CheckStageProgress(ArrZodiacStage.Stage7); set { SetStageProgress(ArrZodiacStage.Stage7); _ = OnCharacterUpdate(); } }
-        public bool ArcherComplete { get => CheckStageProgress(ArrZodiacStage.Stage8); set { SetStageProgress(ArrZodiacStage.Stage8); _ = OnCharacterUpdate(); } }
-        public bool GoatComplete { get => CheckStageProgress(ArrZodiacStage.Stage9); set { SetStageProgress(ArrZodiacStage.Stage9); _ = OnCharacterUpdate(); } }
-        public bool WaterBearerComplete { get => CheckStageProgress(ArrZodiacStage.Stage10); set { SetStageProgress(ArrZodiacStage.Stage10); _ = OnCharacterUpdate(); } }
-        public bool FishComplete { get => CheckStageProgress(ArrZodiacStage.Stage11); set { SetStageProgress(ArrZodiacStage.Stage11); _ = OnCharacterUpdate(); } }
+        public override Task SetAnyCompleted(ChangeEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool GetRamComplete()
+        {
+            return CheckStageProgress(ArrZodiacStage.Stage0);
+        }
+
+        public async Task SetRamComplete()
+        {
+            await SetStageProgress(ArrZodiacStage.Stage0);
+        }
+        public bool GetBullComplete()
+        {
+            return CheckStageProgress(ArrZodiacStage.Stage1);
+        }
+
+        public async Task SetBullComplete()
+        {
+            await SetStageProgress(ArrZodiacStage.Stage1);
+        }
+        public bool GetTwinsComplete()
+        {
+            return CheckStageProgress(ArrZodiacStage.Stage2);
+        }
+
+        public async Task SetTwinsComplete()
+        {
+            await SetStageProgress(ArrZodiacStage.Stage2);
+        }
+        public bool GetCrabComplete()
+        {
+            return CheckStageProgress(ArrZodiacStage.Stage3);
+        }
+
+        public async Task SetCrabComplete()
+        {
+            await SetStageProgress(ArrZodiacStage.Stage3);
+        }
+        public bool GetLionComplete()
+        {
+            return CheckStageProgress(ArrZodiacStage.Stage4);
+        }
+
+        public async Task SetLionComplete()
+        {
+            await SetStageProgress(ArrZodiacStage.Stage4);
+        }
+        public bool GetMaidenComplete()
+        {
+            return CheckStageProgress(ArrZodiacStage.Stage5);
+        }
+
+        public async Task SetMaidenComplete()
+        {
+            await SetStageProgress(ArrZodiacStage.Stage5);
+        }
+        public bool GetScalesComplete()
+        {
+            return CheckStageProgress(ArrZodiacStage.Stage6);
+        }
+
+        public async Task SetScalesComplete()
+        {
+            await SetStageProgress(ArrZodiacStage.Stage6);
+        }
+        public bool GetScorpionComplete()
+        {
+            return CheckStageProgress(ArrZodiacStage.Stage7);
+        }
+
+        public async Task SetScorpionComplete()
+        {
+            await SetStageProgress(ArrZodiacStage.Stage7);
+        }
+        public bool GetArcherComplete()
+        {
+            return CheckStageProgress(ArrZodiacStage.Stage8);
+        }
+
+        public async Task SetArcherComplete()
+        {
+            await SetStageProgress(ArrZodiacStage.Stage8);
+        }
+        public bool GetGoatComplete()
+        {
+            return CheckStageProgress(ArrZodiacStage.Stage9);
+        }
+
+        public async Task SetGoatComplete()
+        {
+            await SetStageProgress(ArrZodiacStage.Stage9);
+        }
+        public bool GetWaterBearerComplete()
+        {
+            return CheckStageProgress(ArrZodiacStage.Stage10);
+        }
+
+        public async Task SetWaterBearerComplete()
+        {
+            await SetStageProgress(ArrZodiacStage.Stage10);
+        }
+        public bool GetFishComplete()
+        {
+            return CheckStageProgress(ArrZodiacStage.Stage11);
+        }
+
+        public async Task SetFishComplete()
+        {
+            await SetStageProgress(ArrZodiacStage.Stage11);
+        }
         #endregion
     }
 }
