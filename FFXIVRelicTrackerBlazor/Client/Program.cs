@@ -23,7 +23,6 @@ namespace FFXIVRelicTrackerBlazor.Client
 
             builder.Services.AddBlazoredLocalStorage();
 
-            builder.Services.AddScoped<NotifierService>();
             builder.Services.AddScoped<IState, State>();
 
 
