@@ -43,7 +43,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
                 if (GetActiveJob() != JobName.NA)
                     return MiscArr.GetArrRelicName(GetActiveJob());
 
-                return "N/A";
+                return "Relic Weapon";
             }
         }
 
@@ -55,7 +55,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
                 if (GetActiveJob() != JobName.NA)
                     return PreviousWeaponName + " Zenith";
 
-                return "N/A";
+                return "Relic Weapon Zenith";
             }
         }
 
