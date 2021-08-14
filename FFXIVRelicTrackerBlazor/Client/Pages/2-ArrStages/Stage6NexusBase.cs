@@ -30,7 +30,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
             {
                 if (GetActiveJob() != JobName.NA)
                 {
-                    if(GetActiveJob() == JobName.PLD) return MiscArr.GetArrRelicName(GetActiveJob()) + " Novus & Holy Shield Novus";
+                    if (GetActiveJob() == JobName.PLD) return MiscArr.GetArrRelicName(GetActiveJob()) + " Novus & Holy Shield Novus";
                     else
                         return MiscArr.GetArrRelicName(GetActiveJob()) + " Novus";
                 }
@@ -44,7 +44,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
             {
                 if (GetActiveJob() != JobName.NA)
                 {
-                    if (GetActiveJob() == JobName.PLD) 
+                    if (GetActiveJob() == JobName.PLD)
                         return MiscArr.GetArrRelicName(GetActiveJob()) + " Nexus & Holy Shield Nexus";
                     else
                         return MiscArr.GetArrRelicName(GetActiveJob()) + " Nexus";
@@ -63,17 +63,16 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 
         public async Task SetCurrentLight(int value)
         {
-            ThisStage.CurrentLight = value;
+            ThisStage.CurrentLight = Math.Min(value, 2000);
             await OnCharacterUpdate();
         }
         public async Task SetCurrentLight(ChangeEventArgs e)
         {
-            if(int.TryParse(e.Value.ToString(),out int value))
+            if (int.TryParse(e.Value.ToString(), out int value))
             {
-                ThisStage.CurrentLight = value;
+                ThisStage.CurrentLight = Math.Min(value, 2000);
                 await OnCharacterUpdate();
             }
-            
         }
 
         public static string LightString(int inputLight)
@@ -103,7 +102,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 
             }
         }
-        
+
         public async Task IncrementLight(int addLight)
         {
             await SetCurrentLight(GetCurrentLight() + addLight);
