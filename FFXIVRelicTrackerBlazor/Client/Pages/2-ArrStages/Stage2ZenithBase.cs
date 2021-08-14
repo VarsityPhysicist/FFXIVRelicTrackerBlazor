@@ -59,7 +59,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
             }
         }
 
-        public int RemainingMist => (RemainingJobs * 3) - GetMistCount();
+        public int RemainingMist => Math.Max(0,(RemainingJobs * 3) - GetMistCount());
 
         public override ArrStages StageName => ArrStages.Zenith;
 

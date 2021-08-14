@@ -221,18 +221,18 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         }
         #endregion
         #region Remaining Properties
-        public int LionRemaining => RemainingJobs - GetLionCount();
-        public int WaterBearerRemaining => RemainingJobs - GetWaterBearerCount();
-        public int RamRemaining => RemainingJobs - GetRamCount();
-        public int CrabRemaining => RemainingJobs - GetCrabCount();
-        public int FishRemaining => RemainingJobs - GetFishCount();
-        public int BullRemaining => RemainingJobs - GetBullCount();
-        public int ScalesRemaining => RemainingJobs - GetScalesCount();
-        public int TwinsRemaining => RemainingJobs - GetTwinsCount();
-        public int ScorpionRemaining => RemainingJobs - GetScorpionCount();
-        public int ArcherRemaining => RemainingJobs - GetArcherCount();
-        public int GoatRemaining => RemainingJobs - GetGoatCount();
-        public int MaidenRemaining => RemainingJobs - GetMaidenCount();
+        public int LionRemaining => Math.Max(0, RemainingJobs - GetLionCount());
+        public int WaterBearerRemaining => Math.Max(0, RemainingJobs - GetWaterBearerCount());
+        public int RamRemaining => Math.Max(0, RemainingJobs - GetRamCount());
+        public int CrabRemaining => Math.Max(0, RemainingJobs - GetCrabCount());
+        public int FishRemaining => Math.Max(0, RemainingJobs - GetFishCount());
+        public int BullRemaining => Math.Max(0, RemainingJobs - GetBullCount());
+        public int ScalesRemaining => Math.Max(0, RemainingJobs - GetScalesCount());
+        public int TwinsRemaining => Math.Max(0, RemainingJobs - GetTwinsCount());
+        public int ScorpionRemaining => Math.Max(0, RemainingJobs - GetScorpionCount());
+        public int ArcherRemaining => Math.Max(0, RemainingJobs - GetArcherCount());
+        public int GoatRemaining => Math.Max(0, RemainingJobs - GetGoatCount());
+        public int MaidenRemaining => Math.Max(0, RemainingJobs - GetMaidenCount());
         #endregion
     }
 }
