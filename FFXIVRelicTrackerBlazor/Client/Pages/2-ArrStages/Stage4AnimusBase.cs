@@ -98,8 +98,27 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             return ThisStage.ActiveMap;
         }
+
+        private bool mapVisible;
+
+        public bool GetMapVisible()
+        {
+            return mapVisible;
+        }
+
+        public async Task SetMapVisible(bool value)
+        {
+            mapVisible = value;
+            await OnCharacterUpdate();
+        }
+
+        public async Task MapLoaded()
+        {
+            await SetMapVisible(true);
+        }
         public async Task SetActiveMap(ArrMapNames value)
         {
+            await SetMapVisible(false);
             ThisStage.ActiveMap = value;
             await RecheckMapItems();
             await OnCharacterUpdate();
@@ -108,6 +127,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             if(Enum.TryParse<ArrMapNames>(e.Value.ToString(),out ArrMapNames value))
             {
+                await SetMapVisible(false);
                 ThisStage.ActiveMap = value;
                 await RecheckMapItems();
                 await OnCharacterUpdate();

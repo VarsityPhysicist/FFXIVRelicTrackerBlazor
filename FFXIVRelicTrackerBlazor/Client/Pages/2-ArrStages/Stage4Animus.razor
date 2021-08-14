@@ -31,43 +31,43 @@
             <div class="stack-horizontal">
                 <div class="stack-vertical">
                     <div class="stack-horizontal">
-                        <input type="checkbox" checked="@GetSkyFire1Complete()" @onchange="SetSkyFire1Complete"/>
+                        <input type="checkbox" checked="@GetSkyFire1Complete()" @onchange="SetSkyFire1Complete" />
                         <span style="@returnDec(!GetSkyFire1Complete())">@GetEnumDisplayName(AnimnusBookNames.SkyFire1Book)</span>
                     </div>
                     <div class="stack-horizontal">
-                        <input type="checkbox" checked="@GetSkyFire2Complete()" @onchange="SetSkyFire2Complete"/>
+                        <input type="checkbox" checked="@GetSkyFire2Complete()" @onchange="SetSkyFire2Complete" />
                         <span style="@returnDec(!GetSkyFire2Complete())">@GetEnumDisplayName(AnimnusBookNames.SkyFire2Book)</span>
                     </div>
                     <div class="stack-horizontal">
-                        <input type="checkbox" checked="@GetNetherFire1Complete()" @onchange="SetNetherFire1Complete"/>
+                        <input type="checkbox" checked="@GetNetherFire1Complete()" @onchange="SetNetherFire1Complete" />
                         <span style="@returnDec(!GetNetherFire1Complete())">@GetEnumDisplayName(AnimnusBookNames.NetherFire1Book)</span>
                     </div>
                 </div>
                 <div class="stack-vertical">
                     <div class="stack-horizontal">
-                        <input type="checkbox" checked="@GetSkyFall1Complete()" @onchange="SetSkyFall1Complete"/>
+                        <input type="checkbox" checked="@GetSkyFall1Complete()" @onchange="SetSkyFall1Complete" />
                         <span style="@returnDec(!GetSkyFall1Complete())">@GetEnumDisplayName(AnimnusBookNames.SkyFall1Book)</span>
                     </div>
                     <div class="stack-horizontal">
-                        <input type="checkbox" checked="@GetSkyFall2Complete()" @onchange="SetSkyFall2Complete"/>
+                        <input type="checkbox" checked="@GetSkyFall2Complete()" @onchange="SetSkyFall2Complete" />
                         <span style="@returnDec(!GetSkyFall2Complete())">@GetEnumDisplayName(AnimnusBookNames.SkyFall2Book)</span>
                     </div>
                     <div class="stack-horizontal">
-                        <input type="checkbox" checked="@GetNetherFall1Complete()" @onchange="SetNetherFall1Complete"/>
+                        <input type="checkbox" checked="@GetNetherFall1Complete()" @onchange="SetNetherFall1Complete" />
                         <span style="@returnDec(!GetNetherFall1Complete())">@GetEnumDisplayName(AnimnusBookNames.NetherFall1Book)</span>
                     </div>
                 </div>
                 <div class="stack-vertical">
                     <div class="stack-horizontal">
-                        <input type="checkbox" checked="@GetSkyWind1Complete()" @onchange="SetSkyWind1Complete"/>
+                        <input type="checkbox" checked="@GetSkyWind1Complete()" @onchange="SetSkyWind1Complete" />
                         <span style="@returnDec(!GetSkyWind1Complete())">@GetEnumDisplayName(AnimnusBookNames.SkyWind1Book)</span>
                     </div>
                     <div class="stack-horizontal">
-                        <input type="checkbox" checked="@GetSkyWind2Complete()" @onchange="SetSkyWind2Complete"/>
+                        <input type="checkbox" checked="@GetSkyWind2Complete()" @onchange="SetSkyWind2Complete" />
                         <span style="@returnDec(!GetSkyWind2Complete())">@GetEnumDisplayName(AnimnusBookNames.SkyWind2Book)</span>
                     </div>
                     <div class="stack-horizontal">
-                        <input type="checkbox" checked="@GetSkyEarth1Complete()" @onchange="SetSkyEarth1Complete"/>
+                        <input type="checkbox" checked="@GetSkyEarth1Complete()" @onchange="SetSkyEarth1Complete" />
                         <span style="@returnDec(!GetSkyEarth1Complete())">@GetEnumDisplayName(AnimnusBookNames.SkyEarth1Book)</span>
                     </div>
                 </div>
@@ -82,7 +82,7 @@
                     }
                 </select>
             </div>
-            
+
 
             @if (GetDisplayInterface())
             {
@@ -90,61 +90,61 @@
                     <div class="stack-vertical" style="border-radius: 25px; border: 2px solid OrangeRed; padding:10px;">
                         <h6>Creatures</h6>
                         <div class="stack-horizontal">
-                            <input type="checkbox" checked="@GetCreatureBool1()" @onchange="SetCreatureBool1"/>
+                            <input type="checkbox" checked="@GetCreatureBool1()" @onchange="SetCreatureBool1" />
                             <div class="noWrap" style="@returnDec(0,MapType.Creature)">@Creatures[0].DisplayName</div>
                         </div>
                         <div class="noWrap, note" style="@returnDec(0,MapType.Creature)">@GetEnumDisplayName(Creatures[0].ArrMapName)</div>
 
                         <div class="stack-horizontal">
-                            <input type="checkbox" checked="@GetCreatureBool2()" @onchange="SetCreatureBool2"/>
+                            <input type="checkbox" checked="@GetCreatureBool2()" @onchange="SetCreatureBool2" />
                             <div class="noWrap" style="@returnDec(1,MapType.Creature)">@Creatures[1].DisplayName</div>
                         </div>
                         <div class="noWrap, note" style="@returnDec(1,MapType.Creature)">@GetEnumDisplayName(Creatures[1].ArrMapName)</div>
 
                         <div class="stack-horizontal">
-                            <input type="checkbox" checked="@GetCreatureBool3()" @onchange="SetCreatureBool3"/>
+                            <input type="checkbox" checked="@GetCreatureBool3()" @onchange="SetCreatureBool3" />
                             <div class="noWrap" style="@returnDec(2,MapType.Creature)">@Creatures[2].DisplayName</div>
                         </div>
                         <div class="noWrap, note" style="@returnDec(2,MapType.Creature)">@GetEnumDisplayName(Creatures[2].ArrMapName)</div>
 
                         <div class="stack-horizontal">
-                            <input type="checkbox" checked="@GetCreatureBool4()" @onchange="SetCreatureBool4"/>
+                            <input type="checkbox" checked="@GetCreatureBool4()" @onchange="SetCreatureBool4" />
                             <div class="noWrap" style="@returnDec(3,MapType.Creature)">@Creatures[3].DisplayName</div>
                         </div>
                         <div class="noWrap, note" style="@returnDec(3,MapType.Creature)">@GetEnumDisplayName(Creatures[3].ArrMapName)</div>
 
                         <div class="stack-horizontal">
-                            <input type="checkbox" checked="@GetCreatureBool5()" @onchange="SetCreatureBool5"/>
+                            <input type="checkbox" checked="@GetCreatureBool5()" @onchange="SetCreatureBool5" />
                             <div class="noWrap" style="@returnDec(4,MapType.Creature)">@Creatures[4].DisplayName</div>
                         </div>
                         <div class="noWrap, note" style="@returnDec(4,MapType.Creature)">@GetEnumDisplayName(Creatures[4].ArrMapName)</div>
 
                         <div class="stack-horizontal">
-                            <input type="checkbox" checked="@GetCreatureBool6()" @onchange="SetCreatureBool6"/>
+                            <input type="checkbox" checked="@GetCreatureBool6()" @onchange="SetCreatureBool6" />
                             <div class="noWrap" style="@returnDec(5,MapType.Creature)">@Creatures[5].DisplayName</div>
                         </div>
                         <div class="noWrap, note" style="@returnDec(5,MapType.Creature)">@GetEnumDisplayName(Creatures[5].ArrMapName)</div>
 
                         <div class="stack-horizontal">
-                            <input type="checkbox" checked="@GetCreatureBool7()" @onchange="SetCreatureBool7"/>
+                            <input type="checkbox" checked="@GetCreatureBool7()" @onchange="SetCreatureBool7" />
                             <div class="noWrap" style="@returnDec(6,MapType.Creature)">@Creatures[6].DisplayName</div>
                         </div>
                         <div class="noWrap, note" style="@returnDec(6,MapType.Creature)">@GetEnumDisplayName(Creatures[6].ArrMapName)</div>
 
                         <div class="stack-horizontal">
-                            <input type="checkbox" checked="@GetCreatureBool8()" @onchange="SetCreatureBool8"/>
+                            <input type="checkbox" checked="@GetCreatureBool8()" @onchange="SetCreatureBool8" />
                             <div class="noWrap" style="@returnDec(7,MapType.Creature)">@Creatures[7].DisplayName</div>
                         </div>
                         <div class="noWrap, note" style="@returnDec(7,MapType.Creature)">@GetEnumDisplayName(Creatures[7].ArrMapName)</div>
 
                         <div class="stack-horizontal">
-                            <input type="checkbox" checked="@GetCreatureBool9()" @onchange="SetCreatureBool9"/>
+                            <input type="checkbox" checked="@GetCreatureBool9()" @onchange="SetCreatureBool9" />
                             <div class="noWrap" style="@returnDec(8,MapType.Creature)">@Creatures[8].DisplayName</div>
                         </div>
                         <div class="noWrap, note" style="@returnDec(8,MapType.Creature)">@GetEnumDisplayName(Creatures[8].ArrMapName)</div>
 
                         <div class="stack-horizontal">
-                            <input type="checkbox" checked="@GetCreatureBool10()" @onchange="SetCreatureBool10"/>
+                            <input type="checkbox" checked="@GetCreatureBool10()" @onchange="SetCreatureBool10" />
                             <div class="noWrap" style="@returnDec(9,MapType.Creature)">@Creatures[9].DisplayName</div>
                         </div>
                         <div class="noWrap, note" style="@returnDec(9,MapType.Creature)">@GetEnumDisplayName(Creatures[9].ArrMapName)</div>
@@ -154,19 +154,19 @@
                         <div class="stack-vertical" style="border-radius: 25px; border: 2px solid Purple; padding: 10px; width: -webkit-fit-content;">
                             <h6>FATEs</h6>
                             <div class="stack-horizontal">
-                                <input type="checkbox" checked="@GetFateBool1()" @onchange="SetFateBool1"/>
+                                <input type="checkbox" checked="@GetFateBool1()" @onchange="SetFateBool1" />
                                 <div class="noWrap" style="@returnDec(0,MapType.FATE)">@FATEs[0].DisplayName</div>
                             </div>
                             <div class="noWrap, note" style="@returnDec(0,MapType.FATE)">@GetEnumDisplayName(FATEs[0].ArrMapName)</div>
 
                             <div class="stack-horizontal">
-                                <input type="checkbox" checked="@GetFateBool2()" @onchange="SetFateBool2"/>
+                                <input type="checkbox" checked="@GetFateBool2()" @onchange="SetFateBool2" />
                                 <div class="noWrap" style="@returnDec(1,MapType.FATE)">@FATEs[1].DisplayName</div>
                             </div>
                             <div class="noWrap, note" style="@returnDec(1,MapType.FATE)">@GetEnumDisplayName(FATEs[1].ArrMapName)</div>
 
                             <div class="stack-horizontal">
-                                <input type="checkbox" checked="@GetFateBool3()" @onchange="SetFateBool3"/>
+                                <input type="checkbox" checked="@GetFateBool3()" @onchange="SetFateBool3" />
                                 <div class="noWrap" style="@returnDec(2,MapType.FATE)">@FATEs[2].DisplayName</div>
                             </div>
                             <div class="noWrap, note" style="@returnDec(2,MapType.FATE)">@GetEnumDisplayName(FATEs[2].ArrMapName)</div>
@@ -175,7 +175,7 @@
                         <div class="stack-vertical" style="border-radius: 25px; border: 2px solid Blue; padding:10px; width:-webkit-fit-content;">
                             <h6>Leves</h6>
                             <div class="stack-horizontal">
-                                <input type="checkbox" checked="@GetLeveBool1()" @onchange="SetLeveBool1"/>
+                                <input type="checkbox" checked="@GetLeveBool1()" @onchange="SetLeveBool1" />
                                 <div class="noWrap" style="@returnDec(0,MapType.Leve)">@Leves[0].DisplayName</div>
                             </div>
                             <div class="noWrap, note" style="@returnDec(0,MapType.Leve)">@GetEnumDisplayName(Leves[0].ArrMapName)</div>
@@ -183,7 +183,7 @@
                             <div class="noWrap, note" style="@returnDec(0,MapType.Leve)">@Leves[0].LeveType</div>
 
                             <div class="stack-horizontal">
-                                <input type="checkbox" checked="@GetLeveBool2()" @onchange="SetLeveBool2"/>
+                                <input type="checkbox" checked="@GetLeveBool2()" @onchange="SetLeveBool2" />
                                 <div class="noWrap" style="@returnDec(1,MapType.Leve)">@Leves[1].DisplayName</div>
                             </div>
                             <div class="noWrap, note" style="@returnDec(1,MapType.Leve)">@GetEnumDisplayName(Leves[1].ArrMapName)</div>
@@ -191,7 +191,7 @@
                             <div class="noWrap, note" style="@returnDec(1,MapType.Leve)">@Leves[1].LeveType</div>
 
                             <div class="stack-horizontal">
-                                <input type="checkbox" checked="@GetLeveBool3()" @onchange="SetLeveBool3"/>
+                                <input type="checkbox" checked="@GetLeveBool3()" @onchange="SetLeveBool3" />
                                 <div style="@returnDec(2,MapType.Leve)">@Leves[2].DisplayName</div>
                             </div>
                             <div class="noWrap, note" style="@returnDec(2,MapType.Leve)">@GetEnumDisplayName(Leves[2].ArrMapName)</div>
@@ -205,15 +205,15 @@
                     <div class="stack-vertical" style="border-radius: 25px; border: 2px solid Gold; padding:10px;">
                         <h6>Dungeons</h6>
                         <div class="stack-horizontal">
-                            <input type="checkbox" checked="@GetDungeonBool1()" @onchange="SetDungeonBool1"/>
+                            <input type="checkbox" checked="@GetDungeonBool1()" @onchange="SetDungeonBool1" />
                             <div class="noWrap" style="@returnDec(!@GetDungeonBool1())">@Dungeons[0]</div>
                         </div>
                         <div class="stack-horizontal">
-                            <input type="checkbox" checked="@GetDungeonBool2()" @onchange="SetDungeonBool2"/>
+                            <input type="checkbox" checked="@GetDungeonBool2()" @onchange="SetDungeonBool2" />
                             <div class="noWrap" style="@returnDec(!@GetDungeonBool2())">@Dungeons[1]</div>
                         </div>
                         <div class="stack-horizontal">
-                            <input type="checkbox" checked="@GetDungeonBool3()" @onchange="SetDungeonBool3"/>
+                            <input type="checkbox" checked="@GetDungeonBool3()" @onchange="SetDungeonBool3" />
                             <div class="noWrap" style="@returnDec(!@GetDungeonBool3())">@Dungeons[2]</div>
                         </div>
                     </div>
@@ -222,7 +222,7 @@
             }
 
         </div>
-       
+
         <div class="stack-vertical" style="vertical-align:top; justify-content:start">
             <div class="stack-horizontal">
                 @if (GetDisplayInterface())
@@ -247,51 +247,55 @@
 
                 @if (MapSelected)
                 {
-                    <img src="@MapSource" />
-                    <svg viewBox="0 0 200 200">
+                    <img src="@MapSource" @onload="()=>MapLoaded()" />
+                    @if (GetMapVisible())
+                    {
+                        <svg viewBox="0 0 200 200">
 
-                        @if (!CreatureItem1.Hide)
-                        {
-                            <circle @onmouseover="()=>MouseOverItem(CreatureItem1)" @onmouseout="()=>MouseOutItem(CreatureItem1)" @onclick="()=>CompleteItem(CreatureItem1)" cx="@CreatureItem1.PointX" cy="@CreatureItem1.PointY" r="5" fill="OrangeRed" opacity="0.5">
-                                <title>@CreatureItem1.DisplayName</title>
-                            </circle>
-                        }
-                        @if (!CreatureItem2.Hide)
-                        {
-                            <circle @onmouseover="()=>MouseOverItem(CreatureItem2)" @onmouseout="()=>MouseOutItem(CreatureItem2)" @onclick="()=>CompleteItem(CreatureItem2)" cx="@CreatureItem2.PointX" cy="@CreatureItem2.PointY" r="5" fill="OrangeRed" opacity="0.5">
-                                <title>@CreatureItem2.DisplayName</title>
-                            </circle>
-                        }
-                        @if (!CreatureItem3.Hide)
-                        {
-                            <circle @onmouseover="()=>MouseOverItem(CreatureItem3)" @onmouseout="()=>MouseOutItem(CreatureItem3)" @onclick="()=>CompleteItem(CreatureItem3)" cx="@CreatureItem3.PointX" cy="@CreatureItem3.PointY" r="5" fill="OrangeRed" opacity="0.5">
-                                <title>@CreatureItem3.DisplayName</title>
-                            </circle>
-                        }
-                        @if (!FateItem1.Hide)
-                        {
-                            <circle @onmouseover="()=>MouseOverItem(FateItem1)" @onmouseout="()=>MouseOutItem(FateItem1)" @onclick="()=>CompleteItem(FateItem1)" cx="@FateItem1.PointX" cy="@FateItem1.PointY" r="5" fill="Purple" opacity="0.5">
-                                <title>@FateItem1.DisplayName</title>
-                            </circle>
-                        }
-                        @if (!FateItem2.Hide)
-                        {
-                            <circle @onmouseover="()=>MouseOverItem(FateItem2)" @onmouseout="()=>MouseOutItem(FateItem2)" @onclick="()=>CompleteItem(FateItem2)" cx="@FateItem2.PointX" cy="@FateItem2.PointY" r="5" fill="Purple" opacity="0.5">
-                                <title>@FateItem2.DisplayName</title>
-                            </circle>
-                        }
-                        @if (!LeveItem1.Hide)
-                        {
-                            <circle @onmouseover="()=>MouseOverItem(LeveItem1)" @onmouseout="()=>MouseOutItem(LeveItem1)" @onclick="()=>CompleteItem(LeveItem1)" cx="@LeveItem1.PointX" cy="@LeveItem1.PointY" r="5" fill="Blue" opacity="0.5">
-                                <title>@LeveItem1.DisplayName</title>
-                            </circle>
-                        }
-                    </svg>
+                            @if (!CreatureItem1.Hide)
+                            {
+                                <circle @onmouseover="()=>MouseOverItem(CreatureItem1)" @onmouseout="()=>MouseOutItem(CreatureItem1)" @onclick="()=>CompleteItem(CreatureItem1)" cx="@CreatureItem1.PointX" cy="@CreatureItem1.PointY" r="5" fill="OrangeRed" opacity="0.5">
+                                    <title>@CreatureItem1.DisplayName</title>
+                                </circle>
+                            }
+                            @if (!CreatureItem2.Hide)
+                            {
+                                <circle @onmouseover="()=>MouseOverItem(CreatureItem2)" @onmouseout="()=>MouseOutItem(CreatureItem2)" @onclick="()=>CompleteItem(CreatureItem2)" cx="@CreatureItem2.PointX" cy="@CreatureItem2.PointY" r="5" fill="OrangeRed" opacity="0.5">
+                                    <title>@CreatureItem2.DisplayName</title>
+                                </circle>
+                            }
+                            @if (!CreatureItem3.Hide)
+                            {
+                                <circle @onmouseover="()=>MouseOverItem(CreatureItem3)" @onmouseout="()=>MouseOutItem(CreatureItem3)" @onclick="()=>CompleteItem(CreatureItem3)" cx="@CreatureItem3.PointX" cy="@CreatureItem3.PointY" r="5" fill="OrangeRed" opacity="0.5">
+                                    <title>@CreatureItem3.DisplayName</title>
+                                </circle>
+                            }
+                            @if (!FateItem1.Hide)
+                            {
+                                <circle @onmouseover="()=>MouseOverItem(FateItem1)" @onmouseout="()=>MouseOutItem(FateItem1)" @onclick="()=>CompleteItem(FateItem1)" cx="@FateItem1.PointX" cy="@FateItem1.PointY" r="5" fill="Purple" opacity="0.5">
+                                    <title>@FateItem1.DisplayName</title>
+                                </circle>
+                            }
+                            @if (!FateItem2.Hide)
+                            {
+                                <circle @onmouseover="()=>MouseOverItem(FateItem2)" @onmouseout="()=>MouseOutItem(FateItem2)" @onclick="()=>CompleteItem(FateItem2)" cx="@FateItem2.PointX" cy="@FateItem2.PointY" r="5" fill="Purple" opacity="0.5">
+                                    <title>@FateItem2.DisplayName</title>
+                                </circle>
+                            }
+                            @if (!LeveItem1.Hide)
+                            {
+                                <circle @onmouseover="()=>MouseOverItem(LeveItem1)" @onmouseout="()=>MouseOutItem(LeveItem1)" @onclick="()=>CompleteItem(LeveItem1)" cx="@LeveItem1.PointX" cy="@LeveItem1.PointY" r="5" fill="Blue" opacity="0.5">
+                                    <title>@LeveItem1.DisplayName</title>
+                                </circle>
+                            }
+                        </svg>
+                    }
+
 
                 }
             </div>
         </div>
-    
+
     </div>
 
 }
@@ -302,11 +306,12 @@
 
 
 <style>
-    .note{
-        font-size:80%;
+    .note {
+        font-size: 80%;
     }
-    .noWrap{
-        white-space:nowrap;
+
+    .noWrap {
+        white-space: nowrap;
     }
 
     .inline {
