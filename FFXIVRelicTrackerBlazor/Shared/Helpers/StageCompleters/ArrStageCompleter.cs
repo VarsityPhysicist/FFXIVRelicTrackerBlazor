@@ -13,17 +13,17 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers.StageCompleters
         public static void CompleteStage(JobName Job, int StageIndex, ArrExpansion ArrExpansion)
         {
             arrExpansion = ArrExpansion;
-            for (int index = StageIndex; index >= 0; index --)
+            for (int index = StageIndex; index >= 0; index--)
             {
                 var tempStage = ArrExpansion.Jobs.Where(x => x.JobName == Job).First().Stages.Where(x => x.StageIndex == index).First();
                 tempStage.Progress = Progress.Completed;
-                CompleteSomeStage(index);
+                CompleteSomeStage(Job, index);
             }
         }
         public static void InCompleteStage(JobName Job, int StageIndex, ArrExpansion ArrExpansion)
         {
             arrExpansion = ArrExpansion;
-            for (int index = StageIndex; index <ArrExpansion.StageCount; index ++)
+            for (int index = StageIndex; index < ArrExpansion.StageCount; index++)
             {
                 var tempStage = ArrExpansion.Jobs.Where(x => x.JobName == Job).First().Stages.Where(x => x.StageIndex == index).First();
                 tempStage.Progress = Progress.NA;
@@ -31,12 +31,12 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers.StageCompleters
         }
 
         private static ArrExpansion arrExpansion;
-        private static void CompleteSomeStage(int stageIndex)
+        private static void CompleteSomeStage(JobName Job, int stageIndex)
         {
             switch (stageIndex)
             {
                 case (int)ArrStages.Relic:
-                    CompleteStage1();
+                    CompleteStage1(Job);
                     break;
                 case (int)ArrStages.Zenith:
                     CompleteStage2();
@@ -45,27 +45,29 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers.StageCompleters
                     CompleteStage3();
                     break;
                 case (int)ArrStages.Animus:
-                    CompleteStage4();
+                    CompleteStage4(Job);
                     break;
                 case (int)ArrStages.Novus:
-                    CompleteStage5();
+                    CompleteStage5(Job);
                     break;
                 case (int)ArrStages.Nexus:
-                    CompleteStage6();
+                    CompleteStage6(Job);
                     break;
                 case (int)ArrStages.Braves:
-                    CompleteStage7();
+                    CompleteStage7(Job);
                     break;
                 case (int)ArrStages.Zeta:
-                    CompleteStage8();
+                    CompleteStage8(Job);
                     break;
             }
         }
 
-        private static void CompleteStage1()
+        private static void CompleteStage1(JobName Job)
         {
-            arrExpansion.Stage1ARR.ActiveJob=JobName.NA;
-            arrExpansion.Stage1ARR = new Stage1ARR();
+            if (arrExpansion.Stage1ARR.ActiveJob == Job)
+            {
+                arrExpansion.Stage1ARR = new Stage1ARR();
+            }
         }
 
         private static void CompleteStage2()
@@ -86,29 +88,45 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers.StageCompleters
             arrExpansion.Stage3ARR.ArcherCount -= 1;
             arrExpansion.Stage3ARR.GoatCount -= 1;
             arrExpansion.Stage3ARR.MaidenCount -= 1;
-            
         }
-        private static void CompleteStage4()
+        private static void CompleteStage4(JobName Job)
         {
-            arrExpansion.Stage4ARR = new Stage4ARR();
+            if (arrExpansion.Stage4ARR.ActiveJob == Job)
+            {
+                arrExpansion.Stage4ARR = new Stage4ARR();
+            }
         }
-        private static void CompleteStage5()
+        private static void CompleteStage5(JobName Job)
         {
-            int tempInt = arrExpansion.Stage5ARR.AlexandriteCount;
-            arrExpansion.Stage5ARR = new Stage5ARR();
-            arrExpansion.Stage5ARR.AlexandriteCount = tempInt;
+            if (arrExpansion.Stage5ARR.ActiveJob == Job)
+            {
+                int tempInt = arrExpansion.Stage5ARR.AlexandriteCount;
+                tempInt -= Math.Max(0,75 - (arrExpansion.Stage5ARR.PrimaryCounts.Sum() + arrExpansion.Stage5ARR.SecondaryCounts.Sum()));
+                if (tempInt < 0) tempInt = 0;
+                arrExpansion.Stage5ARR = new Stage5ARR();
+                arrExpansion.Stage5ARR.AlexandriteCount = tempInt;
+            }
         }
-        private static void CompleteStage6()
+        private static void CompleteStage6(JobName Job)
         {
-            arrExpansion.Stage6ARR = new Stage6ARR();
+            if (arrExpansion.Stage6ARR.ActiveJob == Job)
+            {
+                arrExpansion.Stage6ARR = new Stage6ARR();
+            }
         }
-        private static void CompleteStage7()
+        private static void CompleteStage7(JobName Job)
         {
-            arrExpansion.Stage7ARR = new Stage7ARR();
+            if (arrExpansion.Stage7ARR.ActiveJob == Job)
+            {
+                arrExpansion.Stage7ARR = new Stage7ARR();
+            }
         }
-        private static void CompleteStage8()
+        private static void CompleteStage8(JobName Job)
         {
-            arrExpansion.Stage8ARR = new Stage8ARR();
+            if (arrExpansion.Stage8ARR.ActiveJob == Job)
+            {
+                arrExpansion.Stage8ARR = new Stage8ARR();
+            }
         }
     }
 }
