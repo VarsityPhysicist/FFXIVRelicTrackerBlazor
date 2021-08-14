@@ -32,27 +32,62 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             return ThisStage.ActiveBook;
         }
+        public async Task SetActiveBook(AnimnusBookNames value)
+        {
+            ThisStage.ActiveBook = value;
+            await OnCharacterUpdate();
+            await GetBookInfo(GetActiveBook());
+            
+            if (value != AnimnusBookNames.NA)
+            {
+                await SetDisplayInterface(true);
+            }
+            else
+            {
+                await SetDisplayInterface(false);
+            }
+        }
         public async Task SetActiveBook(ChangeEventArgs e)
         {
             if(Enum.TryParse<AnimnusBookNames>(e.Value.ToString(),out AnimnusBookNames value))
             {
+                if (value != ThisStage.ActiveBook)
+                {
+                    await ChangedBook();
+                }
                 ThisStage.ActiveBook = value;
                 await OnCharacterUpdate();
                 await GetBookInfo(GetActiveBook());
-                await SetDisplayInterface(true);
+                
+                if (value != AnimnusBookNames.NA)
+                {
+                    await SetDisplayInterface(true);
+                }
+                else
+                {
+                    await SetDisplayInterface(false);
+                }
             }
         }
-        public static List<AnimnusBookNames> AvailableBooks
+        private async Task ChangedBook()
         {
-            get
+            character.ArrExpansion.Stage4ARR = new Stage4ARR(ThisStage);
+            await OnCharacterUpdate();
+        }
+        public List<AnimnusBookNames> AvailableBooks;
+
+        private async Task GetAvailableBooks()
+        {
+            List<AnimnusBookNames> ReturnList = new List<AnimnusBookNames>();
+            for (int i = 1; i <= Enum.GetValues(typeof(AnimnusBookNames)).Cast<int>().Max(); i++)
             {
-                List<AnimnusBookNames> ReturnList = new List<AnimnusBookNames>();
-                for (int i = 1; i <= Enum.GetValues(typeof(AnimnusBookNames)).Cast<int>().Max(); i++)
+                if (!ThisStage.BookBools[i])
                 {
                     ReturnList.Add((AnimnusBookNames)i);
                 }
-                return ReturnList;
             }
+            if (!ReturnList.Contains(GetActiveBook())) await SetActiveBook(AnimnusBookNames.NA);
+            AvailableBooks = ReturnList;
         }
 
         public bool BookSelected => GetActiveBook() != AnimnusBookNames.NA;
@@ -100,6 +135,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
             if (bool.TryParse(e.Value.ToString(), out bool value))
             {
                 ThisStage.BookBools[(int)AnimnusBookNames.SkyFire1Book] = value;
+                await GetAvailableBooks();
                 await OnCharacterUpdate();
             }
         }
@@ -114,6 +150,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
             if (bool.TryParse(e.Value.ToString(), out bool value))
             {
                 ThisStage.BookBools[(int)AnimnusBookNames.SkyFire2Book] = value;
+                await GetAvailableBooks();
                 await OnCharacterUpdate();
             }
         }
@@ -128,6 +165,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
             if (bool.TryParse(e.Value.ToString(), out bool value))
             {
                 ThisStage.BookBools[(int)AnimnusBookNames.NetherFire1Book] = value;
+                await GetAvailableBooks();
                 await OnCharacterUpdate();
             }
         }
@@ -142,6 +180,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
             if (bool.TryParse(e.Value.ToString(), out bool value))
             {
                 ThisStage.BookBools[(int)AnimnusBookNames.SkyFall1Book] = value;
+                await GetAvailableBooks();
                 await OnCharacterUpdate();
             }
         }
@@ -156,6 +195,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
             if (bool.TryParse(e.Value.ToString(), out bool value))
             {
                 ThisStage.BookBools[(int)AnimnusBookNames.SkyFall2Book] = value;
+                await GetAvailableBooks();
                 await OnCharacterUpdate();
             }
         }
@@ -170,6 +210,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
             if (bool.TryParse(e.Value.ToString(), out bool value))
             {
                 ThisStage.BookBools[(int)AnimnusBookNames.NetherFall1Book] = value;
+                await GetAvailableBooks();
                 await OnCharacterUpdate();
             }
         }
@@ -184,6 +225,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
             if (bool.TryParse(e.Value.ToString(), out bool value))
             {
                 ThisStage.BookBools[(int)AnimnusBookNames.SkyWind1Book] = value;
+                await GetAvailableBooks();
                 await OnCharacterUpdate();
             }
         }
@@ -198,6 +240,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
             if (bool.TryParse(e.Value.ToString(), out bool value))
             {
                 ThisStage.BookBools[(int)AnimnusBookNames.SkyWind2Book] = value;
+                await GetAvailableBooks();
                 await OnCharacterUpdate();
             }
         }
@@ -212,6 +255,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
             if(bool.TryParse(e.Value.ToString(),out bool value))
             {
                 ThisStage.BookBools[(int)AnimnusBookNames.SkyEarth1Book] = value;
+                await GetAvailableBooks();
                 await OnCharacterUpdate();
             }
         }
@@ -518,6 +562,8 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         #region Configure Map Items
         private void SetMapInfo(ArrMapNames activeMap)
         {
+            if (activeMap == ArrMapNames.NA) return;
+
             foreach (var creature in Creatures)
             {
                 int mappedIndex = Creatures.IndexOf(creature);
@@ -723,9 +769,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         private List<bool> CompleteFates => ThisStage.Fates;
         private List<bool> CompleteLeves => ThisStage.Leves;
 
-        public override string WeaponName => throw new NotImplementedException();
-
-        public override string PreviousWeaponName => throw new NotImplementedException();
 
         #endregion
         #region UI Interactions
@@ -832,19 +875,19 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
                     mapList = MappedCreatures;
                     highlightList = HighlightCreatures;
                     completeBool = CompleteCreatures;
-                    colorDec = "color: OrangeRed;";
+                    colorDec = "color: OrangeRed !important;";
                     break;
                 case MapType.FATE:
                     mapList = MappedFATES;
                     highlightList = HighlightFATES;
                     completeBool = CompleteFates;
-                    colorDec = "color: Purple;";
+                    colorDec = "color: Purple !important;";
                     break;
                 case MapType.Leve:
                     mapList = MappedLeves;
                     highlightList = HighlightLeves;
                     completeBool = CompleteLeves;
-                    colorDec = "color: Blue;";
+                    colorDec = "color: Blue !important;";
                     break;
                 default:
                     return "";
@@ -868,6 +911,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         public override async Task AdditionalInitializeAsync()
         {
             if (!BookSelected) await SetDisplayInterface(false);
+            await GetAvailableBooks();
             await CheckCharacter();
             await CheckJobs();
             await GetBookInfo(GetActiveBook());
@@ -878,5 +922,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             throw new NotImplementedException();
         }
+        public override string WeaponName => throw new NotImplementedException();
+        public override string PreviousWeaponName => throw new NotImplementedException();
     }
 }

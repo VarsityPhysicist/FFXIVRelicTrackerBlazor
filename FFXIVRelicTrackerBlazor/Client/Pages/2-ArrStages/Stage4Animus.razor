@@ -75,9 +75,10 @@
             <div class="stack-horizontal">
                 <span>Selected book:</span>
                 <select value="@GetActiveBook()" @onchange="SetActiveBook">
+                    <option value="@AnimnusBookNames.NA">@AnimnusBookNames.NA</option>
                     @foreach (var book in AvailableBooks)
                     {
-                        <option value="@book">@book</option>
+                        <option value="@book">@GetEnumDisplayName(@book)</option>
                     }
                 </select>
             </div>
@@ -228,6 +229,7 @@
                 {
                     <div>Selected Map:</div>
                     <select value="GetActiveMap()" @onchange="SetActiveMap">
+                        <option value="@ArrMapNames.NA">@GetEnumDisplayName(ArrMapNames.NA)</option>
                         @if (AvailableMaps.Count > 0)
                         {
                             @foreach (var map in AvailableMaps)

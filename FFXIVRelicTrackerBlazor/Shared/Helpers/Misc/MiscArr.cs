@@ -375,6 +375,7 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers.Misc
     
     public enum ArrMapNames
     {
+        [Display(Name = "NA")]
         NA,
         [Display(Name = "Middle La Noscea")]
         MiddleLaNoscea,
