@@ -13,6 +13,7 @@ namespace FFXIVRelicTrackerBlazor.Shared._2_Arr
         public Stage4ARR(Stage4ARR stage4ARR)
         {
             this.bookBools = stage4ARR.bookBools;
+            this.ActiveJob = stage4ARR.ActiveJob;
             beastMen = new List<bool>()
             {
                 false,
