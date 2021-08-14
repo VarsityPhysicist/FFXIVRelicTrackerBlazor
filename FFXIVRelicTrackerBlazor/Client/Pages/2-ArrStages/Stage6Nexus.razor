@@ -20,11 +20,17 @@
                 </select>
                 <button @onclick="()=>CompleteStage()" disabled="@JobNotSelected">Complete</button>
             </div>
+            <br />
            <div class="stack-vertical">
                 <span><a href="https://ffxiv.gamerescape.com/wiki/Mmmmmm,_Soulglazed_Relics" target="_blank" rel="noopener noreferrer">Quest: Mmmmmm, Soulglazed Relics</a> | Started by: Jalzahn</span>
-                <span>With your <span class="weapon-purple">@PreviousWeaponName</span> equipped, complete the referenced quest and then speak with Jalzahn to 'Soulglaze' your <span class="weapon-purple">@PreviousWeaponName</span></span>
-                <span>Completing certain ARR content with your soluglazed weapon equipped will earn 'Light', and collecting 2000 light points will allow Jalzahn to transform your weapon to a <span class="weapon-purple">@WeaponName</span></span>
-               <br /> 
+               <ul>
+                   <li>
+                       <span>With your <span class="weapon-purple">@PreviousWeaponName</span> equipped, complete the referenced quest and then speak with Jalzahn to 'Soulglaze' your <span class="weapon-purple">@PreviousWeaponName</span></span>
+                   </li>
+                   <li>
+                       <span>Completing certain ARR content with your soluglazed weapon equipped will earn 'Light', and collecting 2000 light points will allow Jalzahn to transform your weapon to a <span class="weapon-purple">@WeaponName</span></span>
+                   </li>
+               </ul> 
                <span>Completing eligible content will give a notice that a grade of light is emitted in the chat log. Light grades and points are as follows:</span>
                 <table style="text-align:center">
                     <tr>
@@ -57,6 +63,7 @@
                    <input type="number" min="0" max="2000" value="@GetCurrentLight()" @onchange="SetCurrentLight"/>
                </div>
                <span>Note: Content may be completed unsynced, the only requirement is to have your <span class="weapon-purple">@PreviousWeaponName</span> equipped</span>
+               <br />
                <span>At 2000 Light Points, speak to Jalzahn and select the option 'Relic Weapon Novus Enhancement'</span>
                <span>A table detailing light for several types of content can be found <a href="https://ffxiv.consolegameswiki.com/wiki/Nexus_Zodiac_Weapons/Quest#Light_Events" target="_blank" rel="noopener noreferrer">here</a>, but my reccomendation is to run Sastasha / The Tam-Tara Deepcroft 42 times unsynced</span>
                <br />

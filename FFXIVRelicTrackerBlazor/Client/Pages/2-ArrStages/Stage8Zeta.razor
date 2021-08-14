@@ -21,16 +21,32 @@
                 </select>
                 <button @onclick="()=>CompleteStage()" disabled="@JobNotSelected">Complete</button>
             </div>
+            <br />
             <div class="stack-vertical">
-                @if (!GetAnyCompleted())
-                {
-                    <span><a href="https://ffxiv.gamerescape.com/wiki/Rise_and_Shine" target="_blank" rel="noopener noreferrer">Quest: Rise and Shine</a> | Started by: Jalzahn (North Shroud)</span>
-                    <span>Deliver the <a href="https://ffxiv.gamerescape.com/wiki/Sunshine" target="_blank" rel="noopener noreferrer" class="item-link">Sunshine</a> to Gerolt</span>
-                    <span>Speak with Rowena in Mor Dhona, return to Gerolt in North Shroud, then deliver the to <a href="https://ffxiv.gamerescape.com/wiki/Sunshine" target="_blank" rel="noopener noreferrer" class="item-link">Sunshine</a> Remon in Western La Noscea</span>
-                }
-                <span>With your <span class="weapon-purple">@PreviousWeaponName</span> equipped, complete ARR content to gather light to complete the 12 Mahatma</span>
-                <span>Each Mahatma costs 50 Poetics to unlock and are completed in order. Tables summarizing Light Points, content awards, and messages can be found <a href="https://ffxiv.consolegameswiki.com/wiki/Zodiac_Zeta_Weapons/Quest#Mahatma_Points" target="_blank" rel="noopener noreferrer">here</a>, but the grind for Light has been signficantly shortened</span>
-                <span>The key takeaways are that two runs of Sastasha or The Tam-Tara Deepcroft will complete a Mahatma, or completeing Syrcus Tower or World of Darkness will complete a Mahatma</span>
+                <ul>
+                    @if (!GetAnyCompleted())
+                    {
+                        <li>
+                            <span><a href="https://ffxiv.gamerescape.com/wiki/Rise_and_Shine" target="_blank" rel="noopener noreferrer">Quest: Rise and Shine</a> | Started by: Jalzahn (North Shroud)</span>
+                        </li>
+                        <li>
+                            <span>Deliver the <a href="https://ffxiv.gamerescape.com/wiki/Sunshine" target="_blank" rel="noopener noreferrer" class="item-link">Sunshine</a> to Gerolt</span>
+                        </li>
+                        <li>
+                            <span>Speak with Rowena in Mor Dhona, return to Gerolt in North Shroud, then deliver the to <a href="https://ffxiv.gamerescape.com/wiki/Sunshine" target="_blank" rel="noopener noreferrer" class="item-link">Sunshine</a> Remon in Western La Noscea</span>
+                        </li>
+                    }
+
+                    <li>
+                        <span>With your <span class="weapon-purple">@PreviousWeaponName</span> equipped, complete ARR content to gather light to complete the 12 Mahatma</span>
+                    </li>
+                    <li>
+                        <span>Each Mahatma costs 50 Poetics to unlock and are completed in order. Tables summarizing Light Points, content awards, and messages can be found <a href="https://ffxiv.consolegameswiki.com/wiki/Zodiac_Zeta_Weapons/Quest#Mahatma_Points" target="_blank" rel="noopener noreferrer">here</a>, but the grind for Light has been signficantly shortened</span>
+                    </li>
+                    <li>
+                        <span>The key takeaways on gathering Light are that two runs of Sastasha or The Tam-Tara Deepcroft will complete a Mahatma, or completeing Syrcus Tower or World of Darkness will complete a Mahatma</span>
+                    </li>
+                </ul>
                 <br />
                 <span>The following controls may be used for tracking progress:</span>
                 <button style="@returnDec(GetRamComplete())" @onclick="SetRamComplete" checked="@GetRamComplete()">Mahatma of the Ram</button>

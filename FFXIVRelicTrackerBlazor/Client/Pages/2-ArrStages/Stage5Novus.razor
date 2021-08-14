@@ -21,11 +21,16 @@
                 </select>
                 <button @onclick="()=>CompleteStage()" disabled="@JobNotSelected">Complete</button>
             </div>
+            <br />
             @if (@GetAnyCompleted())
             {
                 <div>
                     <h2>Requirements</h2>
-                    <span style="text-decoration:inherit">Have the Decipher and Dig skills unlocked from <a href="https://ffxiv.gamerescape.com/wiki/Treasures_and_Tribulations" target="_blank" rel="noopener noreferrer">Treasures and Tribulations</a></span>
+                    <ul>
+                        <li>
+                            <span style="text-decoration:inherit">Have the Decipher and Dig skills unlocked from <a href="https://ffxiv.gamerescape.com/wiki/Treasures_and_Tribulations" target="_blank" rel="noopener noreferrer">Treasures and Tribulations</a></span>
+                        </li>
+                    </ul>
                 </div>
             }
 
@@ -34,13 +39,21 @@
                     <h2>Acquire Scroll</h2>
                     <input type="checkbox" checked="@GetAcquiredScroll()" @onchange="SetAcquiredScroll" />
                 </div>
-                <div class="@Collapse(GetAcquiredScroll())">
+                <div class="@Collapse(GetAcquiredScroll()) stack-vertical">
                     @if (@GetAnyCompleted())
                     {
                         <span><a href="https://ffxiv.gamerescape.com/wiki/Celestial_Radiance" target="_blank" rel="noopener noreferrer">Quest: Celestial Radiance</a> | Started by: Jalzahn (North Shroud)</span>
-                        <span>With your <span class="weapon-purple">@PreviousWeaponName</span> equipped, speak with Jalzahn and then Mutamix Bubblypots (Central Thanalan) and then nearby Hubairtin</span>
-                        <span>Travel to Mor Dhona and purchase three <a class="item-link" href="https://ffxiv.gamerescape.com/wiki/Superior_Enchanted_Ink" target="_blank" rel="noopener noreferrer">Superior Enchanted Ink</a> for 25 Poetics each</span>
-                        <span>Return to Hubairtin and exchange the Superior Enchanted Ink for a Sphere Scroll</span>
+                        <ul>
+                            <li>
+                                <span>With your <span class="weapon-purple">@PreviousWeaponName</span> equipped, speak with Jalzahn and then Mutamix Bubblypots (Central Thanalan) and then nearby Hubairtin</span>
+                            </li>
+                            <li>
+                                <span>Travel to Mor Dhona and purchase three <a class="item-link" href="https://ffxiv.gamerescape.com/wiki/Superior_Enchanted_Ink" target="_blank" rel="noopener noreferrer">Superior Enchanted Ink</a> for 25 Poetics each</span>
+                            </li>
+                            <li>
+                                <span>Return to Hubairtin and exchange the Superior Enchanted Ink for a Sphere Scroll</span>
+                            </li>
+                        </ul>
                     }
                     @if (!@GetAnyCompleted())
                     {
@@ -51,14 +64,27 @@
             <div class="stack-vertical">
                 <h2>Meld Materia</h2>
                 <span><a href="https://ffxiv.gamerescape.com/wiki/Star_Light,_Star_Bright" target="_blank" rel="noopener noreferrer">Quest: Star Light, Star Bright</a> | Started by: Jalzahn (North Shroud)</span>
-                <span>Speak with Jalzahn and he will explain the process of melding materia with <a href="https://ffxiv.gamerescape.com/wiki/Alexandrite" target="_blank" rel="noopener noreferrer">Alexandrite</a> and this will complete 'Star Light, Star Bright'</span>
-                <span>When you have melded 75 materia to your <span class="weapon-purple">@PreviousWeaponName</span>, Jalzahn will upgrade it to a <span class="weapon-purple">@WeaponName</span></span>
-                <span>Melding materia will start with Grade 1 materia and as further materia within a substat are melded, failure chance increases and higher grades of materia are available for melding</span>
-                <span>Each successful melding consumes 1 <a href="https://ffxiv.gamerescape.com/wiki/Alexandrite" target="_blank" rel="noopener noreferrer">Alexandrite</a></span>
-                <span>Different classes have limits on how many of certain types of materia may be melded</span>
-                <span>Up to 5 different substats may be selected for melding</span>
+                <ul>
+                    <li>
+                        <span>Speak with Jalzahn and he will explain the process of melding materia with <a href="https://ffxiv.gamerescape.com/wiki/Alexandrite" target="_blank" rel="noopener noreferrer">Alexandrite</a> and this will complete 'Star Light, Star Bright'</span>
+                    </li>
+                    <li>
+                        <span>When you have melded 75 materia to your <span class="weapon-purple">@PreviousWeaponName</span>, Jalzahn will upgrade it to a <span class="weapon-purple">@WeaponName</span></span>
+                    </li>
+                    <li>
+                        <span>Melding materia will start with Grade 1 materia and as further materia within a substat are melded, failure chance increases and higher grades of materia are available for melding</span>
+                    </li>
+                    <li>
+                        <span>Each successful melding consumes 1 <a href="https://ffxiv.gamerescape.com/wiki/Alexandrite" target="_blank" rel="noopener noreferrer">Alexandrite</a></span>
+                    </li>
+                    <li>
+                        <span>Different classes have limits on how many of certain types of materia may be melded</span>
+                    </li>
+                    <li>
+                        <span>Up to 5 different substats may be selected for melding</span>
+                    </li>
+                </ul>
             </div>
-            <div />
             <span><span class="weapon-purple">@PreviousWeaponName</span> Melded Materia</span>
             <table style="text-align: right; white-space: nowrap;">
                 <tr>
@@ -148,10 +174,19 @@
                     </tr>
                 </table>
             }
-            <div />
-            <span>Note: Alexandrite may be purchased for 50 Allied Seals each</span>
-            <span>5 x Alexandrite are awarded upon completion of a <a class="item-link" href="https://ffxiv.gamerescape.com/wiki/Mysterious_Map" target="_blank" rel="noopener noreferrer">Mysterious Map</a></span>
-            <span>Mysterious Maps are purchasable for 75 Poetics or obtained as a quest reward for the daily <a href="https://ffxiv.gamerescape.com/wiki/Morbid_Motivation" target="_blank" rel="noopener noreferrer">Morbid Motivation</a></span>
+            <br />
+            <h2>Acquiring Alexandrite</h2>
+            <ul>
+                <li>
+                    <span>Alexandrite may be purchased for 50 Allied Seals each</span>
+                </li>
+                <li>
+                    <span>5 x Alexandrite are awarded upon completion of a <a class="item-link" href="https://ffxiv.gamerescape.com/wiki/Mysterious_Map" target="_blank" rel="noopener noreferrer">Mysterious Map</a></span>
+                </li>
+                <li>
+                    <span>Mysterious Maps are purchasable for 75 Poetics or obtained as a quest reward for the daily <a href="https://ffxiv.gamerescape.com/wiki/Morbid_Motivation" target="_blank" rel="noopener noreferrer">Morbid Motivation</a></span>
+                </li>
+            </ul>
             <span>Current Alexandrite: <input min="0" max="@RemainingAlexandrite" value="@GetAlexandriteCount()" @onchange="SetAlexandriteCount" /></span>
             <span>Total remaining Alexandrite: @RemainingAlexandrite</span>
         </div>

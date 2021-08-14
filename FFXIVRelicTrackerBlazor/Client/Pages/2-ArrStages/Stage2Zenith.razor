@@ -5,59 +5,49 @@
 
 <h3>Stage2Zenith</h3>
 
-@if(showAll)
-            {
-<div class="stack-vertical">
+@if (showAll)
+{
     <div class="stack-vertical">
-        <h2>A Realm Reborn: Zenith</h2>
-        <div>@character.Name</div>
-        <div class="stack-horizontal">
-            <span>Selected Job: </span>
-            <select value="@GetActiveJob()" @onchange="SetActiveJob">
-                @foreach (var job in JobNames)
-                {
-                    <option value="@job">@job</option>
-                }
-            </select>
-            <button @onclick="()=>CompleteStage()" disabled="@JobNotSelected">Complete</button>
+        <div class="stack-vertical">
+            <h2>A Realm Reborn: Zenith</h2>
+            <div>@character.Name</div>
+            <div class="stack-horizontal">
+                <span>Selected Job: </span>
+                <select value="@GetActiveJob()" @onchange="SetActiveJob">
+                    @foreach (var job in JobNames)
+                    {
+                        <option value="@job">@job</option>
+                    }
+                </select>
+                <button @onclick="()=>CompleteStage()" disabled="@JobNotSelected">Complete</button>
+            </div>
+            <br />
+
+            <div />
+            <ul>
+                <li>
+                    <div>
+                        Purchase 3
+                        <a class="item-link" href="https://ffxiv.gamerescape.com/wiki/Thavnairian_Mist" target="_blank" rel="noopener noreferrer">Thavnairian Mist </a>
+                        for 15 Poetics each from a Special Arms Materials vendor
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        With your <span class="weapon-purple">@PreviousWeaponName</span> not equipped, interact with the
+                        <a class="item-link" href="https://ffxiv.gamerescape.com/wiki/Furnace" target="_blank" rel="noopener noreferrer">Furnace</a>
+                        near Gerolt and Drake to upgrade it to a <span class="weapon-purple">@WeaponName</span>
+                    </div>
+                </li>
+            </ul>
+            <div />
+            <div>Current Thavnairian Mist Count: <input type="number" min="0" max="30" value="@GetMistCount()" @onchange="SetMistCount" /></div>
+            <div>Remaining Thavnairian Mist: @RemainingMist</div>
         </div>
-        
-        <div />
-        @if (JobSelected)
-        {
-            <div>
-                Purchase 3
-                <a class="item-link" href="https://ffxiv.gamerescape.com/wiki/Thavnairian_Mist" target="_blank" rel="noopener noreferrer">Thavnairian Mist </a>
-                for 15 Poetics each from a Special Arms Materials vendor
-            </div>
-            <div>
-                With your <span class="weapon-purple">@PreviousWeaponName</span> not equipped, interact with the
-                <a class="item-link" href="https://ffxiv.gamerescape.com/wiki/Furnace" target="_blank" rel="noopener noreferrer">Furnace</a>
-                near Gerolt and Drake to upgrade it to a <span class="weapon-purple">@WeaponName</span>
-            </div>
-        }
-        @if (!JobSelected)
-        {
-            <div>
-                Purchase 3
-                <a class="item-link" href="https://ffxiv.gamerescape.com/wiki/Thavnairian_Mist" target="_blank" rel="noopener noreferrer">Thavnairian Mist </a>
-                for 15 Poetics each from a Special Arms Materials vendor
-            </div>
-            <div>
-                With your <span class="weapon-purple">Relic Weapon</span> not equipped, interact with the
-                <a class="item-link" href="https://ffxiv.gamerescape.com/wiki/Furnace" target="_blank" rel="noopener noreferrer">Furnace</a>
-                near Gerolt and Drake to upgrade it to a <span class="weapon-purple">Zenith Weapon</span>
-            </div>
-        }
-        <div/>
-        <div>Current Thavnairian Mist Count: <input type="number" min="0" max="30" value="@GetMistCount()" @onchange="SetMistCount"/></div>
-        <div>Remaining Thavnairian Mist: @RemainingMist</div>
     </div>
-</div>
-            }
+}
 
 <style>
-    
 </style>
 @code {
 
