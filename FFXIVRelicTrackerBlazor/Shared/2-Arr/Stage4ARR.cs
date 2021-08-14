@@ -122,5 +122,6 @@ namespace FFXIVRelicTrackerBlazor.Shared._2_Arr
         #endregion
         public ArrMapNames ArrMapNames { get; set; }
         public ArrMapNames ActiveMap { get; set; }
+        public bool DisplayInterface { get; set; }
     }
 }

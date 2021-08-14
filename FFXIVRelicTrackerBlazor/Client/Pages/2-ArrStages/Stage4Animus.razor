@@ -83,7 +83,7 @@
             </div>
             
 
-            @if (BookSelected)
+            @if (GetDisplayInterface())
             {
                 <div class="stack-horizontal">
                     <div class="stack-vertical" style="border-radius: 25px; border: 2px solid OrangeRed; padding:10px;">
@@ -224,7 +224,7 @@
        
         <div class="stack-vertical" style="vertical-align:top; justify-content:start">
             <div class="stack-horizontal">
-                @if (BookSelected)
+                @if (GetDisplayInterface())
                 {
                     <div>Selected Map:</div>
                     <select value="GetActiveMap()" @onchange="SetActiveMap">

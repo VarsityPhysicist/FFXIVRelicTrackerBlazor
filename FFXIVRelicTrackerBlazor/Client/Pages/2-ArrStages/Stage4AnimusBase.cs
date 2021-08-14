@@ -39,6 +39,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
                 ThisStage.ActiveBook = value;
                 await OnCharacterUpdate();
                 await GetBookInfo(GetActiveBook());
+                await SetDisplayInterface(true);
             }
         }
         public static List<AnimnusBookNames> AvailableBooks
@@ -574,8 +575,19 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 
             if (LeveItem1 == null) LeveItem1 = new MapItem() { Hide = true };
         }
+
         #endregion
         #region GetBookFromMisc
+        public bool GetDisplayInterface()
+        {
+            return ThisStage.DisplayInterface;
+        }
+        public async Task SetDisplayInterface(bool value)
+        {
+            ThisStage.DisplayInterface = value;
+            await OnCharacterUpdate();
+        }
+
         private async Task GetBookInfo(AnimnusBookNames animnusBookName)
         {
             if (BookSelected)
@@ -855,6 +867,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 
         public override async Task AdditionalInitializeAsync()
         {
+            if (!BookSelected) await SetDisplayInterface(false);
             await CheckCharacter();
             await CheckJobs();
             await GetBookInfo(GetActiveBook());
