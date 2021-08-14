@@ -5,13 +5,14 @@
 <div class="stack-vertical">
     <span>This is a tool for tracking relic progression in FFXIV across expansions. This is developed in C# with the Blazor framework</span>
     <span>All progress is saved locally to your device</span>
-    <span>To use this tool, create a character with the option below or select your previously created character from the dropdown</span>
+    <span>To use this tool, rename the default character or create a new one below</span>
     <span>As you mark stages completed or items collected, progress is automatically saved</span>
-    <span>To reset progress entirely, you may delete your character from the menu below. Note: a new character named "Default Character" will be created and saved</span>
+    <span>To reset progress entirely, you may delete your character from the menu below</span>
+    <span>Note: "Remaining" generally indicates the total remaining amount of an item to complete the stage on all remaining jobs</span>
 </div>
 <br />
 <div class="stack-horizontal">
-    <span>Active character: @character.Name</span>
+    <span style="color:white; font-weight:bold">Active character: @character.Name</span>
 </div>
 <br />
 <h3 @onclick="()=>ShowSelect=!ShowSelect">Character Select</h3>
@@ -52,17 +53,25 @@
 <h3 @onclick="()=>ShowRemove=!ShowRemove">Remove Character</h3>
 @if (ShowRemove)
 {
+    <span>Note: if deleting all characters, a new character named "Default Character" will be created and saved</span>
+    <span>Note: this cannot be undone or data recovered</span>
+    <br />
     <div>Select character to remove:</div>
     <select class="custom-select" title="Character Select" @bind="@RemoveName">
         <option value="@string.Empty"></option>
         @foreach (var character in CharacterStringList)
         {
-            <option value="@character">@character.</option>
+            <option value="@character">@character</option>
         }
     </select>
     <button type="submit" @onclick="()=>RemoveCharacter(RemoveName)">Remove Character</button>
 }
 
+<style>
+    h3 {
+        cursor: pointer;
+    }
+</style>
 
 @code {
 
