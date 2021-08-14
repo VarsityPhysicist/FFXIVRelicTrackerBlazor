@@ -10,6 +10,41 @@ namespace FFXIVRelicTrackerBlazor.Shared._2_Arr
 {
     public class Stage4ARR : StageInfo
     {
+        public Stage4ARR(Stage4ARR stage4ARR)
+        {
+            this.bookBools = stage4ARR.bookBools;
+            beastMen = new List<bool>()
+            {
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            };
+            fates = new List<bool>()
+            {
+                false,
+                false,
+                false
+            };
+            leves = new List<bool>()
+            {
+                false,
+                false,
+                false
+            };
+            dungeons = new List<bool>()
+            {
+                false,
+                false,
+                false
+            };
+        }
         public Stage4ARR()
         {
             bookBools = new List<bool>()
@@ -120,7 +155,6 @@ namespace FFXIVRelicTrackerBlazor.Shared._2_Arr
         public bool Dungeon2 { get; set; }
         public bool Dungeon3 { get; set; }
         #endregion
-        public ArrMapNames ArrMapNames { get; set; }
         public ArrMapNames ActiveMap { get; set; }
         public bool DisplayInterface { get; set; }
     }
