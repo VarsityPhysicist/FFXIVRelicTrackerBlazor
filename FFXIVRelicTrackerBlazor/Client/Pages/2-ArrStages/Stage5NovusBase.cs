@@ -39,7 +39,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 
         public async Task SetAcquiredScroll(ChangeEventArgs e)
         {
-            if(bool.TryParse(e.Value.ToString(),out bool value))
+            if (bool.TryParse(e.Value.ToString(), out bool value))
             {
                 ThisStage.AcquiredScroll = value;
                 await OnCharacterUpdate();
@@ -51,16 +51,26 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
             return ThisStage.AlexandriteCount;
         }
 
+        public async Task SetAlexandriteCount(int value)
+        {
+            if (value < 0) value = 0;
+            if (value > RemainingMax) value = RemainingMax;
+            ThisStage.AlexandriteCount = value;
+            await OnCharacterUpdate();
+        }
         public async Task SetAlexandriteCount(ChangeEventArgs e)
         {
             if (int.TryParse(e.Value.ToString(), out int value))
             {
+                if (value < 0) value = 0;
+                if (value > RemainingMax) value = RemainingMax;
                 ThisStage.AlexandriteCount = value;
                 await OnCharacterUpdate();
             }
         }
         public bool DisplaySecondary => GetActiveJob() == JobName.PLD;
-        public int RemainingAlexandrite => RemainingJobs * 75 - GetAlexandriteCount();
+        public int RemainingMax => RemainingJobs * 75;
+        public int RemainingAlexandrite => Math.Max(RemainingJobs * 75 - GetAlexandriteCount() - TotalMelded, 0);
         public override string PreviousWeaponName
         {
             get
@@ -84,6 +94,8 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 
 
         #region Materia Counts
+        public int TotalMelded => ThisStage.PrimaryCounts.Sum() + ThisStage.SecondaryCounts.Sum();
+        public int IndidualRemaining => Math.Max(75 - TotalMelded,0);
         #region Primary Materia
         public int GetPrimaryBattleDanceCount()
         {
@@ -92,8 +104,9 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 
         public async Task SetPrimaryBattleDanceCount(ChangeEventArgs e)
         {
-            if(int.TryParse(e.Value.ToString(),out int value))
+            if (int.TryParse(e.Value.ToString(), out int value))
             {
+                await SetAlexandriteCount(GetAlexandriteCount() - (value - GetPrimaryBattleDanceCount()));
                 ThisStage.PrimaryCounts[(int)ValidMateria.Battledance] = value;
                 await OnCharacterUpdate();
             }
@@ -108,6 +121,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             if (int.TryParse(e.Value.ToString(), out int value))
             {
+                await SetAlexandriteCount(GetAlexandriteCount() - (value - GetPrimaryHeavensEyeCount()));
                 ThisStage.PrimaryCounts[(int)ValidMateria.HeavensEye] = value;
                 await OnCharacterUpdate();
             }
@@ -122,6 +136,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             if (int.TryParse(e.Value.ToString(), out int value))
             {
+                await SetAlexandriteCount(GetAlexandriteCount() - (value - GetPrimaryPietyCount()));
                 ThisStage.PrimaryCounts[(int)ValidMateria.Piety] = value;
                 await OnCharacterUpdate();
             }
@@ -136,6 +151,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             if (int.TryParse(e.Value.ToString(), out int value))
             {
+                await SetAlexandriteCount(GetAlexandriteCount() - (value - GetPrimaryQuickarmCount()));
                 ThisStage.PrimaryCounts[(int)ValidMateria.Quickarm] = value;
                 await OnCharacterUpdate();
             }
@@ -150,6 +166,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             if (int.TryParse(e.Value.ToString(), out int value))
             {
+                await SetAlexandriteCount(GetAlexandriteCount() - (value - GetPrimaryQuicktongueCount()));
                 ThisStage.PrimaryCounts[(int)ValidMateria.Quicktongue] = value;
                 await OnCharacterUpdate();
             }
@@ -164,6 +181,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             if (int.TryParse(e.Value.ToString(), out int value))
             {
+                await SetAlexandriteCount(GetAlexandriteCount() - (value - GetPrimarySavageAimCount()));
                 ThisStage.PrimaryCounts[(int)ValidMateria.SavageAim] = value;
                 await OnCharacterUpdate();
             }
@@ -178,6 +196,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             if (int.TryParse(e.Value.ToString(), out int value))
             {
+                await SetAlexandriteCount(GetAlexandriteCount() - (value - GetPrimarySavageMightCount()));
                 ThisStage.PrimaryCounts[(int)ValidMateria.SavageMight] = value;
                 await OnCharacterUpdate();
             }
@@ -194,6 +213,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             if (int.TryParse(e.Value.ToString(), out int value))
             {
+                await SetAlexandriteCount(GetAlexandriteCount() - (value - GetSecondaryBattleDanceCount()));
                 ThisStage.SecondaryCounts[(int)ValidMateria.Battledance] = value;
                 await OnCharacterUpdate();
             }
@@ -208,6 +228,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             if (int.TryParse(e.Value.ToString(), out int value))
             {
+                await SetAlexandriteCount(GetAlexandriteCount() - (value - GetSecondaryHeavensEyeCount()));
                 ThisStage.SecondaryCounts[(int)ValidMateria.HeavensEye] = value;
                 await OnCharacterUpdate();
             }
@@ -222,6 +243,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             if (int.TryParse(e.Value.ToString(), out int value))
             {
+                await SetAlexandriteCount(GetAlexandriteCount() - (value - GetSecondaryPietyCount()));
                 ThisStage.SecondaryCounts[(int)ValidMateria.Piety] = value;
                 await OnCharacterUpdate();
             }
@@ -236,6 +258,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             if (int.TryParse(e.Value.ToString(), out int value))
             {
+                await SetAlexandriteCount(GetAlexandriteCount() - (value - GetSecondaryQuickarmCount()));
                 ThisStage.SecondaryCounts[(int)ValidMateria.Quickarm] = value;
                 await OnCharacterUpdate();
             }
@@ -250,6 +273,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             if (int.TryParse(e.Value.ToString(), out int value))
             {
+                await SetAlexandriteCount(GetAlexandriteCount() - (value - GetSecondaryQuicktongueCount()));
                 ThisStage.SecondaryCounts[(int)ValidMateria.Quicktongue] = value;
                 await OnCharacterUpdate();
             }
@@ -264,6 +288,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             if (int.TryParse(e.Value.ToString(), out int value))
             {
+                await SetAlexandriteCount(GetAlexandriteCount() - (value - GetSecondarySavageAimCount()));
                 ThisStage.SecondaryCounts[(int)ValidMateria.SavageAim] = value;
                 await OnCharacterUpdate();
             }
@@ -278,6 +303,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             if (int.TryParse(e.Value.ToString(), out int value))
             {
+                await SetAlexandriteCount(GetAlexandriteCount() - (value - GetSecondarySavageMightCount()));
                 ThisStage.SecondaryCounts[(int)ValidMateria.SavageMight] = value;
                 await OnCharacterUpdate();
             }

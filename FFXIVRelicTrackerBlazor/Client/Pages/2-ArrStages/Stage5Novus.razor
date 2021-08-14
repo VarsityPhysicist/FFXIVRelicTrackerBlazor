@@ -175,6 +175,11 @@
                 </table>
             }
             <br />
+            <div class="stack-vertical">
+                <span>Current melded count: @TotalMelded</span>
+                <span>Remaining for current job: @IndidualRemaining</span>
+            </div>
+            <br />
             <h2>Acquiring Alexandrite</h2>
             <ul>
                 <li>
@@ -187,7 +192,7 @@
                     <span>Mysterious Maps are purchasable for 75 Poetics or obtained as a quest reward for the daily <a href="https://ffxiv.gamerescape.com/wiki/Morbid_Motivation" target="_blank" rel="noopener noreferrer">Morbid Motivation</a></span>
                 </li>
             </ul>
-            <span>Current Alexandrite: <input min="0" max="@RemainingAlexandrite" value="@GetAlexandriteCount()" @onchange="SetAlexandriteCount" /></span>
+            <span>Current Alexandrite: <input type="number" min="0" max="@RemainingMax" value="@GetAlexandriteCount()" @onchange="SetAlexandriteCount" /></span>
             <span>Total remaining Alexandrite: @RemainingAlexandrite</span>
         </div>
     </div>
