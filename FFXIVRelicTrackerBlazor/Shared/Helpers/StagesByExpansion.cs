@@ -14,6 +14,8 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers
             {
                 case ExpansionName.Arr:
                     return ArrStages;
+                case ExpansionName.HW:
+                    return HWStages;
                 default:
                     return null;
             }
@@ -29,6 +31,17 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers
            "Braves",
            "Zeta"
         };
+        public static List<string> HWStages = new List<string>()
+        {
+            "Animated",
+            "Awoken",
+            "Anima",
+            "Hyperconductive",
+            "Reconditioned",
+            "Sharpened",
+            "Complete",
+            "Lux"
+        };
     }
     public enum ArrStages
     {
@@ -40,5 +53,16 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers
         Nexus,
         Braves,
         Zeta
+    }
+    public enum HWStages
+    {
+        Animated,
+        Awoken,
+        Anima,
+        Hyperconductive,
+        Reconditioned,
+        Sharpened,
+        Complete,
+        Lux
     }
 }
