@@ -34,8 +34,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
                 await SetRelicStage(ArrRelicStage.NA, value);
 
         }
-        public override ArrStages StageName => ArrStages.Relic;
-
         public Stage1ARR ThisStage { get => character.ArrExpansion.Stage1ARR; }
         private async Task SetRelicStage(ArrRelicStage arrRelicStage, bool newValue)
         {

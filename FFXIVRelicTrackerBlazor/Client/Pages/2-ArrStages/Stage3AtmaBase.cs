@@ -28,7 +28,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
             throw new NotImplementedException();
         }
 
-        public override ArrStages StageName => ArrStages.Atma;
         public override string PreviousWeaponName
         {
             get

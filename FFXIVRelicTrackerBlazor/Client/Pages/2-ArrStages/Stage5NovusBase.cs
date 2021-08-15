@@ -28,8 +28,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
             throw new NotImplementedException();
         }
 
-        public override ArrStages StageName => ArrStages.Novus;
-
         public Stage5ARR ThisStage { get => character.ArrExpansion.Stage5ARR; }
 
         public bool GetAcquiredScroll()

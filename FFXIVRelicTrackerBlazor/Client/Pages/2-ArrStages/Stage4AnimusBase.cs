@@ -23,8 +23,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
             throw new NotImplementedException();
         }
 
-        public override ArrStages StageName => ArrStages.Animus;
-
         public Stage4ARR ThisStage { get => character.ArrExpansion.Stage4ARR; }
 
         #region Book Related

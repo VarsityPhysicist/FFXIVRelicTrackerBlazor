@@ -23,7 +23,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
             return ValidJobs.Count != CompletedJobs;
         }
 
-        public override ArrStages StageName => ArrStages.Nexus;
         public override string PreviousWeaponName
         {
             get

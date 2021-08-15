@@ -31,7 +31,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
         public abstract Task SetAnyCompleted(ChangeEventArgs e);
 
         public List<JobName> JobNames;
-        public abstract ArrStages StageName { get; }
         protected int RemainingJobs=> TargetExpansion.Jobs.Where(x=>x.JobName!=JobName.NA).Select(x => x.Stages.Where(y => y.StageIndex == StageIndex).First()).Where(x=>x.Progress!=Progress.Completed).Count();
         protected int CompletedJobs=> TargetExpansion.Jobs.Select(x => x.Stages.Where(y => y.StageIndex == StageIndex).First()).Where(x=>x.Progress==Progress.Completed).Count();
         public static string Collapse(bool inputBool) { if (inputBool) return "collapse"; return string.Empty; }

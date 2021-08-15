@@ -23,7 +23,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
             return FilteredJobs.Count != RemainingJobs;
         }
 
-        public override ArrStages StageName => ArrStages.Zeta;
         public override string PreviousWeaponName
         {
             get
