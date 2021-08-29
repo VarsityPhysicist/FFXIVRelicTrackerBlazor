@@ -28,6 +28,13 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
             return Task.CompletedTask;
         }
 
+        public bool GetAdjustCount => TargetExpansion.AdjustCounts;
+        public string AdjustCountString => TargetExpansion.AdjustCounts ? "will" : "will not";
+        public async Task ToggleAdjustCount()
+        {
+            TargetExpansion.AdjustCounts = !TargetExpansion.AdjustCounts;
+            await OnCharacterUpdate();
+        }
         public async Task ToggleComplete(int StageIndex, JobName job)
         {
             if (TargetExpansion.Jobs.Where(x => x.JobName == job).First().Stages.Where(x => x.StageIndex == StageIndex).First().Progress == Progress.Completed)
@@ -37,7 +44,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
         }
         private async Task CompleteStage(int StageIndex, JobName job)
         {
-            MasterStageHelper.CompleteStage(character, job, StageIndex, TargetExpansion.Expansion);
+            MasterStageHelper.CompleteStage(character, job, StageIndex, TargetExpansion.Expansion, GetAdjustCount);
             await OnCharacterUpdate();
         }
         private async Task InCompleteStage(int StageIndex, JobName job)
