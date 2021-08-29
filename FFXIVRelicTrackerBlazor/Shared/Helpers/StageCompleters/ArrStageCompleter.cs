@@ -10,8 +10,10 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers.StageCompleters
 {
     public static class ArrStageCompleter
     {
-        public static void CompleteStage(JobName Job, int StageIndex, ArrExpansion ArrExpansion)
+        private static bool adjustCount;
+        public static void CompleteStage(JobName Job, int StageIndex, ArrExpansion ArrExpansion, bool AdjustCount)
         {
+            adjustCount = AdjustCount;
             arrExpansion = ArrExpansion;
             for (int index = StageIndex; index >= 0; index--)
             {
@@ -72,22 +74,28 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers.StageCompleters
 
         private static void CompleteStage2()
         {
-            arrExpansion.Stage2ARR.MistCount -= 3;
+            if (adjustCount)
+            {
+                arrExpansion.Stage2ARR.MistCount -= 3;
+            }
         }
         private static void CompleteStage3()
         {
-            arrExpansion.Stage3ARR.LionCount -= 1;
-            arrExpansion.Stage3ARR.WaterBearerCount -= 1;
-            arrExpansion.Stage3ARR.RamCount -= 1;
-            arrExpansion.Stage3ARR.CrabCount -= 1;
-            arrExpansion.Stage3ARR.FishCount -= 1;
-            arrExpansion.Stage3ARR.BullCount -= 1;
-            arrExpansion.Stage3ARR.ScalesCount -= 1;
-            arrExpansion.Stage3ARR.TwinsCount -= 1;
-            arrExpansion.Stage3ARR.ScorpionCount -= 1;
-            arrExpansion.Stage3ARR.ArcherCount -= 1;
-            arrExpansion.Stage3ARR.GoatCount -= 1;
-            arrExpansion.Stage3ARR.MaidenCount -= 1;
+            if (adjustCount)
+            {
+                arrExpansion.Stage3ARR.LionCount -= 1;
+                arrExpansion.Stage3ARR.WaterBearerCount -= 1;
+                arrExpansion.Stage3ARR.RamCount -= 1;
+                arrExpansion.Stage3ARR.CrabCount -= 1;
+                arrExpansion.Stage3ARR.FishCount -= 1;
+                arrExpansion.Stage3ARR.BullCount -= 1;
+                arrExpansion.Stage3ARR.ScalesCount -= 1;
+                arrExpansion.Stage3ARR.TwinsCount -= 1;
+                arrExpansion.Stage3ARR.ScorpionCount -= 1;
+                arrExpansion.Stage3ARR.ArcherCount -= 1;
+                arrExpansion.Stage3ARR.GoatCount -= 1;
+                arrExpansion.Stage3ARR.MaidenCount -= 1;
+            }
         }
         private static void CompleteStage4(JobName Job)
         {
@@ -101,7 +109,10 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers.StageCompleters
             if (arrExpansion.Stage5ARR.ActiveJob == Job)
             {
                 int tempInt = arrExpansion.Stage5ARR.AlexandriteCount;
-                tempInt -= Math.Max(0,75 - (arrExpansion.Stage5ARR.PrimaryCounts.Sum() + arrExpansion.Stage5ARR.SecondaryCounts.Sum()));
+                if (adjustCount)
+                {
+                    tempInt -= Math.Max(0, 75 - (arrExpansion.Stage5ARR.PrimaryCounts.Sum() + arrExpansion.Stage5ARR.SecondaryCounts.Sum()));
+                }
                 if (tempInt < 0) tempInt = 0;
                 arrExpansion.Stage5ARR = new Stage5ARR();
                 arrExpansion.Stage5ARR.AlexandriteCount = tempInt;
