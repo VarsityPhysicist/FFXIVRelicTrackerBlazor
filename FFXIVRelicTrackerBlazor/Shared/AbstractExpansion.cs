@@ -12,6 +12,8 @@ namespace FFXIVRelicTrackerBlazor.Shared
         public abstract ExpansionName Expansion { get; }
         public List<Job> Jobs { get; set; }
         public abstract int StageCount { get; }
+        public abstract List<StageInfo> GetStages();
+        public bool AdjustCounts { get; set; }
 
 
         internal List<Job> GenerateJobs()
@@ -30,6 +32,9 @@ namespace FFXIVRelicTrackerBlazor.Shared
                 }
                 Jobs.Add(tempJob);
             }
+
+            AdjustCounts = true;
+
             return Jobs;
         }
     }
