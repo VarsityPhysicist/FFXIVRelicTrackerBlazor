@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace FFXIVRelicTrackerBlazor.Client.Extensions
+namespace FFXIVRelicTrackerBlazor.Shared.Extensions
 {
     public static class EnumExtensions
     {
