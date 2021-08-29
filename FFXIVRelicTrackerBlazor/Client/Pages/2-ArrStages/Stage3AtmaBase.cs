@@ -27,27 +27,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             throw new NotImplementedException();
         }
-
-        public override string PreviousWeaponName
-        {
-            get
-            {
-                if (GetActiveJob != JobName.NA)
-                    return MiscArr.GetArrRelicName(GetActiveJob) + " Zenith";
-
-                return "Relic Weapon Zenith";
-            }
-        }
-        public override string WeaponName
-        {
-            get
-            {
-                if (GetActiveJob != JobName.NA)
-                    return MiscArr.GetArrRelicName(GetActiveJob) + " Atma";
-
-                return "Relic Weapon Atma";
-            }
-        }
         private Stage3ARR ThisStage => character.ArrExpansion.Stage3ARR;
 
         #region Model Properties

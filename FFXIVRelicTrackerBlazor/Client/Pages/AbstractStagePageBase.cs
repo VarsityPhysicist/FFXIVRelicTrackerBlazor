@@ -1,6 +1,7 @@
 ﻿using FFXIVRelicTrackerBlazor.Shared;
 using FFXIVRelicTrackerBlazor.Shared.Extensions;
 using FFXIVRelicTrackerBlazor.Shared.Helpers;
+using FFXIVRelicTrackerBlazor.Shared.Helpers.Misc;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
@@ -15,8 +16,8 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
         public List<JobName> FilteredJobs => ValidJobs.Where(x => x != JobName.NA).ToList();
         public abstract AbstractExpansion TargetExpansion { get; }
         public abstract StageInfo TargetStage { get; }
-        public abstract string WeaponName { get; }
-        public abstract string PreviousWeaponName { get; }
+        public string WeaponName => WeaponNames.GetWeaponName(TargetStage.ActiveJob, StageIndex, TargetExpansion.Expansion);
+        public string PreviousWeaponName => WeaponNames.GetWeaponName(TargetStage.ActiveJob, StageIndex-1, TargetExpansion.Expansion);
         public int StageIndex => TargetStage.StageIndex;
 
         public static string returnDec(bool inputBool)

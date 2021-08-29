@@ -256,16 +256,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
                 return "N/A";
             }
         }
-        public override string WeaponName
-        {
-            get
-            {
-                if (GetActiveJob != JobName.NA)
-                    return MiscArr.GetArrRelicName(GetActiveJob);
-
-                return "N/A";
-            }
-        }
         #endregion
 
         #region Beastmen Properties
@@ -317,9 +307,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         private bool Stage8 { get => ArrRelicStage >= ArrRelicStage.Stage8; }
         private bool Stage9 { get => ArrRelicStage >= ArrRelicStage.Stage9; }
         private bool Stage10 { get => ArrRelicStage >= ArrRelicStage.Stage10; }
-
-        public override string PreviousWeaponName => throw new NotImplementedException();
-
         #endregion
     }
 }

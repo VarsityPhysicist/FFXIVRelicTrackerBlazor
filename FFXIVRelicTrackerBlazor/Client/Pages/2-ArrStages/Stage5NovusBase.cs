@@ -69,28 +69,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         public bool DisplaySecondary => GetActiveJob == JobName.PLD;
         public int RemainingMax => RemainingJobs * 75;
         public int RemainingAlexandrite => Math.Max(RemainingJobs * 75 - GetAlexandriteCount() - TotalMelded, 0);
-        public override string PreviousWeaponName
-        {
-            get
-            {
-                if (GetActiveJob != JobName.NA)
-                    return MiscArr.GetArrRelicName(GetActiveJob) + " Animus";
-
-                return "Relic Weapon Animus";
-            }
-        }
-        public override string WeaponName
-        {
-            get
-            {
-                if (GetActiveJob != JobName.NA)
-                    return MiscArr.GetArrRelicName(GetActiveJob) + " Novus";
-
-                return "Relic Weapon Novus";
-            }
-        }
-
-
         #region Materia Counts
         public int TotalMelded => ThisStage.PrimaryCounts.Sum() + ThisStage.SecondaryCounts.Sum();
         public int IndidualRemaining => Math.Max(75 - TotalMelded,0);

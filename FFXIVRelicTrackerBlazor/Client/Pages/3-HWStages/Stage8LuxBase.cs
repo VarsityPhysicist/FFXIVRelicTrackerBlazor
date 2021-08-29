@@ -18,10 +18,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._3_HWStages
 
         public override StageInfo TargetStage => character.HWExpansion.Stage8HW;
 
-        public override string WeaponName => WeaponNames.GetWeaponName(GetActiveJob, StageIndex, TargetExpansion.Expansion);
-
-        public override string PreviousWeaponName => WeaponNames.GetWeaponName(GetActiveJob, StageIndex - 1, TargetExpansion.Expansion);
-
         public override bool GetAnyCompleted()
         {
             throw new NotImplementedException();

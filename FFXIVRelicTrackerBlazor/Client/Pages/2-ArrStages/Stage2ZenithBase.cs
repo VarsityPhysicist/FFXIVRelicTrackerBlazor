@@ -36,29 +36,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
                 }
 
         }
-        public override string PreviousWeaponName
-        {
-            get
-            {
-                if (GetActiveJob != JobName.NA)
-                    return MiscArr.GetArrRelicName(GetActiveJob);
-
-                return "Relic Weapon";
-            }
-        }
-
-
-        public override string WeaponName
-        {
-            get
-            {
-                if (GetActiveJob != JobName.NA)
-                    return PreviousWeaponName + " Zenith";
-
-                return "Relic Weapon Zenith";
-            }
-        }
-
         public int RemainingMist => Math.Max(0,(RemainingJobs * 3) - GetMistCount());
 
         public override bool GetAnyCompleted()

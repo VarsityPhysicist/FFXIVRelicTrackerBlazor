@@ -22,37 +22,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             return ValidJobs.Count != CompletedJobs;
         }
-
-        public override string PreviousWeaponName
-        {
-            get
-            {
-                if (GetActiveJob != JobName.NA)
-                {
-                    if (GetActiveJob == JobName.PLD) return MiscArr.GetArrRelicName(GetActiveJob) + " Novus & Holy Shield Novus";
-                    else
-                        return MiscArr.GetArrRelicName(GetActiveJob) + " Novus";
-                }
-
-                return "Relic Weapon Novus";
-            }
-        }
-        public override string WeaponName
-        {
-            get
-            {
-                if (GetActiveJob != JobName.NA)
-                {
-                    if (GetActiveJob == JobName.PLD)
-                        return MiscArr.GetArrRelicName(GetActiveJob) + " Nexus & Holy Shield Nexus";
-                    else
-                        return MiscArr.GetArrRelicName(GetActiveJob) + " Nexus";
-                }
-
-                return "Relic Weapon Nexus";
-            }
-        }
-
         public Stage6ARR ThisStage { get => character.ArrExpansion.Stage6ARR; }
 
         public int GetCurrentLight()
