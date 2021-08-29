@@ -10,7 +10,6 @@ namespace FFXIVRelicTrackerBlazor.Shared._2_Arr
     [Serializable]
     public class ArrExpansion : AbstractExpansion
     {
-
         public ArrExpansion()
         {
 
@@ -39,5 +38,20 @@ namespace FFXIVRelicTrackerBlazor.Shared._2_Arr
         public override ExpansionName Expansion => ExpansionName.Arr;
 
         public override int StageCount => 8;
+
+        public override List<StageInfo> GetStages()
+        {
+            return new List<StageInfo>()
+            {
+                Stage1ARR,
+                Stage2ARR,
+                Stage3ARR,
+                Stage4ARR,
+                Stage5ARR,
+                Stage6ARR,
+                Stage7ARR,
+                Stage8ARR
+            };
+        }
     }
 }
