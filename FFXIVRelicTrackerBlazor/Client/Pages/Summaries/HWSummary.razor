@@ -1,0 +1,120 @@
+﻿@namespace FFXIVRelicTrackerBlazor.Client.Pages.Summaries
+@page "/HWSummary"
+@inherits HWSummaryBase
+
+<h3>ARR Summary: @character.Name</h3>
+<span>Note: Stage completions <button @onclick="()=>ToggleAdjustCount()">@AdjustCountString</button> adjust counts of collected items</span>
+
+@if (showAll)
+{
+    <table>
+        <tr>
+            <td></td>
+            @foreach (var jobName in ValidJobs)
+            {
+                @if (jobName != FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.NA)
+                {
+                    <td>@jobName.ToString()</td>
+                }
+            }
+        </tr>
+        <tr>
+            <td>Animated</td>
+            @foreach (var job in TargetExpansion.Jobs)
+            {
+                @if (job.JobName != FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.NA)
+                {
+                    <td><button @onclick="()=>ToggleComplete(0,job.JobName)">@job.Stages[0].Progress</button></td>
+                }
+            }
+        </tr>
+        <tr>
+            <td>Awoken</td>
+            @foreach (var job in TargetExpansion.Jobs)
+            {
+                @if (job.JobName != FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.NA)
+                {
+                    <td><button @onclick="()=>ToggleComplete(1,job.JobName)">@job.Stages[1].Progress</button></td>
+                }
+            }
+        </tr>
+        <tr>
+            <td>Anima</td>
+            @foreach (var job in TargetExpansion.Jobs)
+            {
+                @if (job.JobName != FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.NA)
+                {
+                    <td><button @onclick="()=>ToggleComplete(2,job.JobName)">@job.Stages[2].Progress</button></td>
+                }
+            }
+        </tr>
+        <tr>
+            <td>Hyperconductive</td>
+            @foreach (var job in TargetExpansion.Jobs)
+            {
+                @if (job.JobName != FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.NA)
+                {
+                    <td><button @onclick="()=>ToggleComplete(3,job.JobName)">@job.Stages[3].Progress</button></td>
+                }
+            }
+        </tr>
+        <tr>
+            <td>Reconditioned</td>
+            @foreach (var job in TargetExpansion.Jobs)
+            {
+                @if (job.JobName != FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.NA)
+                {
+                    <td><button @onclick="()=>ToggleComplete(4,job.JobName)">@job.Stages[4].Progress</button></td>
+                }
+            }
+        </tr>
+        <tr>
+            <td>Sharpened</td>
+            @foreach (var job in TargetExpansion.Jobs)
+            {
+                @if (job.JobName != FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.NA)
+                {
+                    <td><button @onclick="()=>ToggleComplete(5,job.JobName)">@job.Stages[5].Progress</button></td>
+                }
+            }
+        </tr>
+        <tr>
+            <td>Complete</td>
+            @foreach (var job in TargetExpansion.Jobs)
+            {
+                @if (job.JobName != FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.NA)
+                {
+                    <td><button @onclick="()=>ToggleComplete(6,job.JobName)">@job.Stages[6].Progress</button></td>
+                }
+            }
+        </tr>
+        <tr>
+            <td>Lux</td>
+            @foreach (var job in TargetExpansion.Jobs)
+            {
+                @if (job.JobName != FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.NA)
+                {
+                    <td><button @onclick="()=>ToggleComplete(7,job.JobName)">@job.Stages[7].Progress</button></td>
+                }
+            }
+        </tr>
+    </table>
+}
+
+<style>
+    table {
+        text-align: center;
+    }
+
+        table tr:first-child {
+            padding-inline: 33px;
+        }
+
+    td {
+        padding-inline: inherit;
+    }
+</style>
+
+@code {
+
+}

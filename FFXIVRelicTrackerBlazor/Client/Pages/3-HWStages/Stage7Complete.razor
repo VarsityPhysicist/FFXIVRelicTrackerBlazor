@@ -1,0 +1,88 @@
+﻿@namespace FFXIVRelicTrackerBlazor.Client.Pages._3_HWStages
+@page "/HWStage7"
+@inherits Stage7CompleteBase
+
+
+@if (showAll)
+{
+    <div class="stack-vertical">
+        <div class="stack-vertical">
+            <h2>Heavensward: Complete</h2>
+            <div>@character.Name</div>
+            <div class="stack-horizontal">
+                <span>Selected Job: </span>
+                <select value="@GetActiveJob" @onchange="SetActiveJob">
+                    @foreach (var job in JobNames)
+                    {
+                        <option value="@job">@job</option>
+                    }
+                </select>
+                <button @onclick="()=>CompleteStage()" disabled="@JobNotSelected">Complete</button>
+            </div>
+            <br />
+        </div>
+        <div />
+        <br />
+        <span><a href="https://ffxiv.gamerescape.com/wiki/Born_Again_Anima" target="_blank" rel="noopener noreferrer">Quest: Born Again Anima</a> | Started by: Ardashir (Azys Lla)</span>
+        <br />
+        @if (JobSelected)
+        {<span>Complete the following dungeons as a @GetActiveJob</span>}
+        @if (JobNotSelected)
+        {<span>Complete the following dungeons as the same job this stage is being worked on</span>}
+
+        <ul>
+            <li><input type="checkbox" value="@GetDungeon1" @onchange="SetDungeon1" /> Sohm Al (Hard)</li>
+            <li><input type="checkbox" value="@GetDungeon3" @onchange="SetDungeon3" /> The Lost City of Amdapor (Hard)</li>
+        </ul>
+        <span>Note: your <span class="weapon-purple">@PreviousWeaponName</span> must be in inventory or equipped</span>
+        <br />
+        <span>Speak to Ardashir then complete the following tasks:</span>
+        <div class="stack-vertical golden-border">
+            <span><a href="https://ffxiv.gamerescape.com/wiki/Some_Assembly_Required" target="_blank" rel="noopener noreferrer">Some Assembly Required</a> | Started by: Processing Node (Azys Lla)</span>
+            <span>Turn in 15 <a href="https://ffxiv.gamerescape.com/wiki/Pneumite" target="_blank" rel="noopener noreferrer" class="item-link">Pneumite</a> to recieve a <a href="https://ffxiv.gamerescape.com/wiki/Newborn_Soulstone" target="_blank" rel="noopener noreferrer" class="item-link">Newborn Soulstone</a></span>
+            <span><span class="item-link">Pneumite</span> are purchased for 100 Poetics or 4000 Grand Company Seals</span>
+            <table>
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td>Current:</td>
+                        <td>Remaining:</td>
+                        <td>Total Remaining:</td>
+                    </tr>
+                </thead>
+                <tr>
+                    <td><span class="item-link">Pneumite</span></td>
+                    <td><input max="195" min="0" type="number" value="@GetPneumite" @onchange="SetPneumite" /></td>
+                    <td><span>@RemainingPneumite</span></td>
+                    <td><span>@TotalPneumite</span></td>
+                </tr>
+            </table>
+            <span>Remaining Poetics: @RemainingPoetics</span>
+            <span>Remaining Seals: @RemainingSeals</span>
+        </div>
+        <br />
+        <div class="golden-border stack-vertical">
+            <span>Speak to Verification Node (Azys Lla) and acquire 2000 Aetheric Density</span>
+            <span>Aetheric Density is awarded upon defeating the final boss of select duties with your <span class="weapon-purple">@PreviousWeaponName</span> equipped</span>
+            <span>Upon clearing content for Aetheric Density, a notice will appear in the chat log indicating the type of growth</span>
+            <span>A listing of Activites:Density can be found <a href="https://ffxiv.consolegameswiki.com/wiki/Complete_Anima_Weapons/Quest#Aetheric_Density_chart_.28WIP.29" target="_blank" rel="noopener noreferrer">here</a></span>
+            <span>Aetheric Density: <input type="number" min="0" max="2000" value="@GetDensity" @onchange="SetDensity" /></span>
+            <div class="stack-horizontal">
+                <button @onclick="()=>SetDensity(8)">Vague</button>
+                <button @onclick="()=>SetDensity(16)">Meager</button>
+                <button @onclick="()=>SetDensity(24)">Vigorous</button>
+                <button @onclick="()=>SetDensity(48)">Robust</button>
+                <button @onclick="()=>SetDensity(64)">Sturdy</button>
+                <button @onclick="()=>SetDensity(96)">Hardened</button>
+                <button @onclick="()=>SetDensity(128)">Stalwart</button>
+            </div>
+        </div>
+        <br />
+        <span>After completing the above tasks, return to Ardashir (Azys Lla) with your <span class="weapon-purple">@PreviousWeaponName</span> in inventory to recieve a <span class="weapon-purple">@WeaponName</span></span>
+
+    </div>
+}
+
+@code {
+
+}

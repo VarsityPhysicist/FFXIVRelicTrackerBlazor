@@ -1,0 +1,76 @@
+﻿@namespace FFXIVRelicTrackerBlazor.Client.Pages._3_HWStages
+@page "/HWStage8"
+@inherits Stage8LuxBase
+
+
+@if (showAll)
+{
+    <div class="stack-vertical">
+        <div class="stack-vertical">
+            <h2>Heavensward: Complete</h2>
+            <div>@character.Name</div>
+            <div class="stack-horizontal">
+                <span>Selected Job: </span>
+                <select value="@GetActiveJob" @onchange="SetActiveJob">
+                    @foreach (var job in JobNames)
+                    {
+                        <option value="@job">@job</option>
+                    }
+                </select>
+                <button @onclick="()=>CompleteStage()" disabled="@JobNotSelected">Complete</button>
+            </div>
+            <br />
+        </div>
+        <div />
+        <br />
+        <span><a href="https://ffxiv.gamerescape.com/wiki/Best_Friends_Forever" target="_blank" rel="noopener noreferrer">Quest: Best Friends Forever</a> | Started by: Ardashir (Azys Lla)</span>
+        <br />
+        <span>With your <span class="weapon-purple">@PreviousWeaponName</span> equipped, complete the following Trials:</span>
+        <div class="stack-vertical">
+            <div class="stack-vertical golden-border" style="width:100%">
+                <span><input type="checkbox" checked="@GetTrial1" @onchange="SetTrial1" /> Bowl of Embers (Hard)</span>
+                <span><input type="checkbox" checked="@GetTrial2" @onchange="SetTrial2" /> The Howling Eye (Hard)</span>
+                <span><input type="checkbox" checked="@GetTrial3" @onchange="SetTrial3" /> The Navel (Hard)</span>
+            </div>
+            <div class="stack-vertical golden-border" style="width:100%">
+                <span><input type="checkbox" checked="@GetTrial4" @onchange="SetTrial4" /> Thronmarch (Hard)</span>
+                <span><input type="checkbox" checked="@GetTrial5" @onchange="SetTrial5" /> The Whorleater (Hard)</span>
+                <span><input type="checkbox" checked="@GetTrial6" @onchange="SetTrial6" /> The Striking Tree (Hard)</span>
+                <span><input type="checkbox" checked="@GetTrial7" @onchange="SetTrial7" /> Akh Afah Amphitheatre (Hard)</span>
+            </div>
+            <div class="stack-vertical golden-border" style="width:100%">
+                <span><input type="checkbox" checked="@GetTrial8" @onchange="SetTrial8" /> Thok ask Thok (Hard)</span>
+                <span><input type="checkbox" checked="@GetTrial9" @onchange="SetTrial9" /> The Limitless Blue (Hard)</span>
+            </div>
+            <div class="stack-vertical golden-border" style="width:100%">
+                <span><input type="checkbox" checked="@GetTrial10" @onchange="SetTrial10" /> Containment Bay S1T7</span>
+                <span><input type="checkbox" checked="@GetTrial11" @onchange="SetTrial11" /> Containment Bay P1T6</span>
+                <span><input type="checkbox" checked="@GetTrial12" @onchange="SetTrial12" /> Containment Bay Z1T9</span>
+            </div>
+        </div>
+        <br />
+        <span>After completing all 12 trials, purchase an <a href="https://ffxiv.gamerescape.com/wiki/Archaic_Enchanted_Ink" target="_blank" rel="noopener noreferrer" class="item-link">Archaic Enchanted Ink</a> for 500 Poetics</span>
+        <table>
+            <thead>
+                <tr>
+                    <td></td>
+                    <td>Current:</td>
+                    <td>Total Remaining:</td>
+                    <td>Remaining Poetics:</td>
+                </tr>
+            </thead>
+            <tr>
+                <td><span class="item-link">Archaic Enchanted Ink</span></td>
+                <td><input type="number" min="0" max="13" value="@GetInk" @onchange="SetInk" /></td>
+                <td>@RemainingInk</td>
+                <td>@RemainingPoetics</td>
+            </tr>
+        </table>
+        <br />
+        <span>After completing the above tasks and acquiring a <span class="item-link">Archaic Enchanted Ink</span>, return to Ardashir (Azys Lla) with your <span class="weapon-purple">@PreviousWeaponName</span> in inventory to recieve a <span class="weapon-purple">@WeaponName</span></span>
+    </div>
+}
+
+@code {
+
+}

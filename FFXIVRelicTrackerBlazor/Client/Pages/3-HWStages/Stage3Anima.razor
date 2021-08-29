@@ -1,0 +1,222 @@
+﻿@namespace FFXIVRelicTrackerBlazor.Client.Pages._3_HWStages
+@page "/HWStage3"
+@inherits Stage3AnimaBase
+
+
+@if (showAll)
+{
+    <div class="stack-vertical">
+        <div class="stack-vertical">
+            <h2>Heavensward: Anima</h2>
+            <div>@character.Name</div>
+            <div class="stack-horizontal">
+                <span>Selected Job: </span>
+                <select value="@GetActiveJob" @onchange="SetActiveJob">
+                    @foreach (var job in JobNames)
+                    {
+                        <option value="@job">@job</option>
+                    }
+                </select>
+                <button @onclick="()=>CompleteStage()" disabled="@JobNotSelected">Complete</button>
+            </div>
+            <br />
+        </div>
+        <div />
+        <br />
+        <span><a href="https://ffxiv.gamerescape.com/wiki/Coming_into_Its_Own" target="_blank" rel="noopener noreferrer">Quest: Coming into Its Own</a> | Started by: Ardashir (Azys Lla)</span>
+        <span>Acquire the following items by trading with Cristiana (Mor Dhona)</span>
+        <table>
+            <thead>
+                <tr>
+                    <td style="border:none">Material:</td>
+                    <td style="border:none">Cost 1:</td>
+                    <td style="border:none">Cost 2:</td>
+                </tr>
+            </thead>
+            <tr>
+                <td><a href="https://ffxiv.gamerescape.com/wiki/Enchanted_Rubber" target="_blank" rel="noopener noreferrer" class="item-link">Enchanted Rubber</a></td>
+                <td><a href="https://ffxiv.gamerescape.com/wiki/Unidentifiable_Bone" target="_blank" rel="noopener noreferrer" class="item-link">Unidentifiable Bone<span> x 10</span></a></td>
+                <td><a href="https://ffxiv.gamerescape.com/wiki/Adamantite_Francesca" target="_blank" rel="noopener noreferrer" class="item-link">Adamantite Francesca<span> x 4</span></a></td>
+            </tr>
+            <tr>
+                <td><a href="https://ffxiv.gamerescape.com/wiki/Fast-drying_Carboncoat" target="_blank" rel="noopener noreferrer" class="item-link">Fast-drying Carboncoat</a></td>
+                <td><a href="https://ffxiv.gamerescape.com/wiki/Unidentifiable_Shell" target="_blank" rel="noopener noreferrer" class="item-link">Unidentifiable Shell<span> x 10</span></a></td>
+                <td><a href="https://ffxiv.gamerescape.com/wiki/Titanium_Alloy_Mirror" target="_blank" rel="noopener noreferrer" class="item-link">Titanium Alloy Mirror<span> x 4</span></a></td>
+            </tr>
+            <tr>
+                <td><a href="https://ffxiv.gamerescape.com/wiki/Divine_Water" target="_blank" rel="noopener noreferrer" class="item-link">Divine_Water</a></td>
+                <td><a href="https://ffxiv.gamerescape.com/wiki/Unidentifiable_Ore" target="_blank" rel="noopener noreferrer" class="item-link">Unidentifiable Ore<span> x 10</span></a></td>
+                <td><a href="https://ffxiv.gamerescape.com/wiki/Dispelling_Arrow" target="_blank" rel="noopener noreferrer" class="item-link">Dispelling Arrow<span> x 4</span></a></td>
+            </tr>
+            <tr>
+                <td><a href="https://ffxiv.gamerescape.com/wiki/Fast-acting_Allagan_Catalyst" target="_blank" rel="noopener noreferrer" class="item-link">Fast-acting Allagan Catalyst</a></td>
+                <td><a href="https://ffxiv.gamerescape.com/wiki/Unidentifiable_Seeds" target="_blank" rel="noopener noreferrer" class="item-link">Unidentifiable Seeds<span> x 10</span></a></td>
+                <td><a href="https://ffxiv.gamerescape.com/wiki/Kingcake" target="_blank" rel="noopener noreferrer" class="item-link">Kingcake<span> x 4</span></a></td>
+            </tr>
+        </table>
+        <span>Note: Items under the Cost 2 category may be crafted, purchased from the Marketboard, or purchased for 5,000 Grand Company Seals</span>
+        <span>After acquiring each of the materials in the first column listed above, return to Gerolt (Azys Lla) with your <span class="weapon-blue">@PreviousWeaponName</span> in inventory to recieve a <span class="weapon-purple">@WeaponName</span></span>
+        <br />
+        <div class="stack-vertical">
+            <div class="stack-horizontal">
+                <table>
+                    <thead>
+                        <tr>
+                            <td style="border:none">Unidentifiable Item:</td>
+                            <td style="border:none">Count:</td>
+                            <td style="border:none">Remaining:</td>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td><span>Unidentifiable Bone</span></td>
+                        <td><input type="number" value="@Bone" @onchange="SetBone" min="0" max="130"/></td>
+                        <td><span>@RemainingBone</span></td>
+                    </tr>
+                    <tr>
+                        <td><span>Unidentifiable Shell</span></td>
+                        <td><input type="number" value="@Shell" @onchange="SetShell" min="0" max="130"/></td>
+                        <td><span>@RemainingShell</span></td>
+                    </tr>
+                    <tr>
+                        <td><span>Unidentifiable Ore</span></td>
+                        <td><input type="number" value="@Ore" @onchange="SetOre" min="0" max="130"/></td>
+                        <td><span>@RemainingOre</span></td>
+                    </tr>
+                    <tr>
+                        <td><span>Unidentifiable Seeds</span></td>
+                        <td><input type="number" value="@Seeds" @onchange="SetSeeds" min="0" max="130"/></td>
+                        <td><span>@RemainingSeeds</span></td>
+                    </tr>
+                </table>
+                <table>
+                    <thead>
+                        <tr>
+                            <td style="border:none">Crafted Item:</td>
+                            <td style="border:none">Count:</td>
+                            <td style="border:none">Remaining:</td>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td><span>Adamantite Francesca</span></td>
+                        <td><input type="number" value="@Francesca" @onchange="SetFrancesca" min="0" max="52"/></td>
+                        <td><span>@RemainingFrancesca</span></td>
+                    </tr>
+                    <tr>
+                        <td><span>Titanium Alloy Mirror</span></td>
+                        <td><input type="number" value="@Mirror" @onchange="SetMirror" min="0" max="52"/></td>
+                        <td><span>@RemainingMirror</span></td>
+                    </tr>
+                    <tr>
+                        <td><span>Dispelling Arrow</span></td>
+                        <td><input type="number" value="@Arrow" @onchange="SetArrow" min="0" max="52"/></td>
+                        <td><span>@RemainingArrow</span></td>
+                    </tr>
+                    <tr>
+                        <td><span>Kingcake</span></td>
+                        <td><input type="number" value="@Kingcake" @onchange="SetKingcake" min="0" max="52"/></td>
+                        <td><span>@RemainingKingcake</span></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="div-border">
+                <div class="stack-vertical">
+                    <span>Remaining cost of Unidentifiables: @RemainingPoetics Poetics or @RemainingTokens Vanu Vanu / Vath Tokens</span>
+                    <span>Remaining cost of Crafted Materials: @RemainingSeals Grand Company Seals</span>
+                </div>
+            </div>
+        </div>
+
+
+        <br />
+        <span>Unidentifiable items are acquired as follows:</span>
+        <table>
+            <thead>
+                <tr>
+                    <td style="border:none"><span>Unidentifiable Item:</span></td>
+                    <td style="border:none"><span>Poetics:</span></td>
+                    <td style="border:none"><span>Beast Tribe Token:</span></td>
+                    <td style="border:none"><span>Precision Alexander Gordias Item:</span></td>
+                    <td style="border:none"><span>Allied Seal:</span></td>
+                </tr>
+            </thead>
+            <tr>
+                <td><a href="https://ffxiv.gamerescape.com/wiki/Unidentifiable_Bone" target="_blank" rel="noopener noreferrer" class="item-link">Unidentifiable Bone</a></td>
+                <td><span>150</span></td>
+                <td><span>3 Amalj'aa Tokens</span></td>
+                <td><a href="https://ffxiv.gamerescape.com/wiki/Precision_Gordian_Bolt" target="_blank" rel="noopener noreferrer" class="item-link">Precision Gordian Bolt</a><span> x 3 (The Fist of the Father)</span></td>
+                <td><span>300</span></td>
+            </tr>
+            <tr>
+                <td><a href="https://ffxiv.gamerescape.com/wiki/Unidentifiable_Shell" target="_blank" rel="noopener noreferrer" class="item-link">Unidentifiable Shell</a></td>
+                <td><span>150</span></td>
+                <td><span>3 Sahagin Tokens</span></td>
+                <td><a href="https://ffxiv.gamerescape.com/wiki/Precision_Gordian_Lens" target="_blank" rel="noopener noreferrer" class="item-link">Precision Gordian Lens</a><span> x 3 (The Cuff of the Father)</span></td>
+                <td><span>N/A</span></td>
+            </tr>
+            <tr>
+                <td><a href="https://ffxiv.gamerescape.com/wiki/Unidentifiable_Ore" target="_blank" rel="noopener noreferrer" class="item-link">Unidentifiable Ore</a></td>
+                <td><span>150</span></td>
+                <td><span>3 Kobold Tokens</span></td>
+                <td><a href="https://ffxiv.gamerescape.com/wiki/Precision_Gordian_Spring" target="_blank" rel="noopener noreferrer" class="item-link">Precision Gordian Spring</a><span> x 3 (The Arm of the Father)</span></td>
+                <td><span>N/A</span></td>
+            </tr>
+            <tr>
+                <td><a href="https://ffxiv.gamerescape.com/wiki/Unidentifiable_Seeds" target="_blank" rel="noopener noreferrer" class="item-link">Unidentifiable Seeds</a></td>
+                <td><span>150</span></td>
+                <td><span>3 Sylph Tokens</span></td>
+                <td><a href="https://ffxiv.gamerescape.com/wiki/Precision_Gordian_Shaft" target="_blank" rel="noopener noreferrer" class="item-link">Precision Gordian Shaft</a><span> x 3 (The Burden of the Father)</span></td>
+                <td><span>300</span></td>
+            </tr>
+        </table>
+        <span>Note: Items may also be purchased for 6 Vanu Vanu / Vath Tokens, or 18 Moogle Tokens</span>
+    </div>
+}
+<style>
+    table {
+        border-collapse: separate;
+        border-spacing: 0px;
+    }
+
+    tr td {
+        border-top: solid;
+        border-bottom: solid;
+        border-width: 1px;
+        padding-inline: 10px;
+    }
+
+    .div-border {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-left: solid;
+        border-top: solid;
+        border-bottom: solid;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-right: solid;
+        border-width: 1px;
+        padding-inline: 10px;
+    }
+
+        tr td:first-child {
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            border-left: solid;
+            border-top: solid;
+            border-bottom: solid;
+            border-width: 1px;
+            padding-inline: 10px;
+        }
+
+        tr td:last-child {
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            border-right: solid;
+            border-top: solid;
+            border-bottom: solid;
+            border-width: 1px;
+            padding-inline: 10px;
+        }
+</style>
+@code {
+
+}

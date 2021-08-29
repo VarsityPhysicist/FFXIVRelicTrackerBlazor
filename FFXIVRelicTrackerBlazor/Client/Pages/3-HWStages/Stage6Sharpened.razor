@@ -1,0 +1,56 @@
+﻿@namespace FFXIVRelicTrackerBlazor.Client.Pages._3_HWStages
+@page "/HWStage6"
+@inherits Stage6SharpenedBase
+
+
+@if (showAll)
+{
+<div class="stack-vertical">
+    <div class="stack-vertical">
+        <h2>Heavensward: Sharpened</h2>
+        <div>@character.Name</div>
+        <div class="stack-horizontal">
+            <span>Selected Job: </span>
+            <select value="@GetActiveJob" @onchange="SetActiveJob">
+                @foreach (var job in JobNames)
+                {
+                    <option value="@job">@job</option>
+                }
+            </select>
+            <button @onclick="()=>CompleteStage()" disabled="@JobNotSelected">Complete</button>
+        </div>
+        <br />
+    </div>
+    <div />
+    <br />
+    <span><a href="https://ffxiv.gamerescape.com/wiki/Future_Proof" target="_blank" rel="noopener noreferrer">Quest: Future Proof</a> | Started by: Ardashir (Azys Lla)</span>
+    <br />
+    <span>Acquire 50 <a href="https://ffxiv.gamerescape.com/wiki/Singing_Cluster" target="_blank" rel="noopener noreferrer" class="item-link">Singing Clusters</a> by completing daily/weekly quests or purchasing with Poetics</span>
+    <span>1 <span class="item-link">Singing Cluster</span> is awarded from the daily quest <a href="https://ffxiv.gamerescape.com/wiki/Cut_from_a_Different_Cloth" target="_blank" rel="noopener noreferrer">Cut from a Different Cloth</a>, started by Anglete (Idyllshire)</span>
+    <ul>
+        <li>Quest objective: Complete Daily Roulette: Level 50/60/70 Dungeons</li>
+    </ul>
+    <span>18 <span class="item-link">Singing Clusters</span> are awarded from the weekly quest <a href="https://ffxiv.gamerescape.com/wiki/Seeking_Inspiration" target="_blank" rel="noopener noreferrer">Seeking Inspiration</a>, started by Amphelice (Idyllshire)</span>
+    <ul>
+        <li>Quest objective: Complete Daily Roulette: Leveling three times</li>
+    </ul>
+    <span><span class="item-link">Singing Clusters</span> may also be purchased for 40 Poetics each</span>
+    <br />
+    <div class="stack-horizontal">
+        <span>Current <span class="item-link">Singing Clusters</span>: <input value="@GetCluster" @onchange="SetCluster" type="number" min="0" max="650" /></span>
+        <div class="stack-vertical">
+            <button @onclick="()=>SetCluster(1)">+1</button>
+            <button @onclick="()=>SetCluster(18)">+18</button>
+        </div>
+    </div>
+    <span>Remaining <span class="item-link">Singing Clusters</span>: @GetRemainingCluster</span>
+    <span>Total remaining <span class="item-link">Singing Clusters</span>: @GetTotalCluster</span>
+    <span>Total remaining Poetics: @GetRemainingPoetics</span>
+    <br />
+    <span>After acquiring the required <span class="item-link">Singing Clusters</span>, return to Ardashir (Azys Lla) with your <span class="weapon-purple">@PreviousWeaponName</span> in inventory to recieve a <span class="weapon-purple">@WeaponName</span></span>
+</div>
+}
+
+@code {
+
+}

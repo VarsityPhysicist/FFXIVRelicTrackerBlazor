@@ -1,0 +1,65 @@
+﻿@namespace FFXIVRelicTrackerBlazor.Client.Pages._3_HWStages
+@page "/HWStage2"
+@inherits Stage2AwokenBase
+
+
+@if (showAll)
+{
+    <div class="stack-vertical">
+        <div class="stack-vertical">
+            <h2>Heavensward: Awoken</h2>
+            <div>@character.Name</div>
+            <div class="stack-horizontal">
+                <span>Selected Job: </span>
+                <select value="@GetActiveJob" @onchange="SetActiveJob">
+                    @foreach (var job in JobNames)
+                    {
+                        <option value="@job">@job</option>
+                    }
+                </select>
+                <button @onclick="()=>CompleteStage()" disabled="@JobNotSelected">Complete</button>
+            </div>
+            <br />
+        </div>
+        <div />
+        <br />
+        <span><a href="https://ffxiv.gamerescape.com/wiki/Toughening_Up" target="_blank" rel="noopener noreferrer">Quest: Toughening Up</a> | Started by: Ardashir (Azys Lla)</span>
+        <ul>
+            <li><span>Complete the following dungeons with your <span class="weapon-blue">@PreviousWeaponName</span> equipped</span></li>
+        </ul>
+        <span>Note:</span>
+        <ul>
+            <li><span>Dungeons may be completed unsynced</span></li>
+            <li><span>Your <span class="weapon-blue">@PreviousWeaponName</span> must be equipped as you exit each dungeon</span></li>
+        </ul>
+        <br />
+        <div class="golden-border stack-vertical">
+            <span><input type="checkbox" checked="@Step1" @onchange="SetStep1" /> Complete Snowcloack</span>
+
+            <span><input type="checkbox" checked="@Step2" @onchange="SetStep2" /> Complete Sastasha (Hard)</span>
+            <span><input type="checkbox" checked="@Step3" @onchange="SetStep3" /> Complete The Sunken Temple of Qarn (Hard)</span>
+        </div>
+        <br />
+        <div class="golden-border stack-vertical">
+            <span>Speak to Ardashir (Southern Thanalan)</span>
+            <span><input type="checkbox" checked="@Step4" @onchange="SetStep4" /> Complete Keeper of the Lake</span>
+            <span><input type="checkbox" checked="@Step5" @onchange="SetStep5" /> Complete Wanderer's Palace (Hard)'</span>
+            <span><input type="checkbox" checked="@Step6" @onchange="SetStep6" /> Complete Amdapor Keep</span>
+        </div>
+
+        <br />
+        <div class="golden-border stack-vertical">
+            <span>Speak to Ardashir (South Shroud)</span>
+            <span><input type="checkbox" checked="@Step7" @onchange="SetStep7" /> Complete Dusk Vigil</span>
+            <span><input type="checkbox" checked="@Step7" @onchange="SetStep7" /> Complete Sohm Al</span>
+            <span><input type="checkbox" checked="@Step8" @onchange="SetStep8" /> Complete The Aery</span>
+            <span><input type="checkbox" checked="@Step9" @onchange="SetStep9" /> Complete The Vault</span>
+        </div>
+        <br />
+        <span>After completing the above tasks, return to Ardashir (Azys Lla) with your <span class="weapon-blue">@PreviousWeaponName</span> in inventory to recieve a <span class="weapon-blue">@WeaponName</span></span>
+    </div>
+}
+
+@code {
+
+}

@@ -1,0 +1,87 @@
+﻿@namespace FFXIVRelicTrackerBlazor.Client.Pages._3_HWStages
+@page "/HWStage4"
+@inherits Stage4HyperconductiveBase
+
+
+@if (showAll)
+{
+<div class="stack-vertical">
+    <div class="stack-vertical">
+        <h2>Heavensward: Hyperconductive</h2>
+        <div>@character.Name</div>
+        <div class="stack-horizontal">
+            <span>Selected Job: </span>
+            <select value="@GetActiveJob" @onchange="SetActiveJob">
+                @foreach (var job in JobNames)
+                {
+                    <option value="@job">@job</option>
+                }
+            </select>
+            <button @onclick="()=>CompleteStage()" disabled="@JobNotSelected">Complete</button>
+        </div>
+        <br />
+    </div>
+    <div />
+    <br />
+    <span><a href="https://ffxiv.gamerescape.com/wiki/Soul_Without_Life" target="_blank" rel="noopener noreferrer">Quest: Soul Without Life</a> | Started by: Ardashir (Azys Lla)</span>
+    <span>Acquire 5 <a href="https://ffxiv.gamerescape.com/wiki/Aether_Oil" target="_blank" rel="noopener noreferrer" class="item-link">Aether Oil</a> for Ardashir</span>
+    <br />
+    <span><span class="item-link">Aether Oil</span> are acquired from the following sources:</span>
+    <ul>
+        <li><span>Weekly quest: <a href="https://ffxiv.gamerescape.com/wiki/The_Gift_of_the_Archmagus" target="_blank" rel="noopener noreferrer">The Gift of the Archmagus</a></span></li>
+        <li>Purchased with 350 Poetics</li>
+    </ul>
+    <table>
+        <thead>
+            <tr>
+                <td style="border:none"><span>Aether Oil Count:</span></td>
+                <td style="border:none">Remaining:</td>
+                <td style="border:none">Poetics Cost:</td>
+            </tr>
+        </thead>
+        <tr>
+            <td><input type="number" value="@OilCount" @onchange="SetOilCount" min="0" max="65" /></td>
+            <td><span>@RemainingOil</span></td>
+            <td><span>@RemainingPoetics</span></td>
+        </tr>
+    </table>
+    <br />
+    <span>After acquiring the required <span class="item-link">Aether Oil</span>, return to Ardashir (Azys Lla) with your <span class="weapon-purple">@PreviousWeaponName</span> in inventory to recieve a <span class="weapon-purple">@WeaponName</span></span>
+</div>
+}
+<style>
+    table {
+        border-collapse: separate;
+        border-spacing: 0px;
+    }
+
+    tr td {
+        border-top: solid;
+        border-bottom: solid;
+        border-width: 1px;
+        padding-inline: 10px;
+    }
+
+    tr td:first-child {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-left: solid;
+        border-top: solid;
+        border-bottom: solid;
+        border-width: 1px;
+        padding-inline: 10px;
+    }
+
+    tr td:last-child {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-right: solid;
+        border-top: solid;
+        border-bottom: solid;
+        border-width: 1px;
+        padding-inline: 10px;
+    }
+</style>
+@code {
+
+}

@@ -1,0 +1,88 @@
+﻿@namespace FFXIVRelicTrackerBlazor.Client.Pages._3_HWStages
+@page "/HWStage5"
+@inherits Stage5ReconditionedBase
+
+
+@if (showAll)
+{
+    <div class="stack-vertical">
+        <div class="stack-vertical">
+            <h2>Heavensward: Reconditioned</h2>
+            <div>@character.Name</div>
+            <div class="stack-horizontal">
+                <span>Selected Job: </span>
+                <select value="@GetActiveJob" @onchange="SetActiveJob">
+                    @foreach (var job in JobNames)
+                    {
+                        <option value="@job">@job</option>
+                    }
+                </select>
+                <button @onclick="()=>CompleteStage()" disabled="@JobNotSelected">Complete</button>
+            </div>
+            <br />
+        </div>
+        <div />
+        <br />
+        <span><a href="https://ffxiv.gamerescape.com/wiki/A_Dream_Fulfilled" target="_blank" rel="noopener noreferrer">Quest: A Dream Fulfilled</a> | Started by: Ardashir (Azys Lla)</span>
+        <br />
+        <ul>
+            <li><span>Speak with Ulan in Idyllshire</span></li>
+            <li>
+                <span>
+                    Acquire <a href="https://ffxiv.gamerescape.com/wiki/Crystal_Sand" target="_blank" rel="noopener noreferrer" class="item-link">Crystal Sand</a> and <a href="https://ffxiv.gamerescape.com/wiki/Umbrite" target="_blank" rel="noopener noreferrer" class="item-link">Umbrite</a>, trade these to Ulan to recieve 3-6 Treated Crystal Sand
+                </span>
+            </li>
+            <li><span>Treated Crystal Sand are used to allocate stat points on your <span class="weapon-purple">@PreviousWeaponName</span></span></li>
+        </ul>
+        <span>Note: Before 120 Treated Crystal Sand are acquired, each trade of 1 <span class="item-link">Crystal Sand</span> and 1 <span class="item-link">Umbrite</span> earns 3 Treated Crystal Sand</span>
+        <span><span style="visibility:hidden">Note: </span>After 120 Treated Crystal Sand are acquired, each trade of 1 <span class="item-link">Crystal Sand</span> and 1 <span class="item-link">Umbrite</span> earns 3-6 Treated Crystal Sand</span>
+        <br />
+        <span>A total of 240 Treated Crystal Sand are required to complete the reconditioning</span>
+        <span>A total of 60-80 <span class="item-link">Crystal Sand</span> and <span class="item-link">Umbrite</span> will be required</span>
+        <span><span class="item-link">Crystal Sand</span> are acquired by trading with Ulan</span>
+        <span><span class="item-link">Umbrite</span> are purchased for 75 poetics each</span>
+        <progress style="width:30%" value="@TreatedSandPercent" max="100">@TreatedSand</progress>
+        <div class="stack-horizontal">
+            <button @onclick="()=>IncreasTreated(3)">+3</button>
+            <button @onclick="()=>IncreasTreated(4)">+4</button>
+            <button @onclick="()=>IncreasTreated(5)">+5</button>
+            <button @onclick="()=>IncreasTreated(6)">+6</button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <td><span>Material</span></td>
+                    <td><span>Current:</span></td>
+                    <td><span>Remaining:</span></td>
+                    <td><span>Total Remaining:</span></td>
+                </tr>
+            </thead>
+            <tr>
+                <td><span>Treated Crystal Sand</span></td>
+                <td><input min="0" max="1040" value="@TreatedSand" @onchange="SetTreated" type="number" /></td>
+                <td><span>@RemainingTreated</span></td>
+                <td><span>@TotalTreated</span></td>
+            </tr>
+            <tr>
+                <td><span class="item-link">Crystal Sand</span></td>
+                <td><input min="0" max="1040" value="@Sand" @onchange="SetSand" type="number" /></td>
+                <td><span>@RemainingSand</span></td>
+                <td><span>@TotalSand</span></td>
+            </tr>
+            <tr>
+                <td><span class="item-link">Umbrite</span></td>
+                <td><input min="0" max="1040" value="@Umbrite" @onchange="SetUmbrite" type="number" /></td>
+                <td><span>@RemainingUmbrite</span></td>
+                <td><span>@TotalUmbrite</span></td>
+            </tr>
+        </table>
+        <span>Remaining Poetics: @RemainingPoetics</span>
+        <br />
+        <span>After completing stat allocations, return to Ardashir (Azys Lla) with your <span class="weapon-purple">@PreviousWeaponName</span> in inventory to recieve a <span class="weapon-purple">@WeaponName</span></span>
+
+    </div>
+}
+
+@code {
+
+}
