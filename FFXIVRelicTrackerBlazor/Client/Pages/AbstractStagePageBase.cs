@@ -29,11 +29,13 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
 
         public abstract bool GetAnyCompleted();
         public abstract Task SetAnyCompleted(ChangeEventArgs e);
+        protected static int FilterLow(int input) => Math.Max(input, 0);
 
         public List<JobName> JobNames;
-        protected int RemainingJobs=> TargetExpansion.Jobs.Where(x=>x.JobName!=JobName.NA).Select(x => x.Stages.Where(y => y.StageIndex == StageIndex).First()).Where(x=>x.Progress!=Progress.Completed).Count();
-        protected int CompletedJobs=> TargetExpansion.Jobs.Select(x => x.Stages.Where(y => y.StageIndex == StageIndex).First()).Where(x=>x.Progress==Progress.Completed).Count();
+        protected int RemainingJobs=> TargetExpansion.Jobs.Where(x=>x.JobName!=JobName.NA).Select(x => x.Stages.Single(y => y.StageIndex == StageIndex)).Where(x=>x.Progress!=Progress.Completed).Count();
+        protected int CompletedJobs=> TargetExpansion.Jobs.Select(x => x.Stages.Single(y => y.StageIndex == StageIndex)).Where(x=>x.Progress==Progress.Completed).Count();
         public static string Collapse(bool inputBool) { if (inputBool) return "collapse"; return string.Empty; }
+        protected static string FormatNumber(int input) => string.Format("{0:n0}", input);
         public static string GetEnumDisplayName(Enum enumType)
         {
             return EnumExtensions.GetEnumDisplayName(enumType);
@@ -57,7 +59,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
             JobNames = new List<JobName>();
             foreach (var job in ValidJobs)
             {
-                if (TargetExpansion.Jobs.Where(x => x.JobName == job).First().Stages.Where(x => x.StageIndex ==StageIndex).First().Progress != Progress.Completed)
+                if (TargetExpansion.Jobs.Single(x => x.JobName == job).Stages.Single(x => x.StageIndex ==StageIndex).Progress != Progress.Completed)
                 {
                     JobNames.Add(job);
                 }
@@ -66,23 +68,20 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
         }
         internal async Task CheckActiveJob()
         {
-            if (GetActiveJob() != JobName.NA)
+            if (JobSelected)
             {
-                if (TargetExpansion.Jobs.Where(x => x.JobName == GetActiveJob()).First().Stages.Where(x => x.StageIndex == StageIndex).First().Progress == Progress.Completed)
+                if (TargetExpansion.Jobs.Single(x => x.JobName == GetActiveJob).Stages.Single(x => x.StageIndex == StageIndex).Progress == Progress.Completed)
                     await SetActiveJob(JobName.NA);
             }
         }
 
-        public JobName GetActiveJob()
-        {
-            return TargetStage.ActiveJob;
-        }
+        public JobName GetActiveJob=> TargetStage.ActiveJob;
 
         public async Task SetActiveJob(ChangeEventArgs e)
         {
             JobName jobName = (JobName)Enum.Parse(typeof(JobName), e.Value.ToString());
             if (jobName != TargetStage.ActiveJob && TargetStage.ActiveJob != JobName.NA)
-                ResetStage();
+                await ResetStage();
             TargetStage.ActiveJob = jobName;
             await OnCharacterUpdate();
             StateHasChanged();
@@ -90,35 +89,30 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
         public async Task SetActiveJob(JobName jobName)
         {
             if (jobName != TargetStage.ActiveJob && TargetStage.ActiveJob != JobName.NA)
-                ResetStage();
+                await ResetStage();
             TargetStage.ActiveJob = jobName;
             await OnCharacterUpdate();
             StateHasChanged();
         }
-        public bool JobSelected
-        {
-            get => GetActiveJob() != JobName.NA;
-        }
-        public bool JobNotSelected
-        {
-            get => !JobSelected;
-        }
+        public bool JobSelected => GetActiveJob != JobName.NA;
+        public bool JobNotSelected => !JobSelected;
 
         public async Task CompleteStage()
         {
             if (TargetStage.ActiveJob != JobName.NA)
             {
-                MasterStageHelper.CompleteStage(character, TargetStage.ActiveJob, StageIndex, TargetExpansion.Expansion);
-                JobNames.Remove(GetActiveJob());
+                MasterStageHelper.CompleteStage(character, TargetStage.ActiveJob, StageIndex, TargetExpansion.Expansion, TargetExpansion.AdjustCounts);
+                JobNames.Remove(GetActiveJob);
                 await this.OnInitializedAsync();
                 await SetActiveJob(JobName.NA);
                 await OnCharacterUpdate();
             }
         }
-        public void ResetStage()
+        public async Task ResetStage()
         {
             MasterStageHelper.ResetStage(character, StageIndex, TargetExpansion.Expansion);
-            _ = OnCharacterUpdate();
+            TargetStage.ActiveJob = JobName.NA;
+            await OnCharacterUpdate();
         }
     }
 }
