@@ -144,7 +144,7 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers.Misc
 
         #region Animus
 
-        public static List<MapItem> ReturnCreatures(AnimnusBookNames bookName)
+        public static List<MapItem> ReturnCreatures(AnimusBookNames bookName)
         {
             List<string> tempNames = ReturnCreatureNames(bookName);
             List<ArrMapNames> tempMaps = ReturnCreatureMaps(bookName);
@@ -158,7 +158,7 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers.Misc
             }
             return returnList;
         }
-        public static List<MapItem> ReturnFATEs(AnimnusBookNames bookName)
+        public static List<MapItem> ReturnFATEs(AnimusBookNames bookName)
         {
             List<string> tempNames = ReturnFATENames(bookName);
             List<ArrMapNames> tempMaps = ReturnFATEMaps(bookName);
@@ -172,7 +172,7 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers.Misc
             }
             return returnList;
         }
-        public static List<MapItem> ReturnLeves(AnimnusBookNames bookName)
+        public static List<MapItem> ReturnLeves(AnimusBookNames bookName)
         {
             List<string> tempNames = ReturnLeveNames(bookName);
             List<string> tempTypes = ReturnLeveTypes(bookName);
@@ -192,23 +192,23 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers.Misc
             }
             return returnList;
         }
-        public static List<string> ReturnBookDungeons(AnimnusBookNames bookName) { return BookDungeons[(int)bookName]; }
+        public static List<string> ReturnBookDungeons(AnimusBookNames bookName) { return BookDungeons[(int)bookName]; }
 
 
-        private static List<string> ReturnCreatureNames(AnimnusBookNames bookName) { return BookCreatureNames[(int)bookName]; }
-        private static List<ArrMapNames> ReturnCreatureMaps(AnimnusBookNames bookName) { return BookCreatureMaps[(int)bookName]; }
-        private static List<PointF> ReturnCreaturePoints(AnimnusBookNames bookName) { return BookCreaturePoints[(int)bookName]; }
+        private static List<string> ReturnCreatureNames(AnimusBookNames bookName) { return BookCreatureNames[(int)bookName]; }
+        private static List<ArrMapNames> ReturnCreatureMaps(AnimusBookNames bookName) { return BookCreatureMaps[(int)bookName]; }
+        private static List<PointF> ReturnCreaturePoints(AnimusBookNames bookName) { return BookCreaturePoints[(int)bookName]; }
 
 
-        private static List<string> ReturnFATENames(AnimnusBookNames bookName) { return BookFATENames[(int)bookName]; }
-        private static List<ArrMapNames> ReturnFATEMaps(AnimnusBookNames bookName) { return BookFATEMaps[(int)bookName]; }
-        private static List<PointF> ReturnFATEPoints(AnimnusBookNames bookName) { return BookFATEPoints[(int)bookName]; }
+        private static List<string> ReturnFATENames(AnimusBookNames bookName) { return BookFATENames[(int)bookName]; }
+        private static List<ArrMapNames> ReturnFATEMaps(AnimusBookNames bookName) { return BookFATEMaps[(int)bookName]; }
+        private static List<PointF> ReturnFATEPoints(AnimusBookNames bookName) { return BookFATEPoints[(int)bookName]; }
 
-        private static List<string> ReturnLeveNames(AnimnusBookNames bookName) { return BookLeveNames[(int)bookName]; }
-        private static List<string> ReturnLeveTypes(AnimnusBookNames bookName) { return BookLeveTypes[(int)bookName]; }
-        private static List<string> ReturnLevePersons(AnimnusBookNames bookName) { return BookLevePersons[(int)bookName]; }
-        private static List<ArrMapNames> ReturnLeveLocations(AnimnusBookNames bookName) { return BookLeveLocations[(int)bookName]; }
-        private static List<PointF> ReturnLevePoints(AnimnusBookNames bookName) { return BookLevePoints[(int)bookName]; }
+        private static List<string> ReturnLeveNames(AnimusBookNames bookName) { return BookLeveNames[(int)bookName]; }
+        private static List<string> ReturnLeveTypes(AnimusBookNames bookName) { return BookLeveTypes[(int)bookName]; }
+        private static List<string> ReturnLevePersons(AnimusBookNames bookName) { return BookLevePersons[(int)bookName]; }
+        private static List<ArrMapNames> ReturnLeveLocations(AnimusBookNames bookName) { return BookLeveLocations[(int)bookName]; }
+        private static List<PointF> ReturnLevePoints(AnimusBookNames bookName) { return BookLevePoints[(int)bookName]; }
 
 
         private static readonly List<List<string>> BookCreatureNames = new List<List<string>>
@@ -412,7 +412,7 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers.Misc
         [Display(Name= "Coerthas Central Highlands")]
         CoerthasCentralHighlands
     }
-    public enum AnimnusBookNames
+    public enum AnimusBookNames
     {
         [Display(Name ="N/A")]
         NA,

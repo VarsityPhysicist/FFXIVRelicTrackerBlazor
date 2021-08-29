@@ -101,7 +101,7 @@ namespace FFXIVRelicTrackerBlazor.Shared._2_Arr
             get => bookBools;
             set { bookBools = value; }
         }
-        public AnimnusBookNames ActiveBook { get; set; }
+        public AnimusBookNames ActiveBook { get; set; }
 
         #region Beastmen
         private List<bool> beastMen;

@@ -26,17 +26,17 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         public Stage4ARR ThisStage { get => character.ArrExpansion.Stage4ARR; }
 
         #region Book Related
-        public AnimnusBookNames GetActiveBook()
+        public AnimusBookNames GetActiveBook()
         {
             return ThisStage.ActiveBook;
         }
-        public async Task SetActiveBook(AnimnusBookNames value)
+        public async Task SetActiveBook(AnimusBookNames value)
         {
             ThisStage.ActiveBook = value;
             await OnCharacterUpdate();
             await GetBookInfo(GetActiveBook());
             
-            if (value != AnimnusBookNames.NA)
+            if (value != AnimusBookNames.NA)
             {
                 await SetDisplayInterface(true);
             }
@@ -47,7 +47,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         }
         public async Task SetActiveBook(ChangeEventArgs e)
         {
-            if(Enum.TryParse<AnimnusBookNames>(e.Value.ToString(),out AnimnusBookNames value))
+            if(Enum.TryParse<AnimusBookNames>(e.Value.ToString(),out AnimusBookNames value))
             {
                 if (value != ThisStage.ActiveBook)
                 {
@@ -57,7 +57,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
                 await OnCharacterUpdate();
                 await GetBookInfo(GetActiveBook());
                 
-                if (value != AnimnusBookNames.NA)
+                if (value != AnimusBookNames.NA)
                 {
                     await SetDisplayInterface(true);
                 }
@@ -72,23 +72,23 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
             character.ArrExpansion.Stage4ARR = new Stage4ARR(ThisStage);
             await OnCharacterUpdate();
         }
-        public List<AnimnusBookNames> AvailableBooks;
+        public List<AnimusBookNames> AvailableBooks;
 
         private async Task GetAvailableBooks()
         {
-            List<AnimnusBookNames> ReturnList = new List<AnimnusBookNames>();
-            for (int i = 1; i <= Enum.GetValues(typeof(AnimnusBookNames)).Cast<int>().Max(); i++)
+            List<AnimusBookNames> ReturnList = new List<AnimusBookNames>();
+            for (int i = 1; i <= Enum.GetValues(typeof(AnimusBookNames)).Cast<int>().Max(); i++)
             {
                 if (!ThisStage.BookBools[i])
                 {
-                    ReturnList.Add((AnimnusBookNames)i);
+                    ReturnList.Add((AnimusBookNames)i);
                 }
             }
-            if (!ReturnList.Contains(GetActiveBook())) await SetActiveBook(AnimnusBookNames.NA);
+            if (!ReturnList.Contains(GetActiveBook())) await SetActiveBook(AnimusBookNames.NA);
             AvailableBooks = ReturnList;
         }
 
-        public bool BookSelected => GetActiveBook() != AnimnusBookNames.NA;
+        public bool BookSelected => GetActiveBook() != AnimusBookNames.NA;
 
         #endregion
         #region Map Related
@@ -146,13 +146,13 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         #region BookBools
         public bool GetSkyFire1Complete()
         {
-            return ThisStage.BookBools[(int)AnimnusBookNames.SkyFire1Book];
+            return ThisStage.BookBools[(int)AnimusBookNames.SkyFire1Book];
         }
         public async Task SetSkyFire1Complete(ChangeEventArgs e)
         {
             if (bool.TryParse(e.Value.ToString(), out bool value))
             {
-                ThisStage.BookBools[(int)AnimnusBookNames.SkyFire1Book] = value;
+                ThisStage.BookBools[(int)AnimusBookNames.SkyFire1Book] = value;
                 await GetAvailableBooks();
                 await OnCharacterUpdate();
             }
@@ -160,14 +160,14 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 
         public bool GetSkyFire2Complete()
         {
-            return ThisStage.BookBools[(int)AnimnusBookNames.SkyFire2Book];
+            return ThisStage.BookBools[(int)AnimusBookNames.SkyFire2Book];
         }
 
         public async Task SetSkyFire2Complete(ChangeEventArgs e)
         {
             if (bool.TryParse(e.Value.ToString(), out bool value))
             {
-                ThisStage.BookBools[(int)AnimnusBookNames.SkyFire2Book] = value;
+                ThisStage.BookBools[(int)AnimusBookNames.SkyFire2Book] = value;
                 await GetAvailableBooks();
                 await OnCharacterUpdate();
             }
@@ -175,14 +175,14 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 
         public bool GetNetherFire1Complete()
         {
-            return ThisStage.BookBools[(int)AnimnusBookNames.NetherFire1Book];
+            return ThisStage.BookBools[(int)AnimusBookNames.NetherFire1Book];
         }
 
         public async Task SetNetherFire1Complete(ChangeEventArgs e)
         {
             if (bool.TryParse(e.Value.ToString(), out bool value))
             {
-                ThisStage.BookBools[(int)AnimnusBookNames.NetherFire1Book] = value;
+                ThisStage.BookBools[(int)AnimusBookNames.NetherFire1Book] = value;
                 await GetAvailableBooks();
                 await OnCharacterUpdate();
             }
@@ -190,14 +190,14 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 
         public bool GetSkyFall1Complete()
         {
-            return ThisStage.BookBools[(int)AnimnusBookNames.SkyFall1Book];
+            return ThisStage.BookBools[(int)AnimusBookNames.SkyFall1Book];
         }
 
         public async Task SetSkyFall1Complete(ChangeEventArgs e)
         {
             if (bool.TryParse(e.Value.ToString(), out bool value))
             {
-                ThisStage.BookBools[(int)AnimnusBookNames.SkyFall1Book] = value;
+                ThisStage.BookBools[(int)AnimusBookNames.SkyFall1Book] = value;
                 await GetAvailableBooks();
                 await OnCharacterUpdate();
             }
@@ -205,14 +205,14 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 
         public bool GetSkyFall2Complete()
         {
-            return ThisStage.BookBools[(int)AnimnusBookNames.SkyFall2Book];
+            return ThisStage.BookBools[(int)AnimusBookNames.SkyFall2Book];
         }
 
         public async Task SetSkyFall2Complete(ChangeEventArgs e)
         {
             if (bool.TryParse(e.Value.ToString(), out bool value))
             {
-                ThisStage.BookBools[(int)AnimnusBookNames.SkyFall2Book] = value;
+                ThisStage.BookBools[(int)AnimusBookNames.SkyFall2Book] = value;
                 await GetAvailableBooks();
                 await OnCharacterUpdate();
             }
@@ -220,14 +220,14 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 
         public bool GetNetherFall1Complete()
         {
-            return ThisStage.BookBools[(int)AnimnusBookNames.NetherFall1Book];
+            return ThisStage.BookBools[(int)AnimusBookNames.NetherFall1Book];
         }
 
         public async Task SetNetherFall1Complete(ChangeEventArgs e)
         {
             if (bool.TryParse(e.Value.ToString(), out bool value))
             {
-                ThisStage.BookBools[(int)AnimnusBookNames.NetherFall1Book] = value;
+                ThisStage.BookBools[(int)AnimusBookNames.NetherFall1Book] = value;
                 await GetAvailableBooks();
                 await OnCharacterUpdate();
             }
@@ -235,14 +235,14 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 
         public bool GetSkyWind1Complete()
         {
-            return ThisStage.BookBools[(int)AnimnusBookNames.SkyWind1Book];
+            return ThisStage.BookBools[(int)AnimusBookNames.SkyWind1Book];
         }
 
         public async Task SetSkyWind1Complete(ChangeEventArgs e)
         {
             if (bool.TryParse(e.Value.ToString(), out bool value))
             {
-                ThisStage.BookBools[(int)AnimnusBookNames.SkyWind1Book] = value;
+                ThisStage.BookBools[(int)AnimusBookNames.SkyWind1Book] = value;
                 await GetAvailableBooks();
                 await OnCharacterUpdate();
             }
@@ -250,14 +250,14 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 
         public bool GetSkyWind2Complete()
         {
-            return ThisStage.BookBools[(int)AnimnusBookNames.SkyWind2Book];
+            return ThisStage.BookBools[(int)AnimusBookNames.SkyWind2Book];
         }
 
         public async Task SetSkyWind2Complete(ChangeEventArgs e)
         {
             if (bool.TryParse(e.Value.ToString(), out bool value))
             {
-                ThisStage.BookBools[(int)AnimnusBookNames.SkyWind2Book] = value;
+                ThisStage.BookBools[(int)AnimusBookNames.SkyWind2Book] = value;
                 await GetAvailableBooks();
                 await OnCharacterUpdate();
             }
@@ -265,14 +265,14 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 
         public bool GetSkyEarth1Complete()
         {
-            return ThisStage.BookBools[(int)AnimnusBookNames.SkyEarth1Book];
+            return ThisStage.BookBools[(int)AnimusBookNames.SkyEarth1Book];
         }
 
         public async Task SetSkyEarth1Complete(ChangeEventArgs e)
         {
             if(bool.TryParse(e.Value.ToString(),out bool value))
             {
-                ThisStage.BookBools[(int)AnimnusBookNames.SkyEarth1Book] = value;
+                ThisStage.BookBools[(int)AnimusBookNames.SkyEarth1Book] = value;
                 await GetAvailableBooks();
                 await OnCharacterUpdate();
             }
@@ -652,7 +652,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
             await OnCharacterUpdate();
         }
 
-        private async Task GetBookInfo(AnimnusBookNames animnusBookName)
+        private async Task GetBookInfo(AnimusBookNames animnusBookName)
         {
             if (BookSelected)
             {
@@ -683,22 +683,22 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
                 }
             }
         }
-        private static List<MapItem> GetCreatures(AnimnusBookNames animnusBookName)
+        private static List<MapItem> GetCreatures(AnimusBookNames animnusBookName)
         {
             List<MapItem> returnList = MiscArr.ReturnCreatures(animnusBookName);
             return returnList;
         }
-        private static List<MapItem> GetLeves(AnimnusBookNames animnusBookName)
+        private static List<MapItem> GetLeves(AnimusBookNames animnusBookName)
         {
             List<MapItem> returnList = MiscArr.ReturnLeves(animnusBookName);
             return returnList;
         }
-        private static List<MapItem> GetFates(AnimnusBookNames animnusBookName)
+        private static List<MapItem> GetFates(AnimusBookNames animnusBookName)
         {
             List<MapItem> returnList = MiscArr.ReturnFATEs(animnusBookName);
             return returnList;
         }
-        private static List<string> GetDungeons(AnimnusBookNames animnusBookName)
+        private static List<string> GetDungeons(AnimusBookNames animnusBookName)
         {
             List<string> returnList = MiscArr.ReturnBookDungeons(animnusBookName);
             return returnList;

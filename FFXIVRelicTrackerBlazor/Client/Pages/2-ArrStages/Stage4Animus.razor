@@ -39,50 +39,50 @@
                 <div class="stack-vertical">
                     <div class="stack-horizontal">
                         <input type="checkbox" checked="@GetSkyFire1Complete()" @onchange="SetSkyFire1Complete" />
-                        <span style="@returnDec(!GetSkyFire1Complete())">@GetEnumDisplayName(AnimnusBookNames.SkyFire1Book)</span>
+                        <span style="@returnDec(!GetSkyFire1Complete())">@GetEnumDisplayName(AnimusBookNames.SkyFire1Book)</span>
                     </div>
                     <div class="stack-horizontal">
                         <input type="checkbox" checked="@GetSkyFire2Complete()" @onchange="SetSkyFire2Complete" />
-                        <span style="@returnDec(!GetSkyFire2Complete())">@GetEnumDisplayName(AnimnusBookNames.SkyFire2Book)</span>
+                        <span style="@returnDec(!GetSkyFire2Complete())">@GetEnumDisplayName(AnimusBookNames.SkyFire2Book)</span>
                     </div>
                     <div class="stack-horizontal">
                         <input type="checkbox" checked="@GetNetherFire1Complete()" @onchange="SetNetherFire1Complete" />
-                        <span style="@returnDec(!GetNetherFire1Complete())">@GetEnumDisplayName(AnimnusBookNames.NetherFire1Book)</span>
+                        <span style="@returnDec(!GetNetherFire1Complete())">@GetEnumDisplayName(AnimusBookNames.NetherFire1Book)</span>
                     </div>
                 </div>
                 <div class="stack-vertical">
                     <div class="stack-horizontal">
                         <input type="checkbox" checked="@GetSkyFall1Complete()" @onchange="SetSkyFall1Complete" />
-                        <span style="@returnDec(!GetSkyFall1Complete())">@GetEnumDisplayName(AnimnusBookNames.SkyFall1Book)</span>
+                        <span style="@returnDec(!GetSkyFall1Complete())">@GetEnumDisplayName(AnimusBookNames.SkyFall1Book)</span>
                     </div>
                     <div class="stack-horizontal">
                         <input type="checkbox" checked="@GetSkyFall2Complete()" @onchange="SetSkyFall2Complete" />
-                        <span style="@returnDec(!GetSkyFall2Complete())">@GetEnumDisplayName(AnimnusBookNames.SkyFall2Book)</span>
+                        <span style="@returnDec(!GetSkyFall2Complete())">@GetEnumDisplayName(AnimusBookNames.SkyFall2Book)</span>
                     </div>
                     <div class="stack-horizontal">
                         <input type="checkbox" checked="@GetNetherFall1Complete()" @onchange="SetNetherFall1Complete" />
-                        <span style="@returnDec(!GetNetherFall1Complete())">@GetEnumDisplayName(AnimnusBookNames.NetherFall1Book)</span>
+                        <span style="@returnDec(!GetNetherFall1Complete())">@GetEnumDisplayName(AnimusBookNames.NetherFall1Book)</span>
                     </div>
                 </div>
                 <div class="stack-vertical">
                     <div class="stack-horizontal">
                         <input type="checkbox" checked="@GetSkyWind1Complete()" @onchange="SetSkyWind1Complete" />
-                        <span style="@returnDec(!GetSkyWind1Complete())">@GetEnumDisplayName(AnimnusBookNames.SkyWind1Book)</span>
+                        <span style="@returnDec(!GetSkyWind1Complete())">@GetEnumDisplayName(AnimusBookNames.SkyWind1Book)</span>
                     </div>
                     <div class="stack-horizontal">
                         <input type="checkbox" checked="@GetSkyWind2Complete()" @onchange="SetSkyWind2Complete" />
-                        <span style="@returnDec(!GetSkyWind2Complete())">@GetEnumDisplayName(AnimnusBookNames.SkyWind2Book)</span>
+                        <span style="@returnDec(!GetSkyWind2Complete())">@GetEnumDisplayName(AnimusBookNames.SkyWind2Book)</span>
                     </div>
                     <div class="stack-horizontal">
                         <input type="checkbox" checked="@GetSkyEarth1Complete()" @onchange="SetSkyEarth1Complete" />
-                        <span style="@returnDec(!GetSkyEarth1Complete())">@GetEnumDisplayName(AnimnusBookNames.SkyEarth1Book)</span>
+                        <span style="@returnDec(!GetSkyEarth1Complete())">@GetEnumDisplayName(AnimusBookNames.SkyEarth1Book)</span>
                     </div>
                 </div>
             </div>
             <div class="stack-horizontal">
                 <span>Selected book:</span>
                 <select value="@GetActiveBook()" @onchange="SetActiveBook">
-                    <option value="@AnimnusBookNames.NA">@AnimnusBookNames.NA</option>
+                    <option value="@AnimusBookNames.NA">@AnimusBookNames.NA</option>
                     @foreach (var book in AvailableBooks)
                     {
                         <option value="@book">@GetEnumDisplayName(@book)</option>
