@@ -42,22 +42,134 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._3_HWStages
         public async Task SetTreated(ChangeEventArgs e) { if (int.TryParse(e.Value.ToString(), out int value)) { ThisStage.TreatedSand = value; await OnCharacterUpdate(); } }
         public async Task IncreasTreated(int value)
         {
-            ThisStage.Umbrite -= value;
-            ThisStage.CrystalSand -= value;
+            ThisStage.Umbrite -= 1;
+            ThisStage.CrystalSand -= 1;
             ThisStage.TreatedSand += value;
             await OnCharacterUpdate();
         }
         #endregion
         #region Remaining
-        public string RemainingUmbrite => FormatNumber(FilterLow(60 - Umbrite)) + "-" + FormatNumber(FilterLow(80 - Umbrite));
-        public string RemainingSand => FormatNumber(FilterLow(60 - Sand)) + "-" + FormatNumber(FilterLow(80 - Sand));
+        public string RemainingUmbrite => FormatNumber(lowRemainingUmbrite) + "-" + FormatNumber(highRemainingUmbrite);
+        public string RemainingSand => FormatNumber(lowRemainingSand) + "-" + FormatNumber(highRemainingSand);
         public int RemainingTreated => FilterLow(240 - TreatedSand);
+        private int highRemainingUmbrite
+        {
+            get
+            {
+                if (TreatedSand < 120)
+                {
+                    return FilterLow((int)Math.Ceiling(40 + (120 - TreatedSand) / 3.0) - Umbrite);
+                }
+                else
+                {
+                    return FilterLow((int)Math.Ceiling((240 - TreatedSand) / 3.0) - Umbrite);
+                }
+            }
+        }
+        private int lowRemainingUmbrite
+        {
+            get
+            {
+                if (TreatedSand < 120)
+                {
+                    return FilterLow((int)Math.Ceiling(20 + (120 - TreatedSand) / 3.0) - Umbrite);
+                }
+                else
+                {
+                    return FilterLow((int)Math.Ceiling((240 - TreatedSand) / 6.0) - Umbrite);
+                }
+            }
+        }
+        private int highRemainingSand
+        {
+            get
+            {
+                if (TreatedSand < 120)
+                {
+                    return FilterLow((int)Math.Ceiling(40 + (120 - TreatedSand) / 3.0) - Sand);
+                }
+                else
+                {
+                    return FilterLow((int)Math.Ceiling((240 - TreatedSand) / 3.0) - Sand);
+                }
+            }
+        }
+        private int lowRemainingSand
+        {
+            get
+            {
+                if (TreatedSand < 120)
+                {
+                    return FilterLow((int)Math.Ceiling(20 + (120 - TreatedSand) / 3.0) - Sand);
+                }
+                else
+                {
+                    return FilterLow((int)Math.Ceiling((240 - TreatedSand) / 6.0) - Sand);
+                }
+            }
+        }
+        private int highTotalRemainingUmbrite
+        {
+            get
+            {
+                if (TreatedSand < 120)
+                {
+                    return FilterLow((int)Math.Ceiling(40 + (120 - TreatedSand) / 3.0) - Umbrite + (RemainingJobs - 1) * 80);
+                }
+                else
+                {
+                    return FilterLow((int)Math.Ceiling((240 - TreatedSand) / 3.0) - Umbrite + (RemainingJobs - 1) * 80);
+                }
+            }
+        }
+        private int lowTotalRemainingUmbrite
+        {
+            get
+            {
+                if (TreatedSand < 120)
+                {
+                    return FilterLow((int)Math.Ceiling(20 + (120 - TreatedSand) / 3.0) - Umbrite + (RemainingJobs - 1) * 60);
+                }
+                else
+                {
+                    return FilterLow((int)Math.Ceiling((240 - TreatedSand) / 6.0) - Umbrite + (RemainingJobs - 1) * 60);
+                }
+            }
+        }
+        private int highTotalRemainingSand
+        {
+            get
+            {
+                if (TreatedSand < 120)
+                {
+                    return FilterLow((int)Math.Ceiling(40 + (120 - TreatedSand) / 3.0) - Sand + (RemainingJobs - 1) * 80);
+                }
+                else
+                {
+                    return FilterLow((int)Math.Ceiling((240 - TreatedSand) / 3.0) - Sand + (RemainingJobs - 1) * 80);
+                }
+            }
+        }
+        private int lowTotalRemainingSand
+        {
+            get
+            {
+                if (TreatedSand < 120)
+                {
+                    return FilterLow((int)Math.Ceiling(20 + (120 - TreatedSand) / 3.0) - Sand + (RemainingJobs - 1) * 60);
+                }
+                else
+                {
+                    return FilterLow((int)Math.Ceiling((240 - TreatedSand) / 6.0) - Sand + (RemainingJobs - 1) * 60);
+                }
+            }
+        }
 
-        public string TotalUmbrite => FormatNumber(FilterLow(RemainingJobs * 60 - Umbrite)) + "-" + FormatNumber(FilterLow(RemainingJobs * 80 - Umbrite));
-        public string TotalSand => FormatNumber(FilterLow(RemainingJobs * 60 - Sand)) + "-" + FormatNumber(FilterLow(RemainingJobs * 80 - Sand));
+        public string TotalUmbrite => FormatNumber(lowTotalRemainingUmbrite) + "-" + FormatNumber(highTotalRemainingUmbrite);
+        public string TotalSand => FormatNumber(lowTotalRemainingSand) + "-" + FormatNumber(highTotalRemainingSand);
         public int TotalTreated => FilterLow(240 * RemainingJobs - TreatedSand);
 
-        public string RemainingPoetics => FormatNumber(FilterLow(RemainingJobs * 60 * 75 - Umbrite)) + "-" + FormatNumber(FilterLow(RemainingJobs * 80 * 75 - Umbrite));
+        public string RemainingPoetics => FormatNumber(lowTotalRemainingUmbrite * 75) + "-" + FormatNumber(highTotalRemainingUmbrite * 75);
         #endregion
     }
 }
