@@ -1,8 +1,9 @@
 ﻿@inherits LayoutComponentBase
 <div class="page">
-    <div class="sidebar">
+    <div class="sidebar" style="overflow:auto;">
         <NavMenu />
     </div>
+
 
     <div class="main">
         <div class="content px-4">
@@ -12,32 +13,45 @@
 </div>
 <style>
     .weapon-purple {
-        color:rebeccapurple;
+        color: rebeccapurple;
     }
+    .weapon-blue {
+        color: royalblue;
+    }
+
+    .golden-border {
+        padding:5px;
+        border:solid;
+        border-radius:10px;
+        border-color:darkgoldenrod
+    }
+
     button {
         border-radius: 10px
     }
 
     body {
-        background-color: #312f31 !important;
-    }
-    
-    div{
-        color:gray !important;
-    }
-    select{
-        background-color:darkgray;
-        border-radius:20px;
-    }
-    .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
-        color:lightgray
+        background-color: #2d2d2d !important;
     }
 
-    a, .btn-link{
-        color:steelblue
+    div {
+        color: gray !important;
     }
-    button,input{
-        background-color:darkgray
+
+    select {
+        background-color: darkgray;
+        border-radius: 20px;
     }
-    
+
+    .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+        color: lightgray
+    }
+
+    a, .btn-link {
+        color: steelblue
+    }
+
+    button, input {
+        background-color: darkgray
+    }
 </style>
