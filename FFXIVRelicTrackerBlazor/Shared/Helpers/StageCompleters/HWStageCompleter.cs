@@ -107,17 +107,10 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers.StageCompleters
         }
         private static void CompleteStage5(JobName Job)
         {
-            if (adjustCount)
-            {
-                hwExpansion.Stage5HW.Umbrite -= 80;
-                hwExpansion.Stage5HW.CrystalSand -= 80;
-            }
-            
             if (hwExpansion.Stage5HW.ActiveJob == Job)
             {
                 hwExpansion.Stage5HW.TreatedSand = 0;
             }
-
         }
         private static void CompleteStage6(JobName Job)
         {
