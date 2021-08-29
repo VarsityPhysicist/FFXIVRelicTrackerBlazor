@@ -32,11 +32,11 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             get
             {
-                if (GetActiveJob() != JobName.NA)
+                if (GetActiveJob != JobName.NA)
                 {
-                    if (GetActiveJob() == JobName.PLD) return MiscArr.GetArrRelicName(GetActiveJob()) + " Nexus & Holy Shield Nexus";
+                    if (GetActiveJob == JobName.PLD) return MiscArr.GetArrRelicName(GetActiveJob) + " Nexus & Holy Shield Nexus";
                     else
-                        return MiscArr.GetArrRelicName(GetActiveJob()) + " Nexus";
+                        return MiscArr.GetArrRelicName(GetActiveJob) + " Nexus";
                 }
 
                 return "Relic Weapon Nexus";
@@ -46,12 +46,12 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             get
             {
-                if (GetActiveJob() != JobName.NA)
+                if (GetActiveJob != JobName.NA)
                 {
-                    if (GetActiveJob() == JobName.PLD)
-                        return MiscArr.GetArrZodiacName(GetActiveJob()) + " & Aegis Shield";
+                    if (GetActiveJob == JobName.PLD)
+                        return MiscArr.GetArrZodiacName(GetActiveJob) + " & Aegis Shield";
                     else
-                        return MiscArr.GetArrZodiacName(GetActiveJob()) + "";
+                        return MiscArr.GetArrZodiacName(GetActiveJob) + "";
                 }
 
                 return "Zodiac Braves Weapon";

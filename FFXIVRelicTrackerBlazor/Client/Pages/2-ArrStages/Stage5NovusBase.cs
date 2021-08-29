@@ -66,15 +66,15 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
                 await OnCharacterUpdate();
             }
         }
-        public bool DisplaySecondary => GetActiveJob() == JobName.PLD;
+        public bool DisplaySecondary => GetActiveJob == JobName.PLD;
         public int RemainingMax => RemainingJobs * 75;
         public int RemainingAlexandrite => Math.Max(RemainingJobs * 75 - GetAlexandriteCount() - TotalMelded, 0);
         public override string PreviousWeaponName
         {
             get
             {
-                if (GetActiveJob() != JobName.NA)
-                    return MiscArr.GetArrRelicName(GetActiveJob()) + " Animus";
+                if (GetActiveJob != JobName.NA)
+                    return MiscArr.GetArrRelicName(GetActiveJob) + " Animus";
 
                 return "Relic Weapon Animus";
             }
@@ -83,8 +83,8 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             get
             {
-                if (GetActiveJob() != JobName.NA)
-                    return MiscArr.GetArrRelicName(GetActiveJob()) + " Novus";
+                if (GetActiveJob != JobName.NA)
+                    return MiscArr.GetArrRelicName(GetActiveJob) + " Novus";
 
                 return "Relic Weapon Novus";
             }

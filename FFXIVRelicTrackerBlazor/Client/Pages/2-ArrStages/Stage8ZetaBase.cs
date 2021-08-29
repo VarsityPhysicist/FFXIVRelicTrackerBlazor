@@ -27,12 +27,12 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             get
             {
-                if (GetActiveJob() != JobName.NA)
+                if (GetActiveJob != JobName.NA)
                 {
-                    if (GetActiveJob() == JobName.PLD)
-                        return MiscArr.GetArrZodiacName(GetActiveJob()) + " & Aegis Shield";
+                    if (GetActiveJob == JobName.PLD)
+                        return MiscArr.GetArrZodiacName(GetActiveJob) + " & Aegis Shield";
                     else
-                        return MiscArr.GetArrZodiacName(GetActiveJob()) + "";
+                        return MiscArr.GetArrZodiacName(GetActiveJob) + "";
                 }
 
                 return "Zodiac Braves Weapon";
@@ -42,12 +42,12 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             get
             {
-                if (GetActiveJob() != JobName.NA)
+                if (GetActiveJob != JobName.NA)
                 {
-                    if (GetActiveJob() == JobName.PLD)
-                        return MiscArr.GetArrZodiacName(GetActiveJob()) + "Zeta  & Aegis Shield Zeta";
+                    if (GetActiveJob == JobName.PLD)
+                        return MiscArr.GetArrZodiacName(GetActiveJob) + "Zeta  & Aegis Shield Zeta";
                     else
-                        return MiscArr.GetArrZodiacName(GetActiveJob()) + "";
+                        return MiscArr.GetArrZodiacName(GetActiveJob) + "";
                 }
 
                 return "Zodiac Weapon Zeta";

@@ -13,7 +13,7 @@
                 <div>@character.Name</div>
                 <div class="stack-horizontal">
                     <span>Selected Job: </span>
-                    <select value="@GetActiveJob()" @onchange="SetActiveJob">
+                    <select value="@GetActiveJob" @onchange="SetActiveJob">
                         @foreach (var job in JobNames)
                         {
                             <option value="@job">@job</option>

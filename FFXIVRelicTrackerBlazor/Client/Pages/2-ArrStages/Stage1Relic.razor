@@ -13,7 +13,7 @@
                 <div class="stack-horizontal">
                     <span>Selected Job: </span>
                     @*<select @bind-value="@ActiveJob"  @bind-value:event="SetActiveJob"  >*@
-                    <select value="@GetActiveJob()" @onchange="SetActiveJob">
+                    <select value="@GetActiveJob" @onchange="SetActiveJob">
                         @foreach (var job in JobNames)
                         {
                             <option value="@job">@job</option>
@@ -69,7 +69,7 @@
                         <a href="https://ffxiv.gamerescape.com/wiki/A_Relic_Reborn:_The_Chimera" target="_blank" rel="noopener noreferrer">
                             'A Relic Reborn: The Chimera'
                         </a>
-                        as an @GetActiveJob() and return to Gerolt.
+                        as an @GetActiveJob and return to Gerolt.
                     </div>
                 </div>
                 <div>
@@ -78,7 +78,7 @@
                         <input type="checkbox" checked="@GetAmdaporCompleted()" @onchange="SetAmdaporCompleted" />
                     </div>
                     <div style="@returnDec(!@GetAmdaporCompleted())">Speak to Rowena in Mor Dona</div>
-                    <div style="@returnDec(!@GetAmdaporCompleted())">Retrive an Amdapor Glyph by completing Amdapor Keep (Can run unsynced) as a @GetActiveJob()</div>
+                    <div style="@returnDec(!@GetAmdaporCompleted())">Retrive an Amdapor Glyph by completing Amdapor Keep (Can run unsynced) as a @GetActiveJob</div>
                     <div style="@returnDec(!@GetAmdaporCompleted())">Deliver Glyph to Rowena in Mor Dona and return to Gerolt with the book</div>
                 </div>
                 <div>
@@ -115,21 +115,21 @@
                         <h3>Part 7: Ifrit</h3>
                         <input type="checkbox" checked="@GetIfritComplete()" @onchange="SetIfritComplete" />
                     </div>
-                    <div style="@returnDec(!@GetIfritComplete())">As a <a>@GetActiveJob()</a>, complete the trial 'The Bowl of Embers (Hard)' and speak to Gerolt</div>
+                    <div style="@returnDec(!@GetIfritComplete())">As a <a>@GetActiveJob</a>, complete the trial 'The Bowl of Embers (Hard)' and speak to Gerolt</div>
                 </div>
                 <div>
                     <div class="stack-horizontal">
                         <h3>Part 8: Garuda</h3>
                         <input type="checkbox" checked="@GetGarudaComplete()" @onchange="SetGarudaComplete" />
                     </div>
-                    <div style="@returnDec(!@GetGarudaComplete())">As a <a>@GetActiveJob()</a>, complete the trial 'The Howling Eye (Hard)' and speak to Gerolt</div>
+                    <div style="@returnDec(!@GetGarudaComplete())">As a <a>@GetActiveJob</a>, complete the trial 'The Howling Eye (Hard)' and speak to Gerolt</div>
                 </div>
                 <div>
                     <div class="stack-horizontal">
                         <h3>Part 9: Titan</h3>
                         <input type="checkbox" checked="@GetTitanComplete()" @onchange="SetTitanComplete" />
                     </div>
-                    <div style="@returnDec(!@GetTitanComplete())">As a <a>@GetActiveJob()</a>, complete the trial 'The Navel (Hard)' and speak to Gerolt</div>
+                    <div style="@returnDec(!@GetTitanComplete())">As a <a>@GetActiveJob</a>, complete the trial 'The Navel (Hard)' and speak to Gerolt</div>
                 </div>
                 <div>
                     <div class="stack-horizontal">

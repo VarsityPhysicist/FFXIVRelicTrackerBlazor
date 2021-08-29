@@ -37,12 +37,12 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         public Stage1ARR ThisStage { get => character.ArrExpansion.Stage1ARR; }
         private async Task SetRelicStage(ArrRelicStage arrRelicStage, bool newValue)
         {
-            if (GetArrRelicStage() < arrRelicStage && newValue)
+            if (ArrRelicStage < arrRelicStage && newValue)
             {
                 await SetArrRelicStage(arrRelicStage);
                 StateHasChanged();
             }
-            else if (GetArrRelicStage() >= arrRelicStage && !newValue)
+            else if (ArrRelicStage >= arrRelicStage && !newValue)
             {
                 await SetArrRelicStage(arrRelicStage - 1);
                 StateHasChanged();
@@ -50,19 +50,15 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         }
 
         #region Model Properties
-        public ArrRelicStage GetArrRelicStage()
-        {
-            return ThisStage.ArrRelicStage;
-        }
+        public ArrRelicStage ArrRelicStage => ThisStage.ArrRelicStage;
 
         public async Task SetArrRelicStage(ArrRelicStage value)
         {
-            if (GetArrRelicStage() != value)
+            if (ArrRelicStage != value)
             {
                 ThisStage.ArrRelicStage = value;
                 await OnCharacterUpdate();
             }
-
         }
 
         public bool GetBrokenWeapon()
@@ -70,88 +66,55 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
             return Stage1;
         }
 
-        public async Task SetBrokenWeapon(ChangeEventArgs e)
-        {
-            bool value = (bool)e.Value;
-            await SetRelicStage(ArrRelicStage.Stage1, value);
-        }
-
+        public async Task SetBrokenWeapon(ChangeEventArgs e) { if(bool.TryParse(e.Value.ToString(),out bool value)) { await SetRelicStage(ArrRelicStage.Stage1, value); } }
         public bool GetMeldedWeapon()
         {
             return Stage2;
         }
 
-        public async Task SetMeldedWeapon(ChangeEventArgs e)
-        {
-            bool value = (bool)e.Value;
-            await SetRelicStage(ArrRelicStage.Stage2, value);
-        }
+        public async Task SetMeldedWeapon(ChangeEventArgs e) { if (bool.TryParse(e.Value.ToString(), out bool value)) { await SetRelicStage(ArrRelicStage.Stage2, value); } }
 
         public bool GetSaltsAcquired()
         {
             return Stage3;
         }
 
-        public async Task SetSaltsAcquired(ChangeEventArgs e)
-        {
-            bool value = (bool)e.Value;
-            await SetRelicStage(ArrRelicStage.Stage3, value);
-        }
+        public async Task SetSaltsAcquired(ChangeEventArgs e) { if (bool.TryParse(e.Value.ToString(), out bool value)) { await SetRelicStage(ArrRelicStage.Stage3, value); } }
 
         public bool GetAmdaporCompleted()
         {
             return Stage4;
         }
 
-        public async Task SetAmdaporCompleted(ChangeEventArgs e)
-        {
-            bool value = (bool)e.Value;
-            await SetRelicStage(ArrRelicStage.Stage4, value);
-        }
+        public async Task SetAmdaporCompleted(ChangeEventArgs e) { if (bool.TryParse(e.Value.ToString(), out bool value)) { await SetRelicStage(ArrRelicStage.Stage4, value); } }
 
         public bool GetHydraComplete()
         {
             return Stage6;
         }
 
-        public async Task SetHydraComplete(ChangeEventArgs e)
-        {
-            bool value = (bool)e.Value;
-            await SetRelicStage(ArrRelicStage.Stage6, value);
-        }
+        public async Task SetHydraComplete(ChangeEventArgs e) { if (bool.TryParse(e.Value.ToString(), out bool value)) { await SetRelicStage(ArrRelicStage.Stage6, value); } }
 
         public bool GetIfritComplete()
         {
             return Stage7;
         }
 
-        public async Task SetIfritComplete(ChangeEventArgs e)
-        {
-            bool value = (bool)e.Value;
-            await SetRelicStage(ArrRelicStage.Stage7, value);
-        }
+        public async Task SetIfritComplete(ChangeEventArgs e) { if (bool.TryParse(e.Value.ToString(), out bool value)) { await SetRelicStage(ArrRelicStage.Stage7, value); } }
 
         public bool GetGarudaComplete()
         {
             return Stage8;
         }
 
-        public async Task SetGarudaComplete(ChangeEventArgs e)
-        {
-            bool value = (bool)e.Value;
-            await SetRelicStage(ArrRelicStage.Stage8, value);
-        }
+        public async Task SetGarudaComplete(ChangeEventArgs e) { if (bool.TryParse(e.Value.ToString(), out bool value)) { await SetRelicStage(ArrRelicStage.Stage8, value); } }
 
         public bool GetTitanComplete()
         {
             return Stage9;
         }
 
-        public async Task SetTitanComplete(ChangeEventArgs e)
-        {
-            bool value = (bool)e.Value;
-            await SetRelicStage(ArrRelicStage.Stage9, value);
-        }
+        public async Task SetTitanComplete(ChangeEventArgs e) { if (bool.TryParse(e.Value.ToString(), out bool value)) { await SetRelicStage(ArrRelicStage.Stage9, value); } }
 
         public bool GetCompletedBeast1()
         {
@@ -206,22 +169,14 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
             return Stage5;
         }
 
-        public async Task SetCompletedBeasts(ChangeEventArgs e)
-        {
-            bool value = (bool)e.Value;
-            await SetRelicStage(ArrRelicStage.Stage5, value);
-        }
+        public async Task SetCompletedBeasts(ChangeEventArgs e) { if (bool.TryParse(e.Value.ToString(), out bool value)) { await SetRelicStage(ArrRelicStage.Stage5, value); } }
 
         public bool GetQuenchingComplete()
         {
             return Stage10;
         }
 
-        public async Task SetQuenchingComplete(ChangeEventArgs e)
-        {
-            bool value = (bool)e.Value;
-            await SetRelicStage(ArrRelicStage.Stage10, value);
-        }
+        public async Task SetQuenchingComplete(ChangeEventArgs e) { if (bool.TryParse(e.Value.ToString(), out bool value)) { await SetRelicStage(ArrRelicStage.Stage10, value); } }
 
         #endregion
 
@@ -230,8 +185,8 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             get
             {
-                if (GetActiveJob() != JobName.NA)
-                    return MiscArr.GetArrMap(GetActiveJob());
+                if (GetActiveJob != JobName.NA)
+                    return MiscArr.GetArrMap(GetActiveJob);
 
                 return "";
             }
@@ -240,7 +195,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             get
             {
-                if (GetActiveJob() != JobName.NA)
+                if (GetActiveJob != JobName.NA)
                     return BrokenLocation.X / 41 * 200;
 
                 return 0.0;
@@ -250,7 +205,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             get
             {
-                if (GetActiveJob() != JobName.NA)
+                if (GetActiveJob != JobName.NA)
                     return BrokenLocation.Y / 41 * 200;
 
                 return 0.0;
@@ -261,7 +216,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             get
             {
-                if (GetActiveJob() != JobName.NA)
+                if (GetActiveJob != JobName.NA)
                     return 0.5;
 
                 return 0.0;
@@ -272,8 +227,8 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             get
             {
-                if (GetActiveJob() != JobName.NA)
-                    return MiscArr.GetArrBrokenLocation(GetActiveJob());
+                if (GetActiveJob != JobName.NA)
+                    return MiscArr.GetArrBrokenLocation(GetActiveJob);
 
                 return new PointF();
             }
@@ -285,8 +240,8 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             get
             {
-                if (GetActiveJob() != JobName.NA)
-                    return MiscArr.GetArrRelicMat(GetActiveJob());
+                if (GetActiveJob != JobName.NA)
+                    return MiscArr.GetArrRelicMat(GetActiveJob);
 
                 return "N/A";
             }
@@ -295,8 +250,8 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             get
             {
-                if (GetActiveJob() != JobName.NA)
-                    return MiscArr.GetArrRelicMateria(GetActiveJob());
+                if (GetActiveJob != JobName.NA)
+                    return MiscArr.GetArrRelicMateria(GetActiveJob);
 
                 return "N/A";
             }
@@ -305,8 +260,8 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             get
             {
-                if (GetActiveJob() != JobName.NA)
-                    return MiscArr.GetArrRelicName(GetActiveJob());
+                if (GetActiveJob != JobName.NA)
+                    return MiscArr.GetArrRelicName(GetActiveJob);
 
                 return "N/A";
             }
@@ -318,8 +273,8 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             get
             {
-                if (GetActiveJob() != JobName.NA)
-                    return MiscArr.GetArrBeastmen(GetActiveJob());
+                if (GetActiveJob != JobName.NA)
+                    return MiscArr.GetArrBeastmen(GetActiveJob);
 
                 return new List<string>() { "", "", "" };
             }
@@ -333,7 +288,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             get
             {
-                if (GetActiveJob() != JobName.NA)
+                if (GetActiveJob != JobName.NA)
                     return "A Relic Reborn (" + WeaponName +")";
 
                 return "";
@@ -343,7 +298,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         {
             get
             {
-                if (GetActiveJob() != JobName.NA)
+                if (GetActiveJob != JobName.NA)
                     return "https://ffxiv.gamerescape.com/wiki/" + QuestName.Replace(" ", "_");
 
                 return "";
@@ -351,17 +306,17 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
         }
         #region Stage Bools
 
-        private bool Stage0 { get => GetArrRelicStage() >= ArrRelicStage.Stage0; }
-        private bool Stage1 { get => GetArrRelicStage() >= ArrRelicStage.Stage1; }
-        private bool Stage2 { get => GetArrRelicStage() >= ArrRelicStage.Stage2; }
-        private bool Stage3 { get => GetArrRelicStage() >= ArrRelicStage.Stage3; }
-        private bool Stage4 { get => GetArrRelicStage() >= ArrRelicStage.Stage4; }
-        private bool Stage5 { get => GetArrRelicStage() >= ArrRelicStage.Stage5; }
-        private bool Stage6 { get => GetArrRelicStage() >= ArrRelicStage.Stage6; }
-        private bool Stage7 { get => GetArrRelicStage() >= ArrRelicStage.Stage7; }
-        private bool Stage8 { get => GetArrRelicStage() >= ArrRelicStage.Stage8; }
-        private bool Stage9 { get => GetArrRelicStage() >= ArrRelicStage.Stage9; }
-        private bool Stage10 { get => GetArrRelicStage() >= ArrRelicStage.Stage10; }
+        private bool Stage0 { get => ArrRelicStage >= ArrRelicStage.Stage0; }
+        private bool Stage1 { get => ArrRelicStage >= ArrRelicStage.Stage1; }
+        private bool Stage2 { get => ArrRelicStage >= ArrRelicStage.Stage2; }
+        private bool Stage3 { get => ArrRelicStage >= ArrRelicStage.Stage3; }
+        private bool Stage4 { get => ArrRelicStage >= ArrRelicStage.Stage4; }
+        private bool Stage5 { get => ArrRelicStage >= ArrRelicStage.Stage5; }
+        private bool Stage6 { get => ArrRelicStage >= ArrRelicStage.Stage6; }
+        private bool Stage7 { get => ArrRelicStage >= ArrRelicStage.Stage7; }
+        private bool Stage8 { get => ArrRelicStage >= ArrRelicStage.Stage8; }
+        private bool Stage9 { get => ArrRelicStage >= ArrRelicStage.Stage9; }
+        private bool Stage10 { get => ArrRelicStage >= ArrRelicStage.Stage10; }
 
         public override string PreviousWeaponName => throw new NotImplementedException();
 
