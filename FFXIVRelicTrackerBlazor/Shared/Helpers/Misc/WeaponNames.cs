@@ -22,21 +22,79 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers.Misc
         #region HW Weapons
         private static string GetHWWeapon(JobName job, int stageIndex)
         {
-            if (stageIndex < (int)HWStages.Reconditioned)
+            string modifier = Enum.GetName(typeof(HWStages), stageIndex);
+            if (job == JobName.NA)
             {
-                return InitialHWWeapon(job);
+                return modifier + " Weapon";
+            }
+            string tempWeapon = string.Empty;
+
+            if (stageIndex < (int)HWStages.Anima)
+            {
+                tempWeapon= InitialHWWeapon(job);
+            }
+            else if (stageIndex < (int)HWStages.Reconditioned)
+            {
+                tempWeapon= SecondHWWeapon(job);
             }
             else if (stageIndex < (int)HWStages.Complete)
             {
-                return SecondHWWeapon(job);
+                tempWeapon= ThirdHWWeapon(job);
             }
             else
             {
-                return FinalHWWeapon(job);
+                tempWeapon= FinalHWWeapon(job);
             }
+            switch (stageIndex)
+            {
+                case (int)HWStages.Animated:
+                case (int)HWStages.Hyperconductive:
+                case (int)HWStages.Sharpened:
+                    tempWeapon = modifier + " " + tempWeapon;
+                    break;
+                case (int)HWStages.Awoken:
+                case (int)HWStages.Lux:
+                    tempWeapon = tempWeapon + " " + modifier;
+                    break;
+            }
+            return tempWeapon;
         }
 
         private static string InitialHWWeapon(JobName job)
+        {
+            switch (job)
+            {
+                case JobName.PLD:
+                    return "Hauteclaire and Prytwen";
+                case JobName.WAR:
+                    return "Parashu";
+                case JobName.DRK:
+                    return "Deathbringer";
+                case JobName.WHM:
+                    return "Seraph Cane";
+                case JobName.SCH:
+                    return "Elements";
+                case JobName.AST:
+                    return "Atlas";
+                case JobName.MNK:
+                    return "Rising Suns";
+                case JobName.DRG:
+                    return "Brionac";
+                case JobName.NIN:
+                    return "Yukimitsu";
+                case JobName.BRD:
+                    return "Berimbau";
+                case JobName.MCH:
+                    return "Ferdinand";
+                case JobName.BLM:
+                    return "Lunaris Rod";
+                case JobName.SMN:
+                    return "Almandal";
+                default:
+                    return "Anima Weapon";
+            }
+        }
+        private static string SecondHWWeapon(JobName job)
         {
             switch (job)
             {
@@ -55,7 +113,7 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers.Misc
                 case JobName.MNK:
                     return "Verethragna";
                 case JobName.DRG:
-                    return "Rhongomiant";
+                    return "Rhongomient";
                 case JobName.NIN:
                     return "Kannagi";
                 case JobName.BRD:
@@ -63,14 +121,14 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers.Misc
                 case JobName.MCH:
                     return "Armageddon";
                 case JobName.BLM:
-                    return "Hvergelmir";
+                    return "Gvergelmir";
                 case JobName.SMN:
-                    return "Draconomicon";
+                    return "Draconnomicon";
                 default:
                     return "Anima Weapon";
             }
         }
-        private static string SecondHWWeapon(JobName job)
+        private static string ThirdHWWeapon(JobName job)
         {
             switch (job)
             {
