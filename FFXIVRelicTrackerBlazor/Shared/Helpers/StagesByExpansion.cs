@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,24 +46,40 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers
     }
     public enum ArrStages
     {
+        [Display(Name = "Relic")]
         Relic,
+        [Display(Name = "Zenith")]
         Zenith,
+        [Display(Name = "Atma")]
         Atma,
+        [Display(Name = "Animus")]
         Animus,
+        [Display(Name = "Novus")]
         Novus,
+        [Display(Name = "Nexus")]
         Nexus,
+        [Display(Name = "Zodiac Braves")]
         Braves,
+        [Display(Name = "Zodiac Zeta")]
         Zeta
     }
     public enum HWStages
     {
+        [Display(Name = "Animated")]
         Animated,
+        [Display(Name = "Awoken")]
         Awoken,
+        [Display(Name = "Anima")]
         Anima,
+        [Display(Name = "Hyperconductive")]
         Hyperconductive,
+        [Display(Name = "Reconditioned")]
         Reconditioned,
+        [Display(Name = "Sharpened")]
         Sharpened,
+        [Display(Name = "Complete")]
         Complete,
+        [Display(Name = "Lux")]
         Lux
     }
 }

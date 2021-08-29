@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FFXIVRelicTrackerBlazor.Shared.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,23 +13,116 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers.Misc
         {
             switch (expansion)
             {
+                case ExpansionName.Arr:
+                    return GetARRWeapon(job, StageIndex);
                 case ExpansionName.HW:
                     return GetHWWeapon(job, StageIndex);
                 default:
                     return null;
             }
         }
-
-        #region HW Weapons
-        private static string GetHWWeapon(JobName job, int stageIndex)
+        #region ARR Weapons
+        private static string GetARRWeapon(JobName job, int stageIndex)
         {
-            string modifier = Enum.GetName(typeof(HWStages), stageIndex);
+            ArrStages stage = (ArrStages)stageIndex;
+            string modifier=EnumExtensions.GetEnumDisplayName(stage);
             if (job == JobName.NA)
             {
                 return modifier + " Weapon";
             }
-            string tempWeapon = string.Empty;
 
+            modifier = Enum.GetName(typeof(ArrStages), stageIndex);
+            string tempWeapon = string.Empty;
+            if (stageIndex < (int)ArrStages.Braves)
+            {
+                tempWeapon = InitialARRWeapon(job);
+            }
+            else
+            {
+                tempWeapon = FinalARRWeapon(job);
+            }
+            switch (stageIndex)
+            {
+                case (int)ArrStages.Zenith:
+                case (int)ArrStages.Atma:
+                case (int)ArrStages.Animus:
+                case (int)ArrStages.Novus:
+                case (int)ArrStages.Nexus:
+                case (int)ArrStages.Zeta:
+                    tempWeapon = tempWeapon + " " + modifier;
+                    break;
+            }
+            return tempWeapon;
+        }
+        private static string InitialARRWeapon(JobName job)
+        {
+            switch (job)
+            {
+                case JobName.PLD:
+                    return "Curtana and Holy Shield";
+                case JobName.WAR:
+                    return "Bravura";
+                case JobName.WHM:
+                    return "Thyrus";
+                case JobName.SCH:
+                    return "Omnilex";
+                case JobName.MNK:
+                    return "Sphairai";
+                case JobName.DRG:
+                    return "Gae Bolg";
+                case JobName.NIN:
+                    return "Yoshimitsu";
+                case JobName.BRD:
+                    return "Artemis Bow";
+                case JobName.BLM:
+                    return "Stardust Rod";
+                case JobName.SMN:
+                    return "The Veil of Wiyu";
+                default:
+                    return "Zodiac Weapon";
+            }
+        }
+        private static string FinalARRWeapon(JobName job)
+        {
+            switch (job)
+            {
+                case JobName.PLD:
+                    return "Excalibur and Aegis Shield";
+                case JobName.WAR:
+                    return "Ragnarok";
+                case JobName.WHM:
+                    return "Nirvana";
+                case JobName.SCH:
+                    return "Last Resort";
+                case JobName.MNK:
+                    return "Kaiser Knuckles";
+                case JobName.DRG:
+                    return "Longinus";
+                case JobName.NIN:
+                    return "Sasuke's Blades";
+                case JobName.BRD:
+                    return "Yoichi Bow";
+                case JobName.BLM:
+                    return "Lilith Rod";
+                case JobName.SMN:
+                    return "Apocalypse";
+                default:
+                    return "Zodiac Weapon";
+            }
+        }
+        #endregion
+        #region HW Weapons
+        private static string GetHWWeapon(JobName job, int stageIndex)
+        {
+            HWStages stage = (HWStages)stageIndex;
+            string modifier = EnumExtensions.GetEnumDisplayName(stage);
+            if (job == JobName.NA)
+            {
+                return modifier + " Weapon";
+            }
+
+            modifier = Enum.GetName(typeof(HWStages), stageIndex);
+            string tempWeapon = string.Empty;
             if (stageIndex < (int)HWStages.Anima)
             {
                 tempWeapon= InitialHWWeapon(job);

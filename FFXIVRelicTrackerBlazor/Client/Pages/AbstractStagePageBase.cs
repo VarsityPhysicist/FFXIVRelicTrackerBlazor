@@ -1,5 +1,5 @@
-﻿using FFXIVRelicTrackerBlazor.Client.Extensions;
-using FFXIVRelicTrackerBlazor.Shared;
+﻿using FFXIVRelicTrackerBlazor.Shared;
+using FFXIVRelicTrackerBlazor.Shared.Extensions;
 using FFXIVRelicTrackerBlazor.Shared.Helpers;
 using Microsoft.AspNetCore.Components;
 using System;
