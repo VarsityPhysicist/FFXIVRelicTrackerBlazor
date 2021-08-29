@@ -11,5 +11,11 @@ namespace FFXIVRelicTrackerBlazor.Shared
     {
         public JobName ActiveJob { get; set; }
         public abstract int StageIndex { get; }
+        protected int FilterChange(int value, int max)
+        {
+            if (value < 0) value = 0;
+            if (value > max) value = max;
+            return value;
+        }
     }
 }
