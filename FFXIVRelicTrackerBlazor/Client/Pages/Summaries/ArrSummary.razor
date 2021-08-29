@@ -3,6 +3,7 @@
 @inherits ArrSummaryBase
 
 <h3>ARR Summary: @character.Name</h3>
+<span>Note: Stage completions <button @onclick="()=>ToggleAdjustCount()">@AdjustCountString</button> adjust counts of collected items</span>
 
 @if (showAll)
 {
@@ -101,14 +102,16 @@
 }
 
 <style>
-    table{
-        text-align:center;
+    table {
+        text-align: center;
     }
-    table tr:first-child{
-        padding-inline:33px;
-    }
-    td{
-        padding-inline:inherit;
+
+        table tr:first-child {
+            padding-inline: 33px;
+        }
+
+    td {
+        padding-inline: inherit;
     }
 </style>
 
