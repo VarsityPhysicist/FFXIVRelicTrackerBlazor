@@ -27,6 +27,15 @@ namespace FFXIVRelicTrackerBlazor.Shared
             if (oldCharacter.HWExpansion == null) this.HWExpansion = new HWExpansion();
             else this.HWExpansion = oldCharacter.HWExpansion;
         }
+
+        public List<AbstractExpansion> GetExpansions()
+        {
+            return new List<AbstractExpansion>()
+            {
+                ArrExpansion,
+                HWExpansion
+            };
+        }
         public ArrExpansion ArrExpansion { get; set; }
         public HWExpansion HWExpansion { get; set; }
     }
