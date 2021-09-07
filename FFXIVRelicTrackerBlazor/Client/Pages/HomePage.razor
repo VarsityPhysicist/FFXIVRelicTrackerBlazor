@@ -69,6 +69,78 @@
     </select>
     <button type="submit" @onclick="()=>RemoveCharacter(RemoveName)">Remove Character</button>
 }
+<br />
+<h3 @onclick="()=>ShowCallAPI=!ShowCallAPI">Get Character Achievements</h3>
+@if (ShowCallAPI)
+{
+<div class="stack-vertical">
+    <span>You can use this feature to import your character achievements to autofill completion of relic progress</span>
+    <span>Note: If your account settings for your character's achievements are not set to public, achievements cannot be imported</span>
+    <span><span style="visibility:hidden">Note: </span>The following function will request a list of matching characters on the selected server. A maximum of 1,000 results will be returned</span>
+    <span><span style="visibility:hidden">Note: </span>If your character is not returned, rename the selected character to more closely resemble your character's in-game name</span>
+    <br />
+    <div class="stack-horizontal">
+        <span>Selected Character:</span>
+        <select title="Character Select" @bind="@CharacterName">
+            @if (CharacterStringList != null)
+            {
+                @foreach (var character in CharacterStringList)
+                {
+                    <option value="@character">@character</option>
+                }
+            }
+        </select>
+    </div>
+
+    @if (!ServersLoaded)
+    {
+        <span>Server:</span>
+        <span>Loading servers...</span>
+    }
+    @if (ServersLoaded)
+    {
+        <div class="stack-horizontal">
+            <span>Server:</span>
+            <select value="@GetCharacterServer" @onchange="SetCharacterServer">
+                <option value=""></option>
+                @foreach (var server in Servers)
+                {
+                    <option value="@server">@server</option>
+                }
+            </select>
+        </div>
+
+    }
+    <br />
+    <button type="submit" @onclick="()=>GetCharacterListButton()">Get Matching Characters</button>
+    <span>@CharacterListMessage</span>
+    @if (CharacterListFetched)
+    {
+        <div class="stack-horizontal">
+            <span>Server Characters:</span>
+            <select title="Select Character:" value="@GetCharacterID" @onchange="SetCharacterID">
+                <option value="0"></option>
+                @foreach (var character in apiCharacters)
+                {
+                    <option value="@character.ID">
+                        @character.Name : @character.Server
+                    </option>
+
+                }
+            </select>
+        </div>
+
+
+    }
+    <br />
+    @if (APICharacterSelected)
+    {
+        <button disabled="@APICharacterNotSelected" @onclick="()=>GetCharacterDataButton()">Fetch achievements</button>
+        <span>@CharacterMessage</span>
+    }
+</div>
+
+}
 
 <style>
     h3 {
