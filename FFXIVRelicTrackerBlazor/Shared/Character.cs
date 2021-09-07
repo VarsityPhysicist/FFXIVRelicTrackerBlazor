@@ -11,6 +11,8 @@ namespace FFXIVRelicTrackerBlazor.Shared
     public class Character
     {
         public string Name { get; set; }
+        public string Server { get; set; }
+        public int ID { get; set; }
         public Character()
         {
             ArrExpansion = new ArrExpansion();
@@ -20,6 +22,8 @@ namespace FFXIVRelicTrackerBlazor.Shared
         public Character(Character oldCharacter)
         {
             this.Name = oldCharacter.Name;
+            this.Server = oldCharacter.Server;
+            this.ID = oldCharacter.ID;
 
             if (oldCharacter.ArrExpansion == null) this.ArrExpansion = new ArrExpansion();
             else this.ArrExpansion = oldCharacter.ArrExpansion;
@@ -38,5 +42,6 @@ namespace FFXIVRelicTrackerBlazor.Shared
         }
         public ArrExpansion ArrExpansion { get; set; }
         public HWExpansion HWExpansion { get; set; }
+
     }
 }
