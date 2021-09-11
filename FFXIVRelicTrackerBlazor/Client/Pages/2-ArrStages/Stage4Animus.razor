@@ -254,6 +254,7 @@
 
                 @if (MapSelected)
                 {
+                    <span>Click objectives on map to toggle mark progression</span>
                     <img src="@MapSource" @onload="()=>MapLoaded()" />
                     @if (GetMapVisible())
                     {
