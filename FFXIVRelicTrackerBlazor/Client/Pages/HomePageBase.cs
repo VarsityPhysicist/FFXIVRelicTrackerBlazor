@@ -357,5 +357,18 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
             await OnCharacterUpdate();
         }
         #endregion
+
+        #region Default Job
+        public List<JobName> JobNames=> Enum.GetValues(typeof(JobName)).Cast<JobName>().ToList();
+        public JobName GetDefaultJob => character.DefaultJob;
+        public async Task SetDefaultJob(ChangeEventArgs e)
+        {
+            if(Enum.TryParse<JobName>(e.Value.ToString(),out JobName value))
+            {
+                character.DefaultJob = value;
+                await OnCharacterUpdate();
+            }
+        }
+        #endregion
     }
 }

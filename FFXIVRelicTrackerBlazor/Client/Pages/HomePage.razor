@@ -17,6 +17,15 @@
 <div class="stack-horizontal">
     <span style="color:white; font-weight:bold">Active character: @character.Name</span>
 </div>
+<div class="stack-horizontal">
+    <span>Default Job:</span>
+    <select value="@GetDefaultJob" @onchange="SetDefaultJob">
+        @foreach(var job in JobNames)
+            {
+                <option value="@job">@job</option>
+            }
+    </select>
+</div>
 <br />
 <h3 @onclick="()=>ShowSelect=!ShowSelect">Character Select</h3>
 @if (ShowSelect)

@@ -46,6 +46,18 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
             await CheckCharacter();
             await CheckJobs();
             await CheckActiveJob();
+
+            await CheckDefaultJob();
+        }
+        internal async Task CheckDefaultJob()
+        {
+            if(character.DefaultJob!=JobName.NA && TargetStage.ActiveJob == JobName.NA && FilteredJobs.Contains(character.DefaultJob)) 
+            {
+                if (TargetExpansion.Jobs.Single(x => x.JobName == character.DefaultJob).Stages.Single(x => x.StageIndex == StageIndex).Progress != Progress.Completed)
+                {
+                    await SetActiveJob(character.DefaultJob);
+                }
+            }
         }
         internal Task CheckCharacter()
         {
@@ -100,10 +112,22 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
 
         public async Task CompleteStage()
         {
-            if (TargetStage.ActiveJob != JobName.NA)
+            if (GetActiveJob != JobName.NA)
             {
+
+                if (StageIndex < TargetExpansion.StageCount-1)
+                {
+                    var nextStage = TargetExpansion.GetStages().Single(x => x.StageIndex == StageIndex + 1);
+                    var job = TargetExpansion.Jobs.Single(x => x.JobName == GetActiveJob);
+                    if (nextStage.ActiveJob == JobName.NA && job.Stages.Single(x => x.StageIndex == StageIndex + 1).Progress != Progress.Completed)
+                    {
+                        nextStage.ActiveJob = GetActiveJob;
+                    }
+                }
+
                 MasterStageHelper.CompleteStage(character, TargetStage.ActiveJob, StageIndex, TargetExpansion.Expansion, TargetExpansion.AdjustCounts);
                 JobNames.Remove(GetActiveJob);
+
                 await this.OnInitializedAsync();
                 await SetActiveJob(JobName.NA);
                 await OnCharacterUpdate();
