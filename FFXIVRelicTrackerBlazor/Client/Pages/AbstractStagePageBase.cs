@@ -115,7 +115,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
             if (GetActiveJob != JobName.NA)
             {
 
-                if (StageIndex < TargetExpansion.StageCount-1)
+                if (StageIndex < TargetExpansion.StageCount-1 && character.AutoAssignCompletion)
                 {
                     var nextStage = TargetExpansion.GetStages().Single(x => x.StageIndex == StageIndex + 1);
                     var job = TargetExpansion.Jobs.Single(x => x.JobName == GetActiveJob);

@@ -369,6 +369,9 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
                 await OnCharacterUpdate();
             }
         }
+
+        public bool GetAutoCompletion => character.AutoAssignCompletion;
+        public async Task SetAutoCompletion(ChangeEventArgs e) { if(bool.TryParse(e.Value.ToString(),out bool value)) { character.AutoAssignCompletion = value; await OnCharacterUpdate(); } }
         #endregion
     }
 }

@@ -26,6 +26,7 @@
             }
     </select>
 </div>
+<span><input type="checkbox" checked="@GetAutoCompletion" @onchange="SetAutoCompletion"/> Automatically assign completed jobs to next stage</span>
 <br />
 <h3 @onclick="()=>ShowSelect=!ShowSelect">Character Select</h3>
 @if (ShowSelect)

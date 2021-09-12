@@ -52,6 +52,7 @@ namespace FFXIVRelicTrackerBlazor.Shared
         public HWExpansion HWExpansion { get; set; }
         // ShBExpansion ShBExpansion { get; set; }
         public JobName DefaultJob { get; set; }
+        public bool AutoAssignCompletion { get; set; }
 
     }
 }
