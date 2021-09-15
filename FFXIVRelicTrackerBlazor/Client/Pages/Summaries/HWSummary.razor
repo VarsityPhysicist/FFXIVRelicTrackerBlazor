@@ -8,96 +8,35 @@
 @if (showAll)
 {
     <table>
-        <tr>
-            <td></td>
-            @foreach (var jobName in ValidJobs)
-            {
-                @if (jobName != FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.NA)
-                {
-                    <td>@jobName.ToString()</td>
-                }
-            }
-        </tr>
-        <tr>
-            <td>Animated</td>
+        <thead>
+            <tr>
+                <td></td>
+                <td><span>Animated</span></td>
+                <td><span>Awoken</span></td>
+                <td><span>Anima</span></td>
+                <td><span>Hyperconductive</span></td>
+                <td><span>Reconditioned</span></td>
+                <td><span>Sharpened</span></td>
+                <td><span>Complete</span></td>
+                <td><span>Lux</span></td>
+            </tr>
+        </thead>
+        <tbody>
             @foreach (var job in TargetExpansion.Jobs)
             {
                 @if (job.JobName != FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.NA)
                 {
-                    <td><button @onclick="()=>ToggleComplete(0,job.JobName)">@job.Stages[0].Progress</button></td>
+                    <tr>
+                        <td><span>@job.JobName</span></td>
+                        @for (int i = 0; i <= TargetExpansion.StageCount - 1; i++)
+                        {
+                            var local_i = i;
+                            <td><button @onclick="()=>ToggleComplete(local_i,job.JobName)">@job.Stages[local_i].Progress</button></td>
+                        }
+                    </tr>
                 }
             }
-        </tr>
-        <tr>
-            <td>Awoken</td>
-            @foreach (var job in TargetExpansion.Jobs)
-            {
-                @if (job.JobName != FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.NA)
-                {
-                    <td><button @onclick="()=>ToggleComplete(1,job.JobName)">@job.Stages[1].Progress</button></td>
-                }
-            }
-        </tr>
-        <tr>
-            <td>Anima</td>
-            @foreach (var job in TargetExpansion.Jobs)
-            {
-                @if (job.JobName != FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.NA)
-                {
-                    <td><button @onclick="()=>ToggleComplete(2,job.JobName)">@job.Stages[2].Progress</button></td>
-                }
-            }
-        </tr>
-        <tr>
-            <td>Hyperconductive</td>
-            @foreach (var job in TargetExpansion.Jobs)
-            {
-                @if (job.JobName != FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.NA)
-                {
-                    <td><button @onclick="()=>ToggleComplete(3,job.JobName)">@job.Stages[3].Progress</button></td>
-                }
-            }
-        </tr>
-        <tr>
-            <td>Reconditioned</td>
-            @foreach (var job in TargetExpansion.Jobs)
-            {
-                @if (job.JobName != FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.NA)
-                {
-                    <td><button @onclick="()=>ToggleComplete(4,job.JobName)">@job.Stages[4].Progress</button></td>
-                }
-            }
-        </tr>
-        <tr>
-            <td>Sharpened</td>
-            @foreach (var job in TargetExpansion.Jobs)
-            {
-                @if (job.JobName != FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.NA)
-                {
-                    <td><button @onclick="()=>ToggleComplete(5,job.JobName)">@job.Stages[5].Progress</button></td>
-                }
-            }
-        </tr>
-        <tr>
-            <td>Complete</td>
-            @foreach (var job in TargetExpansion.Jobs)
-            {
-                @if (job.JobName != FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.NA)
-                {
-                    <td><button @onclick="()=>ToggleComplete(6,job.JobName)">@job.Stages[6].Progress</button></td>
-                }
-            }
-        </tr>
-        <tr>
-            <td>Lux</td>
-            @foreach (var job in TargetExpansion.Jobs)
-            {
-                @if (job.JobName != FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.NA)
-                {
-                    <td><button @onclick="()=>ToggleComplete(7,job.JobName)">@job.Stages[7].Progress</button></td>
-                }
-            }
-        </tr>
+        </tbody>
     </table>
 }
 
@@ -106,15 +45,16 @@
         text-align: center;
     }
 
-        table tr:first-child {
-            padding-inline: 33px;
-        }
+    tr:first-child .td {
+        position: absolute;
+    }
 
     td {
-        padding-inline: inherit;
+        padding-inline: 10px;
+        min-width: 120px;
+        white-space: nowrap;
     }
 </style>
-
 @code {
 
 }
