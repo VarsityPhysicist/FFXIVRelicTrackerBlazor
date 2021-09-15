@@ -7,7 +7,7 @@
     </button>
 </div>
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+<div style="white-space:nowrap" class="@NavMenuCssClass" @onclick="ToggleNavMenu">
     <ul class="nav flex-column">
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
@@ -127,12 +127,60 @@
             }
         </li>
         <li class="nav-item px-3">
+            <NavLink class="nav-link" style="white-space:nowrap; cursor:pointer" @onclick="()=> { collapseShBMenu = !collapseShBMenu; ToggleNavMenu(); }">
+                <span class="oi oi-list-rich" aria-hidden="true"> Shadowbringers</span>
+            </NavLink>
+            @if (collapseShBMenu)
+            {
+                <ul class="nav flex-column">
+                    <li class="nav-item px-3">
+                        <NavLink class="nav-link" href="ShBSummary">
+                            <span class="oi oi-list-rich" aria-hidden="true"></span> ShB Summary
+                        </NavLink>
+                    </li>
+                    <li class="nav-item px-3">
+                        <NavLink class="nav-link" href="ShBStage1">
+                            <span class="oi oi-list-rich" aria-hidden="true"></span> Resistance
+                        </NavLink>
+                    </li>
+                    <li class="nav-item px-3 flex-fill">
+                        <NavLink class="nav-link" href="ShBStage2">
+                            <span class="oi oi-list-rich" aria-hidden="true"></span><span>Augmented Resistance</span>
+                        </NavLink>
+                    </li>
+                    <li class="nav-item px-3 flex-fill">
+                        <NavLink class="nav-link" href="ShBStage3">
+                            <span class="oi oi-list-rich" aria-hidden="true"></span><span>Recollection</span>
+                        </NavLink>
+                    </li>
+                    <li class="nav-item px-3 flex-fill">
+                        <NavLink class="nav-link" href="ShBStage4">
+                            <span class="oi oi-list-rich" aria-hidden="true"></span><span>Law's Order</span>
+                        </NavLink>
+                    </li>
+                    <li class="nav-item px-3 flex-fill">
+                        <NavLink class="nav-link" href="ShBStage5">
+                            <span class="oi oi-list-rich" aria-hidden="true"></span><span>Augmented Law's Order</span>
+                        </NavLink>
+                    </li>
+                    <li class="nav-item px-3 flex-fill">
+                        <NavLink class="nav-link" href="ShBStage6">
+                            <span class="oi oi-list-rich" aria-hidden="true"></span><span>Blades of Gunhildr</span>
+                        </NavLink>
+                    </li>
+
+
+                </ul>
+            }
+        </li>
+        <li class="nav-item px-3">
             <NavLink class="nav-link" href="About">
                 <span class="oi oi-list-rich" aria-hidden="true"></span> About
             </NavLink>
         </li>
     </ul>
 </div>
+
 
 @code {
     private bool collapseNavMenu = true;
@@ -146,6 +194,7 @@
 
     private bool collapseArrMenu;
     private bool collapseHWMenu;
+    private bool collapseShBMenu;
 
     public string ArrMenuCollapse
     {
@@ -161,6 +210,15 @@
         get
         {
             if (collapseHWMenu)
+                return "collapse";
+            return "visible";
+        }
+    }
+    public string ShBMenuCollapse
+    {
+        get
+        {
+            if (collapseShBMenu)
                 return "collapse";
             return "visible";
         }

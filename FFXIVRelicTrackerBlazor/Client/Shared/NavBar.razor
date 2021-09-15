@@ -1,0 +1,120 @@
+﻿<div class="stack-horizontal" style="background: #525252; white-space:nowrap; flex-wrap:wrap">
+    <div>
+        <a style="color:inherit; text-decoration:none;" class="dropdown" href="">
+            <span class="dropbtn">Home Page</span>
+        </a>
+    </div>
+    <div class="dropdown">
+        <span class="dropbtn">ARR</span>
+        <div class="nav dropdown-content">
+            <a class="dropdown-item" href="ArrSummary">ARR Summary</a>
+            <a class="dropdown-item" href="Stage1Relic">Relic</a>
+            <a class="dropdown-item" href="Stage2Zenith">Zenith</a>
+            <a class="dropdown-item" href="Stage3Atma">Atma</a>
+            <a class="dropdown-item" href="Stage4Animus">Animus</a>
+            <a class="dropdown-item" href="Stage5Novus">Novus</a>
+            <a class="dropdown-item" href="Stage6Nexus">Nexus</a>
+            <a class="dropdown-item" href="Stage7Braves">Zodiac Braves</a>
+            <a class="dropdown-item" href="Stage8Zeta">Zodiac Zeta</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <span class="dropbtn">HW</span>
+        <div class="nav dropdown-content">
+            <a class="dropdown-item" href="HWSummary">HW Summary</a>
+            <a class="dropdown-item" href="HWStage1">Animated</a>
+            <a class="dropdown-item" href="HWStage2">Awoken</a>
+            <a class="dropdown-item" href="HWStage3">Anima</a>
+            <a class="dropdown-item" href="HWStage4">Hyperconductive</a>
+            <a class="dropdown-item" href="HWStage5">Reconditioned</a>
+            <a class="dropdown-item" href="HWStage6">Sharpened</a>
+            <a class="dropdown-item" href="HWStage7">Complete</a>
+            <a class="dropdown-item" href="HWStage8">Lux</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <span class="dropbtn">ShB</span>
+        <div class="nav dropdown-content">
+            <a class="dropdown-item" href="ShBSummary">ShB Summary</a>
+            <a class="dropdown-item" href="ShBStage1">Resistance</a>
+            <a class="dropdown-item" href="ShBStage2">Augmented Resistance</a>
+            <a class="dropdown-item" href="ShBStage3">Recollection</a>
+            <a class="dropdown-item" href="ShBStage4">Law's Order</a>
+            <a class="dropdown-item" href="ShBStage5">Augmented Law's Order</a>
+            <a class="dropdown-item" href="ShBStage6">Blades of Gunhildr</a>
+        </div>
+    </div>
+    <div>
+        <a style="color:inherit; text-decoration:none;" class="dropdown" href="about">
+            <span class="dropbtn">About</span>
+        </a>
+    </div>
+</div>
+<style>
+    /* Dropdown Button */
+    .dropbtn {
+        
+        padding: 16px;
+        
+        border: none;
+    }
+
+    .dropdown-item {
+        color: inherit;
+        text-decoration: inherit;
+        width:100%;
+    }
+
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+        padding-inline: 10px;
+    }
+
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background: #2d2d2d;
+        white-space:nowrap;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        border-radius: 10px;
+        flex-direction:column;
+        align-items:flex-start;
+    }
+    .dropdown-content a:last-child{
+        border-bottom-left-radius:10px;
+        border-bottom-right-radius:10px;
+    }
+    .dropdown-content a:first-child{
+/*        border-top-left-radius:10px;
+        border-top-right-radius:10px;*/
+    }
+    .dropdown-content a:hover {
+        background-color: #616161;
+    }
+
+    .dropdown-item:hover {
+        background-color: #616161;
+    }
+
+    /* Show the dropdown menu on hover */
+    .dropdown:hover .dropdown-content {
+        display: flex;
+    }
+
+    /* Change the background color of the dropdown button when the dropdown content is shown */
+    .dropdown:hover  {
+        background-color: #616161;
+    }
+</style>
+
+@code {
+    public bool DisplayArr { get; set; }
+
+    public void ShowARR() => DisplayArr = true;
+    public void HideARR() => DisplayArr = false;
+}

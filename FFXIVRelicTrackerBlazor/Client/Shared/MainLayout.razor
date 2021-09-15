@@ -1,17 +1,31 @@
 ﻿@inherits LayoutComponentBase
-<div class="page">
-    <div class="sidebar" style="overflow:auto;">
+<div >
+    @*<div class="sidebar" style="width: auto; min-height: 100%; height: auto;">
         <NavMenu />
+    </div>*@
+    <div >
+        <NavBar />
+
     </div>
 
-
-    <div class="main">
+    <div class="main" style="overflow:auto">
         <div class="content px-4">
             @Body
         </div>
     </div>
 </div>
+
+
+
 <style>
+    .tabbed-container{
+        padding-left:20px;
+    }
+
+    td {
+        padding-inline: 10px;
+    }
+
     .weapon-purple {
         color: rebeccapurple;
     }
