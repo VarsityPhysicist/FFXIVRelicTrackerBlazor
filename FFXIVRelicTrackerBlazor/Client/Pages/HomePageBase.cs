@@ -353,7 +353,93 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
             else if (characterData.Achievements.List.Exists(x => x.ID == 1418)) { MasterStageHelper.CompleteStage(character, JobName.AST, (int)HWStages.Anima, character.HWExpansion.Expansion, false); }
 
             #endregion
+            #region ShB
+            if      (characterData.Achievements.List.Exists(x => x.ID == 2857)) { MasterStageHelper.CompleteStage(character, JobName.PLD, (int)ShBStages.Blades, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2768)) { MasterStageHelper.CompleteStage(character, JobName.PLD, (int)ShBStages.AugmentedLawsOrder, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2694)) { MasterStageHelper.CompleteStage(character, JobName.PLD, (int)ShBStages.Recollection, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2569)) { MasterStageHelper.CompleteStage(character, JobName.PLD, (int)ShBStages.Resistance, character.ShBExpansion.Expansion, false); }
+            
+            if      (characterData.Achievements.List.Exists(x => x.ID == 2862)) { MasterStageHelper.CompleteStage(character, JobName.MNK, (int)ShBStages.Blades, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2773)) { MasterStageHelper.CompleteStage(character, JobName.MNK, (int)ShBStages.AugmentedLawsOrder, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2669)) { MasterStageHelper.CompleteStage(character, JobName.MNK, (int)ShBStages.Recollection, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2574)) { MasterStageHelper.CompleteStage(character, JobName.MNK, (int)ShBStages.Resistance, character.ShBExpansion.Expansion, false); }
+            
+            if      (characterData.Achievements.List.Exists(x => x.ID == 2858)) { MasterStageHelper.CompleteStage(character, JobName.WAR, (int)ShBStages.Blades, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2769)) { MasterStageHelper.CompleteStage(character, JobName.WAR, (int)ShBStages.AugmentedLawsOrder, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2695)) { MasterStageHelper.CompleteStage(character, JobName.WAR, (int)ShBStages.Recollection, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2570)) { MasterStageHelper.CompleteStage(character, JobName.WAR, (int)ShBStages.Resistance, character.ShBExpansion.Expansion, false); }
+            
+            if      (characterData.Achievements.List.Exists(x => x.ID == 2861)) { MasterStageHelper.CompleteStage(character, JobName.DRG, (int)ShBStages.Blades, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2772)) { MasterStageHelper.CompleteStage(character, JobName.DRG, (int)ShBStages.AugmentedLawsOrder, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2698)) { MasterStageHelper.CompleteStage(character, JobName.DRG, (int)ShBStages.Recollection, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2573)) { MasterStageHelper.CompleteStage(character, JobName.DRG, (int)ShBStages.Resistance, character.ShBExpansion.Expansion, false); }
+            
+            if      (characterData.Achievements.List.Exists(x => x.ID == 2865)) { MasterStageHelper.CompleteStage(character, JobName.BRD, (int)ShBStages.Blades, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2776)) { MasterStageHelper.CompleteStage(character, JobName.BRD, (int)ShBStages.AugmentedLawsOrder, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2702)) { MasterStageHelper.CompleteStage(character, JobName.BRD, (int)ShBStages.Recollection, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2557)) { MasterStageHelper.CompleteStage(character, JobName.BRD, (int)ShBStages.Resistance, character.ShBExpansion.Expansion, false); }
+            
+            if      (characterData.Achievements.List.Exists(x => x.ID == 2863)) { MasterStageHelper.CompleteStage(character, JobName.NIN, (int)ShBStages.Blades, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2774)) { MasterStageHelper.CompleteStage(character, JobName.NIN, (int)ShBStages.AugmentedLawsOrder, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2700)) { MasterStageHelper.CompleteStage(character, JobName.NIN, (int)ShBStages.Recollection, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2575)) { MasterStageHelper.CompleteStage(character, JobName.NIN, (int)ShBStages.Resistance, character.ShBExpansion.Expansion, false); }
+            
+            if      (characterData.Achievements.List.Exists(x => x.ID == 2871)) { MasterStageHelper.CompleteStage(character, JobName.WHM, (int)ShBStages.Blades, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2782)) { MasterStageHelper.CompleteStage(character, JobName.WHM, (int)ShBStages.AugmentedLawsOrder, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2708)) { MasterStageHelper.CompleteStage(character, JobName.WHM, (int)ShBStages.Recollection, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2583)) { MasterStageHelper.CompleteStage(character, JobName.WHM, (int)ShBStages.Resistance, character.ShBExpansion.Expansion, false); }
+            
+            if      (characterData.Achievements.List.Exists(x => x.ID == 2868)) { MasterStageHelper.CompleteStage(character, JobName.BLM, (int)ShBStages.Blades, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2779)) { MasterStageHelper.CompleteStage(character, JobName.BLM, (int)ShBStages.AugmentedLawsOrder, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2705)) { MasterStageHelper.CompleteStage(character, JobName.BLM, (int)ShBStages.Recollection, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2580)) { MasterStageHelper.CompleteStage(character, JobName.BLM, (int)ShBStages.Resistance, character.ShBExpansion.Expansion, false); }
+            
+            if      (characterData.Achievements.List.Exists(x => x.ID == 2869)) { MasterStageHelper.CompleteStage(character, JobName.SMN, (int)ShBStages.Blades, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2780)) { MasterStageHelper.CompleteStage(character, JobName.SMN, (int)ShBStages.AugmentedLawsOrder, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2706)) { MasterStageHelper.CompleteStage(character, JobName.SMN, (int)ShBStages.Recollection, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2581)) { MasterStageHelper.CompleteStage(character, JobName.SMN, (int)ShBStages.Resistance, character.ShBExpansion.Expansion, false); }
+            
+            if      (characterData.Achievements.List.Exists(x => x.ID == 2872)) { MasterStageHelper.CompleteStage(character, JobName.SCH, (int)ShBStages.Blades, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2783)) { MasterStageHelper.CompleteStage(character, JobName.SCH, (int)ShBStages.AugmentedLawsOrder, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2709)) { MasterStageHelper.CompleteStage(character, JobName.SCH, (int)ShBStages.Recollection, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2584)) { MasterStageHelper.CompleteStage(character, JobName.SCH, (int)ShBStages.Resistance, character.ShBExpansion.Expansion, false); }
+            
+            if      (characterData.Achievements.List.Exists(x => x.ID == 2859)) { MasterStageHelper.CompleteStage(character, JobName.DRK, (int)ShBStages.Blades, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2770)) { MasterStageHelper.CompleteStage(character, JobName.DRK, (int)ShBStages.AugmentedLawsOrder, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2696)) { MasterStageHelper.CompleteStage(character, JobName.DRK, (int)ShBStages.Recollection, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2571)) { MasterStageHelper.CompleteStage(character, JobName.DRK, (int)ShBStages.Resistance, character.ShBExpansion.Expansion, false); }
+                        
+            if      (characterData.Achievements.List.Exists(x => x.ID == 2866)) { MasterStageHelper.CompleteStage(character, JobName.MCH, (int)ShBStages.Blades, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2777)) { MasterStageHelper.CompleteStage(character, JobName.MCH, (int)ShBStages.AugmentedLawsOrder, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2703)) { MasterStageHelper.CompleteStage(character, JobName.MCH, (int)ShBStages.Recollection, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2578)) { MasterStageHelper.CompleteStage(character, JobName.MCH, (int)ShBStages.Resistance, character.ShBExpansion.Expansion, false); }
+            
+            if      (characterData.Achievements.List.Exists(x => x.ID == 2873)) { MasterStageHelper.CompleteStage(character, JobName.AST, (int)ShBStages.Blades, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2784)) { MasterStageHelper.CompleteStage(character, JobName.AST, (int)ShBStages.AugmentedLawsOrder, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2710)) { MasterStageHelper.CompleteStage(character, JobName.AST, (int)ShBStages.Recollection, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2585)) { MasterStageHelper.CompleteStage(character, JobName.AST, (int)ShBStages.Resistance, character.ShBExpansion.Expansion, false); }
+            
+            if      (characterData.Achievements.List.Exists(x => x.ID == 2864)) { MasterStageHelper.CompleteStage(character, JobName.SAM, (int)ShBStages.Blades, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2775)) { MasterStageHelper.CompleteStage(character, JobName.SAM, (int)ShBStages.AugmentedLawsOrder, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2701)) { MasterStageHelper.CompleteStage(character, JobName.SAM, (int)ShBStages.Recollection, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2576)) { MasterStageHelper.CompleteStage(character, JobName.SAM, (int)ShBStages.Resistance, character.ShBExpansion.Expansion, false); }
+            
+            if      (characterData.Achievements.List.Exists(x => x.ID == 2870)) { MasterStageHelper.CompleteStage(character, JobName.RDM, (int)ShBStages.Blades, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2781)) { MasterStageHelper.CompleteStage(character, JobName.RDM, (int)ShBStages.AugmentedLawsOrder, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2707)) { MasterStageHelper.CompleteStage(character, JobName.RDM, (int)ShBStages.Recollection, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2582)) { MasterStageHelper.CompleteStage(character, JobName.RDM, (int)ShBStages.Resistance, character.ShBExpansion.Expansion, false); }
+            
+            if      (characterData.Achievements.List.Exists(x => x.ID == 2860)) { MasterStageHelper.CompleteStage(character, JobName.GNB, (int)ShBStages.Blades, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2771)) { MasterStageHelper.CompleteStage(character, JobName.GNB, (int)ShBStages.AugmentedLawsOrder, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2697)) { MasterStageHelper.CompleteStage(character, JobName.GNB, (int)ShBStages.Recollection, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2572)) { MasterStageHelper.CompleteStage(character, JobName.GNB, (int)ShBStages.Resistance, character.ShBExpansion.Expansion, false); }
+            
+            if      (characterData.Achievements.List.Exists(x => x.ID == 2867)) { MasterStageHelper.CompleteStage(character, JobName.DNC, (int)ShBStages.Blades, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2778)) { MasterStageHelper.CompleteStage(character, JobName.DNC, (int)ShBStages.AugmentedLawsOrder, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2704)) { MasterStageHelper.CompleteStage(character, JobName.DNC, (int)ShBStages.Recollection, character.ShBExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2579)) { MasterStageHelper.CompleteStage(character, JobName.DNC, (int)ShBStages.Resistance, character.ShBExpansion.Expansion, false); }
 
+            #endregion
             await OnCharacterUpdate();
         }
         #endregion
