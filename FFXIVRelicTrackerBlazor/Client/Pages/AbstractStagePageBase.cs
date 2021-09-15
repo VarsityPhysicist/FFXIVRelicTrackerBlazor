@@ -17,7 +17,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
         public abstract AbstractExpansion TargetExpansion { get; }
         public abstract StageInfo TargetStage { get; }
         public string WeaponName => WeaponNames.GetWeaponName(TargetStage.ActiveJob, StageIndex, TargetExpansion.Expansion);
-        public string PreviousWeaponName => WeaponNames.GetWeaponName(TargetStage.ActiveJob, StageIndex-1, TargetExpansion.Expansion);
+        public string PreviousWeaponName => WeaponNames.GetWeaponName(TargetStage.ActiveJob, StageIndex - 1, TargetExpansion.Expansion);
         public int StageIndex => TargetStage.StageIndex;
 
         public static string returnDec(bool inputBool)
@@ -28,13 +28,19 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
         }
         public bool showAll;
 
-        public abstract bool GetAnyCompleted();
-        public abstract Task SetAnyCompleted(ChangeEventArgs e);
+        public virtual bool GetAnyCompleted()
+        {
+            return CompletedJobs > 0;
+        }
+        public virtual Task SetAnyCompleted(ChangeEventArgs e)
+        {
+            return null;
+        }
         protected static int FilterLow(int input) => Math.Max(input, 0);
 
         public List<JobName> JobNames;
-        protected int RemainingJobs=> TargetExpansion.Jobs.Where(x=>x.JobName!=JobName.NA).Select(x => x.Stages.Single(y => y.StageIndex == StageIndex)).Where(x=>x.Progress!=Progress.Completed).Count();
-        protected int CompletedJobs=> TargetExpansion.Jobs.Select(x => x.Stages.Single(y => y.StageIndex == StageIndex)).Where(x=>x.Progress==Progress.Completed).Count();
+        protected int RemainingJobs => TargetExpansion.Jobs.Where(x => x.JobName != JobName.NA).Select(x => x.Stages.Single(y => y.StageIndex == StageIndex)).Where(x => x.Progress != Progress.Completed).Count();
+        protected int CompletedJobs => TargetExpansion.Jobs.Select(x => x.Stages.Single(y => y.StageIndex == StageIndex)).Where(x => x.Progress == Progress.Completed).Count();
         public static string Collapse(bool inputBool) { if (inputBool) return "collapse"; return string.Empty; }
         protected static string FormatNumber(int input) => string.Format("{0:n0}", input);
         public static string GetEnumDisplayName(Enum enumType)
@@ -51,7 +57,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
         }
         internal async Task CheckDefaultJob()
         {
-            if(character.DefaultJob!=JobName.NA && TargetStage.ActiveJob == JobName.NA && FilteredJobs.Contains(character.DefaultJob)) 
+            if (character.DefaultJob != JobName.NA && TargetStage.ActiveJob == JobName.NA && FilteredJobs.Contains(character.DefaultJob))
             {
                 if (TargetExpansion.Jobs.Single(x => x.JobName == character.DefaultJob).Stages.Single(x => x.StageIndex == StageIndex).Progress != Progress.Completed)
                 {
@@ -72,7 +78,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
             JobNames = new List<JobName>();
             foreach (var job in ValidJobs)
             {
-                if (TargetExpansion.Jobs.Single(x => x.JobName == job).Stages.Single(x => x.StageIndex ==StageIndex).Progress != Progress.Completed)
+                if (TargetExpansion.Jobs.Single(x => x.JobName == job).Stages.Single(x => x.StageIndex == StageIndex).Progress != Progress.Completed)
                 {
                     JobNames.Add(job);
                 }
@@ -88,7 +94,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
             }
         }
 
-        public JobName GetActiveJob=> TargetStage.ActiveJob;
+        public JobName GetActiveJob => TargetStage.ActiveJob;
 
         public async Task SetActiveJob(ChangeEventArgs e)
         {
@@ -115,7 +121,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
             if (GetActiveJob != JobName.NA)
             {
 
-                if (StageIndex < TargetExpansion.StageCount-1 && character.AutoAssignCompletion)
+                if (StageIndex < TargetExpansion.StageCount - 1 && character.AutoAssignCompletion)
                 {
                     var nextStage = TargetExpansion.GetStages().Single(x => x.StageIndex == StageIndex + 1);
                     var job = TargetExpansion.Jobs.Single(x => x.JobName == GetActiveJob);

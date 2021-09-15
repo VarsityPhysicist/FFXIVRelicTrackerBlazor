@@ -18,16 +18,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._3_HWStages
 
         public override StageInfo TargetStage => character.HWExpansion.Stage7HW;
 
-        public override bool GetAnyCompleted()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override Task SetAnyCompleted(ChangeEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
         public Stage7HW ThisStage => character.HWExpansion.Stage7HW;
 
         public int GetPneumite => ThisStage.Pneumite;

@@ -17,15 +17,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._3_HWStages
         public override AbstractExpansion TargetExpansion => character.HWExpansion;
 
         public override StageInfo TargetStage => character.HWExpansion.Stage3HW;
-        public override bool GetAnyCompleted()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override Task SetAnyCompleted(ChangeEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
 
         public Stage3HW ThisStage => character.HWExpansion.Stage3HW;
 

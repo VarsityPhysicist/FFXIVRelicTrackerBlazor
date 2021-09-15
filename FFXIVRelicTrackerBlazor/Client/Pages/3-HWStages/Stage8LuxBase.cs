@@ -18,15 +18,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._3_HWStages
 
         public override StageInfo TargetStage => character.HWExpansion.Stage8HW;
 
-        public override bool GetAnyCompleted()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override Task SetAnyCompleted(ChangeEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
         public Stage8HW ThisStage => character.HWExpansion.Stage8HW;
 
         private async Task SetBools(int stepIndex)

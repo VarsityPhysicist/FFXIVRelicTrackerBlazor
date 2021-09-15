@@ -37,15 +37,5 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 
         }
         public int RemainingMist => Math.Max(0,(RemainingJobs * 3) - GetMistCount());
-
-        public override bool GetAnyCompleted()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override Task SetAnyCompleted(ChangeEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

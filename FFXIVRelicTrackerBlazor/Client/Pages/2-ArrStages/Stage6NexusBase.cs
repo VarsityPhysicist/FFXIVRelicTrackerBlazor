@@ -18,10 +18,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 
         public override StageInfo TargetStage => character.ArrExpansion.Stage6ARR;
 
-        public override bool GetAnyCompleted()
-        {
-            return ValidJobs.Count != CompletedJobs;
-        }
         public Stage6ARR ThisStage { get => character.ArrExpansion.Stage6ARR; }
 
         public int GetCurrentLight()
@@ -76,9 +72,5 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
             await SetCurrentLight(GetCurrentLight() + addLight);
         }
 
-        public override Task SetAnyCompleted(ChangeEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

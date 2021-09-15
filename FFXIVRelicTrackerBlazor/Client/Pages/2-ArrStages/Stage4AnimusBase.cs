@@ -18,11 +18,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 
         public override StageInfo TargetStage => character.ArrExpansion.Stage4ARR;
 
-        public override bool GetAnyCompleted()
-        {
-            throw new NotImplementedException();
-        }
-
         public Stage4ARR ThisStage { get => character.ArrExpansion.Stage4ARR; }
 
         #region Book Related
@@ -936,9 +931,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
             await RecheckMapItems();
         }
 
-        public override Task SetAnyCompleted(ChangeEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

@@ -22,7 +22,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 
         public override bool GetAnyCompleted()
         {
-            return Stage0 | FilteredJobs.Count != RemainingJobs;
+            return Stage0 | base.GetAnyCompleted();
         }
 
         public override async Task SetAnyCompleted(ChangeEventArgs e)

@@ -18,10 +18,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 
         public override StageInfo TargetStage => character.ArrExpansion.Stage8ARR;
 
-        public override bool GetAnyCompleted()
-        {
-            return FilteredJobs.Count != RemainingJobs;
-        }
         public Stage8ARR ThisStage { get => character.ArrExpansion.Stage8ARR; }
 
         #region Model Properties
@@ -37,11 +33,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
             }
             else ThisStage.ArrZodiacStage = arrZodiacStage;
             await OnCharacterUpdate();
-        }
-
-        public override Task SetAnyCompleted(ChangeEventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         public bool GetRamComplete()

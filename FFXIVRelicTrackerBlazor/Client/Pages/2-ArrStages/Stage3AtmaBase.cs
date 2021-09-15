@@ -18,15 +18,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 
         public override StageInfo TargetStage => character.ArrExpansion.Stage3ARR;
 
-        public override bool GetAnyCompleted()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override Task SetAnyCompleted(ChangeEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
         private Stage3ARR ThisStage => character.ArrExpansion.Stage3ARR;
 
         #region Model Properties
