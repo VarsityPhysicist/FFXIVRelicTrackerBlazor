@@ -1,0 +1,60 @@
+﻿@namespace FFXIVRelicTrackerBlazor.Client.Pages.Summaries
+@page "/ShBSummary"
+@inherits ShBSummaryBase
+
+<h3>ShB Summary: @character.Name</h3>
+<span>Note: Stage completions <button @onclick="()=>ToggleAdjustCount()">@AdjustCountString</button> adjust counts of collected items</span>
+
+@if (showAll)
+{
+    <table>
+        <thead>
+            <tr>
+                <td></td>
+                <td><span>Resistance</span></td>
+                <td><span>Augmented Resistance</span></td>
+                <td><span>Recollection</span></td>
+                <td><span>Law's Order</span></td>
+                <td><span>Augmented Law's Order</span></td>
+                <td><span>Blades of Gunhildr</span></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var job in TargetExpansion.Jobs)
+            {
+                @if (job.JobName != FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.NA)
+                {
+                    <tr>
+                        <td><span>@job.JobName</span></td>
+                        @for (int i = 0; i <= TargetExpansion.StageCount - 1; i++)
+                        {
+                            var local_i = i;
+                            <td><button @onclick="()=>ToggleComplete(local_i,job.JobName)">@job.Stages[local_i].Progress</button></td>
+                        }
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+}
+
+<style>
+    table {
+        text-align: center;
+    }
+
+    tr:first-child .td {
+        position: absolute;
+    }
+
+    td {
+        padding-inline: 10px;
+        min-width: 120px;
+        white-space: nowrap;
+    }
+</style>
+
+@code {
+
+}

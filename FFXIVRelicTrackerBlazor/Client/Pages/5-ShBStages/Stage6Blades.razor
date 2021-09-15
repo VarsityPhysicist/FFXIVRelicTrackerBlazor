@@ -1,0 +1,204 @@
+﻿@namespace FFXIVRelicTrackerBlazor.Client.Pages._5_ShBStages
+@page "/ShBStage6"
+@inherits Stage6BladesBase
+
+
+@if (showAll)
+{
+    <div class="stack-vertical">
+        <div class="stack-vertical">
+            <h2>Shadowbringers: Blades of Gunhildr</h2>
+            <div>@character.Name</div>
+            <div class="stack-horizontal">
+                <span>Selected Job: </span>
+                <select value="@GetActiveJob" @onchange="SetActiveJob">
+                    @foreach (var job in JobNames)
+                    {
+                        <option value="@job">@job</option>
+                    }
+                </select>
+                <button @onclick="()=>CompleteStage()" disabled="@JobNotSelected">Complete</button>
+            </div>
+            <br />
+        </div>
+        <div />
+        <br />
+        <div class="stack-vertical">
+            <div class="stack-horizontal">
+                <h3 style="@returnDec(DisplayRequirements())">Requirements </h3>
+                <button @onclick="()=>ResetRequirements()">Reset</button>
+            </div>
+            <span style="@returnDec(DisplayRequirements())">Complete the side quest <a href="https://ffxiv.gamerescape.com/wiki/What_Dreams_Are_Made_Of" target="_blank" rel="noopener noreferrer">"What Dreams Are Made Of"</a>, started by Gerolt (Gangos), with objectives detailed as follows</span>
+            @if (DisplayRequirements())
+            {
+                <span>Acquire 30 of the following items from their listed sources</span>
+
+                <table class="bordered-table">
+                    <thead>
+                        <tr class="bordered-tr">
+                            <td style="border:none"><span>Item:</span></td>
+                            <td style="border:none"><span>Zadnor Source:</span></td>
+                            <td style="border:none"><span>Raid Source:</span></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bordered-tr">
+                            <td><a href="https://ffxiv.gamerescape.com/wiki/Compact_Axle" target="_blank" rel="noopener noreferrer" class="item-link">Compact Axle</a></td>
+                            <td><span>Skirmishes in Zone 1</span></td>
+                            <td><span>Heavensward Raids 1, 2, 5, 6, 9, 10</span></td>
+                        </tr>
+                        <tr class="bordered-tr">
+                            <td><a href="https://ffxiv.gamerescape.com/wiki/Compact_Spring" target="_blank" rel="noopener noreferrer" class="item-link">Compact Spring</a></td>
+                            <td><span>Critical Engagements in Zone 1</span></td>
+                            <td><span>Heavensward Raids 3, 4, 7, 8, 11, 12</span></td>
+                        </tr>
+                        <tr class="bordered-tr">
+                            <td><a href="https://ffxiv.gamerescape.com/wiki/A_Day_in_the_Life:_Battles_for_the_Realm" target="_blank" rel="noopener noreferrer" class="item-link">A Day in the Life: Battles for the Realm</a></td>
+                            <td><span>Skirmishes in Zone 2</span></td>
+                            <td><span>Stormblood Raids 1, 2, 5, 6, 9, 10</span></td>
+                        </tr>
+                        <tr class="bordered-tr">
+                            <td><a href="https://ffxiv.gamerescape.com/wiki/A_Day_in_the_Life:_Beyond_the_Rift" target="_blank" rel="noopener noreferrer" class="item-link">A Day in the Life: Beyond the Rift</a></td>
+                            <td><span>Critical Engagements in Zone 2</span></td>
+                            <td><span>Stormblood Raids 3, 4, 7, 8, 11, 12</span></td>
+                        </tr>
+                        <tr class="bordered-tr">
+                            <td><a href="https://ffxiv.gamerescape.com/wiki/Bleak_Memory_of_the_Dying" target="_blank" rel="noopener noreferrer" class="item-link">Bleak Memory of the Dying</a></td>
+                            <td><span>Skirmishes in Zone 3</span></td>
+                            <td><span>Shadowbringers Raids 1, 2, 5, 6, 9, 10</span></td>
+                        </tr>
+                        <tr class="bordered-tr">
+                            <td><a href="https://ffxiv.gamerescape.com/wiki/Lurid_Memory_of_the_Dying" target="_blank" rel="noopener noreferrer" class="item-link">Lurid Memory of the Dying</a></td>
+                            <td><span>Critical Engagements in Zone 3</span></td>
+                            <td><span>Shadowbringers Raids 3, 4, 7, 8, 11, 12</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <table class="bordered-table">
+                    <thead>
+                        <tr>
+                            <td style="border:none"><span>Item:</span></td>
+                            <td style="border:none"><span>Current:</span></td>
+                            <td style="border:none"><span>Remaining:</span></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bordered-tr">
+                            <td><a href="https://ffxiv.gamerescape.com/wiki/Haunting_Memory_of_the_Dying" target="_blank" rel="noopener noreferrer" class="item-link">Haunting Memory of the Dying</a></td>
+                            <td><input type="number" min="0" max="30" value="@GetCompactAxle" @onchange="@SetCompactAxle" /></td>
+                            <td><span>@RemainingCompactAxle()</span></td>
+                        </tr>
+                        <tr class="bordered-tr">
+                            <td><a href="https://ffxiv.gamerescape.com/wiki/Vexatious_Memory_of_the_Dying" target="_blank" rel="noopener noreferrer" class="item-link">Vexatious Memory of the Dying</a></td>
+                            <td><input type="number" min="0" max="30" value="@GetCompactSpring" @onchange="@SetCompactSpring" /></td>
+                            <td><span>@RemainingCompactSpring()</span></td>
+                        </tr>
+                        <tr class="bordered-tr">
+                            <td><a href="https://ffxiv.gamerescape.com/wiki/A_Day_in_the_Life:_Battles_for_the_Realm" target="_blank" rel="noopener noreferrer" class="item-link">A Day in the Life: Battles for the Realm</a></td>
+                            <td><input type="number" min="0" max="30" value="@GetBattlesRealm" @onchange="@SetBattlesRealm" /></td>
+                            <td><span>@RemainingBattlesRealm()</span></td>
+                        </tr>
+                        <tr class="bordered-tr">
+                            <td><a href="https://ffxiv.gamerescape.com/wiki/A_Day_in_the_Life:_Beyond_the_Rift" target="_blank" rel="noopener noreferrer" class="item-link">A Day in the Life: Beyond the Rift</a></td>
+                            <td><input type="number" min="0" max="30" value="@GetBattlesRift" @onchange="@SetBattlesRift" /></td>
+                            <td><span>@RemainingBattlesRift()</span></td>
+                        </tr>
+                        <tr class="bordered-tr">
+                            <td><a href="https://ffxiv.gamerescape.com/wiki/Bleak_Memory_of_the_Dying" target="_blank" rel="noopener noreferrer" class="item-link">Bleak Memory of the Dying</a></td>
+                            <td><input type="number" min="0" max="30" value="@GetBleakMemory" @onchange="@SetBleakMemory" /></td>
+                            <td><span>@RemainingBleakMemory()</span></td>
+                        </tr>
+                        <tr class="bordered-tr">
+                            <td><a href="https://ffxiv.gamerescape.com/wiki/Lurid_Memory_of_the_Dying" target="_blank" rel="noopener noreferrer" class="item-link">Lurid Memory of the Dying</a></td>
+                            <td><input type="number" min="0" max="30" value="@GetLuridMemory" @onchange="@SetLuridMemory" /></td>
+                            <td><span>@RemainingLuridMemory()</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+
+        </div>
+        <br />
+        <span><a href="https://ffxiv.gamerescape.com/wiki/Irresistible" target="_blank" rel="noopener noreferrer">Quest: Irresistible</a> | Started by: Zlatan (Gangos)</span>
+        <span>With your <span class="weapon-purple">@PreviousWeaponName</span> equipped or in inventory and the quest "The Resistance Rememebers" active, complete the following content to recieve <a href="https://ffxiv.gamerescape.com/wiki/Raw_Emotion" target="_blank" rel="noopener noreferrer" class="item-link">Raw Emotion</a></span>
+        <ul>
+            <li><span>Clear The Dalriada</span><br /><span>Note: Guaranteed drop, awards 3</span></li>
+            <li><span>Clear Delubrum Reginae</span><br /><span>Note: Guaranteed drop, awards 2</span></li>
+            <li><span>Clear lvl 70 Dungeon</span><br /><span>Note: Guaranteed drop, awards 1</span></li>
+            <li><span>Complete 10 floors in Heaven-on-High</span><br /><span>Note: Chance drop, awards 1</span></li>
+        </ul>
+        <br />
+        <span>15 <a href="https://ffxiv.gamerescape.com/wiki/Raw_Emotion" target="_blank" rel="noopener noreferrer" class="item-link">Raw Emotion</a> are required to recieve your <span class="weapon-purple">@WeaponName</span></span>
+        <br />
+        <table>
+            <thead>
+                <tr>
+                    <td></td>
+                    <td><span>Current:</span></td>
+                    <td><span>Remaining:</span></td>
+                </tr>
+            </thead>
+            <tr>
+                <td><a href="https://ffxiv.gamerescape.com/wiki/Raw_Emotion" target="_blank" rel="noopener noreferrer" class="item-link">Raw Emotion</a></td>
+                <td><input type="number" min="0" max="15*17" value="@GetRawEmotion" @onchange="@SetRawEmotion" /></td>
+                <td><span>@RemainingRawEmotion()</span></td>
+            </tr>
+        </table>
+
+    </div>
+}
+<style>
+
+    .bordered-table {
+        border-collapse: separate;
+        border-spacing: 0px;
+    }
+
+    .div-border {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-left: solid;
+        border-top: solid;
+        border-bottom: solid;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-right: solid;
+        border-width: 1px;
+        padding-inline: 10px;
+    }
+
+    .bordered-tr td:first-child {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-left: solid;
+        border-top: solid;
+        border-bottom: solid;
+        border-width: 1px;
+        padding-inline: 10px;
+    }
+
+    .bordered-tr td:last-child {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-right: solid;
+        border-top: solid;
+        border-bottom: solid;
+        border-width: 1px;
+        padding-inline: 10px;
+    }
+
+    .bordered-tr td {
+        border-top-left-radius: initial;
+        border-bottom-left-radius: initial;
+        border-top-right-radius: unset;
+        border-bottom-right-radius: unset;
+        border-top: solid;
+        border-bottom: solid;
+        border-width: 1px;
+        padding-inline: 10px;
+    }
+</style>
+@code {
+
+}

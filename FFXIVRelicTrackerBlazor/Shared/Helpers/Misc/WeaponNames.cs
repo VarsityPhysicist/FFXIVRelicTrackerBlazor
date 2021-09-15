@@ -17,6 +17,8 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers.Misc
                     return GetARRWeapon(job, StageIndex);
                 case ExpansionName.HW:
                     return GetHWWeapon(job, StageIndex);
+                case ExpansionName.ShB:
+                    return GetShBWeapon(job, StageIndex);
                 default:
                     return null;
             }
@@ -292,5 +294,168 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers.Misc
         }
         #endregion
 
+        #region ShB Weapons
+        private static string GetShBWeapon(JobName job, int stageIndex)
+        {
+            ShBStages stage = (ShBStages)stageIndex;
+            string modifier = EnumExtensions.GetEnumDisplayName(stage);
+            if (job == JobName.NA)
+            {
+                return modifier + " Weapon";
+            }
+
+            modifier = Enum.GetName(typeof(ShBStages), stageIndex);
+            string tempWeapon = string.Empty;
+            if (stageIndex < (int)ShBStages.LawsOrder)
+            {
+                tempWeapon = InitialShBWeapon(job);
+            }
+            else if (stageIndex < (int)ShBStages.Blades)
+            {
+                tempWeapon = SecondShBWeapon(job);
+            }
+            else
+            {
+                tempWeapon = FinalShBWeapon(job);
+            }
+            switch (stageIndex)
+            {
+                case (int)ShBStages.AugmentedLawsOrder:
+                case (int)ShBStages.AugmentedResistance:
+                    tempWeapon = "Augmented " + tempWeapon;
+                    break;
+                case (int)ShBStages.Recollection:
+                    tempWeapon = tempWeapon + " " + modifier;
+                    break;
+            }
+            return tempWeapon;
+        }
+        private static string InitialShBWeapon(JobName job)
+        {
+            switch (job)
+            {
+                case JobName.PLD:
+                    return "Honorbound and Tenacity";
+                case JobName.WAR:
+                    return "Skullrender";
+                case JobName.DRK:
+                    return "Woebord";
+                case JobName.GNB:
+                    return "Crownsblade";
+                case JobName.WHM:
+                    return "Ingrimm";
+                case JobName.SCH:
+                    return "Akademos";
+                case JobName.AST:
+                    return "Solstice";
+                case JobName.MNK:
+                    return "Samsara";
+                case JobName.DRG:
+                    return "Dreizack";
+                case JobName.NIN:
+                    return "Honeshirazu";
+                case JobName.SAM:
+                    return "Hoshikiri";
+                case JobName.BRD:
+                    return "Brilliance";
+                case JobName.MCH:
+                    return "Lawman";
+                case JobName.DNC:
+                    return "Enchufla";
+                case JobName.BLM:
+                    return "Soulscourge";
+                case JobName.SMN:
+                    return "Espiritus";
+                case JobName.RDM:
+                    return "Talekeeper";
+                default:
+                    return "Resistance Weapon";
+            }
+        }
+        private static string SecondShBWeapon(JobName job)
+        {
+            switch (job)
+            {
+                case JobName.PLD:
+                    return "Law's Order Bastard Sword and Kite Shield";
+                case JobName.WAR:
+                    return "Law's Order Labrys";
+                case JobName.DRK:
+                    return "Law's Order Zweihander";
+                case JobName.GNB:
+                    return "Law's Order Manatrigger";
+                case JobName.WHM:
+                    return "Law's Order Cane";
+                case JobName.SCH:
+                    return "Law's Order Codex";
+                case JobName.AST:
+                    return "Law's Order Astrometer";
+                case JobName.MNK:
+                    return "Law's Order Knuckles";
+                case JobName.DRG:
+                    return "Law's Order Spear";
+                case JobName.NIN:
+                    return "Law's Order Knives";
+                case JobName.SAM:
+                    return "Law's Order Samurai Blade";
+                case JobName.BRD:
+                    return "Law's Order Composite Bow";
+                case JobName.MCH:
+                    return "Law's Order Revolver";
+                case JobName.DNC:
+                    return "Law's Order Chakrams";
+                case JobName.BLM:
+                    return "Law's Order Rod";
+                case JobName.SMN:
+                    return "Law's Order Index";
+                case JobName.RDM:
+                    return "Law's Order Rapier";
+                default:
+                    return "Law's Order Weapon";
+            }
+        }
+        private static string FinalShBWeapon(JobName job)
+        {
+            switch (job)
+            {
+                case JobName.PLD:
+                    return "Blade's Honor and Fortitude";
+                case JobName.WAR:
+                    return "Blade's Valor";
+                case JobName.DRK:
+                    return "Blade's Justice";
+                case JobName.GNB:
+                    return "Blade's Resolve";
+                case JobName.WHM:
+                    return "Blade's Mercy";
+                case JobName.SCH:
+                    return "Blade's Wisdom";
+                case JobName.AST:
+                    return "Blade's Providence";
+                case JobName.MNK:
+                    return "Blade's Serenity";
+                case JobName.DRG:
+                    return "Blade's Glory";
+                case JobName.NIN:
+                    return "Blade's Subtlety";
+                case JobName.SAM:
+                    return "Blade's Fealty";
+                case JobName.BRD:
+                    return "Blade's Muse";
+                case JobName.MCH:
+                    return "Blade's Ingenuity";
+                case JobName.DNC:
+                    return "Blade's Euphoria";
+                case JobName.BLM:
+                    return "Blade's Fury";
+                case JobName.SMN:
+                    return "Blade's Acumen";
+                case JobName.RDM:
+                    return "Blade's Temperance";
+                default:
+                    return "Blade's of Gunhildr Weapon";
+            }
+        }
+        #endregion
     }
 }

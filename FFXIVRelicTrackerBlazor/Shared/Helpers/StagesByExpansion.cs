@@ -17,6 +17,8 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers
                     return ArrStages;
                 case ExpansionName.HW:
                     return HWStages;
+                case ExpansionName.ShB:
+                    return ShBStages;
                 default:
                     return null;
             }
@@ -42,6 +44,15 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers
             "Sharpened",
             "Complete",
             "Lux"
+        };
+        public static List<string> ShBStages = new List<string>()
+        {
+            "Resistance",
+            "Augmented Resistance",
+            "Recollection",
+            "Law's Order",
+            "Augmented Law's Order",
+            "Blades of Gunhildr"
         };
     }
     public enum ArrStages
@@ -81,5 +92,21 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers
         Complete,
         [Display(Name = "Lux")]
         Lux
+    }
+
+    public enum ShBStages
+    {
+        [Display(Name = "Resistance")]
+        Resistance,
+        [Display(Name = "Augmented Resistance")]
+        AugmentedResistance,
+        [Display(Name = "Recollection")]
+        Recollection,
+        [Display(Name = "Law's Order")]
+        LawsOrder,
+        [Display(Name = "Augmented Law's Order")]
+        AugmentedLawsOrder,
+        [Display(Name = "Blades of Gunhildr")]
+        Blades
     }
 }

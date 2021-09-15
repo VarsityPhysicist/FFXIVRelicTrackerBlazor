@@ -1,0 +1,99 @@
+﻿@namespace FFXIVRelicTrackerBlazor.Client.Pages._5_ShBStages
+@page "/ShBStage5"
+@inherits Stage5AugmentedLawsOrderBase
+
+
+@if (showAll)
+{
+    <div class="stack-vertical">
+        <div class="stack-vertical">
+            <h2>Shadowbringers: Augmented Law's Order</h2>
+            <div>@character.Name</div>
+            <div class="stack-horizontal">
+                <span>Selected Job: </span>
+                <select value="@GetActiveJob" @onchange="SetActiveJob">
+                    @foreach (var job in JobNames)
+                    {
+                        <option value="@job">@job</option>
+                    }
+                </select>
+                <button @onclick="()=>CompleteStage()" disabled="@JobNotSelected">Complete</button>
+            </div>
+            <br />
+        </div>
+        <div />
+        <br />
+        <div class="stack-vertical">
+            <div class="stack-horizontal">
+                <h3 style="@returnDec(DisplayRequirements())">Requirements </h3>
+                <button @onclick="()=>ResetRequirements()">Reset</button>
+            </div>
+            <span style="@returnDec(DisplayRequirements())">Complete the side quest <a href="https://ffxiv.gamerescape.com/wiki/The_Resistance_Remembers" target="_blank" rel="noopener noreferrer">"The Resistance Remembers"</a>, started by Gerolt (Gangos), with objectives detailed as follows</span>
+            @if (DisplayRequirements())
+            {
+                <span>Acquire 18 <a href="https://ffxiv.gamerescape.com/wiki/Haunting_Memory_of_the_Dying" target="_blank" rel="noopener noreferrer" class="item-link">Haunting Memories of the Dying</a> and <a href="https://ffxiv.gamerescape.com/wiki/Vexatious_Memory_of_the_Dying" target="_blank" rel="noopener noreferrer" class="item-link">Vexatious Memories of the Dying</a> from the following sources</span>
+                <ul>
+                    <li>
+                        <a href="https://ffxiv.gamerescape.com/wiki/Haunting_Memory_of_the_Dying" target="_blank" rel="noopener noreferrer" class="item-link">Haunting Memory of the Dying</a>
+                        <br /><span class="tabbed-container">Complete Heavensward Alliance Raids - Guaranteed 3</span>
+                        <br /><span class="tabbed-container">Complete Gyr Albania Region FATEs - Chance 1</span>
+                    </li>
+                    <li>
+                        <a href="https://ffxiv.gamerescape.com/wiki/Vexatious_Memory_of_the_Dying" target="_blank" rel="noopener noreferrer" class="item-link">Vexatious Memory of the Dying</a>
+                        <br /><span class="tabbed-container">Complete Stormblood Alliance Raids - Guaranteed 3</span>
+                        <br /><span class="tabbed-container">Complete Far East Region FATEs - Chance 1</span>
+                    </li>
+                </ul>
+                <table>
+                    <thead>
+                        <tr>
+                            <td><span>Memory:</span></td>
+                            <td><span>Current:</span></td>
+                            <td><span>Remaining:</span></td>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td><a href="https://ffxiv.gamerescape.com/wiki/Haunting_Memory_of_the_Dying" target="_blank" rel="noopener noreferrer" class="item-link">Haunting Memory of the Dying</a></td>
+                        <td><input type="number" min="0" max="18" value="@GetHauntingMemory" @onchange="@SetHauntingMemory" /></td>
+                        <td><span>@RemainingHauntingMemory()</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://ffxiv.gamerescape.com/wiki/Vexatious_Memory_of_the_Dying" target="_blank" rel="noopener noreferrer" class="item-link">Vexatious Memory of the Dying</a></td>
+                        <td><input type="number" min="0" max="18" value="@GetVexatiousMemory" @onchange="@SetVexatiousMemory" /></td>
+                        <td><span>@RemainingVexatiousMemory()</span></td>
+                    </tr>
+                </table>
+            }
+
+        </div>
+        <br />
+        <span><a href="https://ffxiv.gamerescape.com/wiki/A_New_Path_of_Resistance" target="_blank" rel="noopener noreferrer">Quest: A New Path of Resistance</a> | Started by: Zlatan (Gangos)</span>
+        <span>With your <span class="weapon-purple">@PreviousWeaponName</span> equipped or in inventory and the quest "The Resistance Rememebers" active, complete the following content to recieve <a href="https://ffxiv.gamerescape.com/wiki/Timeworn_Artifact" target="_blank" rel="noopener noreferrer" class="item-link">Timeworn Artifact</a></span>
+        <ul>
+            <li><span>Clear Delubrum Reginae</span><br /><span>Note: Guaranteed drop, awards 3</span></li>
+            <li><span>Complete 10 floors in Palace of the Dead</span><br /><span>Note: Chance drop, awards 1</span></li>
+        </ul>
+        <br />
+        <span>15 <a href="https://ffxiv.gamerescape.com/wiki/Timeworn_Artifact" target="_blank" rel="noopener noreferrer" class="item-link">Timeworn Artifact</a> are required to recieve your <span class="weapon-purple">@WeaponName</span></span>
+        <br />
+        <table>
+            <thead>
+                <tr>
+                    <td></td>
+                    <td><span>Current:</span></td>
+                    <td><span>Remaining:</span></td>
+                </tr>
+            </thead>
+            <tr>
+                <td><a href="https://ffxiv.gamerescape.com/wiki/Timeworn_Artifact" target="_blank" rel="noopener noreferrer" class="item-link">Timeworn Artifact</a></td>
+                <td><input type="number" min="0" max="15*17" value="@GetTimewornArtifact" @onchange="@SetTimewornArtifact" /></td>
+                <td><span>@RemainingTimewornArtifact()</span></td>
+            </tr>
+        </table>
+
+    </div>
+}
+
+@code {
+
+}

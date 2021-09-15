@@ -24,6 +24,7 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers
                 case ExpansionName.SB:
                     break;
                 case ExpansionName.ShB:
+                    ShBStageCompleter.CompleteStage(Job, StageIndex, character.ShBExpansion, adjustCounts);
                     break;
             }
 
@@ -44,6 +45,7 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers
                 case ExpansionName.SB:
                     break;
                 case ExpansionName.ShB:
+                    ShBStageCompleter.InCompleteStage(Job, StageIndex, character.ShBExpansion);
                     break;
             }
         }
@@ -61,6 +63,7 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers
                 case ExpansionName.SB:
                     break;
                 case ExpansionName.ShB:
+                    //No Reset needed for ShBStages
                     break;
             }
         }

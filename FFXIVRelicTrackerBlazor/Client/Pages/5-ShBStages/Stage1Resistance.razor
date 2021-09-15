@@ -1,0 +1,62 @@
+﻿@namespace FFXIVRelicTrackerBlazor.Client.Pages._5_ShBStages
+@page "/ShBStage1"
+@inherits Stage1ResistanceBase
+
+
+@if (showAll)
+{
+    <div class="stack-vertical">
+        <div class="stack-vertical">
+            <h2>Shadowbringers: Resistance</h2>
+            <div>@character.Name</div>
+            <div class="stack-horizontal">
+                <span>Selected Job: </span>
+                <select value="@GetActiveJob" @onchange="SetActiveJob">
+                    @foreach (var job in JobNames)
+                    {
+                        <option value="@job">@job</option>
+                    }
+                </select>
+                <button @onclick="()=>CompleteStage()" disabled="@JobNotSelected">Complete</button>
+            </div>
+            <br />
+        </div>
+        <div />
+        <br />
+        <div style="@returnDec(GetAnyCompleted())" class="stack-vertical">
+            <span><a href="https://ffxiv.gamerescape.com/wiki/Hail_to_the_Queen" target="_blank" rel="noopener noreferrer">Quest: Hail to the Queen</a> | Started by: Keiten (Kugane)</span>
+            <span>The first <span class="weapon-purple">Resistance Weapon</span> is awarded upon completion of a quest chain started by the above quest</span>
+        </div>
+
+        <br />
+        <span>Subsequent <span class="weapon-purple">Resistance Weapons</span> are acquired from the quest:</span>
+        <span><a href="https://ffxiv.gamerescape.com/wiki/Resistance_Is_(Not)_Futile" target="_blank" rel="noopener noreferrer">Quest: Resistance Is (Not) Futile</a> | Started by: Zlatan (Gangos)</span>
+        <ul>
+            <li><span>Four <a href="https://ffxiv.gamerescape.com/wiki/Thavnairian_Scalepowder" target="_blank" rel="noopener noreferrer" class="item-link">Thavnairian Scalepowder</a> are required to complete this quest</span></li>
+            <li><span><a href="https://ffxiv.gamerescape.com/wiki/Thavnairian_Scalepowder" target="_blank" rel="noopener noreferrer" class="item-link">Thavnairian Scalepowder</a> are purchased for 250 Poetics each</span></li>
+            <li><span>Purchase from Special Arms Poetics vendors</span></li>
+        </ul>
+
+        <table>
+            <thead>
+                <tr>
+                    <td></td>
+                    <td><span>Current:</span></td>
+                    <td><span>Remaining:</span></td>
+                    <td><span>Remaining Poetics:</span></td>
+                </tr>
+            </thead>
+            <tr>
+                <td><a href="https://ffxiv.gamerescape.com/wiki/Thavnairian_Scalepowder" target="_blank" rel="noopener noreferrer" class="item-link">Thavnairian Scalepowder</a></td>
+                <td><input value="@GetScalePowder" type="number" @onchange="SetScalePowder" min="0" max="4*15" /></td>
+                <td><span>@RemainingScalepowder()</span></td>
+                <td><span>@RemainingPoetics()</span></td>
+            </tr>
+        </table>
+
+    </div>
+}
+
+@code {
+
+}

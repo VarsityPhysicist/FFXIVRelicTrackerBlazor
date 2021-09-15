@@ -18,6 +18,7 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers
                     return HWJobs;
                 case ExpansionName.SB:
                 case ExpansionName.ShB:
+                    return ShBJobs;
                 default:
                     return null;
             }
@@ -52,6 +53,27 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers
                 JobName.MCH,
                 JobName.BLM,
                 JobName.SMN
+            };
+        public static readonly List<JobName> ShBJobs = new List<JobName>
+            {
+                JobName.NA,
+                JobName.PLD,
+                JobName.WAR,
+                JobName.DRK,
+                JobName.GNB,
+                JobName.WHM,
+                JobName.SCH,
+                JobName.AST,
+                JobName.MNK,
+                JobName.DRG,
+                JobName.NIN,
+                JobName.SAM,
+                JobName.BRD,
+                JobName.MCH,
+                JobName.DNC,
+                JobName.BLM,
+                JobName.SMN,
+                JobName.RDM
             };
     }
 }

@@ -1,0 +1,89 @@
+﻿@namespace FFXIVRelicTrackerBlazor.Client.Pages._5_ShBStages
+@page "/ShBStage2"
+@inherits Stage2AugmentedResistanceBase
+
+
+@if (showAll)
+{
+    <div class="stack-vertical">
+        <div class="stack-vertical">
+            <h2>Shadowbringers: Augmented Resistance</h2>
+            <div>@character.Name</div>
+            <div class="stack-horizontal">
+                <span>Selected Job: </span>
+                <select value="@GetActiveJob" @onchange="SetActiveJob">
+                    @foreach (var job in JobNames)
+                    {
+                        <option value="@job">@job</option>
+                    }
+                </select>
+                <button @onclick="()=>CompleteStage()" disabled="@JobNotSelected">Complete</button>
+            </div>
+            <br />
+        </div>
+        <div />
+        <br />
+        <span><a href="https://ffxiv.gamerescape.com/wiki/For_Want_of_a_Memory" target="_blank" rel="noopener noreferrer">Quest: For Want of a Memory</a> | Started by: Zlatan (Gangos)</span>
+        <span>With your <span class="weapon-purple">@PreviousWeaponName</span> equipped or in inventory and the quest "For Want of a Memory" active, complete Heavensward FATEs or certain battles in Bozjan Southern Front</span>
+        <ul>
+            <li><span>Completing Heavensward FATEs with a gold rating awards a single memory</span></li>
+            <li><span>Completing Skirmishes, Critical Engagements, and defeating enemies in the Bozjan Southern Front has a chance to drop a memory</span></li>
+        </ul>
+
+        <table>
+            <thead>
+                <tr>
+                    <td><span>Memory:</span></td>
+                    <td><span>Heavensward Locations:</span></td>
+                    <td><span>Bozjan Southern Front Area:</span></td>
+                </tr>
+            </thead>
+            <tr>
+                <td><a href="https://ffxiv.gamerescape.com/wiki/Harrowing_Memory_of_the_Dying" target="_blank" rel="noopener noreferrer" class="item-link">Harrowing Memory of the Dying</a></td>
+                <td><span>Dravanian Hinterlands | Azys Lla</span></td>
+                <td><span>Northern section</span></td>
+            </tr>
+            <tr>
+                <td><a href="https://ffxiv.gamerescape.com/wiki/Sorrowful_Memory_of_the_Dying" target="_blank" rel="noopener noreferrer" class="item-link">Sorrowful Memory of the Dying</a></td>
+                <td><span>Dravanian Forelands | Churning Mists</span></td>
+                <td><span>Middle section</span></td>
+            </tr>
+            <tr>
+                <td><a href="https://ffxiv.gamerescape.com/wiki/Tortured_Memory_of_the_Dying" target="_blank" rel="noopener noreferrer" class="item-link">Tortured Memory of the Dying</a></td>
+                <td><span>Coerthas Western Highlands | Sea of Clouds</span></td>
+                <td><span>Southern section</span></td>
+            </tr>
+        </table>
+        <span>20 Memories of each type are required to augment your <span class="weapon-purple">@PreviousWeaponName</span></span>
+        <br />
+        <table>
+            <thead>
+                <tr>
+                    <td><span>Memory:</span></td>
+                    <td><span>Current:</span></td>
+                    <td><span>Remaining:</span></td>
+                </tr>
+            </thead>
+            <tr>
+                <td><a href="https://ffxiv.gamerescape.com/wiki/Harrowing_Memory_of_the_Dying" target="_blank" rel="noopener noreferrer" class="item-link">Harrowing Memory of the Dying</a></td>
+                <td><input type="number" min="0" max="20*17" value="@GetHarrowingMemory" @onchange="@SetHarrowingMemory" /></td>
+                <td><span>@RemainingHarrowingMemory()</span></td>
+            </tr>
+            <tr>
+                <td><a href="https://ffxiv.gamerescape.com/wiki/Sorrowful_Memory_of_the_Dying" target="_blank" rel="noopener noreferrer" class="item-link">Sorrowful Memory of the Dying</a></td>
+                <td><input type="number" min="0" max="20*17" value="@GetSorrowfulMemory" @onchange="@SetSorrowfulMemory" /></td>
+                <td><span>@RemainingSorrowfulMemory()</span></td>
+            </tr>
+            <tr>
+                <td><a href="https://ffxiv.gamerescape.com/wiki/Tortured_Memory_of_the_Dying" target="_blank" rel="noopener noreferrer" class="item-link">Tortured Memory of the Dying</a></td>
+                <td><input type="number" min="0" max="20*17" value="@GetTorturedMemory" @onchange="@SetTorturedMemory" /></td>
+                <td><span>@RemainingTorturedMemory()</span></td>
+            </tr>
+        </table>
+
+    </div>
+}
+
+@code {
+
+}
