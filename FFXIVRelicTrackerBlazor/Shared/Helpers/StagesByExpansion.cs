@@ -109,4 +109,20 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers
         [Display(Name = "Blades of Gunhildr")]
         Blades
     }
+
+    public enum SkySteelStages
+    {
+        [Display(Name ="Skysteel")]
+        Skysteel,
+        [Display(Name ="Skysteel+1")]
+        Skysteel_1,
+        [Display(Name ="Dragonsung")]
+        Dragonsung,
+        [Display(Name ="Augmented Dragonsung")]
+        AugmentedDragonsung,
+        [Display(Name ="Skysung")]
+        Skysung,
+        [Display(Name ="Skybuilders")]
+        Skybuilders
+    }
 }
