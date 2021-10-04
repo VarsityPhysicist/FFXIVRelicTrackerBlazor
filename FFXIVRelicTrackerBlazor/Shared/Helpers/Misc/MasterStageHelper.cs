@@ -26,6 +26,9 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers
                 case ExpansionName.ShB:
                     ShBStageCompleter.CompleteStage(Job, StageIndex, character.ShBExpansion, adjustCounts);
                     break;
+                case ExpansionName.Skysteel:
+                    SkysteelStageCompleter.CompleteStage(Job, StageIndex, character.SkysteelExpansion);
+                    break;
             }
 
             StageInfo targetStage = character.GetExpansions().Single(x => x.Expansion == expansionName).GetStages().Single(x => x.StageIndex == StageIndex);
@@ -47,6 +50,9 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers
                 case ExpansionName.ShB:
                     ShBStageCompleter.InCompleteStage(Job, StageIndex, character.ShBExpansion);
                     break;
+                case ExpansionName.Skysteel:
+                    SkysteelStageCompleter.InCompleteStage(Job, StageIndex, character.SkysteelExpansion);
+                    break;
             }
         }
 
@@ -64,6 +70,9 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers
                     break;
                 case ExpansionName.ShB:
                     //No Reset needed for ShBStages
+                    break;
+                case ExpansionName.Skysteel:
+                    //No Reset needed for SkysteelStages
                     break;
             }
         }
