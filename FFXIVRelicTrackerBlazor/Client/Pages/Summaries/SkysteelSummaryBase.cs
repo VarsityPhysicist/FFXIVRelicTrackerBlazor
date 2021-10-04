@@ -9,8 +9,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages.Summaries
 {
     public class SkysteelSummaryBase : AbstractSummaryBase
     {
-        public override List<JobName> ValidJobs => JobsByExpansion.SkysteelJobs;
-
         public override AbstractExpansion TargetExpansion => character.SkysteelExpansion;
     }
 }

@@ -16,7 +16,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 {
     public class Stage1RelicBase : AbstractStagePageBase
     {
-        public override List<JobName> ValidJobs => JobsByExpansion.ArrJobs;
         public override AbstractExpansion TargetExpansion => character.ArrExpansion;
         public override StageInfo TargetStage => character.ArrExpansion.Stage1ARR;
 

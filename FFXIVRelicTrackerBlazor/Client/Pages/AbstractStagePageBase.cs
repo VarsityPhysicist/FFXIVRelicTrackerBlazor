@@ -12,7 +12,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
 {
     public abstract class AbstractStagePageBase : AbstractPageBase
     {
-        public abstract List<JobName> ValidJobs { get; }
+        public List<JobName> ValidJobs => JobsByExpansion.GetJobList(TargetExpansion.Expansion);
         public List<JobName> FilteredJobs => ValidJobs.Where(x => x != JobName.NA).ToList();
         public abstract AbstractExpansion TargetExpansion { get; }
         public abstract StageInfo TargetStage { get; }

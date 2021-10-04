@@ -12,8 +12,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._3_HWStages
 {
     public class Stage4HyperconductiveBase : AbstractStagePageBase
     {
-        public override List<JobName> ValidJobs => JobsByExpansion.HWJobs;
-
         public override AbstractExpansion TargetExpansion => character.HWExpansion;
 
         public override StageInfo TargetStage => character.HWExpansion.Stage4HW;
