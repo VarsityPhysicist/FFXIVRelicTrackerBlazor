@@ -19,6 +19,17 @@
         DNC,
         BLM,
         SMN,
-        RDM
+        RDM,
+        CRP,
+        BSM,
+        ARM,
+        GSM,
+        LTW,
+        WVR,
+        ALC,
+        CUL,
+        MNR,
+        BTN,
+        FSH
     }
 }
