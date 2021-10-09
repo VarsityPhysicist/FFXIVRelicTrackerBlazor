@@ -19,6 +19,8 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers.Misc
                     return GetHWWeapon(job, StageIndex);
                 case ExpansionName.ShB:
                     return GetShBWeapon(job, StageIndex);
+                case ExpansionName.Skysteel:
+                    return GetSkysteelWeapon(job, StageIndex);
                 default:
                     return null;
             }
