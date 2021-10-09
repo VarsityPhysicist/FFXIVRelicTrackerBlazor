@@ -278,7 +278,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
             get
             {
                 if (GetActiveJob != JobName.NA)
-                    return "A Relic Reborn (" + WeaponName +")";
+                    return "A Relic Reborn (" + ActiveWeaponName +")";
 
                 return "";
             }
