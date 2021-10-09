@@ -14,10 +14,19 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
     {
         public List<JobName> ValidJobs => JobsByExpansion.GetJobList(TargetExpansion.Expansion);
         public List<JobName> FilteredJobs => ValidJobs.Where(x => x != JobName.NA).ToList();
-        public abstract AbstractExpansion TargetExpansion { get; }
         public abstract StageInfo TargetStage { get; }
-        public string WeaponName => WeaponNames.GetWeaponName(TargetStage.ActiveJob, StageIndex, TargetExpansion.Expansion);
-        public string PreviousWeaponName => WeaponNames.GetWeaponName(TargetStage.ActiveJob, StageIndex - 1, TargetExpansion.Expansion);
+        private string weaponName(JobName job, int stageIndex)=> WeaponNames.GetWeaponName(job, stageIndex, TargetExpansion.Expansion);
+        public string ActiveWeaponName => weaponName(GetActiveJob, StageIndex);
+        public string PreviousActiveWeaponName => weaponName(GetActiveJob, StageIndex-1);
+        public string ToolName(JobName job)=> weaponName(job, StageIndex);
+        public string PreviousToolName(JobName job)=> weaponName(job, StageIndex-1);
+        public string IsCompleted(JobName job)
+        {
+            if (TargetExpansion.Jobs.Single(x => x.JobName == job).Stages.Single(x => x.StageIndex == StageIndex).Progress == Progress.Completed)
+                return "Completed";
+            else
+                return "Incomplete";
+        }
         public int StageIndex => TargetStage.StageIndex;
 
         public static string returnDec(bool inputBool)
