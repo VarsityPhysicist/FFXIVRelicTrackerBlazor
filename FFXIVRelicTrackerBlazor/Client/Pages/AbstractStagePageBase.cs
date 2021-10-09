@@ -18,8 +18,8 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
         private string weaponName(JobName job, int stageIndex)=> WeaponNames.GetWeaponName(job, stageIndex, TargetExpansion.Expansion);
         public string ActiveWeaponName => weaponName(GetActiveJob, StageIndex);
         public string PreviousActiveWeaponName => weaponName(GetActiveJob, StageIndex-1);
-        public string ToolName(JobName job)=> weaponName(job, StageIndex);
-        public string PreviousToolName(JobName job)=> weaponName(job, StageIndex-1);
+        public string SelectedWeaponName(JobName job)=> weaponName(job, StageIndex);
+        public string PreviousSelectedWeaponName(JobName job)=> weaponName(job, StageIndex-1);
         public string IsCompleted(JobName job)
         {
             if (TargetExpansion.Jobs.Single(x => x.JobName == job).Stages.Single(x => x.StageIndex == StageIndex).Progress == Progress.Completed)
