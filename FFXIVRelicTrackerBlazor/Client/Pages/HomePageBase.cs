@@ -14,6 +14,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
 {
     public class HomePageBase : AbstractPageBase
     {
+        public override AbstractExpansion TargetExpansion => throw new NotImplementedException();
 
         [Inject]
         public ILocalStorageService LocalStorage { get; set; }
@@ -457,6 +458,8 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
         }
 
         public bool GetAutoCompletion => character.AutoAssignCompletion;
+
+
         public async Task SetAutoCompletion(ChangeEventArgs e) { if(bool.TryParse(e.Value.ToString(),out bool value)) { character.AutoAssignCompletion = value; await OnCharacterUpdate(); } }
         #endregion
     }
