@@ -29,6 +29,13 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
         }
         public int StageIndex => TargetStage.StageIndex;
 
+        public static string stringToUrl(string input)
+        {
+            string tempString = input.Replace(" ", "_");
+            tempString = tempString.Replace("'", "%27");
+            tempString = "https://ffxiv.gamerescape.com/wiki/" + tempString;
+            return tempString;
+        }
         public static string returnDec(bool inputBool)
         {
             if (!inputBool)
