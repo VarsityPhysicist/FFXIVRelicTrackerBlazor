@@ -25,6 +25,13 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
             }
         }
         public abstract AbstractExpansion TargetExpansion { get; }
+        public static string DisplayArrow(bool displayed)
+        {
+            if (displayed)
+                return "▲";
+            else
+                return "▼";
+        }
         public bool GetAdjustCount => TargetExpansion.AdjustCounts;
         public bool IsJobComplete(JobName job, int StageIndex) => TargetExpansion.Jobs.Single(x => x.JobName == job).Stages.Single(x => x.StageIndex == StageIndex).Progress == Progress.Completed;
 
