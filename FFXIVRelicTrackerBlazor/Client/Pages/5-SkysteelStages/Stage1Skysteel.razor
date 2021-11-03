@@ -1,0 +1,40 @@
+﻿@namespace FFXIVRelicTrackerBlazor.Client.Pages._5_SkysteelStages
+@page "/SkysteelStage1"
+@inherits Stage1SkysteelBase
+@if (showAll)
+{
+    <div class="stack-vertical">
+        <div class="stack-vertical">
+            <h2>Shadowbringers: Resistance</h2>
+            <div>@character.Name</div>
+            <br />
+        </div>
+        <div />
+        <br />
+        <h3>Requirements</h3>
+        <ul>
+            <li><span>Disciple of Hand or Land level 80</span></li>
+            <li><span>Complete quest <a href="https://ffxiv.gamerescape.com/wiki/Towards_the_Firmament" target="_blank" rel="noopener noreferrer">'Towards the Firmament'</a></span></li>
+        </ul>
+        <br />
+        <span><a href="https://ffxiv.gamerescape.com/wiki/Mislaid_Plans" target="_blank" rel="noopener noreferrer">Quest: Mislaid Plans</a> | Started by: Skysteel Engineer (Foundation)</span>
+        <span>The first <span class="item-link">Skysteel Tool</span> is awarded upon completion of 'Mislaid Plans'</span>
+        <span>Subsequent tools are purchased for 80,000 gil each</span>
+        <br />
+        <table>
+            @foreach (var job in FilteredJobs)
+            {
+                <tr style="margin:10px;">
+                    <td><span style="@returnDec(!IsJobComplete(job,StageIndex))">@job</span></td>
+                    <td><span>@SelectedWeaponName(job)</span></td>
+                    <td><button style="@returnDec(!IsJobComplete(job,StageIndex))" @onclick="()=>ToggleComplete(StageIndex,job)">@IsCompleted(job)</button></td>
+                </tr>
+            }
+        </table>
+
+    </div>
+}
+
+@code {
+
+}

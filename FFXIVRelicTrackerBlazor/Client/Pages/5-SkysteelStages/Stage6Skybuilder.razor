@@ -1,0 +1,232 @@
+﻿@namespace FFXIVRelicTrackerBlazor.Client.Pages._5_SkysteelStages
+@page "/SkysteelStage6"
+@inherits Stage6SkybuilderBase
+@if (showAll)
+{
+    <div class="stack-vertical">
+        <div class="stack-vertical">
+            <h2>Skysteel Tools: Skybuilder</h2>
+            <div>@character.Name</div>
+            <br />
+        </div>
+        <div />
+        <br />
+        <span><a href="https://ffxiv.gamerescape.com/wiki/The_Pinnacle_of_Possibility" target="_blank" rel="noopener noreferrer">Quest: 'The Pinnacle of Possibility'</a> | Started by: Emeny (The Firmament)</span>
+        <span><span class="weapon-purple">Skybuilders' Tools</span> are acquired by trading a <span class="item-link">Skysung Tool</span> and <span class="item-link">Class-specific Tool Parts</span> to Denys (Foundation)</span>
+        <span><span class="item-link">Gobbiegoo</span> is acquired by trading in collectable crafted items, or a quantity of gathered items</span>
+        <br />
+        <h4>Disciples of the Hand</h4>
+        <span>For each DoH Job, acquire 60 profession-specific Tool Parts by exchanging crafted-collectible items listed below</span>
+        <span>Each craft requires an 'Oddly Delicate' material which is purchased for 90 Yellow Crafters' Scrips or 30 Skybuilders' Scrips</span>
+        <span>Quantity of Tool Parts awarded for each collectable item depends on the collectability of the turned in item and is as follows:</span>
+        <table>
+            <thead>
+                <tr>
+                    <td><span>Collectability:</span></td>
+                    <td><span>Tool Parts awarded:</span></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span>2500-4499</span></td>
+                    <td><span>x1</span></td>
+                </tr>
+                <tr>
+                    <td><span>4500-6499</span></td>
+                    <td><span>x2</span></td>
+                </tr>
+                <tr>
+                    <td><span>6500+</span></td>
+                    <td><span>x3</span></td>
+                </tr>
+            </tbody>
+        </table>
+        <span>Note: This stage requires a minimum of 20 crafted-turn ins at the highest collectability threshold</span>
+        <br />
+        <table>
+            @foreach (var job in DoHJobs)
+            {
+                <tr style="margin:10px; border-top:solid">
+                    <td><div @onclick="()=>SetShowJob(job,!ShowJob(job))">@DisplayArrow(ShowJob(job))</div></td>
+                    <td><span style="@returnDec(!IsJobComplete(job, StageIndex))">@job</span></td>
+                    <td><span class="weapon-purple">@SelectedWeaponName(job)</span></td>
+                    <td><button style="@returnDec(!IsJobComplete(job, StageIndex))" @onclick="() => ToggleComplete(StageIndex, job)">@IsCompleted(job)</button></td>
+                </tr>
+                @if (ShowJob(job))
+                {
+                    <tr>
+                        <td colspan="4"><span>Tool Part: <a href="@stringToUrl(@GetStageTurnInMats(job,1))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageTurnInMats(job, 1)</a> x60</span></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4"><span>Current Tool Part Count: <input type="number" min="0" max="60" value="@GetMatCount(job,1)" @onchange="args=>SetMatCount(args,job,1)" /> </span></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4"><span>Crafted item: <a href="@stringToUrl(@GetStageCraftMats(job,1))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageCraftMats(job, 1)</a></span></td>
+                    </tr>
+                    <tr style="border-bottom:solid;">
+                        <td colspan="4"><span>Requires <a href="@stringToUrl(@GetStageRawMats(job,1))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageRawMats(job, 1)</a> x1,  <a href="@stringToUrl(@GetStageRawMats(job,2))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageRawMats(job, 2)</a> x5, and  <a href="@stringToUrl(@GetStageRawMats(job,3))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageRawMats(job, 3)</a> x5 each</span></td>
+                    </tr>
+                }
+            }
+        </table>
+        <br />
+        <h4>Disciples of the Land</h4>
+        <span>For each DoL job, gather the items listed below</span>
+        <span>Note: Tool Parts are required for DoL jobs and are acquired in exchange for gathered materials. For MNR and BTN, one of the items gathered will award tool parts based on collectibility</span>
+        <span>MNR, BTN Oddly Delicate Collectibility</span>
+        <table>
+            <thead>
+                <tr>
+                    <td style="text-align:center;"><span>Collectability:</span></td>
+                    <td style="text-align:center;"><span>Tool Parts awarded:</span></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align:center;"><span>400-699</span></td>
+                    <td style="text-align:center;"><span>x1</span></td>
+                </tr>
+                <tr>
+                    <td style="text-align:center;"><span>700-999</span></td>
+                    <td style="text-align:center;"><span>x3</span></td>
+                </tr>
+                <tr>
+                    <td style="text-align:center;"><span>1000+</span></td>
+                    <td style="text-align:center;"><span>x7</span></td>
+                </tr>
+            </tbody>
+        </table>
+        <span>Note: This stage requires a minimum of 36 gathered item turn-ins at the highest collectability threshold</span>
+        <br />
+        <table>
+            <tr style="margin:10px; border-top:solid">
+                <td><div @onclick="()=>SetShowJob(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR,!ShowJob(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR))">@DisplayArrow(ShowJob(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR))</div></td>
+                <td><span style="@returnDec(!IsJobComplete(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR, StageIndex))">@FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR</span></td>
+                <td><span class="weapon-purple">@SelectedWeaponName(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR)</span></td>
+                <td><button style="@returnDec(!IsJobComplete(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR, StageIndex))" @onclick="() => ToggleComplete(StageIndex, FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR)">@IsCompleted(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR)</button></td>
+            </tr>
+            @if (ShowJob(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR))
+            {
+                <tr>
+                    <td colspan="4"><span>Locations: <a href="https://ffxiv.gamerescape.com/wiki/Mining:_Cooling_Station" target="_blank" rel="noopener noreferrer">Azys Lla</a> and <a href="https://ffxiv.gamerescape.com/wiki/Mining:_The_Aqueduct" target="_blank" rel="noopener noreferrer">The Aqueduct</a> in Azys Lla</span></td>
+                </tr>
+                <tr>
+                    <td colspan="4"><span>Gathered item 1: <a href="@stringToUrl(GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR,1))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR, 1)</a></span></td>
+                    <td colspan="4">Location: <a href="https://ffxiv.gamerescape.com/wiki/Mining:_Gamma_Quadrant" target="_blank" rel="noopener noreferrer">Azys Lla</a></td>
+                </tr>
+                <tr>
+                    <td colspan="4"><span>Turn-in item 1: <a href="@stringToUrl(GetStageTurnInMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR,1))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageTurnInMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR, 1)</a> x250</span></td>
+                    <td colspan="4"><span>Count: <input type="number" min="0" max="250" value="@GetMatCount(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR,1)" @onchange="args=>SetMatCount(args,FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR,1)" /> </span></td>
+                </tr>
+                <tr>
+                    <td colspan="4"><span>Gathered item 2: <a href="@stringToUrl(GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR,2))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR, 2) HQ</a> x750</span></td>
+                    <td colspan="4"><span>Count: <input type="number" min="0" max="750" value="@GetMatCount(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR,2)" @onchange="args=>SetMatCount(args,FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR,2)" /> </span></td>
+                </tr>
+                <tr style="border-bottom:solid;">
+                    <td colspan="4">Location: <a href="https://ffxiv.gamerescape.com/wiki/Mining:_The_Diadem" target="_blank" rel="noopener noreferrer">The Diadem</a></td>
+                </tr>
+
+            }
+
+            <tr style="margin:10px; border-top:solid">
+                <td><div @onclick="()=>SetShowJob(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN,!ShowJob(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN))">@DisplayArrow(ShowJob(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN))</div></td>
+                <td><span style="@returnDec(!IsJobComplete(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN, StageIndex))">@FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN</span></td>
+                <td><span class="weapon-purple">@SelectedWeaponName(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN)</span></td>
+                <td><button style="@returnDec(!IsJobComplete(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN, StageIndex))" @onclick="() => ToggleComplete(StageIndex, FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN)">@IsCompleted(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN)</button></td>
+            </tr>
+            @if (ShowJob(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN))
+            {
+                <tr>
+                    <td colspan="4"><span>Locations: <a href="https://ffxiv.gamerescape.com/wiki/Mining:_Cooling_Station" target="_blank" rel="noopener noreferrer">Azys Lla</a> and <a href="https://ffxiv.gamerescape.com/wiki/Mining:_The_Aqueduct" target="_blank" rel="noopener noreferrer">The Aqueduct</a> in Azys Lla</span></td>
+                </tr>
+                <tr>
+                    <td colspan="4"><span>Gathered item 1: <a href="@stringToUrl(GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN,1))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN, 1)</a></span></td>
+                    <td colspan="4">Location: <a href="https://ffxiv.gamerescape.com/wiki/Logging:_Antithesis" target="_blank" rel="noopener noreferrer">Azys Lla</a></td>
+                </tr>
+                <tr>
+                    <td colspan="4"><span>Turn-in item 1: <a href="@stringToUrl(GetStageTurnInMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN,1))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageTurnInMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN, 1)</a> x250</span></td>
+                    <td colspan="4"><span>Count: <input type="number" min="0" max="250" value="@GetMatCount(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN,1)" @onchange="args=>SetMatCount(args,FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN,1)" /> </span></td>
+                </tr>
+                <tr>
+                    <td colspan="4"><span>Gathered item 2: <a href="@stringToUrl(GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN,2))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN, 2) HQ</a> x750</span></td>
+                    <td colspan="4"><span>Count: <input type="number" min="0" max="750" value="@GetMatCount(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN,2)" @onchange="args=>SetMatCount(args,FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN,2)" /> </span></td>
+                </tr>
+                <tr style="border-bottom:solid;">
+                    <td colspan="4">Location: <a href="https://ffxiv.gamerescape.com/wiki/Logging:_The_Diadem" target="_blank" rel="noopener noreferrer">The Diadem</a></td>
+                </tr>
+            }
+
+        </table>
+
+        <table>
+            <tr style="margin:10px; border-top:solid">
+                <td><div @onclick="()=>SetShowJob(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH,!ShowJob(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH))">@DisplayArrow(ShowJob(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH))</div></td>
+                <td><span style="@returnDec(!IsJobComplete(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH, StageIndex))">@FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH</span></td>
+                <td><span class="weapon-purple">@SelectedWeaponName(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH)</span></td>
+                <td><button style="@returnDec(!IsJobComplete(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH, StageIndex))" @onclick="() => ToggleComplete(StageIndex, FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH)">@IsCompleted(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH)</button></td>
+            </tr>
+        </table>
+        @if (ShowJob(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH))
+        {
+            <span>Both items for FSH are acquired through collectability with values as follows:</span>
+            <table>
+                <thead>
+                    <tr>
+                        <td style="text-align:center;"><span>Tool parts awarded:</span></td>
+                        <td style="text-align:center;"><span><a href="@stringToUrl(GetStageTurnInMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN, 1))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageTurnInMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN, 1)</a> Collectability</span></td>
+                        <td style="text-align:center;"><span><a href="@stringToUrl(GetStageTurnInMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN, 2))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageTurnInMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN, 2)</a> Collectability</span></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="text-align:center;"><span>1</span></td>
+                        <td style="text-align:center;"><span>126-295</span></td>
+                        <td style="text-align:center;"><span>62-146</span></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:center;"><span>2</span></td>
+                        <td style="text-align:center;"><span>296-304</span></td>
+                        <td style="text-align:center;"><span>147-151</span></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:center;"><span>4</span></td>
+                        <td style="text-align:center;"><span>305+</span></td>
+                        <td style="text-align:center;"><span>152+</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table>
+                <tr>
+                    <td><span>Bait: <a href="@stringToUrl("Signature Skyball")" target="_blank" rel="noopener noreferrer" class="item-link">Signature Skyball</a></span></td>
+                </tr>
+                <tr>
+                    <td colspan="4"><span>Gathered item: <a href="@stringToUrl(GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH, 1))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH, 1)</a></span></td>
+                    <td colspan="4"><span>Location: <a href="https://ffxiv.gamerescape.com/wiki/Fishing_Log:_The_Pappus_Tree" target="_blank" rel="noopener noreferrer">Azys Lla</a></span></td>
+                </tr>
+                <tr>
+                    <td colspan="4"><span>Turn-in item: <a href="@stringToUrl(GetStageTurnInMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH, 1))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageTurnInMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH, 1)</a> x200</span></td>
+                    <td colspan="4"><span>Count: <input type="number" min="0" max="200" value="@GetMatCount(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH, 1)" @onchange="args => SetMatCount(args, FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH, 1)" /> </span></td>
+                </tr>
+                <tr>
+                    <td colspan="4"><span>Gathered item: <a href="@stringToUrl(GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH, 2))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH, 1)</a></span></td>
+                    <td colspan="4"><span>Location: <a href="https://ffxiv.gamerescape.com/wiki/Fishing_Log:_Delta_Quadrant" target="_blank" rel="noopener noreferrer">Azys Lla</a></span></td>
+                </tr>
+                <tr>
+                    <td colspan="4"><span>Turn-in item: <a href="@stringToUrl(GetStageTurnInMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH, 2))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageTurnInMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH, 2)</a> x200</span></td>
+                    <td colspan="4"><span>Count: <input type="number" min="0" max="200" value="@GetMatCount(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH, 2)" @onchange="args => SetMatCount(args, FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH, 2)" /> </span></td>
+                </tr>
+            </table>
+        }
+    </div>
+    <br />
+    <br />
+    <br />
+}
+<style>
+    table tr:last-child {
+        border-bottom: solid;
+    }
+</style>
+@code {
+
+}
