@@ -192,23 +192,23 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers.Misc
             }
             return returnList;
         }
-        public static List<string> ReturnBookDungeons(AnimusBookNames bookName) { return BookDungeons[(int)bookName]; }
+        public static List<string> ReturnBookDungeons(AnimusBookNames bookName) { return BookDungeons[(int)bookName-1]; }
 
 
-        private static List<string> ReturnCreatureNames(AnimusBookNames bookName) { return BookCreatureNames[(int)bookName]; }
-        private static List<ArrMapNames> ReturnCreatureMaps(AnimusBookNames bookName) { return BookCreatureMaps[(int)bookName]; }
-        private static List<PointF> ReturnCreaturePoints(AnimusBookNames bookName) { return BookCreaturePoints[(int)bookName]; }
+        private static List<string> ReturnCreatureNames(AnimusBookNames bookName) { return BookCreatureNames[(int)bookName-1]; }
+        private static List<ArrMapNames> ReturnCreatureMaps(AnimusBookNames bookName) { return BookCreatureMaps[(int)bookName-1]; }
+        private static List<PointF> ReturnCreaturePoints(AnimusBookNames bookName) { return BookCreaturePoints[(int)bookName-1]; }
 
 
-        private static List<string> ReturnFATENames(AnimusBookNames bookName) { return BookFATENames[(int)bookName]; }
-        private static List<ArrMapNames> ReturnFATEMaps(AnimusBookNames bookName) { return BookFATEMaps[(int)bookName]; }
-        private static List<PointF> ReturnFATEPoints(AnimusBookNames bookName) { return BookFATEPoints[(int)bookName]; }
+        private static List<string> ReturnFATENames(AnimusBookNames bookName) { return BookFATENames[(int)bookName-1]; }
+        private static List<ArrMapNames> ReturnFATEMaps(AnimusBookNames bookName) { return BookFATEMaps[(int)bookName-1]; }
+        private static List<PointF> ReturnFATEPoints(AnimusBookNames bookName) { return BookFATEPoints[(int)bookName-1]; }
 
-        private static List<string> ReturnLeveNames(AnimusBookNames bookName) { return BookLeveNames[(int)bookName]; }
-        private static List<string> ReturnLeveTypes(AnimusBookNames bookName) { return BookLeveTypes[(int)bookName]; }
-        private static List<string> ReturnLevePersons(AnimusBookNames bookName) { return BookLevePersons[(int)bookName]; }
-        private static List<ArrMapNames> ReturnLeveLocations(AnimusBookNames bookName) { return BookLeveLocations[(int)bookName]; }
-        private static List<PointF> ReturnLevePoints(AnimusBookNames bookName) { return BookLevePoints[(int)bookName]; }
+        private static List<string> ReturnLeveNames(AnimusBookNames bookName) { return BookLeveNames[(int)bookName-1]; }
+        private static List<string> ReturnLeveTypes(AnimusBookNames bookName) { return BookLeveTypes[(int)bookName-1]; }
+        private static List<string> ReturnLevePersons(AnimusBookNames bookName) { return BookLevePersons[(int)bookName-1]; }
+        private static List<ArrMapNames> ReturnLeveLocations(AnimusBookNames bookName) { return BookLeveLocations[(int)bookName-1]; }
+        private static List<PointF> ReturnLevePoints(AnimusBookNames bookName) { return BookLevePoints[(int)bookName-1]; }
 
 
         private static readonly List<List<string>> BookCreatureNames = new List<List<string>>
