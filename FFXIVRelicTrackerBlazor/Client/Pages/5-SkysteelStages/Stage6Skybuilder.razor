@@ -28,15 +28,15 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><span>2500-4499</span></td>
+                    <td><span>470-849</span></td>
                     <td><span>x1</span></td>
                 </tr>
                 <tr>
-                    <td><span>4500-6499</span></td>
+                    <td><span>850-1229</span></td>
                     <td><span>x2</span></td>
                 </tr>
                 <tr>
-                    <td><span>6500+</span></td>
+                    <td><span>1230+</span></td>
                     <td><span>x3</span></td>
                 </tr>
             </tbody>
@@ -96,7 +96,8 @@
                 </tr>
             </tbody>
         </table>
-        <span>Note: This stage requires a minimum of 36 gathered item turn-ins at the highest collectability threshold</span>
+        <span>Note: This stage requires a minimum of 36 gathered item 1 turn-ins at the highest collectability threshold</span>
+        <span>Note: The second gathered item for MNR and BTN is exchanged at a 30:1 ratio</span>
         <br />
         <table>
             <tr style="margin:10px; border-top:solid">
@@ -119,8 +120,11 @@
                     <td colspan="4"><span>Count: <input type="number" min="0" max="250" value="@GetMatCount(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR,1)" @onchange="args=>SetMatCount(args,FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR,1)" /> </span></td>
                 </tr>
                 <tr>
-                    <td colspan="4"><span>Gathered item 2: <a href="@stringToUrl(GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR,2))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR, 2) HQ</a> x750</span></td>
-                    <td colspan="4"><span>Count: <input type="number" min="0" max="750" value="@GetMatCount(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR,2)" @onchange="args=>SetMatCount(args,FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR,2)" /> </span></td>
+                    <td colspan="4"><span>Gathered item 2: <a href="@stringToUrl(GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR,2))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR, 2)</a></span></td>
+                </tr>
+                <tr>
+                    <td colspan="4"><span>Turn-in item 2: <a href="@stringToUrl(GetStageTurnInMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR,2))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageTurnInMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR, 1)</a> x25</span></td>
+                    <td colspan="4"><span>Count: <input type="number" min="0" max="25" value="@GetMatCount(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR,2)" @onchange="args=>SetMatCount(args,FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR,2)" /> </span></td>
                 </tr>
                 <tr style="border-bottom:solid;">
                     <td colspan="4">Location: <a href="https://ffxiv.gamerescape.com/wiki/Mining:_The_Diadem" target="_blank" rel="noopener noreferrer">The Diadem</a></td>
@@ -148,8 +152,11 @@
                     <td colspan="4"><span>Count: <input type="number" min="0" max="250" value="@GetMatCount(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN,1)" @onchange="args=>SetMatCount(args,FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN,1)" /> </span></td>
                 </tr>
                 <tr>
-                    <td colspan="4"><span>Gathered item 2: <a href="@stringToUrl(GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN,2))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN, 2) HQ</a> x750</span></td>
-                    <td colspan="4"><span>Count: <input type="number" min="0" max="750" value="@GetMatCount(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN,2)" @onchange="args=>SetMatCount(args,FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN,2)" /> </span></td>
+                    <td colspan="4"><span>Gathered item 2: <a href="@stringToUrl(GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN,2))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN, 2)</a></span></td>
+                </tr>
+                <tr>
+                    <td colspan="4"><span>Turn-in item 2: <a href="@stringToUrl(GetStageTurnInMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN,2))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageTurnInMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN, 2)</a> x25</span></td>
+                    <td colspan="4"><span>Count: <input type="number" min="0" max="25" value="@GetMatCount(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN,2)" @onchange="args=>SetMatCount(args,FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN,2)" /> </span></td>
                 </tr>
                 <tr style="border-bottom:solid;">
                     <td colspan="4">Location: <a href="https://ffxiv.gamerescape.com/wiki/Logging:_The_Diadem" target="_blank" rel="noopener noreferrer">The Diadem</a></td>

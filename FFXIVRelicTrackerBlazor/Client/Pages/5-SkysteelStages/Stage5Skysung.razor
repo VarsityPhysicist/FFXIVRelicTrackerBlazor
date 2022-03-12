@@ -28,15 +28,15 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><span>3000-3799</span></td>
+                    <td><span>400-599</span></td>
                     <td><span>x2</span></td>
                 </tr>
                 <tr>
-                    <td><span>3800-4599</span></td>
+                    <td><span>600-799</span></td>
                     <td><span>x3</span></td>
                 </tr>
                 <tr>
-                    <td><span>4600+</span></td>
+                    <td><span>800+</span></td>
                     <td><span>x5</span></td>
                 </tr>
             </tbody>
@@ -72,7 +72,8 @@
         <br />
         <h4>Disciples of the Land</h4>
         <span>For each DoL job, gather the items listed below</span>
-        <span>Note: Gobbiegoo are required for DoL jobs and are exchanged for 10 of the Oddly Specific (HQ) item noted below</span>
+        <span>Note: Gobbiegoo are required for DoL jobs and are exchanged for 10 of the Oddly Specific item noted below</span>
+        <span>Note: The second item listed for MNR and BTN is a hidden gathering item and does not always appear</span>
         <table>
             <tr style="margin:10px; border-top:solid">
                 <td><div @onclick="()=>SetShowJob(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR,!ShowJob(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR))">@DisplayArrow(ShowJob(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR))</div></td>
@@ -86,11 +87,11 @@
                     <td colspan="4"><span>Locations: <a href="https://ffxiv.gamerescape.com/wiki/Mining:_Cooling_Station" target="_blank" rel="noopener noreferrer">Cooling Station</a> and <a href="https://ffxiv.gamerescape.com/wiki/Mining:_The_Aqueduct" target="_blank" rel="noopener noreferrer">The Aqueduct</a> in Azys Lla</span></td>
                 </tr>
                 <tr>
-                    <td colspan="4"><span>Gathered item 1: <a href="@stringToUrl(@GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR,1))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR, 1) HQ</a> x500</span></td>
+                    <td colspan="4"><span>Gathered item 1: <a href="@stringToUrl(@GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR,1))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR, 1)</a> x600</span></td>
                     <td colspan="4"><span>Count: <input type="number" min="0" max="600" value="@GetMatCount(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR,1)" @onchange="args=>SetMatCount(args,FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR,1)" /> </span></td>
                 </tr>
                 <tr style="border-bottom:solid;">
-                    <td colspan="4"><span>Gathered item 2: <a href="@stringToUrl(@GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR,2))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR, 2)</a> x180</span></td>
+                    <td colspan="4"><span>Gathered item 2: <a href="@stringToUrl(@GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR,2))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR, 2)</a> x200</span></td>
                     <td colspan="4"><span>Count: <input type="number" min="0" max="200" value="@GetMatCount(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR,2)" @onchange="args=>SetMatCount(args,FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR,2)" /> </span></td>
                 </tr>
 
@@ -108,11 +109,11 @@
                     <td colspan="4"><span>Locations: <a href="https://ffxiv.gamerescape.com/wiki/Logging:_Hyperstellar_Downconverter" target="_blank" rel="noopener noreferrer">Hyperstellar Downconverter</a> and <a href="https://ffxiv.gamerescape.com/wiki/Logging:_The_Pappus_Tree" target="_blank" rel="noopener noreferrer">The Pappus Tree</a> in Azys Lla</span></td>
                 </tr>
                 <tr>
-                    <td colspan="4"><span>Gathered item 1: <a href="@stringToUrl(GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN,1))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN, 1) HQ</a> x500</span></td>
+                    <td colspan="4"><span>Gathered item 1: <a href="@stringToUrl(GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN,1))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN, 1)</a> x600</span></td>
                     <td colspan="4"><span>Count: <input type="number" min="0" max="600" value="@GetMatCount(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN,1)" @onchange="args=>SetMatCount(args,FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN,1)" /> </span></td>
                 </tr>
                 <tr style="border-bottom:solid;">
-                    <td colspan="4"><span>Gathered item 2: <a href="@stringToUrl(GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN,2))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN, 2)</a> x180</span></td>
+                    <td colspan="4"><span>Gathered item 2: <a href="@stringToUrl(GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN,2))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN, 2)</a> x200</span></td>
                     <td colspan="4"><span>Count: <input type="number" min="0" max="200" value="@GetMatCount(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN,2)" @onchange="args=>SetMatCount(args,FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN,2)" /> </span></td>
                 </tr>
             }
@@ -131,7 +132,7 @@
                     <td><span>Bait: <a href="@stringToUrl("Signature Skyball")" target="_blank" rel="noopener noreferrer" class="item-link">Signature Skyball</a></span></td>
                 </tr>
                 <tr>
-                    <td colspan="4"><span>Gathered item: <a href="@stringToUrl(GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH,1))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH, 1) HQ</a> x60</span></td>
+                    <td colspan="4"><span>Gathered item: <a href="@stringToUrl(GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH,1))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH, 1)</a> x70</span></td>
                     <td colspan="4"><span>Count: <input type="number" min="0" max="70" value="@GetMatCount(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH,1)" @onchange="args=>SetMatCount(args,FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH,1)" /> </span></td>
                 </tr>
             }
