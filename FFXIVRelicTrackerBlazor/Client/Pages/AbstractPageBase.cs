@@ -1,5 +1,6 @@
 ﻿using FFXIVRelicTrackerBlazor.Client.Services;
 using FFXIVRelicTrackerBlazor.Shared;
+using FFXIVRelicTrackerBlazor.Shared.Helpers;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,34 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
             {
                 State.Character = value;
             }
+        }
+        public abstract AbstractExpansion TargetExpansion { get; }
+        public static string DisplayArrow(bool displayed)
+        {
+            if (displayed)
+                return "▲";
+            else
+                return "▼";
+        }
+        public bool GetAdjustCount => TargetExpansion.AdjustCounts;
+        public bool IsJobComplete(JobName job, int StageIndex) => TargetExpansion.Jobs.Single(x => x.JobName == job).Stages.Single(x => x.StageIndex == StageIndex).Progress == Progress.Completed;
+
+        public async Task ToggleComplete(int StageIndex, JobName job)
+        {
+            if (TargetExpansion.Jobs.Where(x => x.JobName == job).First().Stages.Where(x => x.StageIndex == StageIndex).First().Progress == Progress.Completed)
+                await InCompleteStage(StageIndex, job);
+            else await CompleteStage(StageIndex, job);
+
+        }
+        private async Task CompleteStage(int StageIndex, JobName job)
+        {
+            MasterStageHelper.CompleteStage(character, job, StageIndex, TargetExpansion.Expansion, GetAdjustCount);
+            await OnCharacterUpdate();
+        }
+        private async Task InCompleteStage(int StageIndex, JobName job)
+        {
+            MasterStageHelper.InCompleteStage(character, job, StageIndex, TargetExpansion.Expansion);
+            await OnCharacterUpdate();
         }
         public abstract Task AdditionalInitializeAsync();
         protected override async Task OnInitializedAsync()

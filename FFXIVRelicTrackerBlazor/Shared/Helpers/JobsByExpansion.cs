@@ -19,6 +19,8 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers
                 case ExpansionName.SB:
                 case ExpansionName.ShB:
                     return ShBJobs;
+                case ExpansionName.Skysteel:
+                    return SkysteelJobs;
                 default:
                     return null;
             }
@@ -54,6 +56,7 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers
                 JobName.BLM,
                 JobName.SMN
             };
+
         public static readonly List<JobName> ShBJobs = new List<JobName>
             {
                 JobName.NA,
@@ -74,6 +77,22 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers
                 JobName.BLM,
                 JobName.SMN,
                 JobName.RDM
+            };
+
+        public static readonly List<JobName> SkysteelJobs = new List<JobName>
+            {
+                JobName.NA,
+                JobName.CRP,
+                JobName.BSM,
+                JobName.ARM,
+                JobName.GSM,
+                JobName.LTW,
+                JobName.WVR,
+                JobName.ALC,
+                JobName.CUL,
+                JobName.MNR,
+                JobName.BTN,
+                JobName.FSH
             };
     }
 }

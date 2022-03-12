@@ -19,6 +19,8 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers.Misc
                     return GetHWWeapon(job, StageIndex);
                 case ExpansionName.ShB:
                     return GetShBWeapon(job, StageIndex);
+                case ExpansionName.Skysteel:
+                    return GetSkysteelWeapon(job, StageIndex);
                 default:
                     return null;
             }
@@ -293,7 +295,6 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers.Misc
             }
         }
         #endregion
-
         #region ShB Weapons
         private static string GetShBWeapon(JobName job, int stageIndex)
         {
@@ -454,6 +455,60 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers.Misc
                     return "Blade's Temperance";
                 default:
                     return "Blade's of Gunhildr Weapon";
+            }
+        }
+        #endregion
+
+        #region Skysteel Weapons
+        private static string GetSkysteelWeapon(JobName job, int stageIndex)
+        {
+            SkySteelStages stage = (SkySteelStages)stageIndex;
+            string modifier = EnumExtensions.GetEnumDisplayName(stage);
+            if (job == JobName.NA)
+            {
+                return modifier + " Tool";
+            }
+            else
+            {
+                string tempWeapon = SkysteelToolNames(job);
+                if (stageIndex == (int)SkySteelStages.Skysteel_1)
+                {
+                    modifier = "Skysteel";
+                    return modifier + " " + tempWeapon + " +1";
+                }
+                else return modifier + " " + tempWeapon;
+
+            }
+        }
+
+        private static string SkysteelToolNames(JobName job)
+        {
+            switch (job)
+            {
+                case JobName.CRP:
+                    return "Saw";
+                case JobName.BSM:
+                    return "Cross-pein Hammer";
+                case JobName.ARM:
+                    return "Raising Hammer";
+                case JobName.GSM:
+                    return "Lapidary Hammer";
+                case JobName.LTW:
+                    return "Round Knife";
+                case JobName.WVR:
+                    return "Needle";
+                case JobName.ALC:
+                    return "Alembic";
+                case JobName.CUL:
+                    return "Frypan";
+                case JobName.MNR:
+                    return "Pickaxe";
+                case JobName.BTN:
+                    return "Hatchet";
+                case JobName.FSH:
+                    return "Fishing Rod";
+                default:
+                    return "";
             }
         }
         #endregion

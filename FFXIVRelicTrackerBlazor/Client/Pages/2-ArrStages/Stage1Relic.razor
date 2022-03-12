@@ -50,7 +50,7 @@
                         <h3>Part 1: Timeworn Weapon</h3>
                         <input type="checkbox" checked="@GetBrokenWeapon()" @onchange="SetBrokenWeapon" id="testID" />
                     </div>
-                    <div style="@returnDec(!GetBrokenWeapon())">Travel to the location indicated on the map and retrieve the Timeworn <a>@WeaponName</a>. Return to Gerolt.</div>
+                    <div style="@returnDec(!GetBrokenWeapon())">Travel to the location indicated on the map and retrieve the Timeworn <a>@ActiveWeaponName</a>. Return to Gerolt.</div>
                 </div>
                 <div>
                     <div class="stack-horizontal">
@@ -86,7 +86,7 @@
                         <h3>Part 5: Beastmen Hunt</h3>
                         <input type="checkbox" checked="@GetCompletedBeasts()" @onchange="SetCompletedBeasts" />
                     </div>
-                    <div style="@returnDec(!@GetCompletedBeasts())">With your In-Progress <a>@WeaponName</a> equipped, slay 8 of each of the following beastmen in the area indicated on the map</div>
+                    <div style="@returnDec(!@GetCompletedBeasts())">With your In-Progress <a>@ActiveWeaponName</a> equipped, slay 8 of each of the following beastmen in the area indicated on the map</div>
                     <ul>
                         <li>
                             <input type="checkbox" checked="@GetCompletedBeast1()" @onchange="SetCompletedBeast1" />
@@ -108,7 +108,7 @@
                         <h3>Part 6: Hydra</h3>
                         <input type="checkbox" checked="@GetHydraComplete()" @onchange="SetHydraComplete" />
                     </div>
-                    <div style="@returnDec(!GetHydraComplete())">With your In-Progress <a>@WeaponName</a> equipped, complete the trial 'A Relic Reborn: The Hydra' and speak to Gerolt</div>
+                    <div style="@returnDec(!GetHydraComplete())">With your In-Progress <a>@ActiveWeaponName</a> equipped, complete the trial 'A Relic Reborn: The Hydra' and speak to Gerolt</div>
                 </div>
                 <div>
                     <div class="stack-horizontal">

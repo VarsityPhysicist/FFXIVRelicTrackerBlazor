@@ -12,8 +12,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
 {
     public class Stage5NovusBase : AbstractStagePageBase
     {
-        public override List<JobName> ValidJobs => JobsByExpansion.ArrJobs;
-
         public override AbstractExpansion TargetExpansion => character.ArrExpansion;
 
         public override StageInfo TargetStage => character.ArrExpansion.Stage5ARR;

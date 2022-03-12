@@ -1,6 +1,7 @@
 ﻿using FFXIVRelicTrackerBlazor.Shared._2_Arr;
 using FFXIVRelicTrackerBlazor.Shared._3_HW;
 using FFXIVRelicTrackerBlazor.Shared._5_ShB;
+using FFXIVRelicTrackerBlazor.Shared._5_Skysteel;
 using FFXIVRelicTrackerBlazor.Shared.Helpers;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace FFXIVRelicTrackerBlazor.Shared
             ArrExpansion = new ArrExpansion();
             HWExpansion = new HWExpansion();
             ShBExpansion = new ShBExpansion();
+            SkysteelExpansion = new SkysteelExpansion();
             Name = "Default Character";
         }
         public Character(Character oldCharacter)
@@ -37,6 +39,9 @@ namespace FFXIVRelicTrackerBlazor.Shared
 
             if (oldCharacter.ShBExpansion == null) this.ShBExpansion = new ShBExpansion();
             else this.ShBExpansion = oldCharacter.ShBExpansion;
+
+            if (oldCharacter.SkysteelExpansion == null) this.SkysteelExpansion = new SkysteelExpansion();
+            else this.SkysteelExpansion = oldCharacter.SkysteelExpansion;
         }
 
         public List<AbstractExpansion> GetExpansions()
@@ -45,12 +50,14 @@ namespace FFXIVRelicTrackerBlazor.Shared
             {
                 ArrExpansion,
                 HWExpansion,
-                ShBExpansion
+                ShBExpansion,
+                SkysteelExpansion
             };
         }
         public ArrExpansion ArrExpansion { get; set; }
         public HWExpansion HWExpansion { get; set; }
         public ShBExpansion ShBExpansion { get; set; }
+        public SkysteelExpansion SkysteelExpansion { get; set; }
         public JobName DefaultJob { get; set; }
         public bool AutoAssignCompletion { get; set; }
 

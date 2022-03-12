@@ -12,8 +12,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._3_HWStages
 {
     public class Stage3AnimaBase : AbstractStagePageBase
     {
-        public override List<JobName> ValidJobs => JobsByExpansion.HWJobs;
-
         public override AbstractExpansion TargetExpansion => character.HWExpansion;
 
         public override StageInfo TargetStage => character.HWExpansion.Stage3HW;

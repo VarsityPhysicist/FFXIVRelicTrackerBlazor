@@ -1,0 +1,121 @@
+﻿@namespace FFXIVRelicTrackerBlazor.Client.Pages._5_SkysteelStages
+@page "/SkysteelStage2"
+@inherits Stage2Skysteel_1Base
+@if (showAll)
+{
+    <div class="stack-vertical">
+        <div class="stack-vertical">
+            <h2>Skysteel Tools: Skysteel +1</h2>
+            <div>@character.Name</div>
+            <br />
+        </div>
+        <div />
+        <br />
+        <span><span class="item-link">Skysteel Tools +1</span> are acquired by trading a <span class="item-link">Skysteel Tool</span> and an appropriate crafted or gathered item to Denys (Foundation)</span>
+        <br />
+        <h4>Disciples of the Hand</h4>
+        <span>For each DoH Job, craft 20 HQ of the listed item</span>
+        <span>Each craft requires an 'Oddly Specific' material which is purchased for 90 Yellow Crafters' Scrips</span>
+        <table>
+            @foreach (var job in DoHJobs)
+            {
+                <tr style="margin:10px; border-top:solid">
+                    <td><div @onclick="()=>SetShowJob(job,!ShowJob(job))">@DisplayArrow(ShowJob(job))</div></td>
+                    <td><span style="@returnDec(!IsJobComplete(job, StageIndex))">@job</span></td>
+                    <td><span>@SelectedWeaponName(job)</span></td>
+                    <td><button style="@returnDec(!IsJobComplete(job, StageIndex))" @onclick="() => ToggleComplete(StageIndex, job)">@IsCompleted(job)</button></td>
+                </tr>
+                @if (ShowJob(job))
+                {
+                    <tr>
+                        <td colspan="4"><span>Crafted item: <a href="@stringToUrl(GetStageCraftMats(job,1))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageCraftMats(job, 1) HQ</a> x20</span></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4"><span>Current Crafted Count: <input type="number" min="0" max="20" value="@GetMatCount(job,1)" @onchange="args=>SetMatCount(args,job,1)" /> </span></td>
+                    </tr>
+                    <tr style="border-bottom:solid;">
+                        <td colspan="4"><span>Requires <a href="@stringToUrl(GetStageRawMats(job,1))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageRawMats(job, 1)</a> x1 and <a href="@stringToUrl(@GetStageRawMats(job,2))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageRawMats(job, 2)</a> x1 each</span></td>
+                    </tr>
+                }
+            }
+        </table>
+        <br />
+        <h4>Disciples of the Land</h4>
+        <span>For each DoL job, gather the items listed below</span>
+        <table>
+            <tr style="margin:10px; border-top:solid">
+                <td><div @onclick="()=>SetShowJob(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR,!ShowJob(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR))">@DisplayArrow(ShowJob(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR))</div></td>
+                <td><span style="@returnDec(!IsJobComplete(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR, StageIndex))">@FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR</span></td>
+                <td><span>@SelectedWeaponName(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR)</span></td>
+                <td><button style="@returnDec(!IsJobComplete(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR, StageIndex))" @onclick="() => ToggleComplete(StageIndex, FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR)">@IsCompleted(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR)</button></td>
+            </tr>
+            @if (ShowJob(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR))
+            {
+                <tr>
+                    <td colspan="4"><span>Locations: <a href="https://ffxiv.gamerescape.com/wiki/Mining:_Ok%27_Vundu_Vana" target="_blank" rel="noopener noreferrer">The Sea of Clouds</a> and <a href="https://ffxiv.gamerescape.com/wiki/Mining:_Red_Rim" target="_blank" rel="noopener noreferrer">Coerthas Western Highlands</a></span></td>
+                </tr>
+                <tr>
+                    <td colspan="4"><span>Gathered item 1: <a href="@stringToUrl(@GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR,1))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR, 1)</a> x340</span></td>
+                    <td colspan="4"><span>Count: <input type="number" min="0" max="340" value="@GetMatCount(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR,1)" @onchange="args=>SetMatCount(args,FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR,1)" /> </span></td>
+                </tr>
+                <tr style="border-bottom:solid;">
+                    <td colspan="4"><span>Gathered item 2: <a href="@stringToUrl(@GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR,2))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR, 2)</a> x120</span></td>
+                    <td colspan="4"><span>Count: <input type="number" min="0" max="120" value="@GetMatCount(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR,2)" @onchange="args=>SetMatCount(args,FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.MNR,2)" /> </span></td>
+                </tr>
+
+            }
+
+            <tr style="margin:10px; border-top:solid">
+                <td><div @onclick="()=>SetShowJob(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN,!ShowJob(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN))">@DisplayArrow(ShowJob(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN))</div></td>
+                <td><span style="@returnDec(!IsJobComplete(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN, StageIndex))">@FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN</span></td>
+                <td><span>@SelectedWeaponName(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN)</span></td>
+                <td><button style="@returnDec(!IsJobComplete(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN, StageIndex))" @onclick="() => ToggleComplete(StageIndex, FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN)">@IsCompleted(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN)</button></td>
+            </tr>
+            @if (ShowJob(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN))
+            {
+                <tr>
+                    <td colspan="4"><span>Locations: <a href="https://ffxiv.gamerescape.com/wiki/Mining:_Ok%27_Vundu_Vana" target="_blank" rel="noopener noreferrer">The Sea of Clouds</a> and <a href="https://ffxiv.gamerescape.com/wiki/Mining:_Red_Rim" target="_blank" rel="noopener noreferrer">Coerthas Western Highlands</a></span></td>
+                </tr>
+                <tr>
+                    <td colspan="4"><span>Gathered item 1: <a href="@stringToUrl(GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN,1))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN, 1)</a> x340</span></td>
+                    <td colspan="4"><span>Count: <input type="number" min="0" max="340" value="@GetMatCount(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN,1)" @onchange="args=>SetMatCount(args,FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN,1)" /> </span></td>
+                </tr>
+                <tr style="border-bottom:solid;">
+                    <td colspan="4"><span>Gathered item 2: <a href="@stringToUrl(GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN,2))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN, 2)</a> x120</span></td>
+                    <td colspan="4"><span>Count: <input type="number" min="0" max="120" value="@GetMatCount(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN,2)" @onchange="args=>SetMatCount(args,FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.BTN,2)" /> </span></td>
+                </tr>
+            }
+
+
+            <tr style="margin:10px; border-top:solid">
+                <td><div @onclick="()=>SetShowJob(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH,!ShowJob(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH))">@DisplayArrow(ShowJob(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH))</div></td>
+                <td><span style="@returnDec(!IsJobComplete(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH, StageIndex))">@FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH</span></td>
+                <td><span>@SelectedWeaponName(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH)</span></td>
+                <td><button style="@returnDec(!IsJobComplete(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH, StageIndex))" @onclick="() => ToggleComplete(StageIndex, FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH)">@IsCompleted(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH)</button></td>
+            </tr>
+            @if (ShowJob(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH))
+            {
+                <tr>
+                    <td colspan="4"><span>Location: <a href="https://ffxiv.gamerescape.com/wiki/Fishing_Log:_Thaliak_River" target="_blank" rel="noopener noreferrer">The Dravanian Hinterlands</a></span></td>
+                    <td><span>Bait: <a href="@stringToUrl("Signature Skyball")" target="_blank" rel="noopener noreferrer" class="item-link">Signature Skyball</a></span></td>
+                </tr>
+                <tr>
+                    <td colspan="4"><span>Gathered item: <a href="@stringToUrl(GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH,1))" target="_blank" rel="noopener noreferrer" class="item-link">@GetStageCraftMats(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH, 1)</a> x40</span></td>
+                    <td colspan="4"><span>Count: <input type="number" min="0" max="40" value="@GetMatCount(FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH,1)" @onchange="args=>SetMatCount(args,FFXIVRelicTrackerBlazor.Shared.Helpers.JobName.FSH,1)" /> </span></td>
+                </tr>
+            }
+
+        </table>
+    </div>
+    <br />
+    <br />
+    <br />
+}
+<style>
+    table tr:last-child {
+        border-bottom: solid;
+    }
+</style>
+@code {
+
+}

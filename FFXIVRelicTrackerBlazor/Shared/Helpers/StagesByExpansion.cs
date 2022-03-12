@@ -19,6 +19,8 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers
                     return HWStages;
                 case ExpansionName.ShB:
                     return ShBStages;
+                case ExpansionName.Skysteel:
+                    return SkySteelStages;
                 default:
                     return null;
             }
@@ -53,6 +55,15 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers
             "Law's Order",
             "Augmented Law's Order",
             "Blades of Gunhildr"
+        };
+        public static List<string> SkySteelStages = new List<string>()
+        {
+            "Skysteel",
+            "Skysteel +1",
+            "Dragonsung",
+            "Augmented Dragonsung",
+            "Skysung",
+            "Skybuilders'"
         };
     }
     public enum ArrStages
@@ -108,5 +119,21 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers
         AugmentedLawsOrder,
         [Display(Name = "Blades of Gunhildr")]
         Blades
+    }
+
+    public enum SkySteelStages
+    {
+        [Display(Name ="Skysteel")]
+        Skysteel,
+        [Display(Name ="Skysteel+1")]
+        Skysteel_1,
+        [Display(Name ="Dragonsung")]
+        Dragonsung,
+        [Display(Name ="Augmented Dragonsung")]
+        AugmentedDragonsung,
+        [Display(Name ="Skysung")]
+        Skysung,
+        [Display(Name ="Skybuilders'")]
+        Skybuilders
     }
 }

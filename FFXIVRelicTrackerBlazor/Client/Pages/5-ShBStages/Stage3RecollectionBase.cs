@@ -11,8 +11,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._5_ShBStages
 {
     public class Stage3RecollectionBase : AbstractStagePageBase
     {
-        public override List<JobName> ValidJobs => JobsByExpansion.ShBJobs;
-
         public override AbstractExpansion TargetExpansion => character.ShBExpansion;
 
         public override StageInfo TargetStage => character.ShBExpansion.Stage3ShB;

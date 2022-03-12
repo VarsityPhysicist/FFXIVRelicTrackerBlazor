@@ -14,6 +14,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
 {
     public class HomePageBase : AbstractPageBase
     {
+        public override AbstractExpansion TargetExpansion => throw new NotImplementedException();
 
         [Inject]
         public ILocalStorageService LocalStorage { get; set; }
@@ -440,6 +441,40 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
             else if (characterData.Achievements.List.Exists(x => x.ID == 2579)) { MasterStageHelper.CompleteStage(character, JobName.DNC, (int)ShBStages.Resistance, character.ShBExpansion.Expansion, false); }
 
             #endregion
+            #region SkySteel
+            if (characterData.Achievements.List.Exists(x => x.ID == 2787)) { MasterStageHelper.CompleteStage(character, JobName.CRP, (int)SkySteelStages.Skybuilders, character.SkysteelExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2659)) { MasterStageHelper.CompleteStage(character, JobName.CRP, (int)SkySteelStages.Skysung, character.SkysteelExpansion.Expansion, false); }
+
+            if (characterData.Achievements.List.Exists(x => x.ID == 2788)) { MasterStageHelper.CompleteStage(character, JobName.BSM, (int)SkySteelStages.Skybuilders, character.SkysteelExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2660)) { MasterStageHelper.CompleteStage(character, JobName.BSM, (int)SkySteelStages.Skysung, character.SkysteelExpansion.Expansion, false); }
+
+            if (characterData.Achievements.List.Exists(x => x.ID == 2789)) { MasterStageHelper.CompleteStage(character, JobName.ARM, (int)SkySteelStages.Skybuilders, character.SkysteelExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2661)) { MasterStageHelper.CompleteStage(character, JobName.ARM, (int)SkySteelStages.Skysung, character.SkysteelExpansion.Expansion, false); }
+
+            if (characterData.Achievements.List.Exists(x => x.ID == 2790)) { MasterStageHelper.CompleteStage(character, JobName.GSM, (int)SkySteelStages.Skybuilders, character.SkysteelExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2662)) { MasterStageHelper.CompleteStage(character, JobName.GSM, (int)SkySteelStages.Skysung, character.SkysteelExpansion.Expansion, false); }
+
+            if (characterData.Achievements.List.Exists(x => x.ID == 2791)) { MasterStageHelper.CompleteStage(character, JobName.LTW, (int)SkySteelStages.Skybuilders, character.SkysteelExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2663)) { MasterStageHelper.CompleteStage(character, JobName.LTW, (int)SkySteelStages.Skysung, character.SkysteelExpansion.Expansion, false); }
+
+            if (characterData.Achievements.List.Exists(x => x.ID == 2792)) { MasterStageHelper.CompleteStage(character, JobName.WVR, (int)SkySteelStages.Skybuilders, character.SkysteelExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2664)) { MasterStageHelper.CompleteStage(character, JobName.WVR, (int)SkySteelStages.Skysung, character.SkysteelExpansion.Expansion, false); }
+
+            if (characterData.Achievements.List.Exists(x => x.ID == 2793)) { MasterStageHelper.CompleteStage(character, JobName.ALC, (int)SkySteelStages.Skybuilders, character.SkysteelExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2665)) { MasterStageHelper.CompleteStage(character, JobName.ALC, (int)SkySteelStages.Skysung, character.SkysteelExpansion.Expansion, false); }
+
+            if (characterData.Achievements.List.Exists(x => x.ID == 2794)) { MasterStageHelper.CompleteStage(character, JobName.CUL, (int)SkySteelStages.Skybuilders, character.SkysteelExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2666)) { MasterStageHelper.CompleteStage(character, JobName.CUL, (int)SkySteelStages.Skysung, character.SkysteelExpansion.Expansion, false); }
+
+            if (characterData.Achievements.List.Exists(x => x.ID == 2795)) { MasterStageHelper.CompleteStage(character, JobName.MNR, (int)SkySteelStages.Skybuilders, character.SkysteelExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2667)) { MasterStageHelper.CompleteStage(character, JobName.MNR, (int)SkySteelStages.Skysung, character.SkysteelExpansion.Expansion, false); }
+
+            if (characterData.Achievements.List.Exists(x => x.ID == 2796)) { MasterStageHelper.CompleteStage(character, JobName.BTN, (int)SkySteelStages.Skybuilders, character.SkysteelExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2668)) { MasterStageHelper.CompleteStage(character, JobName.BTN, (int)SkySteelStages.Skysung, character.SkysteelExpansion.Expansion, false); }
+
+            if (characterData.Achievements.List.Exists(x => x.ID == 2797)) { MasterStageHelper.CompleteStage(character, JobName.FSH, (int)SkySteelStages.Skybuilders, character.SkysteelExpansion.Expansion, false); }
+            else if (characterData.Achievements.List.Exists(x => x.ID == 2669)) { MasterStageHelper.CompleteStage(character, JobName.FSH, (int)SkySteelStages.Skysung, character.SkysteelExpansion.Expansion, false); }
+            #endregion
             await OnCharacterUpdate();
         }
         #endregion
@@ -457,6 +492,8 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
         }
 
         public bool GetAutoCompletion => character.AutoAssignCompletion;
+
+
         public async Task SetAutoCompletion(ChangeEventArgs e) { if(bool.TryParse(e.Value.ToString(),out bool value)) { character.AutoAssignCompletion = value; await OnCharacterUpdate(); } }
         #endregion
     }

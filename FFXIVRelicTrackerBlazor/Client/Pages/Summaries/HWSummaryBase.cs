@@ -9,8 +9,6 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages.Summaries
 {
     public class HWSummaryBase : AbstractSummaryBase
     {
-        public override List<JobName> ValidJobs => JobsByExpansion.HWJobs;
-
         public override AbstractExpansion TargetExpansion => character.HWExpansion;
     }
 }
