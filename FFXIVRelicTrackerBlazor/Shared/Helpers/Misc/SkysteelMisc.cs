@@ -14,9 +14,9 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers.Misc
             {
                 case (int)SkySteelStages.AugmentedDragonsung:
                     return Stage4TurnInMats(job, matIndex);
-                case (int)SkySteelStages.Skybuilders:
-                    return Stage5TurnInMats(job, matIndex);
                 case (int)SkySteelStages.Skysung:
+                    return Stage5TurnInMats(job, matIndex);
+                case (int)SkySteelStages.Skybuilders:
                     return Stage6TurnInMats(job, matIndex);
                 default:
                     return string.Empty;
@@ -32,9 +32,9 @@ namespace FFXIVRelicTrackerBlazor.Shared.Helpers.Misc
                     return Stage3CraftMats(job, matIndex);
                 case (int)SkySteelStages.AugmentedDragonsung:
                     return Stage4CraftMats(job, matIndex);
-                case (int)SkySteelStages.Skybuilders:
-                    return Stage5CraftMats(job, matIndex);
                 case (int)SkySteelStages.Skysung:
+                    return Stage5CraftMats(job, matIndex);
+                case (int)SkySteelStages.Skybuilders:
                     return Stage6CraftMats(job, matIndex);
                 default:
                     return string.Empty;
