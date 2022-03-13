@@ -9,7 +9,6 @@ namespace FFXIVRelicTrackerBlazor.Shared.XIVAPI
     public class CharacterData
     {
         public Achievements Achievements { get; set; }
-        public bool AchievementsPublic { get; set; }
     }
     public class Achievements
     {

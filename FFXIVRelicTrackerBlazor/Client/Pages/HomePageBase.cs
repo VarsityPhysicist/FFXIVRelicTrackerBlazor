@@ -186,8 +186,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
                 try
                 {
                     CharacterData characterData = await CallXIVAPI.GetCharacterByID(GetCharacterID);
-                    if (characterData == null) { CharacterMessage = "Character not identified"; }
-                    else if (!characterData.AchievementsPublic) { CharacterMessage = "Character achievements not public. Cannot import"; }
+                    if (characterData == null) { CharacterMessage = "Character not identified or achievements not public"; }
                     else
                     {
                         CharacterMessage = "Parsing achievements";
