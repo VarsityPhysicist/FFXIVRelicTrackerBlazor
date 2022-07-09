@@ -49,14 +49,16 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._2_ArrStages
                     return "Faint";
                 case <= 799:
                     return "Slight";
-                case <= 1199:
+                case <= 999:
                     return "Modest";
-                case <= 1399:
+                case <= 1199:
                     return "Distinct";
-                case <= 1599:
+                case <= 1399:
                     return "Robust";
-                case <= 1799:
+                case <= 1599:
                     return "Vigorous";
+                case <= 1799:
+                    return "Intense";
                 case <= 1999:
                     return "Extreme";
                 case >= 2000:
