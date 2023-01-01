@@ -6,9 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Blazored.LocalStorage;
-using System.Text.Json;
 using FFXIVRelicTrackerBlazor.Shared.XIVAPI;
 using FFXIVRelicTrackerBlazor.Shared.Helpers;
+using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.JSInterop;
 
 namespace FFXIVRelicTrackerBlazor.Client.Pages
 {
@@ -21,6 +22,8 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
 
         [Inject]
         public ICallXIVAPI CallXIVAPI { get; set; }
+        [Inject]
+        public IJSRuntime JSRuntime { get; set; }
 
         public string CharacterName
         {
@@ -69,12 +72,12 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
         public string NewName { get; set; }
         public string RemoveName { get; set; }
         public string AddName { get; set; }
-        public async Task CreateCharacter(string addName)
+        public async Task CreateCharacter(string addName, Character inputCharacter=null)
         {
             if (addName == string.Empty | addName == null | NewName == "DefaultCharacter") return;
             if (CharacterStringList.Contains(addName)) return;
 
-            var tempCharacter = new Character() { Name = addName };
+            var tempCharacter = inputCharacter?? new Character() { Name = addName };
             CharacterStringList.Add(addName);
             character = tempCharacter;
             await State.UpdateCharacterAsync();
@@ -145,7 +148,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
                     CharacterListFetched = true;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 CharacterListMessage = "Error fetching characters";
             }
@@ -194,7 +197,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
                         CharacterMessage = "Achievements Parsed";
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     CharacterMessage = "Error encountered fetching data";
                 }
@@ -221,11 +224,52 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages
 
                 ServersLoaded = true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ServerMessage = "Error encountered fetching list of Servers";
             }
 
+        }
+        #endregion
+
+        #region Export Import
+        public bool ShowExportImport = false;
+        public string FilePath = string.Empty;
+        public bool DisableExportImport => (ImportExportFile?.Name ==String.Empty);
+        internal async void ExportCharacter()
+        {
+            var characters = new List<Character>();
+            foreach (var charName in CharacterStringList)
+            {
+                characters.Add(await LocalStorage.GetItemAsync<Character>(charName));
+            }
+            if (!characters.Any()) return;
+
+            var file = System.Text.Json.JsonSerializer.Serialize<List<Character>>(characters);
+
+            await JSRuntime.InvokeAsync<object>("FileSaveAs","RelicTrackerExport", file);
+
+        }
+        public string ImportError = string.Empty;
+        public IBrowserFile ImportExportFile;
+        internal void SetImportExportFile(InputFileChangeEventArgs e) 
+        {
+            ImportError = String.Empty;
+            ImportExportFile=e.File;
+        }
+        internal async void ImportCharacters()
+        {
+            ImportError = string.Empty;
+            var characters = await Importer.Import(ImportExportFile);
+            var importResult = characters.Item2.Item1;
+            ImportError = characters.Item2.Item2;
+            if (importResult==Importer.ImportResult.Failure) return;
+            ImportError = "Import Successful";
+            CharacterStringList.Clear();
+            foreach (var character in characters.Item1)
+            {
+                await CreateCharacter(character.Name, character);
+            }
         }
         #endregion
 

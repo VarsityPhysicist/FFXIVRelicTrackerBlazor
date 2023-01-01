@@ -42,6 +42,21 @@
     </select>
 }
 <br />
+<h3 @onclick="()=>ShowExportImport=!ShowExportImport">Import/Export data</h3>
+@if (ShowExportImport)
+{
+    <span>Export character data as RelicTrackerExport.xml</span>
+    <br />
+    <button type="submit" @onclick="()=>ExportCharacter()">Export</button>
+    <br />
+    <br />
+    <span>Import character data from a specified file</span>
+    <br />
+    <InputFile OnChange="(e)=>SetImportExportFile(e)" accept=".xml" />
+    <span> <button type="submit" disabled="@DisableExportImport" @onclick="()=>ImportCharacters()">Import</button> @ImportError </span>
+    
+}
+<br />
 <a><h3 @onclick="()=>ShowRename=!ShowRename">Rename Character</h3></a>
 @if (ShowRename)
 {
