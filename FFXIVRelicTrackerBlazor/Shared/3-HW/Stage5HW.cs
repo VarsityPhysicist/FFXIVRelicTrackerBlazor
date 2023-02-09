@@ -36,7 +36,7 @@ namespace FFXIVRelicTrackerBlazor.Shared._3_HW
             get => treatedSand;
             set
             {
-                treatedSand = FilterChange(value, 240);
+                treatedSand = FilterChange(value, 180);
             }
         }
     }

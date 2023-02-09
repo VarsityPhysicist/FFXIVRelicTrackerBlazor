@@ -21,7 +21,7 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._3_HWStages
         public int Umbrite => ThisStage.Umbrite;
         public int Sand => ThisStage.CrystalSand;
         public int TreatedSand => ThisStage.TreatedSand;
-        public double TreatedSandPercent => TreatedSand / 2.4;
+        public double TreatedSandPercent => TreatedSand / 1.8;
         #endregion
 
         #region SetProperties
@@ -36,21 +36,23 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._3_HWStages
             await OnCharacterUpdate();
         }
         #endregion
+        private int maxSandNeeded = 180;
+        private int sandThreshold = 90;
         #region Remaining
         public string RemainingUmbrite => FormatNumber(lowRemainingUmbrite) + "-" + FormatNumber(highRemainingUmbrite);
         public string RemainingSand => FormatNumber(lowRemainingSand) + "-" + FormatNumber(highRemainingSand);
-        public int RemainingTreated => FilterLow(240 - TreatedSand);
+        public int RemainingTreated => FilterLow(maxSandNeeded - TreatedSand);
         private int highRemainingUmbrite
         {
             get
             {
-                if (TreatedSand < 120)
+                if (TreatedSand < sandThreshold)
                 {
-                    return FilterLow((int)Math.Ceiling(40 + (120 - TreatedSand) / 3.0) - Umbrite);
+                    return FilterLow((int)Math.Ceiling(sandThreshold / 3 + (sandThreshold - TreatedSand) / 3.0) - Umbrite);
                 }
                 else
                 {
-                    return FilterLow((int)Math.Ceiling((240 - TreatedSand) / 3.0) - Umbrite);
+                    return FilterLow((int)Math.Ceiling((maxSandNeeded - TreatedSand) / 3.0) - Umbrite);
                 }
             }
         }
@@ -58,13 +60,13 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._3_HWStages
         {
             get
             {
-                if (TreatedSand < 120)
+                if (TreatedSand < sandThreshold)
                 {
-                    return FilterLow((int)Math.Ceiling(20 + (120 - TreatedSand) / 3.0) - Umbrite);
+                    return FilterLow((int)Math.Ceiling(sandThreshold / 6 + (sandThreshold - TreatedSand) / 3.0) - Umbrite);
                 }
                 else
                 {
-                    return FilterLow((int)Math.Ceiling((240 - TreatedSand) / 6.0) - Umbrite);
+                    return FilterLow((int)Math.Ceiling((maxSandNeeded - TreatedSand) / 6.0) - Umbrite);
                 }
             }
         }
@@ -72,13 +74,13 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._3_HWStages
         {
             get
             {
-                if (TreatedSand < 120)
+                if (TreatedSand < sandThreshold)
                 {
-                    return FilterLow((int)Math.Ceiling(40 + (120 - TreatedSand) / 3.0) - Sand);
+                    return FilterLow((int)Math.Ceiling(sandThreshold/3 + (sandThreshold - TreatedSand) / 3.0) - Sand);
                 }
                 else
                 {
-                    return FilterLow((int)Math.Ceiling((240 - TreatedSand) / 3.0) - Sand);
+                    return FilterLow((int)Math.Ceiling((maxSandNeeded - TreatedSand) / 3.0) - Sand);
                 }
             }
         }
@@ -86,13 +88,13 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._3_HWStages
         {
             get
             {
-                if (TreatedSand < 120)
+                if (TreatedSand < sandThreshold)
                 {
-                    return FilterLow((int)Math.Ceiling(20 + (120 - TreatedSand) / 3.0) - Sand);
+                    return FilterLow((int)Math.Ceiling(sandThreshold / 6 + (sandThreshold - TreatedSand) / 3.0) - Sand);
                 }
                 else
                 {
-                    return FilterLow((int)Math.Ceiling((240 - TreatedSand) / 6.0) - Sand);
+                    return FilterLow((int)Math.Ceiling((maxSandNeeded - TreatedSand) / 6.0) - Sand);
                 }
             }
         }
@@ -100,13 +102,13 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._3_HWStages
         {
             get
             {
-                if (TreatedSand < 120)
+                if (TreatedSand < sandThreshold)
                 {
-                    return FilterLow((int)Math.Ceiling(40 + (120 - TreatedSand) / 3.0) - Umbrite + (RemainingJobs - 1) * 80);
+                    return FilterLow((int)Math.Ceiling(sandThreshold / 3 + (sandThreshold - TreatedSand) / 3.0) - Umbrite + (RemainingJobs - 1) * maxSandNeeded / 3);
                 }
                 else
                 {
-                    return FilterLow((int)Math.Ceiling((240 - TreatedSand) / 3.0) - Umbrite + (RemainingJobs - 1) * 80);
+                    return FilterLow((int)Math.Ceiling((maxSandNeeded - TreatedSand) / 3.0) - Umbrite + (RemainingJobs - 1) * maxSandNeeded / 3);
                 }
             }
         }
@@ -114,13 +116,13 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._3_HWStages
         {
             get
             {
-                if (TreatedSand < 120)
+                if (TreatedSand < sandThreshold)
                 {
-                    return FilterLow((int)Math.Ceiling(20 + (120 - TreatedSand) / 3.0) - Umbrite + (RemainingJobs - 1) * 60);
+                    return FilterLow((int)Math.Ceiling(sandThreshold / 6 + (sandThreshold - TreatedSand) / 3.0) - Umbrite + (RemainingJobs - 1) * (sandThreshold / 3 + sandThreshold / 6));
                 }
                 else
                 {
-                    return FilterLow((int)Math.Ceiling((240 - TreatedSand) / 6.0) - Umbrite + (RemainingJobs - 1) * 60);
+                    return FilterLow((int)Math.Ceiling((maxSandNeeded - TreatedSand) / 6.0) - Umbrite + (RemainingJobs - 1) * (sandThreshold / 3 + sandThreshold / 6));
                 }
             }
         }
@@ -128,13 +130,13 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._3_HWStages
         {
             get
             {
-                if (TreatedSand < 120)
+                if (TreatedSand < sandThreshold)
                 {
-                    return FilterLow((int)Math.Ceiling(40 + (120 - TreatedSand) / 3.0) - Sand + (RemainingJobs - 1) * 80);
+                    return FilterLow((int)Math.Ceiling(sandThreshold / 3 + (sandThreshold - TreatedSand) / 3.0) - Sand + (RemainingJobs - 1) * maxSandNeeded / 3);
                 }
                 else
                 {
-                    return FilterLow((int)Math.Ceiling((240 - TreatedSand) / 3.0) - Sand + (RemainingJobs - 1) * 80);
+                    return FilterLow((int)Math.Ceiling((maxSandNeeded - TreatedSand) / 3.0) - Sand + (RemainingJobs - 1) * maxSandNeeded/3);
                 }
             }
         }
@@ -142,20 +144,20 @@ namespace FFXIVRelicTrackerBlazor.Client.Pages._3_HWStages
         {
             get
             {
-                if (TreatedSand < 120)
+                if (TreatedSand < sandThreshold)
                 {
-                    return FilterLow((int)Math.Ceiling(20 + (120 - TreatedSand) / 3.0) - Sand + (RemainingJobs - 1) * 60);
+                    return FilterLow((int)Math.Ceiling(sandThreshold / 6 + (sandThreshold - TreatedSand) / 3.0) - Sand + (RemainingJobs - 1) * (sandThreshold / 3 + sandThreshold / 6));
                 }
                 else
                 {
-                    return FilterLow((int)Math.Ceiling((240 - TreatedSand) / 6.0) - Sand + (RemainingJobs - 1) * 60);
+                    return FilterLow((int)Math.Ceiling((maxSandNeeded - TreatedSand) / 6.0) - Sand + (RemainingJobs - 1) * (sandThreshold/3+ sandThreshold/6));
                 }
             }
         }
 
         public string TotalUmbrite => FormatNumber(lowTotalRemainingUmbrite) + "-" + FormatNumber(highTotalRemainingUmbrite);
         public string TotalSand => FormatNumber(lowTotalRemainingSand) + "-" + FormatNumber(highTotalRemainingSand);
-        public int TotalTreated => FilterLow(240 * RemainingJobs - TreatedSand);
+        public int TotalTreated => FilterLow(maxSandNeeded * RemainingJobs - TreatedSand);
 
         public string RemainingPoetics => FormatNumber(lowTotalRemainingUmbrite * 75) + "-" + FormatNumber(highTotalRemainingUmbrite * 75);
         #endregion
